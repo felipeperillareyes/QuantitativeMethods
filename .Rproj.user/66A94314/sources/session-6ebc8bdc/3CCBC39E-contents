@@ -1,0 +1,12 @@
+---
+bibliography: ../bibliography/bibliography.bib
+csl: ../bibliography/apa.csl
+suppress-bibliography: yes 
+---
+
+Introduction to Quantitative Methodology; Causality; Research Design.
+
+#### Required Reading
+- Chapter 1 [@stock2003]
+- @lohr2009
+- @lohr2012

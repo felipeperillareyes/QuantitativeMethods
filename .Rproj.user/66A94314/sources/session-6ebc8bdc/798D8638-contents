@@ -1,0 +1,159 @@
+Exercise 2) Clear your workspace
+
+```{r}
+rm( list = ls() )
+```
+
+Exercise 3) Check your working directory
+```{r}
+getwd()
+```
+
+Exercise 4) Change your working directory to your folder N:/PUBLG100
+```{r eval=FALSE}
+setwd("N:/PUBLG100")
+```
+
+Exercise 5) Create a vector with all even elements b/w 1 & 11 in ascending order
+```{r}
+# assign the 5 elements to a
+a <- c( 2, 4, 6, 8, 10)
+# check what a contains
+a
+```
+
+Exercise 6) Delete the last element from your vector
+
+
+Solution 1: We use length().
+
+1. length(a) returns the number of elements in a which is 5
+1. we then assign a again indicated by the arrow
+  - because a already existed we overwrite it
+  - the square brackets after a tell you, we are subsetting a
+  - so we overwrite a with a subset of a
+  - the minus in the square bracket can be read as: except
+  - so we overwrite a with the vector a except the element at position length(a) which is the last element 
+```{r}
+a <- a[- length(a)]
+a
+```
+
+Solution 2 using head()
+
+1. head() returns the first 6 elements, if you do not specify a number
+1. If you specify a positive number x (after the comma), it returns the first x elements
+1. If you specify a negative number x, it returns all elements except for the last x elements
+1. You can use tail() to check last elements
+
+We also create the vector a anew because we already deleted the last element in solution 1.
+```{r}
+# create a again
+a <- c( 2, 4, 6, 8, 10,4)
+# delete last element
+a <- head(a, -1)
+# see what a contains now
+a
+```
+
+Exercise 7) Create a square matrix with 3 rows and 3 columns.
+
+1. row 1: smallest positive integers divisible by 3, in ascending order.
+1. row 2: smallest prime numbers, in ascending order
+1. row 3: greatest multiples of 6, smaller than 60, in descending order
+In R, there is usually more than one way to do something.
+
+Solution 1: matrix()
+
+matrix takes as necessary arguments, the data, the number of rows, and columns. You should always check the syntax of a command by typing: help(command.name) and see what is required.
+```{r}
+# assign the values to the matrix
+m <- matrix( c( 3, 6, 9, 2, 3, 5, 54, 48, 42), 3, 3, byrow = T)
+# print the contents of m to the screen (check what m contains)
+m
+```
+
+Solution 2: rbind()
+
+rbind() combines vectors (works also for matrices and data frames) row-wise. cbind() combines column-wise. In the example below c(3, 6, 9) is the first vector. c(2, 3, 5) is the second vector. c(54, 48, 42) is the third vector. These three vectors are combined row-wise with rbind().
+```{r}
+# assing the values to the matrix
+m <- rbind( c(3, 6, 9), c(2, 3, 5), c(54, 48, 42))
+# check what m contains
+m
+```
+
+Exercise 8) Change the elements on the main diagonal to 1's
+
+Again, there is more than one solution.
+
+Solution 1: Manually assigning each element on the diagonal
+```{r}
+# assign a 1 to row 1 and column 1 of m
+m[1, 1] <- 1
+# assign a 1 to row 2 and column 2 of m
+m[2, 2] <- 1
+# assign a 1 to row 3 and column 3 of m
+m[3, 3] <- 1
+# check what m contains
+m
+```
+
+Solution 2: The quick way using diag(). diag() returns the elements on the diagonal of a matrix. We will also assign the matrix again because we have already changed the diagonal of m in solution 1
+```{r}
+# assigning the values from Exercise 7 to m again
+m <- rbind( c(3, 6, 9), c(2, 3, 5), c(54, 48, 42))
+# assigning a 1 to each element on the diagonal of m
+diag(m) <- 1
+# checking what m contains
+m
+```
+
+Exercise 9) Load "polity.csv" and call your data frame "df"
+
+We use read.csv which reads in standard comma separated files. 
+```{r}
+# assign the csv file to df
+df <- read.csv("http://uclspp.github.io/PUBLG100/data/polity.csv")
+```
+
+Exercise 10) Pick the year 1991 and drop all observations from the data set that are not from 1991. 
+```{r}
+# assign(overwrite) df to df but only those rows where 
+# the variable year is equal to 1991
+df <- df[ df$year == 1991, ]
+# look at the first 6 rows of data set df
+head(df)
+```
+
+Exercise 11) Summarise the variable democ (stands for democracy) and produce a frequency table.
+```{r}
+# summary() returns summary statistics
+# the $ indicates that you want to access something in data set df
+# in this case the variable democ
+summary( df$democ)
+# table() produces a frequency table
+table(df$democ)
+```
+
+Exercise 12) Delete all observations from the data where democ is smaller than zero.
+
+We do this by overwriting df again with the rows of df that we want to keep. Since we are asked to delete observations where democ is smaller than zero, we want to keep observations where democ is greater or equal to zero. We use a logical operator to do this: >= which means greater or equal. Common logical operators:
+
+1. == equal to
+1. != not equal to
+1. \> greater
+1. \>= greater or equal
+1. < smaller
+1. <= smaller or equal
+1. is.na() is missing
+```{r}
+# assign (overwrite in this case) df with df but only those rows (observations)
+# of df where democracy is greater or equal to zero
+df <- df[ df$democ >= 0, ]
+```
+
+Exercise 13) Print a histogram of the democ (type help("hist").
+```{r}
+hist( df$democ)
+```

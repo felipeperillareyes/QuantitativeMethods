@@ -1,0 +1,375 @@
+--- 
+title: "Intermediate Quantitative Methods"
+author: "Lucas Lemmann"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# url: your book url like https://bookdown.org/yihui/bookdown
+
+Placeholder
+
+
+## How to use these exercises? 
+## Schedule
+
+<!--chapter:end:index.Rmd-->
+
+# Week 1: DIYS 1
+
+## Aim:
+
+To refresh your R skills by performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).
+
+## First part: descriptive analysis
+
+1. Download the files `f.txt` and `m.txt`. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 5 observations for each file.
+
+<span style="color:red">Adjust using the links from GitHub []()</span>
+
+```{r}
+# Your code goes here
+
+```
+<span style="color:red">For the exercise before publishing the solution</span>
+
+
+```{r}
+# open data
+female <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt", header = TRUE, sep = "\t")
+
+# explore data
+head(female, 3)
+
+# open data
+male <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt", header = TRUE, sep = "\t")
+
+# explore data
+head(male, 3)
+```
+
+1. Some key functions in dplyr can be categorized as dealing with columns (e.g., `select`, `mutate`), rows (e.g., `filter`, `distinct`, `arrange`), or groups  (e.g., `group_by`, `summarise`, and `count`). Let's use them:
+
+    1. Select only the columns 'steps' and 'bmi'. Do it only for the first three observations of the data on females.
+```{r}
+library(dplyr)# It's necessary to restate it in each r code section so the book can be rendered.
+head(female, 3) %>%
+  select(steps, bmi)
+```  
+
+    2. Select all columns except 'ID'. Do not use `steps` nor `bmi`. Do it only for the first three observations of the data on females. Is the resulting table the same as the previous point? If not, check your answer.
+```{r}
+library(dplyr)
+head(female, 3) %>%
+  select(-ID)
+```  
+
+Note: to check the documentation of `select`, use `?select` on the console.
+
+    3. Use `mutate` to create a new column in the dataframe `female` called `StepsTimesBmi` formed as the product of `steps` and  `bmi`. Show the first three observations for the new variable.
+
+```{r}
+library(dplyr)
+female <-female %>%
+  mutate(StepsTimesBmi= steps * bmi)
+  
+head(female$StepsTimesBmi,3)
+```  
+
+    3. Get rid of the column `StepsTimesBmi`. Use `subset`.
+    
+ ```{r}
+female <- subset(female, select= - StepsTimesBmi)
+```     
+
+    4. Use filter to find the share of female individuals with a `bmi` higher than 20 and lower than 21.
+    
+ ```{r}
+library(dplyr)
+f20_21 <- female %>%
+  filter(bmi>20, bmi<21)
+
+cat("The share of female individuals with a `bmi` higher than 20 and lower than 21 is:", nrow(f20_21)*100/nrow(female), "%\n")
+```   
+
+    5. Use filter to find the share of female individuals with a `bmi` higher than 20 and lower than 21 while at the same time having less than 14000 `steps`.
+    
+ ```{r}
+library(dplyr)
+fBMI20_21_Step14000 <- female %>%
+  filter(bmi>20, bmi<21, steps<14000)
+
+cat("the share of female individuals with a `bmi` higher than 20 and lower than 21 while at the same time having less than 14000:", nrow(fBMI20_21_Step14000)*100/nrow(female), "%\n")
+```    
+    6. distinct
+    
+ ```{r}
+
+```   
+
+
+    7. arrange
+    
+ ```{r}
+
+```  
+
+
+    7. group_by
+    
+ ```{r}
+
+```  
+
+    8. summarise
+    
+ ```{r}
+
+```  
+
+    9. count
+    
+ ```{r}
+
+```  
+
+2. Are there repeated ids within each data set?
+  - Hint
+
+```{r}
+# get package
+# install.packages("dplyr")
+library(dplyr)
+
+
+# Check for repeated IDs in the female data set. How many are there?
+repeated_ids_female <- female %>%
+  group_by(ID) %>%
+  filter(n() > 1)
+
+cat("Number of repeated IDs in the female data set:", nrow(repeated_ids_female), "\n")
+
+
+# Check for repeated IDs in the male data set. How many are there?
+repeated_ids_male <- male %>%
+  group_by(ID) %>%
+  filter(n() > 1)
+
+cat("Number of repeated IDs in the male data set:", nrow(repeated_ids_male), "\n")
+
+```
+
+
+
+
+  1. Unify both data sets in one object.
+  2. Make sure you can distinguish the individual sex in the unified data set.
+  3. Consider using the packages `dplyr`, ``
+
+## Solution
+
+Will be made available.
+
+<!-- Here is the solution -->
+
+
+
+
+
+
+## Second part:
+
+Please read the whole instruction before solving the exercise.
+
+Each student will be randomly allocated to either doing the task 1 or 2 (a list containing those numbers will published). Both tasks are based on the same data sets. `f.txt` and `m.txt` contain information on the number of steps in a day and body mass index (BMI) for female and male individuals respectively.
+
+Notes: 
+
+- The details of the data origin will be published with the solution.
+- Students allocated to each group are encouraged to do the task for the other group _only_ after finishing their own task.
+
+### Task 1:
+ - What do you conclude from the combined data set (i.e., the one formed using both the one for males and the one for females) regarding the relationship?
+  - What questions did you ask yourself?
+    - Why did you ask those questions? Is there an intuition behind them?
+      - If so, what was your intuition?
+      - If not, how did you proceed?
+
+
+### Task 2:
+
+- Is the average number of steps for males and females statistically different?
+- How do BMI and daily steps statistically relate to each other?
+  - Does that relationship depend on whether individuals are of one sex or another? If so, how?
+    - Is there an statistically significant negative correlation between the number of steps and the BMI for females?
+    - Is there an statistically significant positive correlation between the number of steps and the BMI for males?
+  
+
+
+- 1st weeks, dplier: to check> to statistical analysis
+	- Doing basic code to make analysis (which is fine enough), but in dplier you could do it like this.
+	- Make descriptive statistics using an interesting
+
+looking for something unknown in the dark, grope, feel blindly and make conjectures on what things are and how they are related.
+- Two groups: random selection: description similar? The smaller the group, the likelier that a random selection is not balanced? What about attrition?
+
+Looking!=seeing:
+  Different beliefs (non- and knowledge ones), different preferences, different attention focus -> different attention investment and emphasis
+    Value of diverse academic community while keeping a minimal set of shared assessment rules: [objectivity](https://plato.stanford.edu/entries/scientific-objectivity/) as continuum of increasing inter-subjective agreement
+    
+
+
+
+
+
+
+
+<!--chapter:end:01-Week1.Rmd-->
+
+# Week 2
+
+## Exercise
+
+- 2nd: simulated dataset and increase the variance: how does that affects the standard error
+
+
+## Solution
+
+- Data taken from [here](https://communities.sas.com/t5/Graphics-Programming/Fun-With-SAS-ODS-Graphics-Don-t-Miss-the-Gorilla-in-the-Data/td-p/697286).
+
+- Original selective attention, [here](https://www.youtube.com/watch?v=vJG698U2Mvo).
+
+- Suicide awareness campaign, [here](https://www.youtube.com/watch?v=Lw-YPKR0grk).
+
+<!--chapter:end:02-Week2.Rmd-->
+
+# Week 3
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:03-Week3.Rmd-->
+
+# Week 4
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:04-Week4.Rmd-->
+
+# Week 5
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:05-Week5.Rmd-->
+
+# Week 6
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:06-Week6.Rmd-->
+
+# Week 7
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:07-Week7.Rmd-->
+
+# Week 8
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:08-Week8.Rmd-->
+
+# Week 9
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:09-Week9.Rmd-->
+
+# Week 10
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:10-Week10.Rmd-->
+
+# Week 11
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:11-Week11.Rmd-->
+
+# Week 12
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:12-Week12.Rmd-->
+
+# Week 13
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:13-Week13.Rmd-->
+
+# Week 14
+
+## Exercise
+
+
+## Solution
+
+
+<!--chapter:end:14-Week14.Rmd-->
+

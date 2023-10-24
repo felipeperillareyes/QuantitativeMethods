@@ -1,0 +1,135 @@
+### R Introduction
+
+Let's get acquainted with R.
+
+Take a look at R Studio. See the 4 windows:
+
+- Upper-Left : R-script. 
+- Lower-Left : Console. 
+- Upper-Right : Environment (data, variables, ...)
+- Lower-Right : Plots, help file, packages etc.
+
+We begin by walking through the steps for creating and saving an R script. 
+
+- Create a new R script and save it as lab1.R to your `PUBLG100` directory. 
+- Now type the following commands in the new file you just created:
+
+```{r}
+# Create a numeric and a character variable
+a <- 5 
+typeof(a) # a is a numeric variable
+a
+b <- "Yay stats class"
+typeof(b) # b is a string variable
+b
+```
+
+Save your script, and re-open it to make sure your changes are still there.
+
+```{r}
+# Create a vector
+my.vector <- c(10,-7,99,34,0,-5) # a vector
+my.vector
+length(my.vector) # how many elements?
+# subsetting
+my.vector[1] # 1st vector element
+my.vector[-1] # all elements but the 1st
+my.vector[2:4] # the 2nd to the 4th elements
+my.vector[c(2,5)] # 2nd and 5th element
+my.vector[length(my.vector)] # the last element
+
+# delete variable 'a' from workspace
+rm(a)
+# delete everything from workspace
+rm(list=ls())
+
+# create a matrix
+# type help("matrix") into the console and press ENTER
+# read Description, Usage and Arguments
+my.matrix1 <- matrix(data = c(1,2,30,40,500,600), nrow = 3, ncol = 2, byrow = TRUE,
+                     dimnames = NULL)
+my.matrix2 <- matrix(data = c(1,2,30,40,500,600), nrow = 2, ncol = 3, byrow = FALSE)
+# How are the matrices different?
+my.matrix1
+my.matrix2
+
+# subsetting a matrix
+my.matrix1[1,2] # element in row 1 and column 2
+my.matrix1[2,1] # element in row 2 and column 1
+my.matrix1[,1] # 1st column only
+my.matrix1[1:2,] # rows 1 to 2
+my.matrix1[c(1,3),] # rows 1 and 3 
+
+
+## ------------------------------------------------------------------------
+# let's look at countries after WW2
+# were western countries more democratic than the rest?
+# (we proxy the "West" by NATO members) 
+
+# load the Polity IV dataset
+my.data <- read.csv("http://uclspp.github.io/PUBLG100/data/polity.csv")
+
+# View(my.data) # opens a window with the data set
+dim(my.data) # returns number of rows and columns
+my.data[1:10,] # look at the top 10 rows of the data set
+names(my.data) # the variable names in the data set
+# we saw the variable name country but we only saw Afghanistan in the 
+# first 10 rows. Are there other countries in the data set?
+levels(my.data$country) # levels displays levels of a factor variable
+
+# we drop all oberservations which are not from 1946
+my.data <- my.data[my.data$year==1946,]
+my.data[1:10,]
+summary(my.data$polity2) # descriptive statistics of polity variable
+
+# now lets check if western countries were more democratic than the other countries in 1946
+table(my.data$nato, my.data$polity2)
+# descriptive summary stats of polity variable by nato membership 
+summary(my.data$polity2[my.data$nato==0]) # not in nato
+summary(my.data$polity2[my.data$nato==1]) # nato member
+
+## illustration
+boxplot(my.data$polity2 ~ as.factor(my.data$nato),
+        frame = FALSE,
+        main = "Polity IV Scores of NATO founders vs others in 1946",
+        xlab = "NATO member",
+        ylab = "Polity Score")
+
+# plots you can do with R
+library(maps)
+library(mapdata)
+map('worldHires',
+    c('UK', 'Ireland', 'Isle of Man','Isle of Wight'),
+    xlim=c(-11,3), ylim=c(49,60.9))
+# where are we?
+# let's check google maps to find latitude and longitude of SPP
+# it's: 51.525051, -0.130186
+points(-0.130186,51.525051,col=2,pch=20,cex=1.8) # note longitude goes first
+```
+
+### Additional Resources
+
+- [UK general election 2015](http://spatial.ly/2015/05/colour-votes-2015-general-election)
+- [Interactive maps of Crime data in Greater London](http://www.fabioveronesi.net/Blog/Crimes_Boroughs.html)
+      - [R-bloggers post with links to code and data](http://www.r-bloggers.com/interactive-maps-of-crime-data-in-greater-london/)
+
+- [R-bloggers posts on maps](http://www.r-bloggers.com/search/maps)
+- [spatial.ly - Advanced Visualizations, Analysis and Resources from James Cheshire](http://spatial.ly)
+
+### Exercises
+1. Close and then re-open RStudio.
+1. If your workspace is not empty, clear it.
+1. Check your working directory in R.
+1. Change your working directory to your folder N:/PUBLG100.
+1. Create a vector with all even elements between 1 and 11 in ascending order.
+1. Delete the last element from your vector.
+1. Create a square matrix with 3 rows and 3 columns.
+    - Row 1: smallest positive integers divisible by 3, in ascending order.
+    - Row 2: smallest prime numbers, in ascending order.
+    - Row 3: greatest mutiples of 6, smaller than 60, in descending order.
+1. Change the elements on the main diagonal to 1's.
+1. Load "polity.csv" and call your data frame "df".
+1. Pick the year 1991 and drop all observations from the data set that are not from 1991.
+1. Summarize the variable democ (stands for democracy) and produce a frequency table.
+1. Delete all observations from the data where democ < 0.
+1. Print a histogram of the democracy -- type help("hist").
