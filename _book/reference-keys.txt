@@ -4,9 +4,9 @@ week-1-diys-1
 aim
 first-part-descriptive-analysis
 second-part-exploratory-vs.-hypothesis-testing-analysis
+preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to
 task-1
 task-2
-preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to
 graph
 solution
 week-2
