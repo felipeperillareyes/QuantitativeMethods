@@ -1,14 +1,30 @@
 # Week 1: DIYS 1
 
-## Aim:
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(swissdd)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(BFS)
+library(pxR)
 
-To refresh your R skills by performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).
+
+# Set global chunk options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 6, fig.height = 4)
+```
+
+## Aims:
+
+1. To refresh your R skills.
+2. Performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).
 
 ## First Part: Descriptive Analysis
 
 1. Download the files `f.txt` and `m.txt`. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 5 observations for each file.
 
 <span style="color:red">Adjust using the links from GitHub []()</span>
+
 
 ```{r}
 # Your code goes here

@@ -1,0 +1,3887 @@
+===========================================================================
+
+   COMPARATIVE STUDY OF ELECTORAL SYSTEMS (CSES) - MODULE 5 (2016-2021)
+
+                      CODEBOOK PART 1: INTRODUCTION
+                          
+                       FULL RELEASE - JULY 25, 2023
+ 
+                             CSES Secretariat
+                               www.cses.org
+
+===========================================================================
+
+HOW TO CITE THE STUDY:
+
+The Comparative Study of Electoral Systems (www.cses.org). CSES MODULE 5
+FULL RELEASE [dataset and documentation]. July 25, 2023 version.
+doi:10.7804/cses.module5.2023-07-25. 
+
+These materials are based on work supported by the American National
+Science Foundation (www.nsf.gov) under grant numbers SES-1420973 and
+SES-1760058, the GESIS - Leibniz Institute for the Social Sciences, 
+the University of Michigan, in-kind support of participating election 
+studies, the many organizations that sponsor planning meetings and 
+conferences, and the numerous organizations that fund national 
+election studies by CSES Collaborators.
+
+Any opinions, findings and conclusions, or recommendations expressed
+in these materials are those of the author(s) and do not necessarily
+reflect the views of the funding organizations.
+
+===========================================================================
+
+NOTE TO USERS:
+
+We recommend that researchers become familiar with the CSES design, units 
+of analysis, documentation, and dataset weights before beginning their 
+investigations. For instance, while the set of respondents appearing within
+each election study represents their respective nations, the group of 
+nations that appear within CSES is not a random sample of countries 
+worldwide. Furthermore, while many election studies include 1,000 or so 
+respondents, other election studies may consist of over 10,000 respondents. 
+Some nations will have studies of more than one election in a CSES module,
+and occasionally there will be two independent studies of a single 
+election. Last, some election studies include oversamples of specific 
+subpopulations or would otherwise benefit from use of the included weight
+variables. We hope you find our website and documentation useful as you 
+proceed with your work, and welcome any questions or suggestions you have.
+
+
+===========================================================================
+TABLE OF CONTENTS
+===========================================================================
+
+
+))) OVERVIEW OF "CODEBOOK PART 1: INTRODUCTION" 
+
+
+))) HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+
+
+))) LIST OF TABLES IN CODEBOOK PART 1
+
+
+))) THE COMPARATIVE STUDY OF ELECTORAL SYSTEMS (CSES) PROJECT OVERVIEW
+    >>> CSES PROJECT PROFILE
+    >>> CSES MODULE 5 STUDY DESCRIPTION - ABSTRACT
+    >>> CSES MODULE 5 PLANNING COMMITTEE
+    >>> CSES MODULE 6 PLANNING COMMITTEE
+    >>> CSES MODULE 5 COLLABORATORS
+    >>> CSES SECRETARIAT
+
+
+))) CSES MODULE 5 - HOW TO ACCESS?
+    >>> THE CSES CODEBOOK
+    >>> THE CSES DATA FILES
+
+
+))) CSES MODULE 5 STUDY
+    >>> OVERVIEW OF CSES MODULE 5 DATA FILE PARTICULARS
+    >>> LIST OF ELECTION STUDIES INCLUDED IN CSES MODULE 5
+    >>> MICRO-LEVEL (SURVEY) COMPONENT
+    >>> CSES MODULE 5 COLLABORATOR INSTRUCTIONS FOR THE ADMINISTRATION
+        OF THE CSES QUESTIONNAIRE
+    >>> DISTRICT-LEVEL COMPONENT
+    >>> MACRO-LEVEL COMPONENT
+
+
+))) CSES MODULE 5 DOCUMENTATION - WHAT'S AVAILABLE AND HOW TO USE?
+    >>> CSES CODEBOOK OVERVIEW
+    >>> CSES CODEBOOK CONVENTIONS
+    >>> CSES CODEBOOK - VARIABLE NOTES AND ELECTION STUDY NOTES
+    >>> CSES ORIGINAL QUESTIONNAIRE FOR MODULE 5
+    >>> CSES - ADDITIONAL DOCUMENTATION
+    >>> HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+
+    
+))) CSES MODULE 5 STUDY DATA AND CODEBOOK: ADDITIONAL INFORMATION
+    >>> CODING OF PARTIES/COALITIONS & LEADERS 
+    >>> CSES DATA BRIDGING: NEW FRONTIERS IN DATA LINKAGE
+    >>> DERIVATIVE VARIABLES   
+    >>> IDENTIFICATION VARIABLES
+    >>> MISSING DATA
+    >>> WEIGHTS
+    >>> FREEDOM STATUS OF ELECTIONS  
+    >>> PROCESSING CHECKS OF MODULE 5 DATASET BY THE CSES SECRETARIAT
+
+
+))) CSES MODULE 5 BIBLIOGRAPHY
+
+
+===========================================================================
+))) OVERVIEW OF "CODEBOOK PART 1: INTRODUCTION"
+===========================================================================
+
+Part 1 of the Codebook provides an extensive overview of the CSES MODULE 5
+study. It includes general details about the project, the project's 
+governing board (the Planning Committee), and information on the national 
+Collaborators who administered CSES MODULE 5 in their national election 
+study. 
+
+Further, extensive information about how to access CSES data, CSES 
+documentation, and CSES coding conventions are also provided. In addition, 
+an overview of the sampling procedures and weights of each polity's study 
+as well as a project bibliography are also detailed in this section. 
+
+
+===========================================================================
+))) HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+===========================================================================
+
+In the CSES MODULE 5 dataset, all variables begin with the letter "E" 
+(E being the fourth letter of the English alphabet and thus signifying 
+MODULE 5).
+
+The CSES Codebook is especially extensive and users are advised that the 
+best way to navigate it is electronically. It is a .txt format which 
+allows it to be accessed via a variety of programs. 
+
+The CSES Codebook can be navigated quickly in the electronic files, with 
+the following commands allowing for quick searching:
+
+))) = Section Header. 
+
+>>> = Sub-section Header 1.
+
+<<>> = Sub-section Header 2. 
+
++++ = Tables.
+
+CSES QUESTION CLASSIFICATION = For survey level variables only, CSES  
+Question Classification details whether the variable is part of the CSES  
+Core component, which are questions asked repeatedly in CSES Modules, 
+whether a variable is part of the CSES Module Theme component, which are  
+questions specific to the Module Theme under exploration and might not be 
+included in CSES repeatedly, or whether a variable is a Derivative Variable, 
+which is explained below. 
+
+VARIABLE NOTES = Notes for particular variables.
+
+ELECTION STUDY NOTES = Notes for a particular election study .
+
+DERIVATIVE VARIABLE = Highlights a variable derived from another 
+variable or variables within the CSES.
+
+POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at polity level.
+
+POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at regional level.
+
+POTENTIAL TIME BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging by time.
+
+POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging at party/coalition level.
+
+POTENTIAL CSES PRODUCT BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging with other CSES products.
+
+
+===========================================================================
+))) LIST OF TABLES IN CODEBOOK PART 1
+===========================================================================
+
+Below, we list the Tables located in Codebook Part 1. Tables can be 
+accessed in the electronic version of the CSES Codebook by searching for
+"+++". 
+
+   - OVERVIEW OF ELECTION STUDIES INCLUDED IN CSES MODULE 5 WITH NUMBER OF 
+     OBSERVATIONS, MODE OF DATA COLLECTION, AND FIELDWORK DATES
+
+
+===========================================================================
+))) THE COMPARATIVE STUDY OF ELECTORAL SYSTEMS (CSES) PROJECT OVERVIEW
+===========================================================================
+
+---------------------------------------------------------------------------
+>>> CSES PROJECT PROFILE
+---------------------------------------------------------------------------
+
+The Comparative Study of Electoral Systems (CSES) is a collaborative
+program of research among election study teams from around the world.
+Participating polities include a common module of survey questions
+in their post-election studies. The resulting data are deposited along
+with voting, demographic, district, and macro variables. The studies are
+then merged into a single, free, public dataset for use in comparative
+study and cross-level analysis.
+
+The CSES project focuses on respondents' behavior and attitudes during 
+the time of a national election, with a particular emphasis on voting and 
+turnout. Each CSES Module consists of a nationally-representative 
+post-election survey and additional variables about the context of the 
+overall polity and electoral system within which the respondents find 
+themselves. Every five years a new CSES Module is designed with a 
+different substantive theme selected to address essential questions 
+in electoral studies and social science. 
+
+An international committee of leading scholars of electoral politics and 
+political science develop the research agenda, questionnaires, and study 
+design. The design is implemented in each polity by their foremost 
+social scientists. By collaborating in this way, the CSES community hopes 
+to advance scientific inquiry into the relationship between electoral
+institutions and political behavior.
+
+The work of the CSES Secretariat is funded by the American National 
+Science Foundation, the GESIS - Leibniz Institute for the Social 
+Sciences, and the University of Michigan's Center for Political Studies. 
+Details of particular grants that provided funding for MODULE 5 are 
+available under the "HOW TO CITE THE CSES MODULE 5 STUDY". 
+The project also receives in-kind support from participating election 
+studies, additional organizations that sponsor Planning Committee (PC) 
+meetings and conferences, and the many organizations that fund national 
+election studies that participate in CSES. 
+
+This is the fifth iteration of CSES known as CSES MODULE 5. The remainder
+of the project description relates specifically to CSES MODULE 5. 
+
+
+---------------------------------------------------------------------------
+>>> CSES MODULE 5 STUDY DESCRIPTION - ABSTRACT
+---------------------------------------------------------------------------
+
+CSES MODULE 5 is scheduled to officially be in data collection from 2016 to 
+2021. Data collection in 2015 is possible for pre-test studies. 
+
+CSES MODULE 5 focuses on the examination of so-called "populist attitudes"
+in the population and how they shape electoral behavior. It focuses on the
+measurement of three core themes: attitudes towards political elites,
+attitudes towards representative democracy and majority rule, and attitudes
+towards out-groups.
+
+More information regarding the theme of MODULE 5 can be found in the
+CSES MODULE 5 Theoretical Statement available on the CSES website. 
+
+
+---------------------------------------------------------------------------
+>>> CSES MODULE 5 PLANNING COMMITTEE
+---------------------------------------------------------------------------
+
+The CSES MODULE 5 Planning Committee (PC) was responsible for the design of
+CSES MODULE 5 and took initial responsibility for its implementation.
+Besides the Chair, Planning Committee Members are listed alphabetically by 
+surname. The following persons were members of the CSES MODULE 5 Planning 
+Committee:
+
+JOHN ALDRICH, Chair (MODULE 5 Planning Committee Chair)
+Duke University, United States
+
+EVA ANDUIZA
+Universitat Autonoma de Barcelona, Spain
+
+ALI CARKOGLU
+Koc University, Turkey
+
+GORAN CULAR
+University of Zagreb, Croatia
+
+RACHEL GIBSON
+University of Manchester, United Kingdom
+
+ELISABETH GIDENGIL
+McGill University, Canada
+
+SARA HOBOLT
+London School of Economics and Political Science, United Kingdom
+
+DAVID HOWELL, ex officio
+University of Michigan, United States
+
+CHI HUANG
+National Chengchi University, Taiwan
+
+AIDA JUST  
+Bilkent University, Turkey
+
+ORIT KEDAR
+The Hebrew University of Jerusalem, Israel
+
+GEORG LUTZ
+University of Lausanne, Switzerland
+
+PEDRO MAGALHAES
+University of Lisbon, Portugal
+
+RACHEL MENEGUELLO
+Universidade Estadual de Campinas, Brazil
+
+HENRIK OSCARSSON
+University of Gothenburg, Sweden
+
+STEPHEN QUINLAN, ex officio
+GESIS - Leibniz Institute for the Social Sciences, Germany
+
+NICOLAS SAUGER
+Sciences Po, France
+
+RUDIGER SCHMITT-BECK
+University of Mannheim, Germany
+
+CARLOS SHENGA
+Higher Institute of Public Administration, Mozambique
+
+ALBERTO SIMPSER
+ITAM (Instituto Tecnologico Autonomo de Mexico), Mexico
+
+WOUTER VAN DER BRUG
+University of Amsterdam, The Netherlands
+
+MARKUS WAGNER
+University of Vienna, Austria
+
+MASAHIRO YAMADA
+Kwansei Gakuin University, Japan
+
+ELIZABETH ZECHMEISTER
+Vanderbilt University, United States
+
+
+---------------------------------------------------------------------------
+>>> CSES MODULE 6 PLANNING COMMITTEE
+---------------------------------------------------------------------------
+
+The CSES MODULE 6 Planning Committee (PC) takes responsibility not only for 
+the design and implementation of MODULE 6 but also the responsibility for
+the remainder of CSES MODULE 5 until its completion. Besides the Chair,
+Planning Committee Members are listed alphabetically by surname. 
+The following persons are members of the CSES MODULE 6 Planning Committee: 
+
+ELIZABETH ZECHMEISTER (MODULE 6 Planning Committee Chair)
+Vanderbilt University, United States
+
+EVA ANDUIZA
+Universitat Autonoma de Barcelona, Spain
+
+ALI CARKOGLU
+Koc University, Turkey
+
+MARINA COSTA LOBO
+University of Lisbon, Portugal
+
+CATHERINE E. DE VRIES
+Free University Amsterdam, Netherlands
+
+DAVID HOWELL, ex officio
+University of Michigan, United States
+
+ORIT KEDAR
+The Hebrew University of Jerusalem, Israel
+
+GEORG LUTZ
+University of Lausanne, Switzerland
+
+IRFAN NOORUDDIN
+Georgetown University, United States
+
+HENRIK OSCARSSON
+University of Gothenburg, Sweden
+
+STEPHEN QUINLAN, ex officio
+GESIS - Leibniz Institute for the Social Sciences, Germany
+
+RUDIGER SCHMITT-BECK
+University of Mannheim, Germany
+
+CARLOS SHENGA
+Higher Institute of Public Administration, Mozambique
+
+JILL SHEPPARD
+Australian National University, Australia
+
+ALBERTO SIMPSER
+ITAM (Instituto Tecnologico Autonomo de Mexico), Mexico
+
+LAURA STEPHENSON
+Western University, Canada
+
+DAVID SULMONT
+Pontifical Catholic University of Peru, Peru
+
+JOSHUA TUCKER
+New York University, United States
+
+WOUTER VAN DER BRUG
+University of Amsterdam, The Netherlands
+
+MARKUS WAGNER
+University of Vienna, Austria
+
+MASAHIRO YAMADA
+Kwansei Gakuin University, Japan
+
+ERIC YU
+National Chengchi University, Taiwan R.O.C.
+
+
+Past members of the CSES MODULE 6 Planning Committee include:
+
+AIDA JUST
+Bilkent University, Turkey
+
+
+---------------------------------------------------------------------------
+>>> CSES MODULE 5 COLLABORATORS
+---------------------------------------------------------------------------
+
+The CSES project is extremely grateful to our MODULE 5 Collaborators, who
+raised their own funds to include CSES MODULE 5 in a nationally
+representative post-election study in their polity or province.
+
+Listed Collaborators are those who appear in the Design Report for the
+respective study - they are not necessarily the actors who collected
+the data, and they are not necessarily the only investigators on each
+study. Most election studies benefited from the scientific input and data
+preparation skills of additional persons not listed here.
+
+Within each election study, Collaborators are presented in the order in
+which they are listed in the Design Report deposited by each Collaborator
+team. The affiliations listed are current as of the date when each
+election study's Design Report was deposited with CSES. The polities are
+listed in alphabetical order. 
+
+
+- ALBANIA (2017)     Blendi Ceka
+                     University of Tirana, Albania
+
+
+- AUSTRALIA (2019)   IAN MCALLISTER
+                     Australian National University, Australia 
+
+                     JILL SHEPPARD
+                     Australian National University, Australia
+
+
+- AUSTRIA (2017)     WOLFGANG C. MUELLER
+                     University of Vienna, Austria
+
+                     SYLVIA KRITZINGER
+                     University of Vienna, Austria
+
+                     HAJO BOOMGAARDEN
+                     University of Vienna, Austria
+
+
+- BELGIUM-FLANDERS   MARC HOOGHE
+  (2019)             KU Leuven, Centre for Political Research
+
+                     RUTH DASSONNEVILLE
+                     University of Montreal, Department of Political Science
+
+                     MARTIN OKOLIKJ
+                     KU Leuven, Centre for Political Research
+
+                     DIETER STIERS
+                     KU Leuven, Centre for Political Research
+
+
+- BELGIUM-WALLONIA   MARC HOOGHE
+  (2019)             KU Leuven, Centre for Political Research
+
+                     RUTH DASSONNEVILLE
+                     University of Montreal, Department of Political Science
+
+                     MARTIN OKOLIKJ
+                     KU Leuven, Centre for Political Research
+
+                     DIETER STIERS
+                     KU Leuven, Centre for Political Research
+
+
+- BRAZIL (2018)      RACHEL MENEGUELLO
+                     Centre for Studies on Public Opinion, 
+                     Universidade de Campinas, Brazil
+
+
+- CANADA (2019)      LAURA STEPHENSON
+                     University of Western Ontario, Canada
+
+                     ALLISON HARELL
+                     Universite du Quebec a Montreal, Canada
+
+                     DANIEL RUBENSON
+                     Ryerson University, Canada
+
+                     PETER JOHN LOEWEN
+                     University of Toronto, Canada
+
+
+- CHILE (2017)       CAROLINE SEGOVIA
+                     Universidad Diego Portales, Chile
+
+                     RICARDO GAMBOA
+                     Universidad de Chile, Chile
+
+
+- COSTA RICA (2018)  RONALD ALFARO-REDONDO 
+                     Public Opinion Unit, Political Studies and Research 
+                     Center, University of Costa Rica
+
+                     FELIPE ALPIZAR
+                     Political Studies and Research Center, 
+                     University of Costa Rica
+
+                     JESUS GUZMAN-CASTILLO
+                     Public Opinion Unit, Political Studies and Research 
+                     Center, University of Costa Rica
+
+
+- CZECHIA (2017)     LUKAS LINEK 
+                     Institute of Sociology, Czech Academy of Sciences 
+                     Czech Republic
+
+
+- CZECHIA (2021)     LUKAS LINEK 
+                     Institute of Sociology, Czech Academy of Sciences 
+                     Czech Republic
+
+
+- DENMARK (2019)     KASPER M. HANSEN
+                     Department of Political Science, 
+                     University of Copenhagen, Denmark
+
+                     RUNE STUBAGER
+                     Department of Political Science, 
+                     Aarhus University, Denmark
+
+
+- EL SALVADOR (2019) RICARDO CORDOVA
+                     Fundacion Dr. Guillermo Manuel Ungo (FUNDAUNGO), 
+                     El Salvador
+
+                     CARLOS ARGUETA
+                     Fundacion Dr. Guillermo Manuel Ungo (FUNDAUNGO), 
+                     El Salvador
+
+
+- FINLAND (2019)     KIMMO GRONLUND
+                     Social Science Research Institute,
+                     Abo Akademi University
+
+
+- FRANCE (2017)      NICOLAS SAUGER
+                     Centre de donnees socio-politiques
+                     Sciences Po, Paris, France 
+
+                     BRUNEL VALENTIN                     
+                     Centre de donnees socio-politiques
+                     Sciences Po, Paris, France 
+
+
+- GERMANY (2017)     BERNHARD WESSELS
+                     WZB (Berlin Social Science Center), Germany
+
+                     HARALD SCHOEN
+                     University of Mannheim, Germany
+
+                     SIGRID ROSSTEUTSCHER
+                     Goethe University, Frankfurt am Main, Germany
+
+                     RUEDIGER SCHMITT-BECK
+                     University of Mannheim, Germany
+
+                     CHRISTOF WOLF
+                     GESIS - Leibniz Institute for the Social Sciences,
+                     Germany
+
+
+- GERMANY (2021)     SIGRID ROSSTEUTSCHER
+                     Goethe University, Frankfurt am Main, Germany
+
+                     HARALD SCHOEN
+                     University of Mannheim, Germany
+
+                     THORSTEN FAAS
+                     Freie Universitaet Berlin, Germany
+                     
+                     MARC DEBUS
+                     University of Mannheim, Germany
+
+                     REINHARD POLLAK
+                     GESIS - Leibniz Institute for the Social Sciences,
+                     Germany
+
+
+- GREAT BRITAIN      EDWARD FIELDHOUSE
+  (2017)             University of Manchester, UK
+
+                     JANE GREEN
+                     Oxford University, UK
+
+                     GEOFFREY EVANS
+                     Oxford University, UK
+
+                     JONATHAN MELLON
+                     University of Manchester, UK
+
+                     CHRIS PROSSER
+                     University of London, UK
+
+
+- GREAT BRITAIN      EDWARD FIELDHOUSE
+  (2019)             University of Manchester, UK
+
+                     JANE GREEN
+                     Oxford University, UK
+
+                     GEOFFREY EVANS
+                     Oxford University, UK
+
+                     JONATHAN MELLON
+                     University of Manchester, UK
+
+                     CHRIS PROSSER
+                     University of London, UK
+
+                     JACK BAILEY
+                     University of Manchester, UK
+
+
+- GREECE (2015)      IOANNIS ANDREADIS
+                     Aristotle University Thessaloniki, Greece
+
+                     THEODORE CHADJIPADELIS
+                     Aristotle University Thessaloniki, Greece
+
+                     EFTICHIA TEPEROGLOU
+                     Aristotle University Thessaloniki, Greece
+
+
+- GREECE (2019)      IOANNIS ANDREADIS
+                     Aristotle University Thessaloniki, Greece
+
+                     THEODORE CHADJIPADELIS
+                     Aristotle University Thessaloniki, Greece
+
+                     EFTICHIA TEPEROGLOU
+                     Aristotle University Thessaloniki, Greece
+
+
+- HONG KONG (2016)   LI PANG-KWONG
+                     Lingnan University, Hong Kong
+
+
+- HUNGARY (2018)     ZSOLT ENYEDI
+                     Central European University, Hungary
+
+                     BOJAN TODOSIJEVIC
+                     Institute of social sciences, Serbia
+
+                     LEVENTE LITTVAY
+                     Central European University, Hungary
+
+
+- ICELAND (2016)     EVA H. ONNUDOTTIR
+                     University of Iceland, Iceland
+
+                     OLAFUR O. HARDARSON
+                     University of Iceland, Iceland
+
+                     HULDA PORISDOTTIR
+                     University of Iceland, Iceland
+
+                     AGNAR FREYR HELGASON
+                     University of Iceland, Iceland 
+
+                     TINNA LAUFEY ASGEIRSDOTTIR
+                     University of Iceland, Iceland
+
+                     SHAUN BOWLER
+                     University of California Riverside, United States 
+
+                     GUNNAR HELGI KRISTINSSON
+                     University of Iceland, Iceland
+
+                     GRETAR POR EYBORSSON
+                     University of Iceland, Iceland
+
+                     INDRIDI H. INDRIDOASON
+                     University of California Riverside, United States 
+
+                     JON GUNNAR BERNBURG
+                     University of Iceland, Iceland
+
+                     SIGRUN OLAFSDOTTIR
+                     University of Iceland, Iceland
+
+
+- ICELAND (2017)     EVA H. ONNUDOTTIR
+                     University of Iceland, Iceland
+
+                     OLAFUR O. HARDARSON
+                     University of Iceland, Iceland
+
+                     HULDA PORISDOTTIR
+                     University of Iceland, Iceland
+
+                     AGNAR FREYR HELGASON
+                     University of Iceland, Iceland 
+
+
+- INDIA (2019)       IRFAN NOORUDDIN
+                     Georgetown University, United States
+
+                     DHANANJAI JOSHI
+                     Cicero Associates & Consultants Pvt Ltd, India
+
+
+- IRELAND (2016)     MICHAEL MARSH
+                     Trinity College Dublin (TCD), Ireland
+
+
+- ISRAEL (2020)      MICHAL SHAMIR
+                     Tel Aviv University, Israel
+
+                     YAEL SHOMER
+                     Tel Aviv University, Israel
+
+                     LIOR SHEFFER
+                     Tel Aviv University, Israel
+
+                     ALON YAKTER
+                     Tel Aviv University, Israel
+
+
+- ITALY (2018)       PAOLO SEGATTI
+                     University of Milan, Italy
+
+                     FEDERICO VEGETTI
+                     University of Milan, Italy
+
+
+- JAPAN (2017)       MASAHIRO YAMADA
+                     Kwansei Gakuin University, Japan
+
+                     YUKIO MAEDA
+                     University of Tokyo, Japan
+
+                     AIRO HINO
+                     Waseda University, Japan
+
+                     TETSUYA MATSUBAYASHI
+                     Osaka University, Japan
+
+
+- LATVIA (2018)      JANIS IKSTENS
+                     Univesity of Latvia, Latvia
+
+
+- LITHUANIA (2016)   AINE RAMONAITE
+                     Vilnius University, Lithuania
+
+
+- LITHUANIA (2020)   AINE RAMONAITE
+                     Vilnius University, Lithuania
+
+
+- MEXICO (2018)      ULISES BELTRAN
+                     Political Studies Division, CIDE, Mexico
+
+                     RODRIGO CASTRO CORNEJO
+                     Political Studies Division, CIDE, Mexico
+
+
+- MONTENEGRO (2016)  OLIVERA KOMAR
+                     De Facto Consultancy & University of Montenegro,
+                     Montenegro
+
+                     SLAVEN ZIVKOVIC 
+                     De Facto Consultancy & University of Montenegro,
+                     Montenegro
+
+                     IVA MALESEVIC
+                     De Facto Consultancy, Montenegro 
+
+                     STEVAN KANDIC
+                     De Facto Consultancy, Montenegro                      
+
+                     NEMANJA BATRICEVIC
+                     Central European University Budapest, Hungary  
+
+                     NEMANJA STANKOV
+                     Central European University Budapest, Hungary 
+
+
+- NETHERLANDS (2017) RODERIK REKKER
+                     University of Amsterdam, Netherlands
+
+                     WOUTER VAN DER BRUG
+                     University of Amsterdam, Netherlands
+
+                     TOM VAN DER MEER
+                     University of Amsterdam, Netherlands
+
+                     HENK VAN DER KOLK
+                     University of Twente, Netherlands
+
+
+- NETHERLANDS (2021) TOM VAN DER MEER
+                     University of Amsterdam, Netherlands
+
+                     MARCEL LUBBERS
+                     University of Utrecht, Netherlands
+
+                     NIELS SPIERINGS
+                     Radboud University, Netherlands
+
+                     KRISTOF JACOBS
+                     Radboud University, Netherlands
+
+                     TAKE SIPMA
+                     Tilburg University, Netherlands
+
+                     WOUTER VAN DER BRUG
+                     University of Amsterdam, Netherlands
+
+
+- NEW ZEALAND (2017) JACK VOWLES
+                     Victoria University of Wellington,
+                     New Zealand
+
+
+- NEW ZEALAND (2020) JACK VOWLES
+                     Victoria University of Wellington,
+                     New Zealand
+
+                     LARA GREAVES
+                     University of Auckland, New Zealand 
+                     
+
+- NORWAY (2017)      JOHANNES BERGH
+                     Institute for Social Research, Norway
+
+                     BERNT AARDAL
+                     University of Oslo, Norway 
+
+
+- PERU (2021)        ARTURO MALDONADO
+                     Pontificia Universidad Catolica del Peru, Peru
+
+                     DAVID SULMONT
+                     Pontificia Universidad Catolica del Peru, Peru
+
+                     JORGE ARAGON
+                     Pontificia Universidad Catolica del Peru, Peru
+
+
+- POLAND (2019)      RADOSLAW MARKOWSKI
+                     Centre for the Study of Democracy, SWPS University of
+                     Social Sciences and Humanities, Poland
+
+                     MIKOLAJ CZESNIK
+                     Centre for the Study of Democracy, SWPS University of
+                     Social Sciences and Humanities, Poland
+
+
+- PORTUGAL (2019)    MARINA COSTA LOBO
+                     Institute of Social Sciences, University of Lisbon,
+                     Portugal
+
+                     PEDRO MAGALHAES
+                     Institute of Social Sciences, University of Lisbon,
+                     Portugal
+
+
+- ROMANIA (2016)     MIRCEA COMSA
+                     Department of Sociology,
+                     Babes-Bolyai University of Cluj-Napoca, Romania
+
+                     ANDREI GHEORGHITA
+                     Centre for Social Research,
+                     Lucian Blaga University of Sibiu, Romania
+
+                     CRISTINA STANUS
+                     Department of Political Science, International
+                     Relations, and Security Studies, Lucian Blaga
+                     University of Sibiu, Romania
+
+                     CAMIL POSTELNICU
+                     Department of Sociology,
+                     Babes-Bolyai University of Cluj-Napoca, Romania
+
+                     CLAUDIU D. TUFIS
+                     Department of Political Science,
+                     University of Bucharest, Romania
+
+                     BOGDAN VOICU
+                     Research Institute for the Quality of Life,
+                     Romanian Academy, Romania
+
+                     FLORIN N. FESNIC
+                     Department of Political Science,
+                     Babes-Bolyai University of Cluj-Napoca, Romania
+
+                     GABRIEL BADESCU
+                     Center for the Study of Democracy,
+                     Babes-Bolyai University of Cluj-Napoca, Romania
+
+
+- SLOVAKIA (2020)    OLGA GYARFASOVA
+                     Comenius University, Slovakia
+
+                     MILOSLAV BAHNA
+                     Sociological Institute, Slovak Academy of Sciences,
+                     Slovakia
+
+
+- SOUTH KOREA (2016) NAM YOUNG LEE
+                     Korean Social Science Data Center, South Korea
+
+                     WOOK KIM
+                     Paichai University, South Korea
+
+
+- SWEDEN (2018)      HENRIK OSCARSSON
+                     University of Gothenburg, Sweden
+
+
+- SWITZERLAND (2019) ANKE TRESCH
+                     FORS
+
+                     LAURENT BERNHARD
+                     FORS
+
+                     LUKAS LAUENER
+                     FORS
+
+
+- TAIWAN (2016)      CHI HUANG
+                     National Chengchi University, Taiwan
+
+
+- TAIWAN (2020)      CHI HUANG
+                     National Chengchi University, Taiwan
+
+
+- THAILAND (2019)    THAWILWADEE BUREEKUL
+                     King Prajadhipok's Institute, Thailand
+
+                     RATCHAWADEE SANGMAHAMAD
+                     King Prajadhipok's Institute, Thailand
+
+
+- TUNISIA (2019)     AMENI MEHREZ
+                     Central European University, Hungary
+ 
+                     BOJAN TODOSIJEVIC
+                     Institute of social sciences, Serbia
+ 
+                     CARSTEN Q. SCHNEIDER
+                     Central European University, Hungary 
+
+                     LEVENTE LITTVAY
+                     Central European University, Hungary
+
+
+- TURKEY (2018)      ALI CARKOGLU
+                     Koc University, Istanbul, Turkey 
+                     
+                     SELIM ERDEM AYTAC
+                     Koc University, Istanbul, Turkey
+
+
+- UNITED STATES      VINCENT HUTCHINGS
+  (2016)             University of Michigan, United States
+ 
+                     TED BRADER
+                     University of Michigan, United States 
+ 
+                     MATTHEW DEBELL
+                     Stanford University, United States 
+
+                     DARRELL DONAKOWSKI
+                     University of Michigan, United States 
+ 
+                     SHANTO IYENGAR
+                     Stanford University, United States 
+
+
+- UNITED STATES      DAVID HOWELL
+  (2020)             University of Michigan, United States
+ 
+                     TED BRADER
+                     University of Michigan, United States
+
+                     SHANTO IYENGAR
+                     Stanford University, United States
+ 
+                     SUNSHINE HILLYGUS
+                     Duke University, United States
+
+                     DARON SHAW
+                     University of Texas at Austin, United States
+
+                     NICHOLAS VALENTINO
+                     University of Michigan, United States
+
+                     MATTHEW DEBELL
+                     Stanford University, United States
+
+
+- URUGUAY (2019)     OSCAR ALBERTO BOTTINELLI
+                     Instituto Factum, Universidad de la Republica, Uruguay
+ 
+                     EDUARDO BOTTINELLI
+                     Instituto Factum, Universidad de la Republica, Uruguay
+ 
+                     LUCIA SELIOS
+                     Universidad de la Republica, Uruguay
+
+
+---------------------------------------------------------------------------
+>>> CSES SECRETARIAT
+---------------------------------------------------------------------------
+
+The CSES Secretariat comprises the central staffing and operational hub for 
+the CSES project, under the leadership of the Chair of the CSES Planning 
+Committee, PC - listed above). Since June 2011, the Secretariat has been
+a collaboration between the GESIS - Leibniz Institute for the Social
+Sciences, Germany, and the University of Michigan's Centre for Political
+Studies in the United States. 
+Professor John Aldrich of Duke University, and Chair of the CSES MODULE 5
+Planning Committee, and Professor Elizabeth Zechmeister of the Vanderbilt
+University, Chair of the CSES MODULE 6 Planning Committee, have overseen
+the operations of CSES MODULE 5 during their respective terms as Chair.
+
+Various persons have staffed the CSES Secretariat throughout the MODULE 5
+period. David Howell served as the Director of Studies and Stephen 
+Quinlan served as the Project Manager. Katharina Blinzler, Kathrin Busch,
+Klara Dentler, Yioryos Nardis, Christian Schimpf, Hannah Schwarz, 
+Bojan Todosijevic, and Slaven Zivkovic were responsible for research 
+support, documentation, preparation, communications, and other services.
+Additional support to the Secretariat was provided by several research 
+assistants from the GESIS - Leibniz Institute for the Social Sciences.  
+
+Support was received from various sources for the activities of the CSES
+Secretariat during the period of CSES MODULE 5:
+
+1. American National Science Foundation (NSF) grant SES-1760058, 
+   "The Sixth Module of the Comparative Study of Electoral Systems (CSES)"
+   with Principal Investigators Ken Kollman (University of Michigan), John 
+   Aldrich (Duke University), and Elizabeth Zechmeister (Vanderbilt
+   University) supported CSES Secretariat activities at the University of 
+   Michigan beginning in 2018.
+
+2. American National Science Foundation (NSF) grant SES-1420973, 
+   "The Fifth Module of the Comparative Study of Electoral Systems (CSES)"
+   with Principal Investigators Nancy Burns (University of Michigan), Andre
+   Blais (University of Montreal), and John Aldrich (Duke University) 
+   supported CSES Secretariat activities at the University of Michigan 
+   beginning in 2014.
+
+3. The CSES Secretariat activities at the GESIS - Leibniz Institute for the
+   Social Sciences, Germany are funded by the GESIS - Leibniz Institute.
+
+4. The Center for Political Studies (CPS) at the University of Michigan 
+   provides additional financial support.
+
+
+===========================================================================
+))) CSES MODULE 5 - HOW TO ACCESS?
+===========================================================================
+
+---------------------------------------------------------------------------
+>>> THE CSES CODEBOOK
+---------------------------------------------------------------------------
+
+Users are advised to first download the CSES Codebook file:
+
+  cses5_codebook.zip  Contains the six Codebook files, including this 
+                      one, in text format.
+                   
+The Codebook can also be navigated online the CSES MODULE 5 study page at: 
+        https://cses.org/data-download/cses-module-5-2016-2021/
+        (Date accessed: July 15, 2023).        
+
+---------------------------------------------------------------------------
+>>> THE CSES DATA FILES
+---------------------------------------------------------------------------
+
+The following ZIP files, which contain the CSES data are available to 
+download from the CSES MODULE 5 study page at: 
+        https://cses.org/data-download/cses-module-5-2016-2021/
+        (Date accessed: July 15, 2023).   
+
+Users can download the data in a variety of formats depending on which 
+statistical packages) they intend to use with the data:
+
+  cses5_csv.zip       Contains a .CSV file with variables names as column 
+                      headers but no additional metadata (for instance,
+                      no code labels are included).
+                                      
+  cses5_syntax.zip    Contains a raw data file and syntax statements to
+                      read the dataset into SAS, SPSS, and STATA. The
+                      instructions for doing so are found in the 
+                      headers of the syntax files for each statistical
+                      package: cses5.sas for SAS, cses5.sps for SPSS,
+                      and cses5.do for STATA. Users of STATA 13 or earlier
+                      versions are advised to use these files to load 
+                      the dataset into their package. 
+                      
+  cses5_r.zip         Contains a R Workplace system file (.rdata), with
+                      the dataset already prepared and ready to be loaded
+                      into R. Missing data statements are not applied.
+  
+  cses5_sas.zip       Contains a SAS 7-8 system file (.sas7bdat), with
+                      the dataset already prepared and ready to be loaded
+                      into SAS. Missing data statements are not applied.
+  
+  cses5_spss.zip      Contains a SPSS system file (.sav), with the dataset
+                      already prepared and ready to be loaded into SPSS.
+                      Missing data statements are not applied.
+  
+  cses5_stata.zip     Contains a STATA 16 system file (.dta), with the
+                      dataset already prepared and ready to be loaded
+                      into STATA.  Missing data statements are not applied.
+                      Users of STATA 13 or earlier versions of this
+                      programme are advised to use the "cses_syntax.zip"
+                      files to load the dataset into their package. 
+
+Please note that all above packages will need a File Extractor 
+program downloaded to their computer to be able to Unzip and open the
+above files. 
+
+We recommend that PC users create the following directory on their hard
+drive, and to download their files from this MODULE 5 release to that 
+location:
+                 "c:/cses/module5/20230725/"                        
+
+The sub-directory value "20230725" represents the version (release date) of 
+the dataset - this being 2023, and the July 25 version of CSES MODULE 5.
+This file structure is compatible with how the "cses5_syntax.zip" file
+(detailed above) is organized. The method allows users with multiple CSES
+dataset's and/or versions to stay organized and not over-write their other 
+files. Users of other computer types (Macs, Unix, etc.) are recommended to 
+use a similar directory structure to organize their CSES files.
+
+
+===========================================================================
+))) CSES MODULE 5 STUDY
+===========================================================================
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF CSES MODULE 5 DATA FILE PARTICULARS
+---------------------------------------------------------------------------
+
+The particulars of the Full Release of CSES MODULE 5 are: 
+
+Type of study:                CROSS-SECTIONAL
+Kind of data:                 SURVEY DATA FUSED WITH CONTEXTUAL MACRO DATA
+Primary Unit of Analysis:     INDIVIDUALS 
+Universe:                     ALL PERSONS OF ELIGIBLE VOTING AGE AND 
+                              ELIGIBLE TO VOTE IN THE NATIONAL ELECTION
+Geographic Coverage:          GLOBAL (Europe, North America, parts of Asia, 
+                              and South America, North Africa, Australia,  
+                              and New Zealand)
+Total Geographic Regions:     13 (as defined by the UN Geographic regions)
+File Structure:               RECTANGULAR 
+Total Case Count:             114,714 
+Total Variable Count:         605       
+Total Polities:               45                
+Total Election Studies:       56           
+
+
+---------------------------------------------------------------------------
+>>> LIST OF ELECTION STUDIES INCLUDED IN CSES MODULE 5
+---------------------------------------------------------------------------
+
+The Full Release of CSES MODULE 5 contains data from the following 56
+election studies in 45 polities. They are listed below in alphabetic
+order with an overview of some particulars of each election study. 
+
+    | +++ TABLE: OVERVIEW OF ELECTION STUDIES INCLUDED IN CSES MODULE 5 WITH
+    |            NUMBER OF OBSERVATIONS, MODE OF DATA COLLECTION, AND
+    |            FIELDWORK DATES
+    |
+    | POLITY (ELEC YEAR)     N of      Mode of      Dates of Fieldwork
+    |                    Observations Interview      (Start-End date)     
+    | ---------------------------------------------------------------------
+    | ALBANIA (2017)        1,255       F2F       Feb 15, 2018-Apr 11, 2018
+    | AUSTRALIA (2019)      2,000        MX       Jun 03, 2019-Jun 17, 2019
+    | AUSTRIA (2017)        1,203        TP       Oct 19, 2017-Nov 30, 2017
+    | BEL-FLANDERS (2019)   1,084        MX       May 29, 2019-Sep 24, 2019
+    | BEL-WALLONIA (2019)     730        MX       May 29, 2019-Sep 03, 2019
+    | BRAZIL (2018)         2,506       F2F       Nov 10, 2018-Nov 24, 2018
+    | CANADA (2019)         2,889        MX       Oct 22, 2019-Nov 21, 2019
+    | CHILE (2017)          2,000      F2F1       Dec 18, 2017-Jan 31, 2018
+    | COSTA RICA (2018)     1,456        TP       Feb 27, 2019-Mar 06, 2019
+    | CZECHIA (2017)        1,559      F2F2       Oct 23, 2017-Nov 12, 2017
+    | CZECHIA (2021)        1,490      F2F2       Oct 11, 2021-Nov 24, 2021
+    | DENMARK (2019)        1,418       INT       Jun 06, 2019-Sep 28, 2019
+    | EL SALVADOR (2019)    1,488       F2F       Jul 04, 2019-Jul 24, 2019
+    | FINLAND (2019)        1,598        MX       Apr 17, 2019-Oct 05, 2019
+    | FRANCE (2017)         1,830       F2F       May 09, 2017-May 23, 2017
+    | GERMANY (2017)        2,032       F2F       Sep 25, 2017-Nov 30, 2017
+    | GERMANY (2021)        3,152        MX       Sep 27, 2021-Nov 21, 2021
+    | GREAT BRITAIN (2017)    984        MX       Jun 28, 2017-Oct 02, 2017
+    | GREAT BRITAIN (2019)  2,537        MX       Dec 28, 2019-Jul 13, 2020
+    | GREECE (2015)         1,078        MX       Oct 29, 2015-Feb 29, 2016
+    | GREECE (2019)         1,324       INT       Dec 12, 2019-Mar 07, 2020
+    | HONG KONG (2016)      1,020        TP       Sep 06, 2016-Sep 18, 2016
+    | HUNGARY (2018)        1,208       F2F       Apr 23, 2018-May 14, 2018
+    | ICELAND (2016)        1,295        TP       Oct 30, 2016-Jan 25, 2017
+    | ICELAND (2017)        2,073        TP       Oct 30, 2017-Feb 02, 2018
+    | INDIA (2019)         13,963       F2F       May 15, 2019-May 26, 2019
+    | IRELAND (2016)        1,000        TP       Mar 01, 2016-Mar 06, 2016
+    | ISRAEL (2020)         1,209        TP       Jun 07, 2020-Aug 06, 2020
+    | ITALY (2018)          2,001        MX       Mar 08, 2018-May 02, 2018
+    | JAPAN (2017)          1,688        MX       Jan 12, 2018-Feb 01, 2018
+    | LATVIA (2018)         1,011       F2F       Nov 14, 2018-Dec 01, 2018
+    | LITHUANIA (2016)      1,500      F2F1       Nov 11, 2016-Dec 10, 2016
+    | LITHUANIA (2020)      1,781       INT       Jan 21, 2021-Feb 21, 2021
+    | MEXICO (2018)         1,239       F2F       Jul 12, 2018-Jul 18, 2018
+    | MONTENEGRO (2016)     1,213       F2F       Dec 08, 2016-Jan 16, 2017
+    | NETHERLANDS (2017)    1,903        MX       Mar 16, 2017-Jul 03, 2017
+    | NETHERLANDS (2021)    3,485        MX       Mar 18, 2021-May 16, 2021
+    | NEW ZEALAND (2017)    1,808        MX       Sep 27, 2017-Mar 02, 2018
+    | NEW ZEALAND (2020)    1,725        MX       Oct 21, 2020-May 01, 2021
+    | NORWAY (2017)         1,792       INT       Sep 20, 2017-Oct 26, 2017
+    | PERU (2021)           1,199       F2F       Dec 22, 2021-Jan 07, 2022
+    | POLAND (2019)         2,003       F2F       Oct 24, 2019-Nov 17, 2019
+    | PORTUGAL (2019)       1,500       F2F       Oct 12, 2019-Dec 15, 2019
+    | ROMANIA (2016)        1,105       F2F       Dec 13, 2016-Feb 20, 2017
+    | SLOVAKIA (2020)       1,003       F2F       Jun 10, 2020-Aug 31, 2020
+    | SOUTH KOREA (2016)    1,199      F2F1       Apr 14, 2016-Apr 23, 2016
+    | SWEDEN (2018)         3,784        MX       Sep 11, 2018-Nov 06, 2018
+    | SWITZERLAND (2019)    4,645        MX       Oct 21, 2019-Jan 05, 2020
+    | TAIWAN (2016)         1,690       F2F       Jan 17, 2016-Apr 21, 2016
+    | TAIWAN (2020)         1,680       F2F       Jan 14, 2020-May 30, 2020
+    | THAILAND (2019)       1,536      F2F1       Apr 25, 2019-Jun 05, 2019
+    | TUNISIA (2019)        1,477       F2F       Jul 18, 2020-Jul 30, 2020
+    | TURKEY (2018)         1,069      F2F1       Jul 23, 2018-Sep 09, 2018
+    | UNITED STATES (2016)  3,648        MX       Nov 09, 2016-Jan 09, 2017
+    | UNITED STATES (2020)  7,449        MX       Nov 06, 2020-Jan 03, 2021
+    | URUGUAY (2019)        1,200        TP       Jan 28, 2020-Feb 27, 2020
+    | --------------------------------------------------------------------
+    | TOTAL               114,714  
+    | 
+    | Key:  F2F=Face-to-face (using electronic/computerized questionnaire). 
+    |      F2F1=Face-to-face (using a paper questionnaire). 
+    |      F2F2=Face-to-face (using both electronic & paper questionnaire). 
+    |        TP=Telephone.  
+    |       INT=Internet/Online.
+    |        MX=Mixed. 
+    |
+    | Users are advised to consult the VARIABLE NOTES for Variables E1032-
+    | E1034 in Codebook Part 2 concerning fieldwork date classifications.
+
+
+---------------------------------------------------------------------------
+>>> MICRO-LEVEL (SURVEY) COMPONENT
+---------------------------------------------------------------------------
+
+The core questionnaire ("Module") of CSES MODULE 5 was intended to be
+administered as a single, uninterrupted block of questions in a nationally
+representative post-election survey in each polity.
+
+A) The question text is included in the variable documentation of this
+   Codebook. The questions are reported in the order in which they appear
+   in the CSES questionnaire. For some questions, Collaborator instructions
+   for administering the CSES Questionnaire were important. These
+   are reported in the next section.
+
+B) Where there are known differences in the way a particular question was
+   administered in an election study, this is noted in the "Election Study
+   Notes" following the documentation of the corresponding variable.
+
+C) There are several sets of party and leader evaluation items included
+   in the module. These correspond to parties labeled A-F, in descending
+   order of vote share, of the six most popular parties in the lower house
+   elections (or Presidential elections if legislative elections were not
+   held). Where respondents were asked to evaluate other parties, these
+   evaluations have been included where possible and are labeled parties
+   G-I, regardless of their vote shares. The parties and leaders to which
+   these evaluations apply are identified in Codebook Part 3.
+
+D) There are several questions (including the vote choice and party
+   identification items) that ask the respondents to specify a political
+   party. The codes for these items are also reported in Codebook Part 3.
+
+
+---------------------------------------------------------------------------
+>>> CSES MODULE 5 COLLABORATOR INSTRUCTIONS FOR THE ADMINISTRATION OF THE
+    CSES QUESTIONNAIRE
+---------------------------------------------------------------------------
+
+The following instructions appeared in the header to the questionnaire for
+CSES MODULE 5, as instructions to Collaborators regarding the
+implementation of the questionnaire;
+
+  ( 1)  Following these Collaborator instructions, this document is 
+        comprised of three sections:
+
+        ))) CSES MODULE 5 QUESTIONNAIRE: ADMINISTRATIVE VARIABLES
+
+        The "Administrative Variables" section is a list of common
+        administrative variables that, if possible, should be provided at
+        the time data are deposited with the CSES Secretariat.
+
+        ))) CSES MODULE 5 QUESTIONNAIRE: CSES MODULE
+
+        This is the CSES Module itself, a common module of survey questions
+        for researchers to include in their national post-election survey.
+        The CSES Module is intended to be administered exactly as it is
+        specified in this document.
+
+        ))) CSES MODULE 5 QUESTIONNAIRE: DEMOGRAPHIC VARIABLES
+
+        Collaborators are asked to provide data on background (demographic)
+        characteristics of respondents, coded to an agreed upon set of
+        standards as indicated in this section. There is great
+        international variation in the ways that Collaborators will go
+        about soliciting information on the background characteristics of
+        their respondents. The objective here is not standardization of the
+        way Collaborators ask these background questions, but instead,
+        standardization to a common, cross-national scheme for coding each
+        variable.
+
+  ( 2)  The CSES Module (consisting of the questions which are named 
+        beginning with the letter "Q") is intended to be administered in
+        its entirety as a single, uninterrupted block of questions, unless 
+        noted otherwise for particular questions. In most cases, the CSES 
+        Module is included as part of a larger study. For reliable 
+        comparisons to be made, it is important that any additional items
+        investigators may wish to include do not interrupt the CSES Module.
+
+  ( 3)  The CSES module should be administered as a post-election
+        interview.
+
+  ( 4)  Where the CSES module is included in a larger study, to ensure that
+        question-ordering effects are minimized, Collaborators should be
+        sensitive to the effects questions asked immediately prior to the
+        module may have.
+
+  ( 5)  NOTES often precede the question TEXT, and provide instructions for
+        the administration of the item. Where no question TEXT is provided,
+        Collaborators should provide documentation of the question used.
+
+  ( 6)  Showcards may be helpful for the administration of some questions.
+        For this reason, a Respondent Booklet is available for download
+        from the CSES website. The Respondent Booklet contains showcards
+        for select questions. It is indicated in the NOTES when a showcard
+        is available for a question.
+        
+  ( 7)  The response options that should be read to the respondent are
+        contained in the body of the question TEXT.
+
+  ( 8)  Where lower-case words appear in brackets [ ] Collaborators should
+        select the words that are most appropriate.
+
+        For example:
+        [party/Presidential candidate]
+        ...indicates that either the word "party" or the phrase
+        "Presidential candidate" should be read, but not both.
+
+  ( 9)  Where upper-case words appear in brackets [ ] Collaborators should
+        substitute the words that are most appropriate.
+
+        For example:
+        [COUNTRY]
+        ...should be replaced with the name of the country where the
+        election was held (perhaps "Canada" or "the Philippines").
+
+        Another example:
+        [NUMBER OF YEARS BETWEEN THE PREVIOUS AND THE PRESENT ELECTION
+        OR CHANGE IN GOVERNMENT]
+        ...should be replaced with a number that indicates the amount of
+        years that have passed between the previous election and either the
+        current election or recent change in government.
+
+  (10)  Phrases that appear in parentheses ( ) contain words that are
+        optional - that Collaborators (or their interviewers) can decide to
+        read or not read to respondents as needed.
+
+  (11)  Words in question text that are in upper-case but NOT within 
+        brackets [ ] should be emphasized by the interviewer when reading
+        the question text. 
+        
+        For example, the word "COUNTRY" would be emphasized in the
+        following question when the interviewer reads the question to the
+        respondent:
+        
+        What COUNTRY do you live in?
+        
+        But in this next example, the interviewer does not emphasize the
+        word "[COUNTRY]". Instead, this is an instruction for the
+        Collaborator to substitute the name of the respondent's country
+        into the question text (for more information, see the eighth
+        Collaborator Instruction above):
+        
+        How long have you lived in [COUNTRY]?
+                        
+  (12)  Interviewer instructions are available for some questions. These
+        interviewer instructions, labeled as HELP, are intended to
+        provide advice to the interviewers to assist in administering the
+        question. It is also useful to discuss the interviewer instructions
+        as part of interviewer training. The interviewer instructions, 
+        where available, appear after the question TEXT. In 
+        interviewer-administered surveys, interviewer instructions should
+        be available to the interviewer, but not to the respondent. For
+        example, in a computer-assisted interview, the interviewer
+        instructions might appear on the screen in a special color, and
+        interviewers trained to make use of those instructions as
+        necessary, but the interviewer should NOT read the interviewer
+        instructions to the respondent.
+        
+  (13)  Some response options are followed by an arrow (->) and a skip
+        pattern instruction. If the respondent selects that response 
+        option, the skip pattern instruction after the arrow is to be
+        executed.
+
+  (14)  Respondents who volunteer the response "DON'T KNOW" (or who have
+        REFUSED to answer a question) should be coded as such. Interviewers
+        should accept these responses and should NOT probe for additional
+        information or force a respondent to use one of the response
+        options provided in the text of the question.
+
+  (15)  Special care should be taken in the administration of the Vote 
+        Choice items (Q12 and Q13 question series).
+        
+        Wording for the Q12 and Q13 question series, which is to record
+        vote choice in the elections, should follow national standards. 
+       
+        Collaborators are invited to compare their own national instrument
+        with other instruments of countries that are part of the CSES and
+        look for convergence where this is possible.
+        
+        For Q13 (previous election), ask about the previous national 
+        election of the same type (whether legislative or Presidential).
+        For countries where more than one institution is being currently
+        elected on the same day (e.g., President and legislature), please 
+        consider asking about the previous lower house election if votes
+        have been recorded for the current lower house election. 
+        
+        For Q12 (current election), for countries where more than one 
+        institution is elected on the same day (e.g., President and 
+        legislature) using different votes, please ensure that all votes
+        are supplied. Consider including all national elections having been
+        held within three months before the study's data collection period.
+        
+        Please ensure all vote choices are supplied as separate variables
+        in the dataset that you deposit.
+        
+        For countries where voters have two votes for the same institution
+        (e.g. parallel and mixed member proportional systems; double
+        ballot systems), please ensure that both/all votes are supplied.
+        
+        For countries using preferential systems (e.g., STV, AV) please
+        provide first and second preference vote.
+          
+  (16)  For questions asking about parties, Collaborators should be advised
+        that they may add one or several party blocs to a list of
+        individual parties if they feel that it will be difficult for
+        respondents to recognize individual parties.
+
+  (17)  Collaborators in the Comparative Study of Electoral Systems shall
+        adhere to the following standards of data quality:
+
+        a. Mode of interviewing: Interviews should be conducted
+           face-to-face, unless local circumstances dictate that telephone,
+           Internet, or mail surveys will produce higher-quality data.            
+           Mixed-mode surveys are acceptable to increase response rates
+           and/or compensate for under coverage associated with particular
+           survey modes. In cases of mode variation as well as in cases of
+           within-mode variation (e.g., adaption of Internet surveys to 
+           multiple devices) presentation of questionnaires to respondents
+           should be as similar as possible. All variation within surveys
+           shall be documented in detail, and technical information on
+           survey mode and, where appropriate, device used shall be
+           identified in the data set for each respondent. National studies
+           should seek to keep mode changes to a minimum to maximize
+           comparability of their data sets across modules.
+
+        b. Timing of interviewing: We strongly recommend that Collaborators
+           in the Comparative Study of Electoral Systems conduct their
+           interviews in the weeks following their national election. 
+           Interviewing should not start later than six months after the
+           election. Out of concern for data quality, data collection
+           should be completed in as timely a fashion as possible. In the
+           event of a runoff election, interviewing shall be conducted 
+           after the first round election. The date of interview shall be
+           provided for each respondent.
+
+        c. Placement of module in post-election questionnaire: The
+           questionnaire module should be asked as a single, uninterrupted
+           block of questions. We leave it to each Collaborator to select
+           an appropriate location for the module in their national survey
+           instrument. Collaborators should take steps to ensure that
+           questions asked immediately prior to the questionnaire module
+           do not contaminate the initial questions in the module.
+           Collaborators are also free to select an appropriate place in
+           their survey instrument to ask the turnout, vote choice,
+           and demographic questions.
+
+        d. Population to be sampled: National samples should be drawn from
+           all age-eligible citizens. No sampling frames with systematic 
+           under coverage of significant population groups (such as citizens
+           without access to the Internet) are acceptable. When 
+           non-citizens (or other non-eligible respondents) are included
+           in the sample, a variable should be provided to permit the
+           identification of those non-eligible respondents. When a
+           Collaborator samples from those persons who appear on voter
+           registration lists, the Collaborator should quantify the 
+           estimated degree of discrepancy between this population and the
+           population of all age-eligible citizens. Studies based on
+           panels or access panels are acceptable if dictated by local
+           circumstances. In such cases the Collaborator should seek to
+           minimize the time lag between initial sampling and the CSES
+           survey and quantify the estimated degree of discrepancy to the
+           population of all age-eligible citizens and provide weights.
+           Details about initial sampling must be documented.
+
+        e. Sampling procedures: We strongly encourage the use of random
+           samples, with random sampling procedures used at all stages of
+           the sampling process. Collaborators should provide detailed
+           documentation of their sampling practices for all stages.
+
+        f. Sample Size: We strongly recommend that no fewer than 1,500
+           age-eligible respondents be interviewed, and under no 
+           circumstances should fewer than 1,000 age-eligible respondents
+           be interviewed.
+
+        g. Interviewer training: Collaborators should pre-test their survey
+           instrument and should train interviewers in the administration
+           of the questionnaire. The Planning Committee will provide each
+           Collaborator with documentation that clarifies the purposes and
+           objectives of each item and with rules with respect to probing
+           "don't know" responses.
+
+        h. Field practices: Collaborators should make every effort to
+           ensure a high response rate. Investigators should be diligent in
+           their effort to reach respondents not interviewed on the initial
+           contact with the household and should be diligent in their
+           effort to convert respondents who initially refuse to
+           participate in the study. Data on the number of contact
+           attempts, the number of contacts with sample persons, and
+           special persuasion or conversion efforts undertaken should be
+           coded for each respondent.
+
+        i. Strategies for translation (and back-translation): Each
+           Collaborator should translate the questionnaire module into
+           their native language(s). To ensure the equivalence of the
+           translation, Collaborators shall perform an independent
+           re-translation of the questionnaire back into English.
+           Collaborators engaged in translation of the questionnaire module
+           into the same language (e.g., Spanish, French, English, German,
+           and Portuguese) should collaborate on the translation.          
+        
+
+---------------------------------------------------------------------------
+>>> DISTRICT-LEVEL COMPONENT
+---------------------------------------------------------------------------
+
+The district-level variables report relevant election result data (mostly
+pertaining to the lower house elections) for each respondent's district. 
+Wherever possible, these data were collected from official sources (see
+CSES MODULE 5 Codebook Part 2 and Bibliography in Part 1 for details). 
+In other cases, CSES has been grateful for the compilation of these data 
+provided by third-party sources.
+
+Parts 2 and 4 of the CSES MODULE 5 Codebook provide more information on 
+the district data, including details of any polities where we deviate from 
+the CSES conventions as well as the sources of the data for each polity. 
+
+
+---------------------------------------------------------------------------
+>>> MACRO-LEVEL COMPONENT
+---------------------------------------------------------------------------
+
+To supplement the micro (survey) data, the teams of researchers responsible
+for the collection of the public opinion data, also compiled and deposited
+the following types of data: electoral legislation, political party
+platforms, and official electoral returns.
+
+To facilitate this process, a detailed questionnaire was constructed to
+serve as a framework for the macro component of the project. The Macro Data
+Reports, completed by the CSES Collaborators, can be found on the CSES
+website in the MODULE 5 section under the "Data Center".
+
+Additional measures thought pertinent to the micro-district-macro design
+are also compiled and available in the CSES data files.
+
+Sources consulted for the macro level component are listed as appropriate
+in the Bibliography at the end of this part of the CSES Codebook.
+
+
+===========================================================================
+))) CSES MODULE 5 DOCUMENTATION - WHAT'S AVAILABLE AND HOW TO USE?
+===========================================================================
+
+There are several components to the CSES documentation. We detail each form 
+below: 
+
+---------------------------------------------------------------------------
+>>> CSES CODEBOOK OVERVIEW
+---------------------------------------------------------------------------
+
+The primary documentation component is the CSES MODULE 5 Codebook. 
+The Codebook consists of six components, namely: 
+
+1) PART 1: INTRODUCTION 
+   (file name: cses5_codebook_part1_introduction.txt)
+   Part 1 (This file) overview of the CSES study and data, information  
+   about how to use the files, election study descriptions, information on 
+   the CSES data file, the checks the CSES Secretariat conducts on the 
+   data file and information on the national Collaborators of the CSES 
+   project for each polity.  
+
+2) PART 2: CSES VARIABLES DESCRIPTION
+   (file name: cses5_codebook_part2_variables.txt)
+   Part 2 is the Variable Description file and includes the survey 
+   questions, code frames, general variable notes, election study notes, and 
+   details about sources for macro data. 
+
+3) PART 3: PARTIES AND LEADERS BY POLITY 
+   (file name: cses5_codebook_part3_parties_and_leaders.txt)
+   Part 3 details the party/coalition and leader numerical and alphabetical
+   classifications for each polity included in the CSES MODULE 5 dataset. 
+
+4) PART 4: PRIMARY ELECTORAL DISTRICTS RESPONDENTS BY POLITY
+   (file name: cses5_codebook_part4_primary_electoral_districts.txt)
+   Part 4 details the primary electoral district by polity for each 
+   respondent included in the CSES MODULE 5 dataset. 
+
+5) PART 5: ELECTION SUMMARIES BY POLITY
+   (file name: cses5_codebook_part5_election_summaries.txt)
+   Part 5 contains short summaries of each election included in CSES MODULE 
+   5. It also provides analysts with details of additional sources they may 
+   wish to consult to understand the elections included in CSES in greater
+   detail. 
+
+6) PART 6: STUDY DESIGN AND WEIGHTS OVERVIEW BY POLITY
+   (file name: cses5_codebook_part6_designs_and_weights.txt)
+   Part 6 contains overviews of the design of each election study included 
+   in CSES MODULE 5. It also provides analysts with details regarding the 
+   polity weights provided by each election study. 
+
+The CSES MODULE 5 questionnaire is also available from the website or
+by referencing the corresponding variables in this Codebook.
+
+For all election studies included in CSES, Collaborators have provided 
+documentation to accompany their election studies. These documents, 
+where available, can be found on the CSES MODULE 5 download page.
+
+Analysts will also want to become familiar with the CSES MODULE 5 errata
+page. It is accessible from the CSES MODULE 5 download page under "Data
+Center" on the CSES website. Information, updates, and error notifications
+and corrections are posted there, in real time, as they become available.
+Please regularly check for errata notifications to keep up to date.
+
+
+---------------------------------------------------------------------------
+>>> CSES CODEBOOK CONVENTIONS
+---------------------------------------------------------------------------
+
+The CSES project uses American English language and date standards 
+(MM-DD-YYYY). In the CSES MODULE 5 dataset, all variables begin with the 
+letter "E" (E being the fifth letter of the English alphabet and thus 
+signifying MODULE 5). This convention helps reduce the possibility of 
+overwriting data when merging with other CSES datasets.
+
+Variables are presented in five groupings:
+
+1) E1001-E1999 Identification, weight, and election study variables
+
+2) E2001-E2999 Demographic data
+
+3) E3001-E3999 Micro-level (survey) data (the CSES MODULE 5 questionnaire)
+
+4) E4001-E4999 District-level data
+
+5) E5000-E5999 Macro-level data
+
+6) E6000-E6999 IMD bridging Variables
+
+In the Variable Descriptions portion of the CSES MODULE 5 Codebook (Part 2),
+the headers for individual variables are surrounded by two lines of dashes. 
+Variable names do not exceed eight characters in length.
+
+
+---------------------------------------------------------------------------
+>>> CSES CODEBOOK - VARIABLE NOTES AND ELECTION STUDY NOTES
+---------------------------------------------------------------------------
+
+<<>> VARIABLES NOTES
+
+Variable Notes provide information on the rationale of a variable 
+as well as source information for that variable. It also details the 
+polities for which no data for that particular variable are available. 
+VARIABLES NOTES are listed below the descriptive information for the said
+variable and can be navigated in the Codebook by searching for 
+"VARIABLES NOTES" in Part 2 of the CSES Codebook. 
+
+
+<<>> ELECTION STUDY NOTES
+
+A unique dimension of the CSES are the inclusion of ELECTION STUDY NOTES. 
+They are notes which are attached to each variable included in the dataset
+and refer to case specific information regarding a particular variable. 
+Their purpose is to provide users with more detailed information on the 
+case or explain important deviations specific to cases from CSES 
+conventions. They are also used to provide source data information for 
+users. Where applicable, ELECTION STUDY NOTES are listed below a particular
+variable and any VARIABLES NOTES in Parts 2 and 3 of the CSES codebook. 
+They can be navigated in the Codebook by searching for "ELECTION STUDY 
+NOTES" in Parts 2 and 3 of the CSES MODULE 5 Codebook.
+
+
+---------------------------------------------------------------------------
+>>> CSES ORIGINAL QUESTIONNAIRE FOR MODULE 5
+---------------------------------------------------------------------------
+
+The CSES MODULE 5 original questionnaire is available from the CSES Module 
+5 study page at: 
+         https://cses.org/data-download/cses-module-5-2016-2021/
+        (Date accessed: July 15, 2023).     
+         
+or by referencing the corresponding Variable Descriptions in this Codebook 
+(see Part 2).
+
+
+---------------------------------------------------------------------------
+>>> CSES - ADDITIONAL DOCUMENTATION
+---------------------------------------------------------------------------
+
+All election studies included in CSES provide numerous source material. 
+These documents include the following: 
+      - Macro Reports. 
+      - Design Reports. 
+      - Original questionnaires including in the language of origin. 
+
+We describe each in turn below. 
+
+
+<<>> MACRO REPORT
+
+Collaborators submit a Macro Report to the CSES Secretariat when depositing
+their national data. Its purpose is to provide a coherent link between 
+national level specialists and data specific to the election and polity 
+in question. It provides information on the election, the composition of 
+cabinet before and after election, expert assessments of the parties, 
+information on electoral rules operating in the polity, as well as original
+sources for the polity level data. It aids the CSES Secretariat in 
+collating some of the macro level data for each polity included in the 
+study. Where available, Macro Reports can be found on the CSES MODULE 5 
+download page under "CSES MODULE 5 Election Study Archive" at:
+https://cses.org/data-download/cses-module-5-2016-2021/
+
+
+<<>> DESIGN REPORT
+
+Collaborators also submit a Design Report to the CSES Secretariat when 
+depositing their national data. It provides all information on the 
+implementation of each individual election study including details
+regarding fieldwork dates, mode of interview, sampling procedures, 
+sampling frame, response and refusal rates, information on translation
+procedures, and weights. Some of this data is included directly in the
+CSES data in variables E1001-E1039. Where available, Design Reports can 
+be found on the CSES MODULE 5 download page under "CSES MODULE 5 Election
+Study Archive" at: https://cses.org/data-download/cses-module-5-2016-2021/
+
+Further, Part 6 of the CSES MODULE 5 Codebook provides overviews of each 
+polity's study design and polity level weights. It draws heavily on
+information from each polity's Design Report.
+
+
+<<>> ORIGINAL QUESTIONNAIRES
+
+Where available, CSES provides the original language questionnaires from 
+each polity's national election study. Further, CSES requests that all 
+studies included provide the English language questionnaire used as the 
+basis for translation of the CSES questionnaire into a polity's native
+tongue(s). Where available, the questionnaires can be found on the CSES 
+MODULE 5 download page under "CSES MODULE 5 Election Study Archive" at:
+https://cses.org/data-download/cses-module-5-2016-2021/
+
+
+---------------------------------------------------------------------------
+>>> HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+---------------------------------------------------------------------------
+
+The CSES MODULE 5 Codebook is produced in .txt format to allow for easy 
+accessibility and as such the Codebook can be read into a variety of 
+programs. The Codebook is also partially machine readable.  
+
+The CSES MODULE 5 Codebook can be navigated quickly in the electronic files, 
+with the following commands allowing for quick searching:
+
+))) = Section Header 
+
+>>> = Sub-section Header 1
+
+<<>> = Sub-section Header 2
+
++++ = Tables
+
+CSES QUESTION CLASSIFICATION = For survey level variables only, CSES  
+Question Classification details whether the variable is part of the CSES  
+Core component, which are questions asked repeatedly in CSES Modules, 
+whether a variable is part of the CSES Module Theme component, which are  
+questions specific to the Module Theme under exploration and might not be 
+included in CSES repeatedly, or whether a variable is a Derivative Variable, 
+which is explained below. 
+
+VARIABLES NOTES = Notes for particular variables.  
+
+ELECTION STUDY NOTES = Notes for a particular election study.  
+
+DERIVATIVE VARIABLE = Highlights a variable derived from another 
+variable or variables within the CSES.
+
+POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at polity level.
+
+POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at regional level.
+
+POTENTIAL TIME BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging by time.
+
+POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging at party/coalition level.
+
+POTENTIAL CSES PRODUCT BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging with other CSES products.
+
+
+===========================================================================
+))) CSES MODULE 5 STUDY DATA AND CODEBOOK: ADDITIONAL INFORMATION
+===========================================================================
+
+---------------------------------------------------------------------------
+>>> CODING OF PARTIES/COALITIONS & LEADERS
+---------------------------------------------------------------------------
+
+CSES classifies parties/coalitions in its dataset numerically and
+alphabetically. Below we provide explanations of both of these coding
+schemes. The details of each party/leader classification are available in  
+Part 3 of the CSES MODULE 5 Codebook. 
+
+<<>> CSES NUMERICAL PARTY/COALITION CODING
+
+Each party/coalition is assigned a unique numerical code which consists of  
+two components and six digits in total:
+    - the first three digits indicate the numerical country UN code
+    - the latter three digits indicate the numerical party code within
+      the given election study.
+
+All parties/coalitions or Presidential candidates, where applicable,
+participating in the election or the previous election receive a numerical
+code. These codes are used to identify the following: 
+    - who respondent's feel best represented by (variable E3010_2).
+    - who a respondent voted for in the current election 
+      (variable E3013).
+    - who the respondent voted for in the previous election 
+      (variable E3015).
+    - the respondent's party identification (variable E3024).
+      
+The numerical coding is also used to identify macro level information about
+the parties/coalitions, namely: 
+    - which party/coalition held the Presidency before and after the
+      elections (variable E5009 and E5013).
+    - which party/coalition held the Prime Ministership before and after
+      the elections (variable E5010 and E5014).
+     
+Numerical codes assigned to parties/coalitions are consistent for the 
+current and previous election.  
+
+<<>> CSES ALPHABETICAL PARTY/COALITION CODING
+ 
+Parties/coalitions A through F are the six most popular parties/coalitions, 
+ordered in descending order of their share of the popular vote in the 
+parliamentary election (unless otherwise stated). Thus, Party A is the 
+party/coalition that received the most votes in the election, party B the 
+second most votes, etc...
+
+Parties/coalitions who achieve at least 1% of the vote nationally are
+eligible for an alphabetical A-F assignment. In countries with multiple
+electoral tiers and where one vote is cast, parties are ordered according
+to their vote share in tier 1 (the lowest tier), unless otherwise stated.
+In countries where voters have two votes (i.e.: a constituency and a list
+vote) simultaneously, for example Germany, parties are ordered by the
+national share of the party list vote (tier 2) unless stated otherwise.
+
+Parties G, H, and I are supplemental parties. They may, but do not have to,
+accord with how parties A-F are ordered, that is ordered on the popular 
+share of the vote in a polity. More often, they are codified in no 
+particular order. These parties are voluntarily provided by each polity's
+election study and often reflect important or notable parties within a 
+polity. They may also include data about individual parties within a 
+coalition, where data about the coalition and the individual parties, 
+or some of these parties that make it up, are provided.
+These codes are used to identify the following in the micro component of 
+the CSES dataset: 
+    - Respondent's likeability of the party/coalition (variable E3017).
+    - Respondent's left-right placement of the party/coalition (variable 
+      E3019).
+
+These alphabetical codes are used to identify district and macro level
+information about these said parties/coalitions, namely:
+    - The said party/coalition's vote share in the respondent's electoral
+      district (variable E4004).
+    - the said party/coalition's share of the seats in the election in the
+      respondent's electoral district (variable E4005)
+    - the said party/coalition's share of the vote in the election 
+      (variable E5001, E5003, and E5005).
+    - the said party/coalition's share of the seats in the election 
+      (variable E5002 and E5004).
+    - the said party/coalition's share of cabinet portfolios before and 
+      after the election (variable E5011 and E5015).
+    - expert judgements by the national Collaborators of the said party/
+      coalition's ideological family (variable E5017).
+    - expert judgements by the national Collaborators of the said party/
+      coalition's left-right placement (variable E5018).
+    - expert judgements by the national Collaborators of the said party/
+      coalition's level of populism (variable E5020).
+    - The said party/coalition's Manifesto Research on Political 
+      Representation (MARPOR/CMP) Identifier (variable E5200).
+    - The said party/coalition's Parliaments and Government Database
+      (ParlGov) Identifier (variable E5201).   
+    - The said party/coalition's Chapel Hill Expert Survey (CHES) Identifier 
+      (variable E5202).
+    - The said party/coalition's Party Facts Identifier (variable E5203). 
+
+
+<<>> CSES ALPHABETICAL LEADER CODING
+         
+Leaders A through F tend to be the leaders of the six most popular parties/
+coalitions or the Presidential candidates of these parties. In most 
+instances, they correspond to parties/coalitions A-F (i.e.: Leader A will 
+be related to Party A in some way, Leader B will be related to 
+Party B, etc.).
+
+Leaders G, H, and I are supplemental leaders. They may be related to
+parties G, H, I but they do not have to be. These leaders are voluntarily
+provided by each polity's election study and often include data about
+additional personalities of interest. For example, in a parliamentary
+system, data about a President might be provided, even if the Presidency
+is not being contested. On many occasions, slots Leader G, H, and I will
+include additional data for parties/coalitions that have multiple leaders.
+These codes are used to identify the following in the micro and macro
+components of the CSES dataset: 
+    - Respondent's likeability of the leader/personality in question
+      (variable E3018).
+
+
+---------------------------------------------------------------------------
+>>> CSES DATA BRIDGING: NEW FRONTIERS IN DATA LINKAGE
+---------------------------------------------------------------------------
+
+Data Bridging enables users to bring together information from CSES with 
+other data sources. The concept is part of CSES Data Linkage efforts. CSES
+has been a pioneer of Data Linkage with the inclusion of various 
+macro-level data originating from other sources (e.g., The World Bank, 
+the IDEA) directly in CSES data products, including in CSES MODULE 5. These 
+macro data classify the political system's characteristics and contextual 
+conditions of a polity at the election time.  
+Data Bridging gives users the power to build on the direct data linkage 
+in CSES products by enabling users to easily link other data with CSES 
+products. CSES MODULE 5 enables users to bridge data with other prominent 
+datasets in political science by including standard identifiers at the
+polity, year, and party level used by other projects to facilitate 
+merging.
+
+CSES MODULE 5 facilitates data bridging with other datasets at the polity 
+level with the following variables:
+    - E1006_UN       ID COMPONENT - POLITY UN ISO_3166-1 NUMERIC CODE
+    - E1006_UNALPHA2 ID COMPONENT - POLITY UN ISO_3166-1 ALPHABETIC
+                                    TWO LETTER CODE
+    - E1006_UNALPHA3 ID COMPONENT - POLITY UN ISO_3166-1 ALPHABETIC
+                                    THREE LETTER CODE
+    - E1006_NAM      ID COMPONENT - POLITY NAME
+    - E1006_VDEM     ID COMPONENT - V-Dem POLITY IDENTIFIER
+    
+More details can be found on all these variables in CSES Codebook Part 2
+by searching for the variable name (e.g., "E1006_UN") or using the search
+term "POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER". 
+
+
+CSES MODULE 5 facilitates data bridging with other datasets at the regional 
+level through the following variables:  
+    - E1006_REG      ID COMPONENT - POLITY UN GEOGRAPHIC REGIONS NUMERIC
+                                    CODES
+More details can be found on all these variables in CSES Codebook Part 2
+by searching for the variable name (e.g., "E1006_REG") or using the search
+term "POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER". 
+
+
+CSES MODULE 5 facilitates data bridging with other datasets by date through 
+the following variables:  
+    - E1008_YEAR     ID COMPONENT - ELECTION YEAR
+    - E1016          DATE 1ST ROUND ELECTION BEGAN - MONTH
+    - E1017          DATE 1ST ROUND ELECTION BEGAN - DAY
+    - E1018          DATE 1ST ROUND ELECTION BEGAN - YEAR
+    - E1018_1        DATE 1ST ROUND ELECTION BEGAN - YYYY-MM-DD
+    - E1018_2        DATE 1ST ROUND ELECTION BEGAN - YYYYMM
+    - E1019          DATE 2ND ROUND ELECTION BEGAN - MONTH
+    - E1020          DATE 2ND ROUND ELECTION BEGAN - DAY
+    - E1021          DATE 2ND ROUND ELECTION BEGAN - YEAR
+    - E1021_1        DATE 2ND ROUND ELECTION BEGAN - YYYY-MM-DD
+    - E1021_2        DATE 2ND ROUND ELECTION BEGAN - YYYYMM                 
+
+More details can be found on all these variables in CSES Codebook Part 2
+by searching for the variable name (e.g., "E1008_YEAR") or using the search
+term "POTENTIAL TIME BRIDGING IDENTIFIER". 
+
+
+CSES MODULE 5 facilitates data bridging with other datasets at the
+party/coalition level with the following variables: 
+    - E5200_A-I      MANIFESTO RESEARCH ON POLITICAL REPRESENTATION 
+                     (MARPOR/CMP) IDENTIFIER - PARTY A-I
+    - E5201_A-I      PARLIAMENTS AND GOVERNMENT DATABASE (PARLGOV) 
+                     IDENTIFIER - PARTY A-I
+    - E5202_A-I      CHAPEL HILL EXPERT SURVEY (CHES) IDENTIFIER PARTY A-I 
+    - E5203_A-I      PARTY FACTS IDENTIFIER - PARTY A-I     
+   
+
+More details can be found on all these variables in CSES Codebook Part 2
+by searching for the variable name (e.g., "E5200_A") or using the search
+term "POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER."
+Users can also see the specific bridging codes for each party/coalition
+assigned an alphabetical code in CSES by other projects in Part 3 of the
+CSES MODULE 5 Codebook.
+
+
+CSES MODULE 5 facilitates data bridging with other CSES products at the
+party/coalition level with the following variables:  
+    - E6000_PR_1     IMD BRIDGING VARIABLE: CURRENT PRESIDENTIAL
+                               ELECTION: VOTE CHOICE - 1ST ROUND
+    - E6000_PR_2     IMD BRIDGING VARIABLE: CURRENT PRESIDENTIAL
+                                ELECTION: VOTE CHOICE - 2ND ROUND
+    - E6000_LH_PL    IMD BRIDGING VARIABLE: CURRENT LOWER HOUSE
+                               ELECTION: VOTE CHOICE: PARTY LIST
+    - E6000_LH_DC    IMD BRIDGING VARIABLE: CURRENT LOWER HOUSE 
+                      ELECTION: VOTE CHOICE: DISTRICT CANDIDATE               
+     
+More details can be found on all these variables in CSES Codebook Part 2
+by searching for the variable name (e.g., "E6000_PR_1") or using the search
+term "POTENTIAL CSES PRODUCT BRIDGING IDENTIFIER". 
+
+
+---------------------------------------------------------------------------
+>>> DERIVATIVE VARIABLES
+---------------------------------------------------------------------------
+
+CSES MODULE 5 includes several Derivative Variables. A Derivative Variable 
+is a variable that is derived from another variable or variables within the 
+CSES. Their purpose is to facilitate speedier analysis for users with 
+derivative variables capturing some of the most common analytical concepts 
+in the discipline.
+
+A list of the DERIVATIVE VARIABLES are below this explanation and can be
+navigated in the Codebook by searching for DERIVATIVE VARIABLES in
+Part 2 of the CSES MODULE 5 Codebook.
+      
+  - E2001_A         AGE OF RESPONDENT (IN YEARS) 
+  - E2001_GG        BIRTH GENERATION: GREATEST GENERATION
+                    (BORN 1927 OR BEFORE)  
+  - E2001_GS        BIRTH GENERATION: SILENT GENERATION
+                    (BORN FROM 1928 TO 1945)
+  - E2001_GBB       BIRTH GENERATION: BABY BOOMERS
+                    (BORN FROM 1946 TO 1964)
+  - E2001_GX        BIRTH GENERATION: GENERATION X
+                    (BORN FROM 1965 TO 1980)
+  - E2001_GY        BIRTH GENERATION: GENERATION Y
+                    (BORN FROM 1981 TO 1996)
+  - E2001_GZ        BIRTH GENERATION: GENERATION Z
+                    (BORN FROM 1997 ONWARDS) 
+  - E3012_TS        TURNOUT SWITCHER BETWEEN CURRENT ELECTION AND
+                    PREVIOUS ELECTION   
+  - E3012_FTV       FIRST-TIME VOTER IN CURRENT MAIN ELECTION
+  - E3013_OUTGOV    CURRENT MAIN ELECTION: VOTE CHOICE -  
+                    OUTGOING GOVERNMENT (INCUMBENT)
+  - E3013_VS_1      VOTE SWITCHER BETWEEN CURRENT ELECTION AND 
+                    PREVIOUS ELECTION          
+  - E3013_LR_CSES   CURRENT MAIN ELECTION - 
+                    VOTE FOR LEFTIST/CENTER/RIGHTIST - CSES
+  - E3013_LR_MARPOR CURRENT MAIN ELECTION - VOTE FOR LEFTIST/RIGHTIST (RILE)
+                    - MARPOR/CMP
+  - E3013_IF_CSES   CURRENT MAIN ELECTION - VOTE CHOICE BY
+                    IDEOLOGICAL FAMILY CLASSIFICATION - CSES
+  - E3100_LR_CSES   CURRENT MAIN ELECTION - VOTE CHOICE LINKED WITH
+                    CSES COLLABORATOR EXPERT JUDGMENT L-R
+  - E3100_LR_MARPOR CURRENT MAIN ELECTION - VOTE CHOICE LINKED WITH
+                    MARPOR/CMP RILE  
+  - E3100_POP_CSES  CURRENT MAIN ELECTION - VOTE CHOICE LINKED WITH
+                    CSES COLLABORATOR EXPERT JUDGMENT ON POPULISM       
+  - E3100_IF_CSES   CURRENT MAIN ELECTION - VOTE CHOICE LINKED WITH
+                    CSES COLLABORATOR EXPERT JUDGMENT IDEOLOGICAL FAMILY
+          
+
+---------------------------------------------------------------------------
+>>> IDENTIFICATION VARIABLES
+---------------------------------------------------------------------------
+
+There are several Identification Variables in CSES MODULE 5 which allow
+users to not only identify an individual respondent, but election studies, 
+and polities. 
+
+
+<<>> ELECTION STUDY IDENTIFIERS
+
+Each Election Study in CSES MODULE 5 is uniquely identified by two 
+variables, namely: 
+
+   - variable E1003 ID VARIABLE - ELECTION STUDY (NUMERIC POLITY)
+     This variable is an eight-digit numerical code constructed from two
+     components: the CSES polity code (variable E1006) and the 
+     year in which the election took place (E1008). The first three digits
+     represent the country codes assigned by the United Nations Statistics
+     Division. The fourth digit distinguishes between multiple election
+     studies within a single country for the same election. The final 
+     four digits represent the year of the election. 
+     E.g., 04002017. AUSTRIA (2017)
+
+   - variable E1004 ID VARIABLE - ELECTION STUDY (ALPHABETIC POLITY)
+     This variable is an alphanumerical code constructed from two
+     components: the alpha-3 country codes assigned by the United Nations
+     Statistics Divisions. The remaining characters correspond 
+     to the year of the election. 
+     E.g., USA_2016
+
+
+<<>> POLITY IDENTIFIERS
+
+Each Polity in CSES MODULE 5 is uniquely identified by two 
+variables, namely: 
+
+   - variable E1006_UN ID COMPONENT - POLITY UN ISO_3166-1 NUMERIC CODE
+     This variable consists of the three-digit numerical country codes 
+     assigned by the United Nations Statistics Division to polities
+     in line with the International Organization for Standardization (ISO).
+     The numerical codes are maintained by the United Nations Statistics 
+     Division and are based on the M49 UN framework. 
+     E.g., 040. AUSTRIA (2017)
+
+   - variable E1006_UNALPHA2 ID COMPONENT - POLITY UN ISO_3166-1 
+     ALPHABETIC TWO LETTER CODE
+     This variable consists of the two-letter country codes assigned by 
+     the United Nations Statistics Division to polities based on the 
+     International Organization for Standardization (ISO). The lettered
+     codes are maintained by the ISO as part of their ISO3166-1 standard. 
+     E.g., DE. Germany (DE=Deutschland)
+
+   - variable E1006_UNALPHA3 ID COMPONENT - POLITY UN ISO_3166-1 
+     ALPHABETIC THREE LETTER CODE
+     This variable consists of the three-letter country codes assigned by 
+     the United Nations Statistics Division to polities based on the 
+     International Organization for Standardization (ISO). The lettered
+     codes are maintained by the ISO as part of their ISO3166-1 standard. 
+     E.g., PRT. Portugal (PRT=Portugal)
+
+   - variable E1006_NAM ID COMPONENT - POLITY NAME
+     This variable consists of polity names based on those used by the
+     United Nations Statistics Division. 
+     E.g., Greece 
+
+These polity identifiers allow for easy data bridging with other macro
+data sources such as the World Bank. 
+
+
+<<>> POLITY GEOGRAPHIC IDENTIFIERS
+
+   - variable E1006_REG ID COMPONENT - POLITY UN GEOGRAPHIC REGIONS NUMERIC
+                                       CODES
+     This variable consists of a two-digit numerical code assigned by the
+     United Nations Statistics Division to polities based on their 
+     geographic (continental) region. Each polity is shown in one 
+     region only. 
+
+
+<<>> POLITY MEMBERSHIP IDENTIFIERS
+
+CSES MODULE 5 classifies whether each polity was a member of two 
+international organizations at the time of the election, namely the  
+Organization for Economic Cooperation and Development (OECD) and the  
+European Union (EU).
+
+   - variable E1006_OECD ID COMPONENT - POLITY MEMBER OF OECD
+     This variable classifies whether polity was a member of the 
+     Organization for Economic Cooperation and Development (OECD) at the
+     time of the election. 
+
+   - variable E1006_EU ID COMPONENT - POLITY MEMBER OF EU
+     This variable classifies whether polity was a member of the European
+     Union at the time of the election. 
+
+
+<<>> RESPONDENT IDENTIFIER
+
+Respondents can be uniquely identified in the dataset by variable E1005. It
+is an 18-character identifier. The first three characters are the numeric
+version of the country codes assigned by the United Nations Statistics
+Division. If applicable, the fourth character distinguishes between 
+multiple studies conducted within a single country, for the same election. 
+If only one study is in place for the election, this digit is 0. The fifth
+through eighth characters correspond to the election year (see variable
+E1008). The last ten characters are the respondent identifier from E1009,
+which is unique within each election study.
+
+
+<<>> COVID-19 PANDEMIC IDENTIFIER
+
+Some studies were conducted either partially or completely during the 
+COVID-19 pandemic. A pandemic is an epidemic of infectious disease that has 
+spread across a large region or multiple or worldwide and affecting a
+substantial number of individuals.                   
+At the time of writing, COVID-19 was first discovered in November 2019. 
+However, it is possible human-to-human transmission of the disease was 
+occurring before this discovery. On January 11, 2020, the World Health 
+Organization (WHO) was notified by Chinese authorities of a virus outbreak 
+in Wuhan, China. On January 30,2020, the World Health Organization 
+classified COVID-19 as a Public Health Emergency of Concern before 
+eventually declaring the Health situation a pandemic on March 11, 2020.
+An election (or election study) is classified as taking place during the 
+COVID-19 pandemic if the election itself took place and/or the entire study 
+fieldwork was administered on or after March 11, 2020 to December 31, 2021, 
+the end of the CSES MODULE 5 Fieldwork. March 11, 2020, is the day in which
+the World Health Organization (WHO) officially classified the COVID-19 
+Health Crisis as a pandemic. CSES classifies whether the election took 
+place before, partially, or fully during the pandemic - this is identified
+in the dataset by variable E1038. 
+
+
+---------------------------------------------------------------------------
+>>> MISSING DATA
+---------------------------------------------------------------------------
+
+Multiple response categories can relate to missing data relating from 
+not applicable to a respondent refusing to answer or failing to answer 
+a question. Users should consult individual variables for the specific
+missing designations assigned to each variable. 
+
+For some election studies in which we could not distinguish among various
+answers, the code "missing" may include cases where respondents refused 
+to answer the question, "don't know" responses, and cases where there
+a particular question went unanswered for other reasons.
+Moreover, while CSES guidelines request that the response categories 
+"Refused" and "Don't Know" be volunteered responses, this was not always 
+consistently applied. For instance, sometimes the options were offered 
+explicitly to respondents in mail-back surveys, which do not have the 
+benefit of an interviewer being present. To identify whether the response 
+options were volunteered (or not) in a particular election study, users 
+should refer to the original questionnaires of each polity. These are
+available on the MODULE 5 page. 
+
+While there is no consistent CSES convention regarding the application of
+missing values, some commonalities exist, namely: 
+- Not applicable values are commonly designated as 7, 97, 997, 9997 etc...
+- Don't know values are commonly designated as 8, 98, 998, 9998 etc... 
+- Missing values are commonly designated as 9, 99, 999, 9999 etc...
+
+However, users are advised that the commonalities do not always hold
+and they are advised to consult individual variables for the specific
+missing designations assigned to the variable in question. 
+
+
+---------------------------------------------------------------------------
+>>> WEIGHTS
+---------------------------------------------------------------------------
+
+CSES provides several weight measures in the CSES data (see variables 
+E1010-E1014 inclusive). There is a strong degree of variance in the sample 
+designs used in the national election studies included in CSES. Hence, the
+weights provided by Collaborators vary significantly. Users are advised
+to read carefully about the different weights in CSES to ascertain
+whether their analyses should be subjected to weighting and if so which
+kind. 
+
+CSES provides users with up to three original weights from each 
+national election study (see variable E1010_) namely:
+
+  - SAMPLE WEIGHT (variable E1010_1): 
+    intended to correct for unequal selection probabilities resulting from 
+    booster samples procedures for selection within the household, 
+    non-response, or other sample design features 
+
+  - DEMOGRAPHIC WEIGHT (variable E1010_2): 
+    intended to adjust sample distributions of socio-demographic 
+    characteristics to more closely resemble the characteristics of the 
+    population
+
+  - POLITICAL WEIGHT (variable E1010_3): 
+    intended to reconcile discrepancies in the reported electoral behavior
+    of respondents' vis-a-vis official electoral counts. 
+
+For more information on polity weights, users are advised to consult Part 6
+of the CSES Codebook or the individual design reports of each study. 
+
+The remainder of the weight variables in the dataset are derivative
+weights, constructed from the original weights. They are: 
+ 
+  - FACTOR WEIGHTS (variable E1011)
+    These variables report the mean weight of each type, within each 
+    polity. The resulting factors are then used to create the derivative 
+    Polity Weights (variable E1012 explained below). 
+
+  - POLITY WEIGHTS (variable E1012)
+    These variables report standardized versions (with a mean 1 within the 
+    polity) of the original weights provided with the component election 
+    studies, described in E1010. They are the ratio of each weighting 
+    factor to the mean weight (E1011) of each type, calculated within each
+    polity.
+
+  - SAMPLE SIZE ADJUSTMENT WEIGHT (variable E1013)
+    This variable reports the ratio of the average sample size to each 
+    election study sample. The resulting factor is then used to create the
+    derivative Dataset Weights, see varaible E1014. 
+
+  - DATASET WEIGHTS (variable E1014)
+    These variables are intended for micro-level analyses involving the 
+    entire CSES sample. Using the sample size adjustment (E1013), the 
+    centered weights (E1012) are corrected such that each election study
+    component contributes equally to the analysis, regardless of the 
+    original sample size. 
+
+Details of the calculation of the above derivative weights, including 
+the precise STATA code used to create the weights, can be found in the 
+variable notes for variables E1011, E1012, E1013, and E1014.     
+
+Analysts are advised to read the weight documentation carefully to ensure
+their analyses are weighted appropriately (if applicable). The CSES 
+project does not provide advice as to which weights are appropriate to 
+use in particular circumstances. This is best left to analysts to decide 
+based on their detailed knowledge of the research question under 
+investigation. We advise analysts to consult variable notes E1010-E1014 
+for more specific information on each polities weight and the derivative 
+weights calculated for the Cross-National Dataset.
+
+
+---------------------------------------------------------------------------
+>>> FREEDOM STATUS OF ELECTIONS
+---------------------------------------------------------------------------
+
+The majority of studies that comprise CSES are collected in countries that
+have free or partly free elections. However, sometimes a Collaborator will
+include the CSES module in a study of a polity that is a developing
+democracy or that is considered not free. If the data collection is judged
+to be of sufficiently high quality, the study is included in CSES datasets
+even if the polity is considered to be not free. The decision regarding
+inclusion of particular polities in an analysis is thus left to users. 
+
+To assist users in making appropriate decisions concerning their 
+analysis, CSES MODULE 5 includes two measures about the freedom 
+and liberty of a polity in the year the election was held (and indeed
+the two preceding years), namely: 
+
+   - FREEDOM HOUSE RATING (variables E5090_)
+     Freedom House assigns a numerical rating of a polity on a scale of 
+     1 to 7 providing an indication of freedom. 
+
+   - POLITY IV DEMOCRACY-AUTOCRACY RATING (variables E5091_)
+     Polity IV assigns a numerical rating to a polity on a scale of -10 
+     to 10 indicating whether the polity is strongly
+     democratic or strongly autocratic. 
+
+Freedom House and Polity IV are not affiliated with the CSES project.
+
+
+---------------------------------------------------------------------------
+>>> PROCESSING CHECKS OF MODULE 5 DATASET BY THE CSES SECRETARIAT
+---------------------------------------------------------------------------
+
+Besides processing MODULE 5 studies from individual polities to ensure they
+are fit for comparative analysis, which involves detailed checking of the 
+individual studies' data, a key role of the CSES Secretariat is to perform
+several checks on the MODULE 5 Dataset before it is released. These checks
+include (but are not confined to): 
+
+   - CHECK OF DUPLICATE IDs
+     Identification of respondents with corresponding answers to all 
+     questions or respondent identification data that are similar. 
+
+   - DERIVATIVE VARIABLES CHECKS
+     To identify all derivative variables created by the CSES Secretariat
+     are coded in line with original variables and documented in the CSES
+     Codebook comprehensively. 
+
+   - INCONSISTENCY CHECKS
+     To identify sets of variables which are inconsistent, or could be 
+     perceived as inconsistent (e.g., strange skip pattern, incompatible
+     answers to related questions). The CSES convention is not to change 
+     data that we receive from national Collaborators. Instead, 
+     inconsistencies are noted in the CSES Codebook under the appropriate
+     variable and the data are left unchanged. This allows users to make
+     the final determination on whether inconsistencies may affect their
+     analyses.  
+
+   - IRREGULAR AND EXTRAORDINARY CODE CHECKS 
+     To identify irregular and extraordinary codes in the CSES MODULE 5 
+     Dataset. Sometimes these irregular or extraordinary codes are 
+     legitimate in the sense that they may be accounted for by a polity
+     deviation on a particular variable.
+
+   - THEORETICAL CHECKS  
+     These checks explore expected relationships between variables that 
+     we might expect to occur (e.g., correlation between Political Efficacy
+     and Satisfaction with Democracy). We do this by exploring 
+     distributions, correlation analysis, and regression analysis. 
+
+   - VARIABLE AND VALUE LABEL CHECKS
+     Checking all variables in the CSES MODULE 5 Dataset to ensure they
+     are appropriately assigned labels and documented in the CSES Codebook. 
+
+   - INTERVIEW(ER) VALIDATION CHECKS
+     Review performed at the respondent and interviewer levels using various
+     statistical techniques to identify anomalous response patterns in the
+     data (e.g., identification of highly similar interviews, 
+     straightlining, unusually high proportion of interviews conducted by an
+     individual interviewer on a single day).
+
+If you identify any potential issue with the CSES MODULE 5 data, 
+please contact the CSES Secretariat by e-mail at: cses@umich.edu 
+
+
+===========================================================================
+))) CSES MODULE 5 BIBLIOGRAPHY
+===========================================================================
+
+The below list constitutes a list of the primary sources that the CSES 
+Secretariat has consulted in the development of CSES MODULE 5 Codebook and
+Data. The list is not exhaustive. 
+
+Please note: Period symbol at end of URL addresses may be considered a full
+stop or could be part of the URL address.  
+
+
+LIST OF REFERENCES 
+
+Aardal, B., and J. Bergh. 2018. "The 2017 Norwegian election." West 
+European Politics 41 (5): 1208-1216. DOI: 10.1080/01402382.2017.1415778
+
+ACE Electoral Knowledge Network. n.d. "Direct Democracy." 
+http://aceproject.org/epic-en/CDTable?view=country&question=DD129.
+(Date accessed: October 29, 2018).
+
+ACE Electoral Knowledge Network. n.d. "Direct Democracy. Citizens' 
+Initiatives (national level)."
+http://aceproject.org/epic-en/CDTable?view=country&question=DD005.
+(Date accessed: October 29, 2018).
+
+ACE Electoral Knowledge Network. n.d. "Direct Democracy. Mandatory 
+Referendums (national level)." 
+http://aceproject.org/epic-en/CDTable?view=country&question=DD003. 
+(Date accessed: October 29, 2018).
+
+ACE Electoral Knowledge Network. n.d. "Direct Democracy. Optional 
+Referendums (national level)." 
+http://aceproject.org/epic-en/CDTable?view=country&question=DD004.
+(Date accessed: October 29, 2018).
+
+ACE Electoral Knowledge Network. n.d. "Electoral Management." 
+http://aceproject.org/epic-en/CDTable?view=country&question=EM012. 
+(Date accessed: October 30, 2018).
+
+ACE Electoral Knowledge Network. n.d. "Party Funding." 
+http://aceproject.org/epicen/CDTable?view=country&question=PC012.
+(Date accessed: October 30, 2018).
+
+Adam Carr's Election Archive. Databank. n.d. "Hong Kong Special 
+Administrative Region. Databank." 
+http://psephos.adam-carr.net/countries/h/hongkong/. 
+(Date accessed: May 3, 2019).
+
+Aharoni, T., K. Tenenboim-Weinblatt, C. Baden, and M. Overbeck. 2022. 
+"Dynamics of (dis)trust between the news media and their audience: The 
+case of the April 2019 Israeli exit polls." Journalism 23 (2): 337-353.
+DOI: 10.1177/1464884920978105
+
+Alesina, A., A. Devleeschauwer, W. Easterly, S. Kurlat, and R. Wacziarg. 
+2003. "Fractionalization." Journal of Economic Growth 8 (2): 155-194. 
+Data available from: 
+http://www.anderson.ucla.edu/faculty_pages/romain.wacziarg/papersum.html.
+(Date accessed: October 29, 2018).
+
+Allcott, H., and M. Gentzkow. 2017. "Social Media and Fake News in the 2016
+Election." Journal of Economic Perspectives 31 (2): 211-236.
+DOI: 10.1257/jep.31.2.21
+
+Alvarez-Rivera, M. n.d. "Election Resources on the Internet: Presidential 
+and Legislative Elections in Slovakia." 
+http://www.electionresources.org/sk/. (Date accessed: October 25, 2022).
+
+American Federal Election Commission
+https://transition.fec.gov/general/FederalElections2016.shtml
+(Date accessed: May 08, 2019).
+
+American Federal Election Commission (2017). Federal Election 2016. 
+Available at: https://transition.fec.gov/pubrec/fe2016/federalelections
+2016.pdf
+(Date accessed: March 23, 2019).
+
+Andreadis, I. 2018. "Measuring Authoritarian Populism with Expert Surveys. 
+Extending CHES estimates on populism and authoritarianism." In Electoral 
+Integrity Project (EIP) 2018 Seminar Series. Sydney, AU.
+https://static1.squarespace.com/static/58533f31bebafbe99c85dc9b/t/5b0c81cb
+575d1fdde9b34089/1527546335460/Measuring+Authoritarian+Populism+Expert+
+Surveys+28-5-2018.pdf. (Date accessed: February 9, 2022).
+
+Aparicio, F. J., and R. Castro Cornejo. 2020. "2018 Elections. A Historical 
+Political Juncture in Mexico." Politica y gobierno 27(2): 3-21.
+
+Arter, D. 2020. "When a pariah party exploits its demonised status:
+the 2019 Finnish general election." West European Politics 43 (1): 260-273.
+DOI: 10.1080/01402382.2019.1635799
+
+Australian Electoral Commission (AEC). n.d. "2019 Federal Election House of 
+Representatives Turnout By Division." 
+https://results.aec.gov.au/24310/Website/Downloads/HouseTurnoutByDivision
+Download-24310.csv. (Date accessed: February 08, 2021).
+
+Australian Electoral Commission (AEC). n.d. "Divisional results"
+https://results.aec.gov.au/24310/Website/HouseDivisionalResults-24310.htm. 
+(Date accessed: February 08, 2021).
+
+Austrian Minister of Interior. n.d. https://wahl17.bmi.gv.at/
+(Date accessed: March 19, 2019).
+
+Austrian Ministry of Interior. n.d. "Elections in Austria." 
+https://www.bmi.gv.at/412_english/. (Date accessed: March 19, 2019).
+
+Aylott, N., and N. Bolin. 2019. "A party system in flux: the Swedish 
+parliamentary election of September 2018." West European Politics 42 (7): 
+1504-1515. DOI: 10.1080/01402382.2019.1583885
+
+Bacelar da Silva, A. J., and E. R. Larkins. 2019. "The Bolsonaro Election,
+Antiblackness, and Changing Race Relations in Brazil." The Journal of Latin
+American and Caribbean Anthropology 24 (4): 893-913. 
+DOI: 10.1111/jlca.12438
+
+Baldini, G., and M. F. N. Giglioli. 2019. "Italy 2018: The Perfect Populist 
+Storm?" Parliamentary Affairs 73 (2): 363-384. DOI: 10.1093/pa/gsy052
+
+Barrett, D. 2016. "Irish general election 2016 report: whither the party 
+system?" Irish Political Studies 31 (3): 418-431. 
+DOI: 10.1080/07907184.2016.1195814
+
+BBC News. 2020. "Donald Trump suggests delay to 2020 US presidential 
+election." July 30, 2020. https://www.bbc.com/news/world-us-canada-53597975. 
+(Date accessed: December 10, 2021).
+
+Bennett, D., E. Brown, A. Mirza, S. Cahlan, J. S. Lee, M. Kelly, 
+E. Samuels, and J. Swaine. 2021. "41 minutes of fear: A video timeline from 
+inside the Capitol siege." The Washington Post, January 16, 2021.
+https://www.washingtonpost.com/investigations/2021/01/16/video-timeline-
+capitol-siege/. (Date accessed: February 03, 2022).
+
+Bederke, P., H. Doering, and S. Regel. n.d. "Partyfacts."
+https://partyfacts.herokuapp.com/download/. (Date accessed: July 15, 2020).
+
+Bernhard, L. 2020. "The 2019 Swiss federal elections: the rise of the green
+tide." West European Politics 43 (6): 1339-1349. 
+DOI: 10.1080/01402382.2019.1710687
+
+Bertran, U. 2012. "De izquierda o de derecha? Liberales o conservadores?" 
+Nexos. https://www.nexos.com.mx/?p=14629. (Date accessed: March 15, 2023).
+
+Birrell, B. 2019. "The 2019 election and the impending migrant parent
+deluge." The Australian Population Research Institute.
+https://tapri.org.au/wp-content/uploads/2019/05/final-draft-parent-visa-
+May-2019.pdf (Date accessed: February 9, 2022).
+
+Bodlos, A., and C. Plescia. 2018. "The 2017 Austrian snap election: a shift 
+rightward." West European Politics 41 (6): 1354-1363.
+DOI: 10.1080/01402382.2018.1429057
+
+Bogaards, M. 2018. "De-democratization in Hungary: diffusely defective 
+democracy." Democratization 25 (8): 1487-1499.
+DOI: 10.1080/13510347.2018.1485015
+
+Bomboy, S. 2020. "Does the Constitution allow for a delayed presidential 
+election?" National Constitution Centre. https://constitutioncenter.org/
+blog/does-the-constitution-allow-for-a-delayed-presidential-election. 
+(Date accessed: December 10, 2021).
+
+Booth, J. A. 2018. Costa Rica: Quest for Democracy. New York: Routledge.
+
+Borg, S. 2019. "The Finnish parliamentary election of 2019: Results and
+voting patterns." Scandinavian Political Studies 42 (2): 182-192.
+DOI: 10.1111/1467-9477.12150
+
+Borg, S., E. Kestila-Kekkonen, and H. Wass. 2020. Politiikan 
+ilmastonmuutos: Eduskuntavaalitutkimus 2019. Helsinki: Oikeusministerio.
+
+Bormann, N.-C., and M. Golder. 2013. "Democratic Electoral Systems Around 
+the World, 1946-2011." Electoral Studies 32 (2): 360-369.
+DOI: 10.1016/j.electstud.2013.01.005
+
+Bormann, N.-C., and M. Golder. n.d. "Democratic Electoral Systems Around the
+World, 1946-2011." http://mattgolder.com/elections. (Date accessed: 
+November 21, 2016).
+
+Bottinelli, O. A. 2008. "El Multiple Voto Simultaneo y el Voto Conjunto en 
+Uruguay. (The Multiple Simultaneous Vote and the Joint Vote)." Instituto 
+factum. 
+
+Bottinelli, O. A., W. Gimenez, and J. L. Marius. 2008. "Enciclopedia 
+Electoral del Uruguay - Digesto Electoral del Uruguay. (Electoral 
+Encyclopedia of Uruguay - Uruguay Election Digest)." Instituto factum.
+
+Braeuninger, T., M. Debus, J. Mueller, and C. Stecker. 2018. "Party 
+Competition and Government Formation in Germany: Business as Usual or New 
+Patterns?" German Politics 28 (1): 80-100. 
+DOI: 10.1080/09644008.2018.1538362
+
+Brazilian Superior Electoral Court. n.d. http://www.tse.jus.br.
+(Date accessed: April 23, 2020).
+
+Bundeswahlleiter. 2017. "Wahl zum 19. Deutschen Bundestag am 24. September
+2017. (Election to the 19th German Bundestag on September 24, 2017.)" 
+https://www.bundeswahlleiter.de/en/dam/jcr/3f3d42ab-faef-4553-bdf8-
+ac089b7de86a/btw17_heft3.pdf. (Date accessed: February 6, 2019).
+
+Bundeswahlleiter. n.d. "Ergebnisse. (Results.)" 
+https://www.bundeswahlleiter.de/en/bundestagswahlen/2017/ergebnisse.html. 
+(Date accessed: January 21, 2019).
+
+Bustani, C. 2001. "The 1998 elections in Brazil." Electoral Studies 2 (20): 
+305-313. DOI: 10.1016/S0261-3794(00)00035-4
+
+Caetano, G., L. Selios, and E. Nieto. 2019. "Descontentos y 'cisnes negros':
+las elecciones en Uruguay en 2019." Araucaria. Revista Iberoamericana de 
+Filosofia, Politica, Humanidades y Relaciones Internacionales 21 (42): 
+277-311. DOI: 10.12795/araucaria.2019.i42.12
+
+Carkoglu, A., and K. Yildirim 2018. "Change and Continuity in Turkey's 
+June 2018 elections." Insight Turkey 20 (4): 153-182. 
+DOI: 10.25253/99.2018204.07
+
+Carrion, J. F. 2022. "Peru: Will Democracy Outlast Political Dysfunction?" 
+In Latin American Politics and Development, edited by H. F. Kline and 
+C. J. Wade, 201-222. New York: Routledge.
+
+Census and Statistics Department. The Government of the Hong Kong 
+Special Administrative Region. Databank. 2022. "Population by Sex and Age 
+Group. Databank" http://www.censtatd.gov.hk/hkstat/sub/sp150.jsp?tableID=
+002&ID=0&productType=8. (Date accessed: October 31, 2022).
+
+Central Election Commission Taiwan. 2016. "The 14 Presidential and
+Vice Presidential Election. The 9th Legislator Election." 
+http://vote2016.cec.gov.tw/en/. (Date accessed: March 24, 2019).
+
+Central Election Commission Taiwan. n. d. "2020 Legislator Election." 
+https://web.cec.gov.tw/english/cms/le/32472. 
+(Date accessed: July 14, 2021).
+
+Chang, H. C. H., S. Haider, and E. Ferrara. 2021. "Digital civic 
+participation and misinformation during the 2020 Taiwanese presidential 
+election." Media and Communication 9 (1): 144-157. 
+DOI: 10.17645/mac.v9i1.3405
+
+Cheibub, J. A. 2007. "Presidentialism, Parliamentarian, and Democracy." New
+York: Cambridge University Press.
+
+Chhibber, P. K., and R. Verma. 2018. "Ideology and identity: The changing 
+party systems of India." Oxford University Press.
+
+Chhibber, P., and R. Verma. 2019. "The rise of the second dominant party 
+system in India: BJP's new social coalition in 2019." Studies in Indian 
+Politics 7 (2): 131-148. DOI: 10.1177/2321023019874628
+
+Chiaramonte, A., and R. D'Alimonte. 2018. "The new Italian electoral system 
+and its effects on strategic coordination and disproportionality." Italian 
+Political Science 13 (1): 8-18.
+https://italianpoliticalscience.com/index.php/ips/article/view/34/24. 
+(Date accessed: February 9, 2022).
+
+Chiaramonte, A., V. Emanuele, N. Maggini, and A. Paparo. 2018. "Populist 
+Success in a Hung Parliament: The 2018 General Election in Italy." South 
+European Society and Politics 23 (4): 479-501.
+DOI: 10.1080/13608746.2018.1506513
+
+Chilean Electoral Commission - Servicio Electoral de Chile (SERVEL). n.d. 
+"Sitio Historico. Resultados Electorales. (Historical Site. Election 
+Results)." https://historico.servel.cl/. (Date accessed: March 25, 2019).
+
+Chilean Electoral Commission - Servicio Electoral de Chile (SERVEL). n.d. 
+https://historico.servel.cl/. (Date accessed: March 25, 2019).
+
+Servicio electoral de Chile (Chilean Electoral authority) www.servel.cl 
+(Date accessed: March 13, 2019).
+
+Christiansen, F. J. 2020. "The 2019 Danish General Election - A Shift to
+the Centre-Left." Scandinavian Political Studies 43 (2): 73-79.
+DOI: 10.1111/1467-9477.12162
+
+Citizens Information Ireland. n.d. "Registering to vote." 
+https://www.citizensinformation.ie/en/government_in_ireland/elections_and_
+referenda/voting/registering_to_vote.html. (Date accessed: April 18, 2020).
+
+Colburn, F. D., and A. Cruz S. 2018. "Latin America's Shifting Politics: 
+The Fading of Costa Rica's Old Parties." Journal of Democracy 29 (4): 
+43-53. DOI: 10.1353/jod.2018.0061.
+
+Constituency-Level Elections Archive (CLEA). Databank. n.d. "Constituency-
+Level Elections Archive (CLEA). Databank." 
+http://www.electiondataarchive.org/. (Date accessed: March 26, 2019).
+
+Cordova, A. 2019. "Living in Gang-Controlled Neighborhoods: Impacts on 
+Electoral and Nonelectoral Participation in El Salvador." Latin American 
+Research Review 54 (1): 201–221. DOI: 10.25222/larr.387
+
+Cordova, R., and V. Cubas. 2019. "Las elecciones presidenciales de 2019: 
+Analisis de los resultados electorales." Estudio tecnico 03-2019. FUNDAUNGO, 
+UCA, UDB y FLACSO- Programa El Salvador. San Salvador, El Salvador.
+https://www.fundaungo.org.sv/products/las-elecciones-presidenciales-de-
+2019-analisis-de-los-resultados-electorales/427. 
+(Date accessed: January 17, 2023).
+
+Cox, N. 2020. "The Covid-19 general election in New Zealand." The Round 
+Table: The Commonwealth Journal of International Affairs 109 (6): 742-743. 
+DOI: 10.1080/00358533.2020.1849504
+
+Curtice, J., S. Fisher, J. Kuha, and J. Mellon. 2017. "Surprise, surprise! 
+(again) The 2017 British general election exit poll." Significance 14 (4): 
+26-29. DOI: 10.1111/j.1740-9713.2017.01054.x
+
+Cutts, D., M. Goodwin, O. Heath, and P. Surridge. 2020. "Brexit, the 2019
+General Election and the Realignment of British Politics." The Political 
+Quarterly 91 (1): 7–23. DOI: 10.1111/1467-923X.12815
+
+Czech Statistical Office. 2017. "Elections to the Chamber of Deputies of 
+the Parliament of the Czech Republic held on 20-21 October 2017."
+https://volby.cz/pls/ps2017nss/ps?xjazyk=EN   
+(Date accessed: November 11, 2022).
+
+Czech Statistical Office. 2021. "Elections to the Chamber of Deputies of 
+the Parliament of the Czech Republic held on 8-9 October 2021."
+https://www.volby.cz/pls/ps2021/ps?xjazyk=EN  
+(Date accessed: November 24, 2022).
+
+Dahlstrom, C., J. Teorell, S. Dahlberg, F. Hartmann, A. Lindberg, and M. 
+Nistotskaya. 2015. "The QoG Expert Survey Dataset II." University of 
+Gothenburg: The Quality of Government Institute. 
+
+Darmanovic, S. 2017. "The Never-Boring Balkans: The Elections of 2016." 
+Journal of Democracy 28 (1): 116-128. DOI: 10.1353/jod.2017.0010
+
+Davis, T. 2020. "Trump's election lawsuits: Where the Fights are 
+Playing Out." Bloomberg Law, November 8, 2020. https://news.bloomberglaw.
+com/us-law-week/trumps-election-lawsuits-where-the-fights-are-playing-out
+(Date accessed: February 03, 2022).
+
+de Jonge, L. 2021. "The Curious Case of Belgium: Why is There no Right-Wing
+Populism in Wallonia?" Government and Opposition 56 (4): 598-614. 
+DOI: 10.1017/gov.2020.8
+
+Dean, L. A. 2020. "Striking out women: preferential voting and gender
+bias in Latvian Saeima elections." East European Politics 37 (4): 635-658.
+DOI: 10.1080/21599165.2020.1855423
+
+Department of Internal Affairs, Austria. n.d. "Elections in Austria."
+https://www.bmi.gv.at/412_english/. (Date accessed: January 19, 2019).
+
+Desatova, P., and S. T. Alexander. 2021. "Election commissions and 
+non-democratic outcomes: Thailand's contentious 2019 election." Politics, 
+Online First. DOI: 10.1177/02633957211000978
+
+Dias, M., and A. Teles. 2018. "Vote in Brazil and General elections
+2018: Are the pillars of democracy in danger?" Global Journal of Politics
+and Law Research 6 (6): 1-15.
+https://www.eajournals.org/wp-content/uploads/Vote-in-Brazil-and-General-
+Elections-2018-Are-the-Pillars-of-Democracy-in-Danger.pdf.
+(Date accessed: February 9, 2022).
+
+Directorate General of Budget, Accounting and Statistics, Executive Yuan, 
+Taiwan (ROC). "National Statistical Bulletin." 
+https://www.dgbas.gov.tw/public/Data/112116036FDX2D8F3.pdf. 
+(Date accessed: July 14, 2021).
+
+Doering, H., C. Huber, and P. Manow. n.d. "Parliaments and governments 
+database (ParlGov): Information on parties, elections and cabinets in 
+established democracies." http://www.parlgov.org/.
+(Date accessed: April 04, 2018).
+
+Dorey, P. 2017. "Jeremy Corbyn confounds his critics: explaining the
+Labour party's remarkable resurgence in the 2017 election." British
+Politics 12 (3): 308-334. DOI: 10.1057/s41293-017-0058-4
+
+Dostal, J. M. 2017. "The German Federal Election of 2017: How the Wedge 
+Issue of Refugees and Migration Took the Shine off Chancellor Merkel and
+Transformed the Party System." The Political Quarterly 88 (4): 589-602.
+DOI: 10.1111/1467-923X.12445
+
+Dostal, J. M. 2021. "Germany's Federal Election of 2021: Multi-Crisis 
+Politics and the Consolidation of the Six-Party System." The Political 
+Quarterly 92 (4): 662-672. DOI: 10.1111/1467-923X.13080
+
+Dozier, K., and V. Bergengruen. 2021. "Incited by the President, Pro-Trump 
+Rioters Violently Storm the Capitol." Time, January 7, 2021. 
+https://time.com/5926883/trump-supporters-storm-capitol/. 
+(Date accessed: February 3, 2022).
+
+Dragoman, D. 2020. "'Save Romania' Union and the Persistent Populism in
+Romania." Problems of Post-Communism 68 (4): 303-314.
+DOI: 10.1080/10758216.2020.1781540
+
+Duvold, K., and M. Jurkynas. 2013. "Lithuania." In The Handbook of 
+Political Change in Eastern Europe, 3rd edition, edited by S. Berglund, J. 
+Ekman, K. Deegan-Krause, and T. Knutsen, 125-166. Cheltenham: Edward Elgar 
+Publishing.
+
+Elections Ireland. Databank. n.d. "General Election of 26 February 2016." 
+https://www.electionsireland.org/results/general/32dail.cfm. 
+(Date accessed: January 18, 2019).
+
+Elections Canada. n.d. "43rd General Election - October 21, 2019." 
+https://www.elections.ca/content.aspx?section=ele&document=index&dir=pas/
+43ge&lang=e. (Date accessed: February 20, 2021).
+
+Election Study Center (NCCU). n.d. "Categories of elections in Taiwan." 
+http://vote.nccu.edu.tw/engcec/cechead.asp. (Date accessed: June 01, 2021).
+
+Electoral Affairs Commission. 2016. "Report on the 2016 Legislative Council
+General Election." https://www.eac.gov.hk/pdf/legco/2016LCE_Report/en/
+2016lce_full_report.pdf. (Date accessed: April 3, 2019).
+
+Electoral Commission of Montenegro. n.d. http://www.dik.co.me/
+(Date accessed: January 19, 2019).
+
+Electoral Court of Uruguay. n.d. https://www.corteelectoral.gub.uy/
+(Date accessed: September 14, 2021).
+
+Enders, A. M., J. E. Uscinski, C. A. Klofstad, K. Premaratne, M. I. Seelig, 
+S. Wuchty, M. N. Murthi, and J. R. Funchion. 2021. "The 2020 presidential 
+election and beliefs about fraud: Continuity or change?" Electoral Studies
+72. DOI: 10.1016/j.electstud.2021.102366
+
+Enli, G. 2017. "Twitter as an arena for the authentic outsider: exploring
+the social media campaigns of Trump and Clinton in the 2016 US presidential 
+election." European Journal of Communication 32 (1): 50-61.
+DOI: 10.1177/0267323116682802
+
+European Union. n.d. "Country Profiles." https://europa.eu/european-union/
+about-eu/countries_en. (Date accessed: February 26, 2020).
+
+Evans, J., and G. Ivaldi. 2018. The 2017 French Presidential Elections. 
+A Political Reformation? Basingstoke: Palgrave Macmillan. 
+DOI: 10.1007/978-3-319-68327-0
+
+Faas, T., and Klingelhoefer, T. 2022. "German politics at the traffic light:
+new beginnings in the election of 2021." West European Politics 45 (7):
+1506-1521. DOI: 10.1080/01402382.2022.2045783
+
+Federal Election Commission. United States of America. 2021. "Official 2020 
+Presidential General Election Results." 
+https://www.fec.gov/resources/cms-content/documents/2020presgeresults.pdf. 
+(Date accessed: September 16, 2021).
+
+Federal Ministry of the Interior (Bundesministerium fuer Inneres - BM.I).
+n.d. https://wahl17.bmi.gv.at/. (Date accessed: March 1, 2019).
+
+Federal Public Services Home Affairs. n.d. "IBZ Official Results." 
+https://elections2019.belgium.be/en. (Date accessed: June 02, 2021).
+
+Federal Statistical Office. n.d. "Eidgenoessische Wahlen. (Federal elections 
+2019)." https://www.bfs.admin.ch/bfs/de/home/statistiken/politik/wahlen/
+eidg-wahlen-2019.html. (Date accessed: March 12, 2021).
+
+Fernandes, J. M., and P. C. Magalhaes. 2020. "The 2019 Portuguese general 
+elections." West European Politics 43 (4): 1038-1050. 
+DOI: 10.1080/01402382.2019.1702301
+
+Fish, M. S., and M. Kroenig. 2009. The Handbook of National Legislatures. 
+Cambridge: Cambridge University Press.
+
+Folketinget. n.d. "The Parliamentary Electoral System in Denmark." 
+https://www.thedanishparliament.dk/-/media/pdf/publikationer/english/the-
+parliamentary-system-of-denmark_2011.ashx. 
+(Date accessed: October 25, 2022).
+
+Frajman, E. 2014. "The general election in Costa Rica, February/April 
+2014." Electoral Studies 35: 61-66. DOI: 10.1016/j.electstud.2014.04.016
+
+Freedom House. n.d. "About Freedom in the World. An Annual study of 
+political rights and civil liberties." 
+https://freedomhouse.org/report-types/freedom-world.
+(Date accessed: October 29, 2018).
+
+French Ministry of the Interior. "Resultats de l'election presidentielle 
+2017. (Results of the presidential election 2017)." 
+https://www.interieur.gouv.fr/Elections/Les-resultats/Presidentielles/
+elecresult__presidentielle-2017/(path)/presidentielle-2017/FE.html. 
+(Date accessed: January 16, 2020).
+
+FUNDAUNGO, UCA, UDB, and FLACSO Programa El Salvador. 2019. "Informe Final 
+de Observacion Electoral. Elecciones Presidenciales 2019." San Salvador, 
+El Salvador.
+https://www.fundaungo.org.sv/products/informe-final-de-observacion-
+electoral-elecciones-presidenciales-2019 (Date accessed: May 19, 2023).
+
+Gaasendam, C. R., K. Abts, M. Swyngedouw, and B. Meuleman. 2021. 
+"Lost connection? The attitudinal and ideological (in)congruence of social
+democracy's elites, members and voters in Flanders-Belgium." Acta Politica
+56 (3): 395-415. DOI: 10.1057/s41269-020-00156-6
+
+Gallagher, M. 2017. "Election indices dataset." 
+http://www.tcd.ie/Political_Science/staff/michael_gallagher/ElSystems/
+index.php. (Date accessed: March 27, 2018).
+
+Gallagher, M., and M. Marsh. 2016. How Ireland Voted 2016. The Election
+that Nobody Won. Palgrave Macmillan. DOI: 10.1007/978-3-319-40889-7
+
+Gamboa, R., and M. Morales. 2016. "Chile's 2015 Electoral Reform: Changing
+the Rules of the Game." Latin American Politics and Society 58 (4):
+124-144. DOI: 10.1111/laps.12005
+
+Garzia, D. 2019. "The Italian election of 2018 and the first populist 
+government of Western Europe." West European Politics 32 (3): 670-680. 
+DOI: 10.1080/01402382.2018.1535381
+
+Gavarrete, J. 2021. "In El Salvador, Bukele Reigns Supreme." NACLA Report
+on the Americas 53 (2): 115-117. DOI: 10.1080/10714839.2021.1923195
+
+Gougou, F., and S. Persico. 2017. "A new party system in the making? 
+The 2017 French presidential election." French Politics 15 (3): 303-321. 
+DOI: 10.1057/s41253-017-0044-7
+
+Gougou, F., and N. Sauger. 2017. "The 2017 French Election Study 
+(FES 2017): a post-electoral cross-sectional survey." French Politics 15 
+(3): 360-370. DOI: 10.1057/s41253-017-0045-6
+
+Govantes, B., and M. Hernando de Larramendi. 2021. "The Tunisian 
+transition: a winding road to democracy." The Journal of North African 
+Studies, Online First. DOI: 10.1080/13629387.2021.1963238
+
+Government of Iceland. 2018. "Constitution of the Republic of Iceland 
+(No. 33, 17 June 1944, as amended 30 May 1984, 31 May 1991, 28 June 1995 
+and 24 June 1999)." http://www.government.is/constitution/. 
+(Date accessed: February 12, 2020).
+
+Greaves, L. M., N. K. Sengupta, C. S. Townrow, D. Osborne, C. A. Houkamau, 
+and C. G. Sibley. 2018. "Maori, a politicized identity: Indigenous 
+identity, voter turnout, protest, and political party support in Aotearoa 
+New Zealand." International Perspectives in Psychology 7 (3): 155-173. 
+DOI: 10.1037/ipp0000089
+
+Greek Ministry of Interior. n.d.
+http://ekloges.ypes.gr/current/v/public/index.html#{%22cls%22:%22eps%22,
+%22params%22:{}}. (Date accessed: March 29, 2019).
+
+Hansen, M. A., and J. Olsen. 2019. "Flesh of the Same Flesh: A Study of 
+Voters for the Alternative for Germany (AfD) in the 2017 Federal Election." 
+German Politics 28 (1): 1-19. DOI: 10.1080/09644008.2018.1509312
+
+Hansen, M. A., and J. Olsen. 2022. "The Alternative for Germany (AfD) as 
+Populist Issue Entrepreneur: Explaining the Party and its Voters in the 
+2021 German Federal Election." German Politics.
+DOI: 10.1080/09644008.2022.2087871
+
+Hardarson, O. T., and G. H. Kristinsson. 2017. "Iceland." European Journal 
+of Political Research - Political Data Yearbook 56 (1): 129-136. 
+DOI: 10.1111/2047-8852.12173
+
+Hardarson, O. P., and E. H. Oennudottir. 2018. "Election Report Iceland." 
+Scandinavian Political Studies 41 (2): 233-237. DOI: 10.1111/1467-9477.12112
+
+Haughton, T., M. Rybar, and K. Deegan-Krause. 2021. "Corruption,
+Campaigning, and Novelty: The 2020 Parliamentary Elections and the Evolving
+Patterns of Party Politics in Slovakia." East European Politics and
+Societies and Cultures, Online First. DOI: 10.1177/08883254211012765
+
+Havlik, V., M. Nemcok, P. Spac, and J. Zagrapan. 2020. "The 2020 
+Parliamentary Elections in Slovakia: Steadily Turbulent Change of 
+Direction." Politologicky Casopis 27 (3): 221-234. DOI: 10.5817/PC2020-3-221
+
+Helgason, T. 2013. "Apportionment of Seats to Althingi, the Icelandic 
+Parliament." The National Electoral Commission of Iceland. 
+http://www.landskjor.is/media/frettir/AnalysisIcelandElection2013.pdf. 
+(Date accessed: February 12, 2020).
+
+House of Commons Library. 2019. "General Election 2017: full results and 
+analysis." 
+https://commonslibrary.parliament.uk/research-briefings/cbp-7979/
+(Date accessed: April 15, 2021).
+
+House of Commons Library. 2021. "General Election 2019: full results and 
+analysis."
+https://commonslibrary.parliament.uk/research-briefings/cbp-8749/  
+(Date accessed: March 15, 2023).
+
+Houses of the Oireachtas Service. 2016. "32nd Dail General Election 
+26 February 2016. Election Results."
+https://data.oireachtas.ie/ie/oireachtas/electoralProcess/electionResults/
+dail/2016/2016-04-28_32nd-dail-general-election-results_en.pdf 
+(Date accessed: January 28, 2019).
+
+Hsiao, H.-H. M. 2016. "2016 Taiwan Elections: Significance and 
+Implications." Orbis 60 (4): 504-514. DOI: 10.1016/j.orbis.2016.08.006
+
+Hsieh, J. F.-S. 2016. "Taiwan's 2016 Elections: Critical Elections?"
+American Journal of Chinese Studies 23 (1): 9-23. 
+https://www.jstor.org/stable/44289122. (Date accessed: May 7, 2019).
+
+Hungarian National Assembly. n.d. 
+http://www.parlament.hu/web/house-of-the-national-assembly.
+(Date accessed: May 7, 2019).
+
+Hungarian National Election Office. n.d. http://www.valasztas.hu/.
+(Date accessed: May 7, 2019).
+
+Hungarian National Election Office. 2018. "Orszaggyulesi kepviselok 
+valasztasa 2018. (Election results 2018)." http://www.valasztas.hu/ogy2018.
+(Date accessed: February 17, 2019).
+
+Huntington, N., and T. O'Brien. 2021. "Tied to a star: the Green Party of 
+Aotearoa New Zealand and the 2020 election." Environmental Politics 30 (4):
+669-676. DOI: 10.1080/09644016.2021.1877477
+
+Icelandic Government. n.d. "Skipan rikisstjornar (Cabinet members)." 
+https://www.stjornarradid.is/rikisstjorn/skipan-rikisstjornar/.
+(Date accessed: Februrary 12, 2020).
+
+IFES Election Guide. n.d. "Hong Kong Special Administrative Region.
+Election for Hong Kong Legislative Council."
+http://www.electionguide.org/elections/id/2597/.
+(Date accessed: April 2, 2019).
+
+IFES Election Guide. n.d. "Republic of China. Election for Taiwanese 
+Legislative Yuan." http://www.electionguide.org/elections/id/2736/.
+(Date accessed: March 24, 2019).
+
+Ijabis, I. 2018. "2018 Parliamentary Elections in Latvia." Friedrich
+Ebert Stiftung Riga (FES). 
+https://library.fes.de/pdf-files/bueros/baltikum/14739.pdf.
+(Date accessed: May 19, 2023).
+
+Ikstens, J. 2018. "The 2018 Latvian elections: new faces, old patterns."
+LSE European Politics and Policy (EUROPP) Blog, October 16, 2018.
+https://eprints.lse.ac.uk/109820/ (Date accessed: March 17, 2023). 
+
+Information Services Department, Hong Kong Special Administrative Region 
+Government. n.d. "Hong Kong Year Book 2015. Appendix 1."
+https://www.yearbook.gov.hk/2015/en/pdf/Appendices.pdf
+(Date accessed: August 21, 2017).
+
+Information Services Department, Hong Kong Special Administrative Region 
+Government. n.d. "Hong Kong Year Book 2016. Appendix 1." 
+https://www.yearbook.gov.hk/2016/en/pdf/Appendices.pdf. 
+(Date accessed: August 21, 2017).
+
+Institute for Democracy and Electoral Assistance. n.d. "Germany." 
+https://www.idea.int/data-tools/country-view/92/40.
+(Date accessed: May 3, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "Hungary." 
+https://www.idea.int/data-tools/country-view/126/40.
+(Date accessed: January 27, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "Ireland."
+https://www.idea.int/data-tools/country-view/143/40.
+(Date accessed: January 27, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "Lithuania." 
+https://www.idea.int/data-tools/country-view/175/40.
+(Date accessed: March 24, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "Montenegro." 
+https://www.idea.int/data-tools/country-view/203/40.
+(Date accessed: March 24, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "United States of 
+America." https://www.idea.int/data-tools/country-view/295/40.
+(Date accessed: March 23, 2019).
+
+Institute for Democracy and Electoral Assistance. n.d. "Voter Turnout 
+Database." http://www.idea.int/data-tools/data/voter-turnout. 
+(Date accessed: May 17, 2018).
+
+Instituto Nacional Electoral (Mexican Electoral Commission). 2018. 
+"Computos Distritales 2018. Elecciones Federales. Diputaciones - Distritos
+por Entidad." https://computos2018.ine.mx/#/diputaciones/distrito/1/3/4/1
+(Date accessed: March 15, 2023).
+
+Instituto Nacional Electoral (Mexican Electoral Commission). 2021. "Aspectos
+Relevantes del Regimen Electoral Mexicano y el Proceso Electoral Federal y 
+Locales Concurrentes, 2021."
+https://ine.mx/wp-content/uploads/2021/05/CAI-vist-extranj-REM-2021.pdf. 
+(Date accessed: August 9, 2022).
+
+International Labour Orgniszation. n.d. "Resolution Concerning Updating the
+International Standard Classification of Occupations." 
+www.ilo.org/public/english/bureau/stat/isco/docs/resol08.pdf.
+(Date accessed: April 5, 2019).
+
+International Monetary Fund. n.d "Monitoring of Fund Arrangements (MONA)."
+https://www.imf.org/external/np/pdr/mona/index.aspx.
+(Date accessed: October 30, 2018).
+
+Inter-Parliamentary Union. n.d. "Australia. House of Representatives."
+http://www.ipu.org/parline-e/reports/2015_B.htm. 
+(Date accessed: Ocotber 25, 2022).
+
+Inter-Parliamentary Union. n.d. "Austria, Nationalrat (National Council)."
+http://archive.ipu.org/parline/reports/2017_E.htm.
+(Date accessed: January 11, 2019).
+
+Inter-Parliamentary Union. 2017. "Chile Camara de Diputados (Chamber of 
+Deputies)." http://archive.ipu.org/parline-e/reports/2063_E.htm.
+(Date accessed: March 20, 2019).
+
+Inter-Parliamentary Union. 2017. "Germany, Deutscher Bundestag (German 
+Bundestag)." http://archive.ipu.org/parline/reports/2121_E.htm.
+(Date accessed: January 11, 2019).
+
+Inter-Parliamentary Union. 2016. "Greece. Vouli Ton Ellinon (Hellenic 
+Parliament)." http://archive.ipu.org/parline-e/reports/2125_E.htm.
+(Date accessed: March 29, 2019).
+
+Inter-Parliamentary Union. 2018. "Hungary Orszaggyules (National Assembly)."
+http://archive.ipu.org/parline-e/reports/2141_E.htm.
+(Date accessed: January 18, 2019)
+
+Inter-Parliamentary Union. n.d. "Iceland Althingi (Parliament)."
+http://archive.ipu.org/parline-e/reports/arc/2143_16.htm.
+(Date accessed: July 20, 2019).
+
+Inter-Parliamentary Union. 2017. "Japan Shugiin (House of Representatives)."
+http://archive.ipu.org/parline-e/reports/2161_e.htm.
+(Date accessed: August 2, 2021).
+
+Inter-Parliamentary Union. 2016. "Lithuania Seimas (Parliament)." 
+http://archive.ipu.org/parline-e/reports/2189_E.htm.
+(Date accessed: February 20, 2019).
+
+Inter-Parliamentary Union. n.d. "Mexico. Chamber of Deputies" 
+https://data.ipu.org/node/110/elections?chamber_id=13464&election_id=63846. 
+(Date accessed: September 22, 2022).
+
+Inter-Parliamentary Union. n.d. "Montenegro Skupstina (Parliament)."
+http://archive.ipu.org/parline-e/reports/2385_E.htm.
+(Date accessed: March 29, 2019).
+
+Inter-Parliamentary Union. n.d. "New Zealand House of Representatives".
+http://archive.ipu.org/parline-e/reports/2233_E.htm.
+(Date accessed: October 29, 2019).
+
+International Organization for Standardization. n.d. "ISO 4217 Currency 
+Codes." https://www.iso.org/iso-4217-currency-codes.html.
+(Date accessed: April 5, 2019).
+
+Italian Department of Internal and Territorial Affairs. n.d. "Eligendo. 
+L'Archivio."
+https://elezionistorico.interno.gov.it/index.php?tpel=C&dtel=04/03/2018&tpa
+=I&tpe=I&lev0=0&levsut0=0&lev1=1&levsut1=1&ne1=1&es0=S&es1=S&ms=S.
+(Date accessed: February 10, 2019).
+
+Jaffrelot, C., and G. Verniers. 2020. "A new party system or a new political 
+system?" Contemporary South Asia, 28 (2): 141-154.
+DOI: 10.1080/09584935.2020.1765990
+
+Jalali, C., J. Moniz, and P. Silva. 2021. "In the Shadow of the 'Government
+of the Left': The 2019 Legislative Elections in Portugal." South European
+Society and Politics 25 (2): 229-255. DOI: 10.1080/13608746.2020.1868702
+
+Jastramskis, M. 2019. "Effects of the Mixed Parallel Electoral System in 
+Lithuania: The Worst of All Worlds?". Parliamentary Affairs, 72 (3):
+ 561-587. DOI: 10.1093/pa/gsy030
+
+Jastramskis, M., and A. Ramonaite. 2017. "Lithuania." European Journal of
+Political Research Political Data Yearbook 56 (1): 176-184. 
+DOI: 10.1111/2047-8852.12165
+
+Jastramskis, M., and A. Ramonaite. 2021. "Lithuania: Political Developments 
+and Data in 2020." European Journal of Political Research Political Data 
+Yearbook 60 (1): 241-255. DOI: 10.1111/2047-8852.12345
+
+Jolly, S., R. Bakker, L. Hooghe, G. Marks, J. Polk, J. Rovny, 
+M. Steenbergen, and M. A. Vachudova. 2022. "Chapel Hill Expert Survey 
+Trend File, 1999-2019." Electoral Studies 75. 
+DOI: 10.1016/j.electstud.2021.102420
+
+Jurkynas, M. 2017. "The parliamentary election in Lithuania, October 2016."
+Electoral Studies 47: 46-50. DOI: 10.1016/j.electstud.2017.04.001
+
+Jurkynas, M. 2021. "Change in a time of pandemic: the 2020 parliamentary 
+elections in Lithuania." Journal of Baltic Studies 52 (2): 269-278. 
+DOI:10.1080/01629778.2021.1901754
+
+Kaeding, M. P. 2017. "The Rise of 'Localism' in Hong Kong." Journal of 
+Democracy 28 (1): 157-171. DOI: 10.1353/jod.2017.0013
+
+Kalsnes, B., and A. O. Larsson. 2021. "Facebook News Use During the 2017 
+Norwegian Elections Assessing the Influence of Hyperpartisan News." 
+Journalism Practice 15 (2): 209-225. DOI: 10.1080/17512786.2019.1704426
+
+Kenny, J., J. Larner, and M. S. Lewis-Beck. 2021. "Candidate authenticity 
+and the Iowa Caucus." Electoral Studies 73.
+DOI: 10.1016/j.electstud.2021.102390
+
+Kera, G., and A. Hysa. 2020. "Influencing votes, winning elections:
+clientelist practices and private funding  of electoral campaigns in 
+Albania." Southeast European and Black Sea Studies 20 (1): 123-139.
+DOI: 10.1080/14683857.2019.1709698
+
+Kosiara-Pedersen, K. 2020. "Stronger core, weaker fringes: the Danish
+general election 2019." West European Politics 43 (4): 1011-1022. 
+DOI: 10.1080/01402382.2019.1655920
+
+Krasniqi, A. 2019. "Albania." in Thirty Years of Political Campaigning in
+Central and Eastern Europe, edited by O. Eibl and M. Gregor, 179-197.
+Palgrave Macmillan.
+
+Laakso, M., and R. Taagepera. 1979. "'Effective' Number of Parties: A 
+Measure with Application to West Europe." Comparative Political Studies 
+12 (1): 3-27. DOI: 10.1177/001041407901200101
+
+Lachat, R., and M. Michel. 2020. "Campaigning in an unprecedented election: 
+issue competition in the French 2017 presidential election." West European
+Politics 43 (3): 565-586. DOI: 10.1080/01402382.2019.1655960
+
+Lewandowsky, M., H. Giebler, and A. Wagner. 2016. "Rechtspopulismus in 
+Deutschland. Eine empirische Einordnung der Parteien zur Bundestagswahl 2013
+unter besonderer Beruecksichtigung der AfD." Politische Vierteljahresschrift
+57 (2): 247-275. DOI: 10.5771/0032-3470-2016-2-247.
+
+Lewis-Beck, M., and S. Quinlan. 2019. "The Hillary Hypotheses: Testing 
+Candidate Views of Loss." Perspectives on Politics 17 (3): 646-665.   
+DOI: 10.1017/S153759271800347X
+
+Linek, L., and O. Gyarfasova. 2020. "The Role of Incumbency, Ethnicity, 
+and New Parties in Electoral Volatility in Slovakia." Politologicky Casopis 
+27 (3): 303-322. DOI: 10.5817/PC2020-3-303
+
+Liptak, A. 2020. "Supreme Court Rejects Republican Challenge to 
+Pennsylvania Vote." The New York Times, December 10, 2020. 
+https://www.nytimes.com/2020/12/08/us/supreme-court-republican-challenge-
+pennsylvania-vote.html. (Date accessed: February 3, 2022).
+
+Liptak, A. 2021. "Supreme Court Rejects Texas Suit Seeking to Subvert 
+Election." The New York Times, January 15, 2021. https://www.nytimes.com/
+2020/12/11/us/politics/supreme-court-election-texas.html. 
+(Date accessed: February 03, 2022).
+
+Maor, M., R. Sulitzeanu-Kenan, and D. Chinitz. 2020. "When COVID-19, 
+constitutional crisis, and political deadlock meet: the Israeli case from a 
+disproportionate policy perspective." Policy and Society 39 (3): 442-457.
+DOI: 10.1080/14494035.2020.1783792
+
+Markowski, R. 2020. "Plurality support for democratic decay: the 2019 
+Polish parliamentary election." West European Politics 43 (7): 1513-1525. 
+DOI: 10.1080/01402382.2020.1720171
+
+Marshall, M.G., and K. Jaggers. Databank. n.d. "POLITY IV Project: 
+Political Regime Characteristics and Transitions, 1800-2017. Databank." 
+George Mason University and Colorado State University. 
+https://dss.princeton.edu/catalog/resource93. (Date accessed: May 7, 2019).
+
+Marshall, M. G., and K. Jaggers. n.d. "Polity IV Project: Political Regime 
+Characteristics and Transitions, 1800-2017." George Mason University and 
+Colorado State University. http://www.systemicpeace.org/polity/polity4.htm.
+(Date accessed: May 8, 2019).
+
+Marshall, M. G., T. B. Gurr, and K. Jaggers. 2017. "Polity IV Annual 
+Time-Series dataset." www.systemicpeace.org/inscr/p4v2017.xls. 
+(Date accessed: October 10, 2019).
+
+Marshall, M. G., T. B. Gurr, and K. Jaggers. 2018. "Polity IV Project. 
+Political Regime Characteristics and Transitions, 1800-2017. Dataset Users' 
+Manual." http://www.systemicpeace.org/inscr/p4manualv2017.pdf.
+(Date accessed: October 10, 2019).
+
+Marshall, M. G., T. R. Gurr, and K. Jaggers. 2018. "Polity IV Project
+Political Regime Characteristics and Transitions, 1800-2017. Dataset Users'
+Manual." http://www.systemicpeace.org/inscr/p4manualv2017.pdf.
+(Date accessed: October 10, 2019)
+
+Marsh, M., D. M. Farrell, and T. Reidy. 2018. The Post-Crisis Irish
+Voter. Voting Behaviour in the Irish 2016 General Election. Manchester: 
+Manchester University Press. DOI: 10.7765/9781526122650
+
+Marzo, P. 2019. "Critical junctures, path dependence and Al-Nahda's 
+contribution to the Tunisian transition to democracy." The Journal of North 
+African Studies 24 (6): 914-934. DOI: 10.1080/13629387.2018.1480943
+
+Maskarinec, P., and V. Naxera. 2022. "The Pirates of Czechia: The Curse of 
+Preferential Vote." Slovak Journal of Political Sciences 22 (1): 5-24.
+DOI: 10.34135/sjps.220101 
+
+Mattiace, S. 2019. "Mexico 2018: AMLO's hour." Revista de ciencia politica 
+(Santiago) 39 (2): 285-311. DOI: dx.doi.org/10.4067/S0718-090X2019000200285
+
+McCarthy, R. 2019. "The politics of consensus: Al-Nahda and the stability 
+of the Tunisian transition." Middle Eastern Studies 55 (2): 261-275.
+DOI: 10.1080/00263206.2018.1538969
+
+McDougall, D. 2019. "ScoMo's Miracle: The Australian Federal Election
+of 18 May 2019." The Round Table: The Commonwealth Journal of International
+Affairs 108 (5): 493-506. DOI: 10.1080/00358533.2019.1657717
+
+McKeever, A. 2020. "The U.S. has never delayed a presidential election. 
+Here's why it's so tricky." National Geographic, July 31, 2020. 
+https://www.nationalgeographic.com/history/article/united-states-never-
+delayed-presidential-election-why-tricky. 
+(Date accessed: December 10, 2021).
+
+Mellon, J. 2022. "Tactical Voting and Electoral Pacts in the 2019 UK
+General Election." Political Studies Review 20 (3): 504–516. 
+DOI: 10.1177/14789299211027423
+
+Meneguello, R, and M. Arquer. 2018. "Las elecciones presidenciales de 2014 
+em Brasil: un pais partido por la mitad." In Elecciones y partidos em 
+America Latina em el cambiode ciclo, edited by M. Alcantara, D. Bouquet, 
+and M. L. Tagina, Madrid: Ed. Centro de Investigaciones Sociologicas de 
+Madrid.
+
+Ministry of Internal Affairs and Communications. n.d. "October 22, 2009 
+Execution General Election of Members of the House of Representatives and 
+National Examination of Supreme Court Judges. Preliminary Report." 
+https://www.soumu.go.jp/senkyo/48sansokuhou/. 
+(Date accessed: December 17, 2021).
+
+Ministry of Justice Finland. Information and Results Service. n.d. 
+"Parliamentary Elections 2019." 
+https://tulospalvelu.vaalit.fi/EKV-2019/en/lasktila.html. 
+(Date accessed: June 2, 2021).
+
+Ministry of Justice Iceland. 2020. "Parliamentary Elections to the Althing, 
+Act No. 24/2000." 
+https://www.government.is/Publications/Legislation/Lex/?newsid=027e6a1a-
+f46b-11e7-9423-005056bc530c. (Date accessed: February 12, 2020).
+
+Muller, D. 2019. "The 2019 federal election." In Parliamentary Library 
+Briefing Book: Key issues for the 46th Parliament, edited by Parliament of 
+Australia, 234-237. 
+https://parlinfo.aph.gov.au/parlInfo/download/library/prspub/6801783/
+upload_binary/6801783.pdf. (Date accessed: February 9, 2022).
+
+Munoz, P. 2021. "Latin America erupts: Peru goes populist." Journal of
+Democracy 32 (3): 48-62. DOI: 10.1353/jod.2021.0033
+
+Nanos, N. 2020. "From 'sunny ways' to 'dark days': the 2019 Canadian Federal
+Election suggests that Canada is not a positive outlier to populist politics
+but gripped by feelings of declinism." Canadian Foreign Policy Journal 
+26 (2): 207-217. DOI: 10.1080/11926422.2020.1724166
+
+National Conference of State Legislatures. 2019. "Early In-Person Voting." 
+http://www.ncsl.org/research/elections-and-campaigns/early-voting-in-state-
+elections.aspx. (Date accessed: March 25, 2019).
+
+National Election Commission Korea. n.d. 
+http://info.nec.go.kr/electioninfo/electionInfo_report.xhtml.
+(Date accessed: April 5, 2019).
+
+National Electoral Commission Poland. n.d. 
+https://sejmsenat2019.pkw.gov.pl/sejmsenat2019/en  
+(Date accessed: December 15, 2022).
+
+National Election Office Hungary. n.d. "Election of National Assembly
+Representatives April 2018." 
+http://www.valasztas.hu/dyn/pv18/szavossz/hu/jlcskiv.html. 
+(Date accessed: February 2, 2019).
+
+Naylor, B. 2021. "Read Trump's Jan. 6 Speech, A Key Part of Impeachment 
+Trial." National Public Radio, February 10, 2021. 
+https://www.npr.org/2021/02/10/966396848/read-trumps-jan-6-speech-a
+-key-part-of-impeachment-trial?t=1643892201680. 
+(Date accessed: January 31, 2023).
+
+New Zealand Electoral Commission. n.d. "New Zealand Election Results."
+https://www.electionresults.org.nz/electionresults_2017/ 
+(Date accessed: October 29, 2019).
+
+New Zealand Electoral Commission. n.d. "2020 General Election and 
+Referendums - Official Result."
+https://www.electionresults.govt.nz/electionresults_2020/
+(Date accessed: November 30, 2021).
+
+New Zealand Electoral Commission. n.d. "Party Votes and Turnout by 
+Electorate." https://www.electionresults.govt.nz/electionresults_2020/
+statistics/party-votes-and-turnout-by-electorate.html. 
+(Date accessed: October 25, 2022).
+
+Nicolau, J. 2008. "The presidential and congressional elections in Brazil, 
+October 2006." Electoral Stdudies 27 (1): 170-175. 
+DOI: 10.1016/j.electstud.2007.09.002
+
+Nocetto, L., R. Pineiro, and F. Rosenblatt. 2020. "Uruguay 2019: Party 
+System Restructuring and the End of the Progressive Cycle." Revista de 
+Ciencia Politica 40 (2): 511-538. DOI: 10.4067/S0718-090X2020005000117
+
+Nooruddin, I., and P. K. Chhibber. 2008. "Unstable politics: Fiscal space 
+and electoral volatility in the Indian states." Comparative Political 
+Studies 41 (8): 1069-1091. DOI: 10.1177/0010414007309202
+
+Norwegian Directorate of Elections (VALG). 2017. "Count for Norway." 
+https://valgresultat.no/(menu:navigate)?type=ko&year=2017. 
+(Date accessed: January 15, 2020).
+
+Oennudottir, E. H., and O. P. Hardarson. 2018. "Political cleavages, party 
+voter linkages and the impact of voters' socio-economic status on vote-
+choice in Iceland, 1983-2016/17." Icelandic Review of Politics and 
+Administration 14 (1): 101-130. DOI: 10.13177/irpa.a.2018.14.1.5
+
+Official Statistics of Finland (OSF). n.d. "Population structure." 
+ISSN=1797-5395. Helsinki: Statistics Finland. 
+http://www.stat.fi/til/vaerak/meta_en.html. (Date accessed: July 8, 2021).
+
+Oscarsson, H., and J. Stromback. 2019. "Political Communication in the 2018 
+Swedish Election Campaign." Statsvetenskaplig tidskrift 121 (3): 319-345.
+https://journals.lub.lu.se/st/article/view/19809/17874. 
+(Date accessed: April 9, 2021).
+
+OSCE. Office for Democratic Institutions and Human Rights (ODIHR). 2017.
+"Republic of Albania. Parliamentary Elections 25 June 2017. OSCE/ODIHR 
+Election Observation Mission Final Report."
+https://www.osce.org/files/f/documents/4/d/346661.pdf 
+(Date accessed: May 19, 2023).
+
+OSCE. Office for Democratic Institutions and Human Rights (ODIHR). 2018. 
+"Republic of Turkey Early Presidential and Parliamentary Elections 
+24 June 2018. ODIHR Election Observation Mission Final Report."
+https://www.osce.org/odihr/elections/turkey/397046?download=true. 
+(Date accessed: October 22, 2019).
+
+OSCE. Office for Democratic Institutions and Human Rights (ODIHR). 2019. 
+"Swiss Confederation. Federal Assembly elections, 20 October 2019. ODIHR 
+Needs Assessment Mission Report." https://www.osce.org/files/f/documents/9/
+1/425009.pdf. (Date accessed: February 2, 2021).
+
+OSCE. Office for Democratic Institutions and Human Rights (ODIHR). 2020.
+"Republic of Lithuania. Parliamentary Elections 11 and 25 October 2020. 
+ODIHR Election Expert Team Report." 
+https://www.osce.org/files/f/documents/e/a/477730_0.pdf. 
+(Date accessed: May 16, 2022).
+
+OSCE. Office for Democratic Institutions and Human Rights (ODIHR). 2020. 
+"Poland, Parliamentary Elections, 13 October 2019: ODIHR Limited Election 
+Observation Mission Final Report." 
+https://www.osce.org/odihr/elections/poland/446374 
+(Date accessed: May 12, 2021).
+
+Palonen, E. 2020. "Finland: Political Developments and Data in 2019."
+European Journal of Political Research Political Yearbook 59 (1): 130-141.
+DOI: 10.1111/2047-8852.12297
+
+Palshikar, S, S. Kumar, and S. Lodha. 2017. "Electoral politics in 
+India: The resurgence of the Bharatiya Janata party." New York: Taylor & 
+Francis.
+
+Pekkanen, R. J., S. R. Reed, E. Scheiner, and D. M. Smith. 2018. Japan 
+Decides 2017: The Japanese General Election. Cham: Palgrave Macmillan.
+DOI: 10.1007/978-3-319-76475-7
+
+Pennycook, G., and D. G. Rand. 2021. "Examining false beliefs about 
+voter fraud in the wake of the 2020 Presidential Election." The Harvard 
+Kennedy School Misinformation Review 2 (1). DOI: 10.37016/mr-2020-51
+
+Perello, L., and P. Navia. 2022. "The disruption of an institutionalised 
+And polarised party system: Discontent with democracy and the rise of Nayib 
+Bukele in El Salvador." Politics 42 (3): 267-288. 
+DOI: 10.1177/02633957221077181
+
+Perez, I. M., and L. S. Vasquez. 2021. "Veracity or Falsehood in the 
+Presidential Elections of Peru and Extreme Parties." Preprints.org.
+DOI: 10.20944/preprints202105.0274.v1
+
+Peruvian National Office of Electoral Processes. n.d.
+https://resultadoshistorico.onpe.gob.pe/EG2021/ 
+(Date accessed: November 9, 2022).
+
+Pilecek, R. 2021. "The influence of mayors as candidates in the 2017 
+parliamentary elections on voter decision-making in Czechia." AUC 
+GEOGRAPHICA 56 (2): 234-247. DOI: 10.14712/23361980.2021.15
+
+Pilet, J.-B. 2021. "Hard times for governing parties: the 2019 federal
+elections in Belgium." West European Politics 44 (2): 439-449.
+DOI: 10.1080/01402382.2020.1750834
+
+Pinto, R. P. P., D. J. P. Chiquelho, R. M. Farinha, and T. A. D. A. Simoes.  
+2021. Parlamentary elections in the Czech Republic. POLIS 4 (11): 223-229.
+DOI: 10.34628/cqwh-yg48 
+
+Portuguese National Election Commission (CNE). 2019. "Eleicoes para a 
+Assembleia da Republica 2019. (Parliamentary elections 2019.)" 
+https://www.cne.pt/content/eleicoes-para-assembleia-da-republica-2019. 
+(Date accessed: April 6, 2021).
+
+Power, T. J., and R. Rodrigues-Silveira. 2019. "Mapping Ideological
+Preferences in Brazilian Elections, 1994-2018: A Municipal-Level Study."
+Brazilian Political Science Review 13 (1): 1-27.
+DOI: 10.1590/1981-3821201900010001
+
+Power, T. J., and C. Zucco. 2012. "Elite preferences in a consolidating 
+democracy: the Brazilian legislative surveys, 1990-2009." Journal of Latin 
+American Politics and Society 54 (4): 1-27.
+DOI: 10.1111/j.1548-2456.2012.00161.x
+
+Prosser, C. 2021. "The end of the EU affair: The UK general election of 
+2019." West European Politics 44 (2): 450-461.
+DOI: 10.1080/01402382.2020.1773640
+
+Rechtsinformationssystem des Bundes. 2017. "Federal law on national council
+elections (Last update: April 19, 2017)." 
+https://www.ris.bka.gv.at/Dokumente/Erv/ERV_1992_471/ERV_1992_471.pdf. 
+(Date accessed: February 27, 2018).
+
+Registration and Electoral Office Hong Kong. 2016. "2016 Legislative 
+Council - Election Results."
+https://www.elections.gov.hk/legco2016/eng/rs_gc.html?1556891804666.
+(Date accessed: April 3, 2019).
+
+Registration and Electoral Office Hong Kong. 2016. "2016 Legislative 
+Council - Introduction to Candidates."
+https://www.elections.gov.hk/legco2016/eng/intro_to_can.html.
+(Date accessed: April 3, 2019).
+
+Republic of Korea. National Election Commission. n.d.
+http://info.nec.go.kr/electioninfo/electionInfo_report.xhtml.
+(Date accessed: April 5, 2019).
+
+Rich, T. S. 2019. "Explaining the Success of the People's Party: An 
+Analysis of South Korea's 2016 Legislative Elections." Asian Politics & 
+Policy 11 (1): 27-42. DOI: 10.1111/aspp.12432
+
+Ricks, J. 2019. "Thailand's 2019 Vote: The General's Election." Pacific 
+Affairs 92 (3): 443-457. DOI: 10.5509/2019923443
+
+Rori, L. 2016. "The 2015 Greek parliamentary elections: from great
+expectations to no expectations." West European Politics 39 (6): 1323-1343.
+DOI: 10.1080/01402382.2016.1171577
+
+Sanders, A., and R. Shorrocks. 2019. "All in this together? Austerity and
+the gender-age gap in the 2015 and 2017 British general elections." The 
+British Journal of Politics and International Relations 21 (4): 667-688.
+DOI: 10.1177/1369148119864699
+
+Servicio electoral de Chile (Chilean Electoral authority). n.d. 
+www.servel.cl (Date accessed: March 13, 2019).
+
+Skiling, P., and J. Molineaux. 2017. "New Zealand's minor parties and ER 
+policy after 2017." New Zealand Journal of Employment Relations 42 (2): 
+110-128. DOI: informit.217979888785144
+
+Sides, J., M. Tesler, and L. Vavreck. 2017. "The 2016 U.S. Election: How 
+Trump Lost and Won." Journal of Democracy 28 (2): 34-44.
+DOI: 10.1353/jod.2017.0022
+
+Smolijaninovaite, K. 2021. "Lithuanian elections provide new 
+opportunities and women empowerment." New Eastern Europe 45 (2): 36-41. 
+https://www.ceeol.com/search/article-detail?id=933601.
+(Date accessed: May 16, 2022).
+
+Stanley, B. 2019. "A New Populist Divide? Correspondences of Supply and 
+Demand in the 2015 Polish Parliamentary Elections." East European Politics
+and Societies 33 (1): 17–43. DOI: 10.1177/0888325418783056.
+
+Statista. 2022. "Countries with the largest GDP per capita at purchasing 
+power parity 2021." https://www.statista.com/statistics/725742/countries-
+with-the-largest-gross-domestic-product-gdp-at-purchasing-power-parity-per-
+capita/. (Date accessed: May 19, 2023).
+
+Statista. 2022. "Gini's concentration coefficient in Taiwan from 1980 to 
+2021." https://www.statista.com/statistics/922574/taiwan-gini-index/. 
+(Date accessed: May 19, 2023).
+
+Statista. 2022. "Taiwan: Inflation rate from 1988 to 2028." 
+https://www.statista.com/statistics/727598/inflation-rate-in-taiwan/. 
+(Date accessed: May 19, 2023).
+
+State Election Commission Montenegro n.d. The overall results of the 
+elections for members of the Assembly of Montenegro. 
+http://dik.co.me/arhiva/rezultati-2016/. (Date accessed: January 19, 2019).
+
+Statistics Denmark. n.d. "StatBank Denmark." 
+https://www.statistikbanken.dk/statbank5a/default.asp?w=1280. 
+(Date accessed: December 7, 2021).
+
+Statistics Iceland. n.d. www.statice.is. 
+(Date accessed: Februrary 12, 2020).
+
+Statistics Iceland. n.d. "Participation by sex, age and constituency in 
+general elections 2016 and 2017." https://px.hagstofa.is/pxen/
+pxweb/en/Ibuar/Ibuar__kosningar__althingi__althkjosendur/KOS02101a.px/?rxid
+=535ef7b1-ee20-. (Date accessed: September 10, 2019).
+
+Statistics Iceland. n.d. "Results of general elections to the Althingi by 
+constituency 2016." https://px.hagstofa.is/pxen/pxweb/en/Ibuar
+/Ibuar__kosningar__althingi__althurslit/KOS02118b.px/?rxid=e8953ff6-758f-
+48f2-a403-836c64d6302f. (Date accessed: June 27, 2019).
+
+Statistics Iceland. n.d. "Results of general elections to the Althingi by 
+constituency 2017." https://px.hagstofa.is/pxen/pxweb/en/Ibuar
+/Ibuar__kosningar__althingi__althurslit/KOS02118a.px/?rxid=535ef7b1-ee20-41
+c0-. (Date accessed: September 10, 2019).
+
+Statistics Iceland. 2016. "General elections to the Althingi 29 October 
+2016." Statistical Series 101 (35). https://statice.is/publications/
+publication/elections/general-elections-to-the-althingi-29-october-2016/. 
+(Date accessed: June 29, 2019).
+
+Statistics Iceland. 2017. "General elections to the Althingi 28 October 
+2017." Statistical Series 102 (27). 
+https://www.statice.is/publications/publication-detail?id=59055.
+(Date accessed: October 27, 2022).
+
+Stephenson, L. B., A. Harell, D. Rubenson, and P. J. Loewen. 2021. 
+"Measuring Preferences and Behaviours in the 2019 Canadian Election Study."
+Canadian Journal of Political Science/Revue canadienne de science politique
+54 (1): 118-124. DOI: 10.1017/S0008423920001006
+
+Stortinget. n.d. "Parliamentary Elections." 
+https://www.stortinget.no/en/In-English/About-the-Storting/Elections/. 
+(Date accessed: March 23, 2020).
+
+Supreme Election Council. Republic of Turkey. n.d.
+http://www.ysk.gov.tr/en/main-page (Date accessed: April 23, 2020).
+
+Supreme Election Council. Republic of Turkey. n.d. "Sandik Sonuclan ve 
+Tutanaklar. (Ballot Results and Minutes.)" 
+http://www.ysk.gov.tr/tr/24-haziran-2018-secimleri/77536. 
+(Date accessed: December 16, 2019).
+
+Supreme Election Council. Republic of Turkey. n.d. "Law on basic provisions
+of elections and voter registers. (Law No: 298.)"
+http://www.ysk.gov.tr/doc/dosyalar/Ingilizce/298_en_2018.pdf
+(Date accessed: February 10, 2020).
+
+Supreme Election Council. Republic of Turkey. n.d. "Law on parliamentary 
+election. (Law No: 2839.)" 
+http://www.ysk.gov.tr/doc/dosyalar/Ingilizce/2839_en_2018.pdf
+(Date accessed: February 10, 2020).
+
+Supreme Election Council. Republic of Turkey. n.d. "Presidential elections 
+law. (Law No: 6271)"
+http://www.ysk.gov.tr/doc/dosyalar/Ingilizce/6271_en_2018.pdf
+(Date accessed: April 23, 2020).
+
+Supreme Electoral Tribunal of El Salvador. n.d. "Eleccion presidencial 
+2019." https://www.tse.gob.sv/elecci%C3%B3n-2019/inicio
+(Date accessed: January 25, 2023).
+
+Taagepera, R. 1997. "Effective Number of Parties for Incomplete Data." 
+Electoral Studies 16 (2): 145-151. DOI: 10.1016/S0261-3794(97)00003-6
+
+Tas, H. 2018. "Contained Uncertainty: Turkey's June 2018 Elections and 
+Their Consequences." GIGA Focus Middle East 04/2018. 
+https://www.giga-hamburg.de/de/system/files/publications/gf_nahost_
+1804_en.pdf. (Date accessed: October 23, 2019).
+
+The Central Electoral Commission of the Republic of Lithuania. 2016. 
+"Elections to the Seimas of the Republic of Lithuania, 9 October 2016. 
+Voting results." https://www.vrk.lt/en/2016-seimo/rezultatai.
+(Date accessed: March 24, 2019).
+
+The Central Electoral Commission of the Republic of Lithuania. 2020. 
+"Elections to the Seimas of the Republic of Lithuania, 11 October 2020. 
+Voting results." https://www.vrk.lt/en/2020-seimo/rezultatai. 
+(Date accessed: May 17, 2022).
+
+The Electoral Council (Kiesraad) of the Netherlands. n.d. 
+https://english.kiesraad.nl/. (Date accessed: May 17, 2021).
+
+The Government of the Hong Kong Special Administrative Region of the 
+People's Republic of China. n.d. "The Basic Law of the Hong Kong Special 
+Administrative Region of the People's Republic of China." 
+http://www.basiclaw.gov.hk/en/basiclawtext/index.html. 
+(Date accessed: April 3, 2019).
+
+The Electoral Council (Kiesraad) of the Netherlands. "Uitslag van de 
+verkiezing van de leden van de Tweede Kamer van 15 maart 2017. Kerngegevens.
+(Results of the March 15, 2017 election of members of the House of 
+Representatives. Key data.)" Den Haag: Publicatie Kiesraad. 
+https://www.kiesraad.nl/adviezen-en-publicaties/rapporten/2017/3/
+kerngegevens-tweede-kamerverkiezing-2017/kerngegevens-tweede-
+kamerverkiezing-2017. (Date accessed: October 13, 2021).
+
+The Electoral Council (Kiesraad) of the Netherlands. "Uitslag van de 
+verkiezing voor de Tweede Kamer van 15 maart 2017: Kerngegevens. (Result 
+of the election to the Lower House of 15 March 2017: Core data)." 
+Publicatie Kiesraad: Den Haag. https://www.verkiezingsuitslagen.nl/
+verkiezingen/detail/TK20170315Kerngegevens+Tweede+Kamerverkiezing+2017.pdf. 
+(Date accessed: May 17, 2021).
+
+The International Telecommunication Union. n.d. "Key ICT Data & 
+Statistics." http://www.itu.int/net4/itu-d/icteye/.
+(Date accessed: October 29, 2018)
+
+The National Election Commission (NEC) of the Republic of Korea. n.d. 
+(http://www.nec.go.kr)/. (Date accessed: April 7, 2019).
+
+Thijssen, P., M. Reuchamps, L. De Winter, J. Dodeigne, and D. Sinardet. 
+2021. "Inter-regional contacts and voting behaviour in Belgium: What can we
+learn from the 2019 elections?" Regional and Federal Studies 31 (3): 
+359-380. DOI: 10.1080/13597566.2021.1919096
+
+Toro Maureira, S., and M. Valenzuela Beltran. 2018. "Chile 2017: Ambiciones,
+estrategias y expectativas en el estreno de las nuevas reglas electorales." 
+Revista de ciencia politica (Santiago) 38 (2): 207-232.
+DOI: 10.4067/s0718-090x2018000200207
+
+Transparency International. n.d. "Corruption Perceptions Index." 
+http://www.transparency.org/research/cpi/overview.
+(Date accessed: April 5, 2019).
+
+Tribunal Supremo De Elecciones (TSE) - Republica de Costa Rica. n.d. 
+"Computo de Votos Elecciones 2018."
+https://www.tse.go.cr/zip/elecciones/computovotos_febrero_abril_2018.zip. 
+(Date accessed: February 9, 2021).
+
+Tsatsanis, E., and E. Teperoglou. 2016. "Realignment under Stress: The July 
+2015 Referendum and the September Parliamentary Election in Greece."
+South European Society and Politics 21: 427-450.
+DOI: 10.1080/13608746.2016.1208906
+
+Tulun, T. E. 2020. "Taiwan Election 2020: More Ambitious Taiwanese 
+Identity And Developing Constructive Approaches." OSF Preprints uxt62, 
+Center for Open Science. DOI: 10.31219/osf.io/uxt62
+
+United Nations Demographic Statistics Database. n.d. "Demographic and 
+Social Statistics." https://unstats.un.org/unsd/demographic-social/.
+(Date accessed: October 29, 2018).
+
+United Nations Demographic Statistics Database. n.d. "Methodology." 
+https://unstats.un.org/unsd/methodology/m49/. 
+(Date accessed: February 11, 2020).
+
+United Nations - Department of Economic and Social Affairs Population 
+Division. n.d. "World Population Prospects."
+https://population.un.org/wpp/Download/Standard/Migration/
+(Date accessed: October 30, 2018).
+
+United Nations Development Programme. 2018. "Representacion politica de 
+mujeres en el poder legislativo. Analisis de la aplicacion de las cuotas de
+genero en las elecciones parlamentarias de 2017."  
+http://www.cl.undp.org/content/dam/chile/docs/gobernabilidad/
+undp_cl_gobernabilidad_informecuotas2018.pdf. 
+(Date accessed: March 13, 2019). 
+
+United Nations Human Development. Databank. n.d. "Human Development Data 
+(1990-2017). Databank." http://hdr.undp.org/en/data.
+(Date accessed: October 29, 2018).
+
+United States Bureau of Labor Statistics. 2012. "Standard Occupational 
+Classification." https://www.bls.gov/soc/soccrosswalks.htm.
+(Date accessed: March 17, 2019).
+
+United States Elections Project. Databank. 2018. "2016 November General 
+Election Turnout Rates." http://www.electproject.org/2016g. 
+(Date accessed: March 17, 2019).
+
+United States Elections Project. Databank. 2020. "2020 November General 
+Election Turnout Rates." http://www.electproject.org/2020g. 
+(Date accessed: September 17, 2021).
+
+Valmyndigheten (Swedish Election Authority). 2022. "Fördelning av mandat. 
+(Distribution of mandates.)" https://www.val.se/val-och-folkomrostningar/
+det-svenska-valsystemet/rostrakning-och-valresultat/mandatfordelning.html. 
+(Date accessed: June 05, 2021).
+
+Valmyndigheten (Swedish Election Authority). n.d.
+https://data.val.se/val/val2018/slutresultat/R/rike/index.html
+(Date accessed: March 5, 2021).
+
+van Ditmars, M. M., N. Maggini, and J. van Spanje. 2020. "Small Winners
+and Big Losers. Strategic Party Behaviour in the 2017 Dutch General
+Election." West European Politics 43 (3): 543-564. 
+DOI: 10.1080/01402382.2019.1655959
+
+van Holsteyn, J. J. M. 2018. "The Dutch parliamentary elections of March
+2017." West European Politics 41 (6): 1364-1377. 
+DOI: 10.1080/01402382.2018.1448556
+
+Varieties of Democracy (V-Dem). n.d. www.v-dem.net/en/. 
+(Data accessed: July 15, 2020).
+
+Villarreal Fernandez, E., and B. M. Wilson. 2018. "Costa Rica's 2018 
+elections: corruption, morality politics, and voter alienation make 
+uncertainty the only certainty." LSE Latin America and Caribbean Blog, 
+February 1, 2018. https://blogs.lse.ac.uk/latamcaribbean/2018/02/01/costa-
+ricas-2018-elections-corruption-morality-politics-and-voter-alienation-
+make-uncertainty-the-only-certainty/. (Date accessed: February 9, 2022).
+
+Villarreal Fernandez, E., and B. M. Wilson. 2018. "Costa Rica's 2018 
+elections: the two Alvarados, between deepening division and democratic 
+dependability." LSE Latin America and Caribbean Blog, February 8, 2018. 
+https://blogs.lse.ac.uk/latamcaribbean/2018/02/08/costa-ricas-2018-
+elections-the-two-alvarados-between-deepening-division-and-democratic-
+dependability/. (Date accessed: February 9, 2022).
+
+Volintiru, C., and G. Stefan. 2016. "Social roots: How Romania’s Social
+Democrats won the 2016 election." LSE European Politics and Policy (EUROPP)
+ Blog, December 21, 2016. http://bit.ly/2hcfpPj 
+ (Date accessed: December 2, 2022).
+
+Volkens, A., P. Lehmann, T. Matthiess, N. Merz, S. Regel, and B. Wessels. 
+2017. "The Manifesto Data Collection. Manifesto Project (MRG/CMP/MARPOR).
+Version 2017b." https://manifestoproject.wzb.eu/datasets.
+DOI: 10.25522/manifesto.mpds.2017b. (Date accessed: May 22, 2018).
+
+Vowles, J. 2018. "Surprise, surprise: the New Zealand general election of 
+2017." Kotuitui: New Zealand Journal of Social Sciences Online 13 (2): 
+147-160. DOI: 10.1080/1177083X.2018.1443472
+
+Watts, R. L. 2008. Comparing Federal Systems. Kingston, Ontario, Canada: 
+Institute of Intergovernmental Relations.
+
+Weiss, T. 2022. "Parliamentary election in the Czech Republic, 8-9 October 
+2021." BLUE 2 (1): 136-140. 
+https://www.cairn-int.info/revue-blue-2022-1-page-136.htm
+(Date accessed: May 19, 2023).
+
+Wilson, B. M., and J. C. Rodriguez-Cordero. 2011. "The general election in 
+Costa Rica, February 2010". Electoral Studies 30 (1): 231-234.
+DOI: 10.1016/j.electstud.2010.11.017
+
+Wolfe, J. 2021. "Four officers who respondend to U.S. Capitol attack have 
+died by suicide." Reuters, August 3, 2021. https://www.reuters.com/world/us/
+officer-who-responded-us-capitol-attack-is-third-die-by-suicide-2021-08-02/. 
+(Date accessed: February 3, 2022).
+
+World Bank. n.d. "World Development Indicators (WDI). How are revisions 
+managed?" https://datahelpdesk.worldbank.org/knowledgebase/articles/114939.
+-how-are-revisions-managed. (Date accessed: April 9, 2019).
+
+World Bank. Databank. n.d. "Central government debt, total (% of GDP)." 
+https://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS.
+(Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "GDP growth (annual %)." https://data.worldbank.
+org/indicator/NY.GDP.MKTP.KD.ZG. (Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "GDP per capita, PPP (current international $)." 
+https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD.
+(Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "GINI index (World Bank estimate)." 
+https://data.worldbank.org/indicator/SI.POV.GINI/.
+(Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "Inflation, GDP deflator (annual %)." 
+https://data.worldbank.org/indicator/NY.GDP.DEFL.KD.ZG.
+(Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "Population, total." https://data.worldbank.org/
+indicator/SP.POP.TOTL. (Date accessed: October 29, 2018).
+
+World Bank. Databank. n.d. "Proportion of seats held by women in national 
+parliaments (%)." https://data.worldbank.org/indicator/SG.GEN.PARL.ZS. 
+(Date accessed: October 18, 2018).
+
+World Bank. Databank. n.d. "Unemployment, total (% of total labor force) 
+(modeled ILO estimate)." https://data.worldbank.org/indicator/SL.UEM.TOTL.
+ZS. (Date accessed: April 9, 2017).
+
+World Bank. Databank. n.d. "Unemployment, youth total (% of total labor 
+force ages 15-24) (modeled ILO estimate)." https://data.worldbank.org/
+indicator/SL.UEM.1524.ZS. (Date accessed: October 30, 2018).
+
+World Bank. Databank. n.d. "Worldwide Governance Indicators." 
+https://databank.worldbank.org/data/source/worldwide-governance-indicators.
+(Date accessed: October 30, 2018).
+
+Worldometers.info. Databank. n.d. "Taiwan Population." Dover, Delaware, 
+United States. http://www.worldometers.info/world-population/taiwan-
+population/. (Date accessed: July 14, 2021).
+
+Ziegfeld, A. 2016. "Why regional parties? Clientelism, Elites, and the 
+Indian Party System." New York: Cambridge University Press.
+
+Zuk, P. 2020. "One leader, one party, one truth: public television under 
+the rule of the populist right in Poland in the pre-election period in 
+2019." Javnost-the public, 27 (3): 287-307.
+DOI: 10.1080/13183222.2020.1794413
+
+
+//END OF FILE

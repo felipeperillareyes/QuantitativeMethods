@@ -12,3 +12,20 @@ pre {
 pre code {
   white-space: inherit;
 }
+/* Hide the default chapter number */
+.header-section-number {
+  display: none !important;
+}
+
+/* Add your name before the chapter title */
+.chapter-header .chapter-title::before {
+  content: 'Your Name - ' !important;
+  font-weight: bold;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

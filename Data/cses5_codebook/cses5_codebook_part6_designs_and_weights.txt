@@ -1,0 +1,3493 @@
+===========================================================================
+
+   COMPARATIVE STUDY OF ELECTORAL SYSTEMS (CSES) - MODULE 5 (2016-2021)
+
+                 CODEBOOK PART 6: STUDY DESIGN AND WEIGHTS
+
+                        FULL RELEASE - JULY 25, 2023
+ 
+                             CSES Secretariat
+                               www.cses.org
+
+===========================================================================
+
+HOW TO CITE THE STUDY:
+
+The Comparative Study of Electoral Systems (www.cses.org). CSES MODULE 5
+FULL RELEASE [dataset and documentation]. July 25, 2023 version.
+doi:10.7804/cses.module5.2023-07-25
+
+These materials are based on work supported by the American National
+Science Foundation (www.nsf.gov) under grant numbers SES-1420973 and
+SES-1760058, the GESIS - Leibniz Institute for the Social Sciences, 
+the University of Michigan, in-kind support of participating election
+studies, the many organizations that sponsor planning meetings and 
+conferences, and the numerous organizations that fund national 
+election studies by CSES Collaborators.
+
+Any opinions, findings and conclusions, or recommendations expressed
+in these materials are those of the author(s) and do not necessarily
+reflect the views of the funding organizations.
+
+===========================================================================
+
+NOTE TO USERS:
+
+We recommend that researchers become familiar with the CSES design, units 
+of analysis, documentation, and dataset weights before beginning their 
+investigations. For instance, while the set of respondents appearing within
+each election study represents their respective nations, the group of 
+nations that appear within CSES is not a random sample of countries 
+worldwide. Furthermore, while many election studies include 1,000 or so 
+respondents, other election studies may consist of over 10,000 respondents. 
+Some nations will have studies of more than one election in a CSES module,
+and occasionally there will be two independent studies of a single 
+election. Last, some election studies include oversamples of specific 
+subpopulations or would otherwise benefit from use of the included weight
+variables. We hope you find our website and documentation useful as you 
+proceed with your work, and welcome any questions or suggestions you have.
+
+
+===========================================================================
+TABLE OF CONTENTS
+===========================================================================
+ 
+
+))) OVERVIEW OF "CODEBOOK PART 6: STUDY DESIGNS AND WEIGHTS"
+
+
+))) HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+
+
+))) LIST OF TABLES IN CODEBOOK PART 6
+
+
+))) CSES MODULE 5: SUMMARY OF CSES MODULE 5 DATA 
+    >>> IDENTIFICATION, WEIGHT, AND STUDY ADMINISTRATION DATA
+    >>> MODULE 5 QUESTIONNAIRE VERSION
+    >>> POLITY WEIGHTS IN CSES
+    >>> TYPE OF POLITY WEIGHTS BY ELECTION STUDY
+    >>> DERIVATIVE WEIGHTS IN CSES
+
+
+))) OVERVIEW OF STUDY DESIGN & WEIGHTS BY POLITY & ELECTION YEAR
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ALBANIA (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - AUSTRALIA (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - AUSTRIA (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - BELGIUM-FLANDERS (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - BELGIUM-WALLONIA (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - BRAZIL (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - CANADA (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - CHILE (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - COSTA RICA (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - CZECHIA (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - CZECHIA (2021)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - DENMARK (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - EL SALVADOR (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - FINLAND (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - FRANCE (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GERMANY (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GERMANY (2021)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GREAT BRITAIN (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GREAT BRITAIN (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GREECE (2015)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - GREECE (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - HONG KONG (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - HUNGARY (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ICELAND (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ICELAND (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - INDIA (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - IRELAND (2016) 
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ISRAEL (2020) 
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ITALY (2018)    
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - JAPAN (2017)    
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - LATVIA (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - LITHUANIA (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - LITHUANIA (2020)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - MEXICO (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - MONTENEGRO (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - NETHERLANDS (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - NETHERLANDS (2021)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - NEW ZEALAND (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - NEW ZEALAND (2020)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - NORWAY (2017)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - PERU (2021)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - POLAND (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - PORTUGAL (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - ROMANIA (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - SLOVAKIA (2020)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - SOUTH KOREA (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - SWEDEN (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - SWITZERLAND (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - TAIWAN (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - TAIWAN (2020)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - THAILAND (2019)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - TUNISIA (2019) 
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - TURKEY (2018)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - UNITED STATES (2016)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - UNITED STATES (2020)
+    >>> OVERVIEW OF STUDY DESIGN & WEIGHTS - URUGUAY (2019) 
+
+
+===========================================================================
+))) OVERVIEW OF "CODEBOOK PART 6: STUDY DESIGNS AND WEIGHTS"
+===========================================================================
+
+Part 6 of the CSES Codebook provides users with general information about
+the design of each election study included in MODULE 5, as well as the 
+original polity level weights for each study. 
+ 
+The purpose of these overviews is to provide users with a quick summary 
+of the study and the weights, including information about the sample size, 
+the fieldwork period, sample selection procedures, the mode(s) of interview,
+and the language(s) the survey was administered in. 
+ 
+For more detailed information about each study's design and its weights,
+including information on response rates, refusal conversion, questionnaire
+translation, respondent incentives etc., users are advised to consult 
+the Design Reports for each polity included in the study which are available
+on the CSES MODULE 5 Study Page:  
+(see https://cses.org/data-download/cses-module-5-2016-2021/). 
+
+
+===========================================================================
+))) HOW TO NAVIGATE THE CSES MODULE 5 CODEBOOK
+===========================================================================
+
+In the CSES MODULE 5 dataset, all variables begin with the letter "E" 
+(E being the fifth letter of the English alphabet and thus signifying 
+MODULE 5).
+
+The CSES Codebook is especially extensive and users are advised that the 
+best way to navigate it is electronically. It is a .txt format which 
+allows it to be accessed via a variety of programs. 
+
+The CSES Codebook can be navigated quickly in the electronic files, with 
+the following commands allowing for quick searching:
+
+))) = Section Header. 
+
+>>> = Sub-section Header 1.
+
+<<>> = Sub-section Header 2. 
+
++++ = Tables.
+
+CSES QUESTION CLASSIFICATION = For survey level variables only, CSES  
+Question Classification details whether the variable is part of the CSES  
+Core component, which are questions asked repeatedly in CSES Modules, 
+whether a variable is part of the CSES Module Theme component, which are  
+questions specific to the Module Theme under exploration and might not be 
+included in CSES repeatedly, or whether a variable is a Derivative Variable, 
+which is explained below. 
+
+VARIABLES NOTES = Notes for particular variables. 
+
+ELECTION STUDY NOTES = Notes for a particular election study.  
+
+DERIVATIVE VARIABLE = Highlights a variable derived from another 
+variable or variables within the CSES.
+
+POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at polity level.
+
+POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at regional level.
+
+POTENTIAL TIME BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging by time.
+
+POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER = Highlights a variable
+that may be used for data bridging at party/coalition level.
+
+POTENTIAL CSES PRODUCT BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging with other CSES products.
+
+For further details on the CSES MODULE 5 documentation, users are advised
+to consult Part 1 of the CSES Codebook. 
+
+
+===========================================================================
+))) LIST OF TABLES IN CODEBOOK PART 6
+===========================================================================
+
+Below, we list the Tables located in Codebook Part 6. Tables can be 
+accessed in the electronic version of the CSES Codebook by searching for
+"+++". 
+
+   - OVERVIEW OF ELECTION STUDIES INCLUDED IN MODULE 5 WITH NUMBER OF 
+     OBSERVATIONS, MODE OF DATA COLLECTION, AND FIELDWORK DATES
+   - TYPE OF POLITY WEIGHTS BY INDIVIDUAL ELECTION STUDIES
+
+
+===========================================================================
+))) CSES MODULE 5: SUMMARY OF CSES MODULE 5 DATA 
+===========================================================================
+
+The Full Release of CSES MODULE 5 contains data from the following 56
+election studies in 45 polities. They are listed below in alphabetic
+order with an overview of some method parameters of each election study. 
+
+    | +++ TABLE: OVERVIEW OF ELECTION STUDIES INCLUDED IN MODULE 5 WITH
+    |            NUMBER OF OBSERVATIONS, MODE OF DATA COLLECTION, AND
+    |            FIELDWORK DATES
+    |
+    | POLITY (ELEC YEAR)     No of     Mode of      Dates of Fieldwork
+    |                    Observations Interview      (Start-End date)     
+    | ---------------------------------------------------------------------
+    | ALBANIA (2017)        1,255       F2F       Feb 15, 2018-Apr 11, 2018
+    | AUSTRALIA (2019)      2,000        MX       Jun 03, 2019-Jun 17, 2019
+    | AUSTRIA (2017)        1,203        TP       Oct 19, 2017-Nov 30, 2017
+    | BEL-FLANDERS (2019)   1,084        MX       May 29, 2019-Sep 24, 2019
+    | BEL-WALLONIA (2019)     730        MX       May 29, 2019-Sep 03, 2019
+    | BRAZIL (2018)         2,506       F2F       Nov 10, 2018-Nov 24, 2018
+    | CANADA (2019)         2,889        MX       Oct 22, 2019-Nov 21, 2019
+    | CHILE (2017)          2,000      F2F1       Dec 18, 2017-Jan 31, 2018
+    | COSTA RICA (2018)     1,456        TP       Feb 27, 2019-Mar 06, 2019
+    | CZECHIA (2017)        1,559      F2F2       Oct 23, 2017-Nov 12, 2017
+    | CZECHIA (2021)        1,490      F2F2       Oct 11, 2021-Nov 24, 2021
+    | DENMARK (2019)        1,418       INT       Jun 06, 2019-Sep 28, 2019
+    | EL SALVADOR (2019)    1,488       F2F       Jul 04, 2019-Jul 24, 2019
+    | FINLAND (2019)        1,598        MX       Apr 17, 2019-Oct 05, 2019
+    | FRANCE (2017)         1,830       F2F       May 09, 2017-May 23, 2017
+    | GERMANY (2017)        2,032       F2F       Sep 25, 2017-Nov 30, 2017
+    | GERMANY (2021)        3,152        MX       Sep 27, 2021-Nov 21, 2021
+    | GREAT BRITAIN (2017)    984        MX       Jun 28, 2017-Oct 02, 2017
+    | GREAT BRITAIN (2019)  2,537        MX       Dec 28, 2019-Jul 13, 2020
+    | GREECE (2015)         1,078        MX       Oct 29, 2015-Feb 29, 2016
+    | GREECE (2019)         1,324       INT       Dec 13, 2019-Mar 07, 2020
+    | HONG KONG (2016)      1,020        TP       Sep 06, 2016-Sep 18, 2016
+    | HUNGARY (2018)        1,208       F2F       Apr 23, 2018-May 14, 2018
+    | ICELAND (2016)        1,295        TP       Oct 30, 2016-Jan 25, 2017
+    | ICELAND (2017)        2,073        TP       Oct 30, 2017-Feb 02, 2018
+    | INDIA (2019)         13,963       F2F       May 15, 2019-May 26, 2019
+    | IRELAND (2016)        1,000        TP       Mar 01, 2016-Mar 06, 2016
+    | ISRAEL (2020)         1,209        TP       Jun 07, 2020-Aug 06, 2020
+    | ITALY (2018)          2,001        MX       Mar 08, 2018-May 02, 2018
+    | JAPAN (2017)          1,688        MX       Jan 12, 2018-Feb 01, 2018
+    | LATVIA (2018)         1,011       F2F       Nov 14, 2018-Dec 01, 2018
+    | LITHUANIA (2016)      1,500      F2F1       Nov 11, 2016-Dec 10, 2016
+    | LITHUANIA (2020)      1,781       INT       Jan 21, 2021-Feb 21, 2021
+    | MEXICO (2018)         1,239       F2F       Jul 12, 2018-Jul 18, 2018
+    | MONTENEGRO (2016)     1,213       F2F       Dec 08, 2016-Jan 16, 2017
+    | NETHERLANDS (2017)    1,903        MX       Mar 16, 2017-Jul 03, 2017
+    | NETHERLANDS (2021)    3,485        MX       Mar 18, 2021-May 16, 2021
+    | NEW ZEALAND (2017)    1,808        MX       Sep 27, 2017-Mar 02, 2018
+    | NEW ZEALAND (2020)    1,725        MX       Oct 21, 2020-May 01, 2021
+    | NORWAY (2017)         1,792       INT       Sep 20, 2017-Oct 26, 2017
+    | PERU (2021)           1,199       F2F       Dec 22, 2021-Jan 07, 2022
+    | POLAND (2019)         2,003       F2F       Oct 24, 2019-Nov 17, 2019
+    | PORTUGAL (2019)       1,500       F2F       Oct 12, 2019-Dec 15, 2019
+    | ROMANIA (2016)        1,105       F2F       Dec 13, 2016-Feb 20, 2017
+    | SLOVAKIA (2020)       1,003       F2F       Jun 10, 2020-Aug 31, 2020
+    | SOUTH KOREA (2016)    1,199      F2F1       Apr 14, 2016-Apr 23, 2016
+    | SWEDEN (2018)         3,784        MX       Sep 11, 2018-Nov 06, 2018
+    | SWITZERLAND (2019)    4,645        MX       Oct 21, 2019-Jan 05, 2020
+    | TAIWAN (2016)         1,690       F2F       Jan 17, 2016-Apr 21, 2016
+    | TAIWAN (2020)         1,680       F2F       Jan 14, 2020-May 30, 2020
+    | THAILAND (2019)       1,536      F2F1       Apr 25, 2019-Jun 05, 2019
+    | TUNISIA (2019)        1,477       F2F       Jul 18, 2020-Jul 30, 2020
+    | TURKEY (2018)         1,069      F2F1       Jul 23, 2018-Sep 09, 2018
+    | UNITED STATES (2016)  3,648        MX       Nov 09, 2016-Jan 09, 2017
+    | UNITED STATES (2020)  7,449        MX       Nov 06, 2020-Jan 03, 2021
+    | URUGUAY (2019)        1,200        TP       Jan 28, 2020-Feb 27, 2020
+    | --------------------------------------------------------------------
+    | TOTAL               114,714  
+    | 
+    | Key:  F2F=Face-to-face (using electronic/computerized questionnaire). 
+    |      F2F1=Face-to-face (using a paper questionnaire). 
+    |      F2F2=Face-to-face (using both electronic & paper questionnaire). 
+    |        TP=Telephone.  
+    |       INT=Internet/Online.
+    |        MX=Mixed. 
+    |
+    | Users are advised to consult the VARIABLE NOTES for Variables E1032-
+    | E1034 in Codebook Part 2 concerning fieldwork date classifications.
+
+
+---------------------------------------------------------------------------
+>>> IDENTIFICATION, WEIGHT, AND STUDY ADMINISTRATION DATA
+---------------------------------------------------------------------------
+
+CSES MODULE 5 includes several identification, weight, and study 
+administration variables allowing users the opportunity to account for 
+many methodological differences in the fielding of CSES across different
+studies and polities. A list of relevant IDENTIFICATION, WEIGHT, AND STUDY 
+ADMINISTRATION DATA are below this explanation and can be navigated in the 
+CSES Codebook by searching for IDENTIFICATION, WEIGHT, AND STUDY 
+ADMINISTRATION DATA in Part 2 of the CSES MODULE 5 Codebook, or by searching
+the dataset for variables beginning "E1XXX". 
+
+  - E1010_1       ORIGINAL WEIGHT: SAMPLE
+  - E1010_2       ORIGINAL WEIGHT: DEMOGRAPHIC
+  - E1010_3       ORIGINAL WEIGHT: POLITICAL
+  - E1011_1       FACTOR: MEAN OF SAMPLE WEIGHT
+  - E1011_2       FACTOR: MEAN OF DEMOGRAPHIC WEIGHT
+  - E1011_3       FACTOR: MEAN OF POLITICAL WEIGHT
+  - E1012_1       POLITY WEIGHT: SAMPLE
+  - E1012_2       POLITY WEIGHT: DEMOGRAPHIC
+  - E1012_3       POLITY WEIGHT: POLITICAL
+  - E1013         FACTOR: SAMPLE SIZE ADJUSTMENT
+  - E1014_1       DATASET WEIGHT: SAMPLE
+  - E1014_2       DATASET WEIGHT: DEMOGRAPHIC
+  - E1014_3       DATASET WEIGHT: POLITICAL
+  - E1022         STUDY TIMING
+  - E1023         STUDY CONTEXT
+  - E1024_1       MODE OF INTERVIEW - STUDY - FIRST
+  - E1024_2       MODE OF INTERVIEW - STUDY - SECOND
+  - E1024_3       MODE OF INTERVIEW - STUDY - THIRD
+  - E1025_1       MODE OF INTERVIEW - RESPONDENT - FIRST
+  - E1025_2       MODE OF INTERVIEW - RESPONDENT - SECOND
+  - E1025_3       MODE OF INTERVIEW - RESPONDENT - THIRD
+  - E1026         SELF-SELECTION INTO MODE OF INTERVIEW
+  - E1027         DURATION OF INTERVIEW
+  - E1028         INTERVIEWER ID WITHIN ELECTION STUDY
+  - E1029         INTERVIEWER GENDER    
+  - E1030         DAYS FIELDWORK STARTED POST ELECTION
+  - E1031         DURATION OF FIELDWORK
+  - E1032         DATE QUESTIONNAIRE ADMINISTERED - MONTH
+  - E1033         DATE QUESTIONNAIRE ADMINISTERED - DAY
+  - E1034         DATE QUESTIONNAIRE ADMINISTERED - YEAR  
+  - E1035_1       DAYS INTERVIEW CONDUCTED POST FIRST ROUND OF ELECTION
+  - E1035_2       DAYS INTERVIEW CONDUCTED POST SECOND ROUND OF ELECTION
+  - E1036         LANGUAGE OF QUESTIONNAIRE ADMINISTRATION
+  - E1037         QUESTIONNAIRE VERSION
+  - E1038         STUDY TIMING WITH RESPECT TO COVID-19 PANDEMIC
+  - E1039         ID COMPONENT - WHETHER POLITY ADMINISTERED CSES MODULE 5 
+                  MULTIPLE TIMES
+
+---------------------------------------------------------------------------
+>>> MODULE 5 QUESTIONNAIRE VERSION
+---------------------------------------------------------------------------
+
+Studies included in the CSES MODULE 5 fielded one of two versions of the 
+CSES questionnaire: the pilot questionnaire or the finalized questionnaire. 
+While most studies (50 out of 56) fielded the finalized questionnaire, the 
+pilot questionnaire was fielded by five studies in 2016 that administered
+the preliminary version of the CSES questionnaire before the questionnaire
+was finalized in September 2016 by the CSES Plenary. Additionally, Sweden
+(2018) fielded the pilot questionnaire. 
+
+Variable E1037 "QUESTIONNAIRE VERSION" in the Dataset classifies for Users
+the studies that fielded the pilot version of the questionnaire and the
+finalized questionnaire. 
+
+The differences between the pilot and finalized questionnaire are documented 
+in the VARIABLE NOTES in CSES Codebook Part 2. They are applicable to the
+following variables: 
+  - E2008         SOCIO ECONOMIC STATUS 
+  - E2012         NUMBER IN HOUSEHOLD 
+  - E3004_1_PT    ATTITUDES ABOUT ELITES: IMPORTANT TO SEEK COMPROMISE
+  - E3004_8_PT    ATTITUDES ABOUT ELITES: POOR PEOPLE SHOULD HAVE GREATER 
+                  VOICE
+  - E3006_5_PT    NATIONAL IDENTITY: TO HAVE LIVED IN COUNTRY FOR MOST OF 
+                  LIFE
+  - E3006_6_PT    NATIONAL IDENTITY: TO BE COUNTRY DOMINANT RELIGION
+  - E3006_7_PT    NATIONAL IDENTITY: TO RESPECT POLITICAL INSTITUTIONS AND 
+                  LAWS
+  - E3006_8_PT    NATIONAL IDENTITY: TO FEEL COUNTRY NATIONALITY
+  - E3008_PT      GOVERNMENT ACTION - ATTITUDES TOWARDS REDISTRIBUTION
+  - E3016_1       WHO IS IN POWER CAN MAKE DIFFERENCE
+
+
+---------------------------------------------------------------------------
+>>> POLITY WEIGHTS IN CSES
+---------------------------------------------------------------------------
+
+CSES provides users with up to three original weights from each 
+national election study (see variable E1010_), namely:
+
+  - SAMPLE WEIGHT (variable E1010_1): 
+    intended to correct for unequal selection probabilities resulting from 
+    booster samples procedures for selection within the household, 
+    non-response, or other sample design features 
+
+  - DEMOGRAPHIC WEIGHT (variable E1010_2): 
+    intended to adjust sample distributions of socio-demographic 
+    characteristics to more closely resemble the characteristics of the 
+    population
+
+  - POLITICAL WEIGHT (variable E1010_3): 
+    intended to reconcile discrepancies in the reported electoral behavior
+    of respondents vis-a-vis official electoral counts. 
+
+Users are advised to read carefully about the different weights in CSES to 
+ascertain whether their analyses should be subjected to weighting and if so 
+which kind. The CSES project does not provide advice as to which weights 
+are appropriate to use in particular circumstances. This is best left to 
+analysts to decide based on their detailed knowledge of the research 
+question under investigation. We advise analysts to consult each Polity's
+Design Report on the CSES MODULE 5 Study Page (see
+https://cses.org/data-download/cses-module-5-2016-2021/). 
+For information on derivative weights calculated for the Cross-National 
+Dataset, users should consult Parts 1 and 2 (variables E1011-E1014) 
+of the CSES Codebook. 
+
+
+---------------------------------------------------------------------------
+>>> TYPE OF POLITY WEIGHTS BY ELECTION STUDY
+---------------------------------------------------------------------------
+
+         |                            +++
+         |               TABLE: TYPE OF POLITY WEIGHTS  
+         |               BY INDIVIDUAL ELECTION STUDIES
+         |
+         |                          Sample     Demographic   Political  
+         | POLITY (ELEC YEAR)       Weight       Weight       Weight  
+         | -----------------------------------------------------------
+         | AUSTRALIA (2019)           X            X            -
+         | AUSTRIA (2017)             -            X            X
+         | BELGIUM-FLANDERS (2019)    -            X            X
+         | BELGIUM-WALLONIA (2019)    -            X            X
+         | CANADA (2019)              X            X            -
+         | CHILE (2017)               -            X            -
+         | COSTA RICA (2018)          -            X            -
+         | CZECHIA (2021)             -            X            -
+         | DENMARK (2019)             -            X            X
+         | EL SALVADOR (2019)         -            X            X
+         | FINLAND (2019)             -            X            X
+         | FRANCE (2017)              -            X            X
+         | GERMANY (2017)             X            X            -
+         | GERMANY (2021)             X            X            -
+         | GREAT BRITAIN (2017)       X            X            -
+         | GREAT BRITAIN (2019)       -            X            -
+         | GREECE (2015)              -            X            -
+         | GREECE (2019)              X            X            -
+         | HONG KONG (2016)           -            X            -
+         | HUNGARY (2018)             -            X            -
+         | INDIA (2019)               X            X            X
+         | IRELAND (2016)             -            X            -
+         | ISRAEL (2020)              -            X            -
+         | ITALY (2018)               X            X            X
+         | JAPAN (2017)               X            X            -
+         | LATVIA (2018)              -            X            -
+         | LITHUANIA (2016)           -            X            -
+         | LITHUANIA (2020)           -            X            X
+         | MEXICO (2018)              X            X            -
+         | MONTENEGRO (2016)          -            X            -
+         | NETHERLANDS (2017)         -            X            X
+         | NETHERLANDS (2021)         -            X            X
+         | NEW ZEALAND (2017)         -            X            -
+         | NEW ZEALAND (2020)         -            X            -
+         | NORWAY (2017)              -            X            -
+         | PERU (2021)                -            X            -
+         | POLAND (2019)              -            X            -
+         | PORTUGAL (2019)            -            X            X
+         | ROMANIA (2016)             X            X            X
+         | SLOVAKIA (2020)            X            X            -
+         | SWEDEN (2018)              -            X            -
+         | SWITZERLAND (2019)         X            -            X
+         | TAIWAN (2016)              -            X            -
+         | TAIWAN (2020)              -            X            -
+         | TURKEY (2018)              -            X            -
+         | UNITED STATES (2016)       X            X            -
+         | UNITED STATES (2020)       X            X            -
+         | URUGUAY (2019)             X            X            X          
+         | -----------------------------------------------------------
+         | KEY: X = available; - = not available.
+         |
+         | Weights are unavailable for ALBANIA (2017), BRAZIL (2018), 
+         | CZECHIA (2017), ICELAND (2016 & 2017), SOUTH KOREA (2016), 
+         | THAILAND (2019), and TUNISIA (2019).
+
+
+---------------------------------------------------------------------------
+>>> DERIVATIVE WEIGHTS IN CSES
+---------------------------------------------------------------------------
+
+Additionally to the original polity weights listed in the previous section
+by national election study, CSES provides users with several derivative
+weights, constructed from the original weights. They are: 
+ 
+  - FACTOR WEIGHTS (variable E1011)
+    These variables report the mean weight of each type, within each 
+    polity. The resulting factors are then used to create the derivative 
+    Polity Weights (E1012 explained below). 
+
+  - POLITY WEIGHTS (variable E1012)
+    These variables report standardized versions (with a mean of 1 within  
+    the polity) of the original weights provided with the component election 
+    studies, described in E1010. They are the ratio of each weighting 
+    factor to the mean weight (E1011) of each type, calculated within each
+    polity.
+
+  - SAMPLE SIZE ADJUSTMENT WEIGHT (variable E1013)
+    This variable reports the ratio of the average sample size to each 
+    election study sample. The resulting factor is then used to create the
+    derivative Dataset Weights, E1014. 
+
+  - DATASET WEIGHTS (variable E1014)
+    These variables are intended for micro-level analyses involving the 
+    entire CSES sample. Using the sample size adjustment (E1013), the 
+    centered weights (E1012) are corrected such that each election study
+    component contributes equally to the analysis, regardless of the 
+    original sample size. 
+
+Details of the calculation of the above derivative weights, including 
+the precise STATA code used to create the weights, can be found in the 
+variable notes for variables E1011, E1012, E1013, and E1014 in Part 2 of
+the CSES MODULE 5 Codebook.     
+
+Analysts are advised to read the weight documentation carefully to ensure
+their analyses are weighted appropriately (if applicable). The CSES 
+project does not provide advice as to which weights are appropriate to 
+use in particular circumstances. This is best left to analysts to decide 
+based on their detailed knowledge of the research question under 
+investigation. We advise analysts to consult variable notes E1011-E1014 
+in Codebook Part 2 for more specific information on how the derivative 
+weights were calculated for the Cross-National Dataset.
+
+
+===========================================================================
+))) OVERVIEW OF STUDY DESIGN & WEIGHTS BY POLITY & ELECTION YEAR
+===========================================================================
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ALBANIA (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 Albanian Parliamentary elections were held on Sunday, June 25,
+2017. Fieldwork for the post-election study was carried out between January 
+20, 2018, and March 20, 2018 (60 days in total). The mode of interview was 
+face-to-face using an electronic questionnaire. The questionnaire was 
+administered in Albanian, and the fieldwork was administered by the 
+ASSA-Zeitgeist based in Tirana, Albania. The total number of observations 
+from the Albania Study is 1,255 interviews.
+
+The study interviewed respondents who were eligible to vote in 2017
+Parliamentary elections, namely, Albanian citizens who are 18+ years old.
+Collaborators estimate that around 2% of the population was excluded from
+the sample, including those institutionalized during the fieldwork. A random
+probability sample was used for the study, and the sample covered whole
+Albania. Polling stations were used as primary sampling units (PSUs). In
+total, 267 PSUs were selected, stratified by regions and rural-urban
+location. In all PSUs, eight interviews were planned, one per household. In
+urban areas, 1 out of 10 households was selected, while in rural areas, it
+was 1 out of 5, and in those rural areas with low density, it was 1 out of 3
+households. The person interviewed within the household was selected
+randomly, following the last birthday rule. In instances when the person
+chosen was not available on the first visit, two more extra visits were 
+paid. The selected person was not replaced in case of no contact, even after 
+the third visit.
+
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - AUSTRALIA (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Federal election in Australia occurred on Saturday, May 18, 2019.
+Fieldwork for the Australian study began on June 3, 2019, 16 days after 
+election day. Data collection was completed after 15 days, ending on June
+17, 2019. The study, undertaken by Australian National University (ANU) in
+Canberra, was conducted as part of wave 28 of the Social Research Center's 
+Life in Australia panel. Members of the panel are Australian residents aged 
+18 years or more. A total of 2,676 active panel members were invited to 
+participate in the study, and the total number of observations from the
+Australia Study is 2,000 interviews. The survey was administered in 
+English. The study used a mixed-mode approach, including both Internet and 
+telephone (landline and cell) surveys. Respondents were initially contacted 
+and recruited via their landline or mobile phone and offered to complete the
+questionnaire online. Still, they could self-select into the alternative 
+mode and complete the study via telephone if they were uncomfortable  
+completing surveys over the Internet or if Internet access was problematic. 
+
+A dual-frame random digit dialing (RDD) sample design was employed to
+undertake recruitment of the Life in Australia panel in 2016, with a 30:70
+split between the landline RDD sample frame and a cell phone RDD sample
+frame. An alternating next/last birthday method was used for the landline 
+phone sample to randomly select respondents from households with two or more 
+in-scope persons. For the cell phone sample, the individual who answered the 
+call was the selected respondent. 
+Only one member per household was invited to join the panel. In May 2018, 
+the panel was refreshed with 267 new panelists. For both the recruitment in 
+2016 and panel refreshment in 2018, the RDD sample was provided by 
+SamplePages. 
+
+Panelists receive a small incentive to join the panel and another incentive 
+for each survey they complete. For the Australian (2019) study, all 
+respondents were offered a 10 Australian dollars (AUD) incentive, and they 
+had a choice to either collect the money or transfer it as a charitable 
+donation to a designated charity.
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Australia Study provides a COMBINED SAMPLE and DEMOGRAPHIC 
+WEIGHT. This weight adjusts for the unequal probability of selection. 
+Since some units in the population may not have a chance of selection 
+(for instance, persons without a telephone have no chance of selection 
+for a telephone survey) and there may be different rates of response across
+unit characteristics, sample weights reduce the extent of any biases 
+introduced through non-coverage. Weights are constructed in the following 
+two steps:
+1. Compute a base weight for each respondent as the product of two weights:
+a. their enrollment weight, accounting for the initial chances of selection
+and subsequent post-stratification to key demographic benchmarks;
+b. their response propensity weight, estimated from enrollment information
+available for both respondents and non-respondents to the present wave.
+2. Calibrate the base weights so that they satisfy the latest population
+benchmarks for several demographic characteristics.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - AUSTRIA (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN     
+
+The 2017 Austrian Federal lower house election was held on Sunday, 
+October 15, 2017. Fieldwork for the study began on October 19, 2017, lasting 
+42 days, with completion on November 30, 2017. All interviews were conducted 
+by IPR Umfrageforschung via telephone (mobile and landline). Surveys were 
+administered in German. The total number of observations from the Austria 
+Study is 1,203 interviews.
+
+The sample is meant to be representative of all eligible voters in Austria 
+as of election day (Austrian citizens aged 16 or older). The primary 
+sampling units were Austrian municipalities, all of which were included in 
+the first stage of the sampling procedure. The sampling procedure included
+two further stages, namely, at the household and respondent level. 
+Households within the municipalities were randomly selected (proportional 
+to the size of the municipality), using a dual-frame (50% list frame and 
+50% random digit dial). Within households, the target person was randomly
+selected using the next-birthday method. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2017 Austria Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT.
+The demographic weight (E1010_2) adjusts the sample to match known 
+demographic characteristics in the voting age population (age, gender, 
+education, region, household size, and employment type). The political 
+weight (E1010_3) is a combined weight that adjusts the sample to 
+match the national election results on top of the demographic weight. The 
+combined weight E1010_3 is a winsorized weight in which upper and lower 
+boundaries were determined by the field institute.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - BELGIUM-FLANDERS (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Federal elections in Belgium were held on Sunday, May 26, 2019. The 
+study had two dimensions: a component designed to capture a representative 
+sample of French speakers and a component designed to capture a 
+representative sample of Dutch speakers. These two components are mapped 
+onto Belgium's two principal regions - Wallonia, composed principally of 
+French primary speakers, and Flanders, composed primarily of Dutch speakers.
+Consequently, separate samples were drawn for both Belgium-Wallonia and 
+Belgium-Flanders, which also captures the fact that both regions 
+have substantially different political configurations, with
+different political actors contesting each region, and most parties 
+contesting one of the regions only. The Belgium-Flanders sample is 
+representative of the eligible voting population residing in 
+Belgium-Flanders only (i.e., electoral regions of Antwerp, East Flanders, 
+Flemish Brabant, Limburg, and West Flanders). 
+
+Fieldwork for the Belgium-Flanders component of the Belgian study began 
+three days after the election, on May 29, 2019. Data collection ended after 
+119 days, on September 24, 2019, with the total number of observations 
+from the Belgium-Flanders Study being 1,084 interviews. The study employed 
+a mixed-mode approach, with respondents having the option to self-select 
+into a mail-back survey or to participate in the survey via the Internet. 
+Respondents in Belgium-Wallonia received the Dutch questionnaire. 
+KU Leuven, Center for Political Research, conducted the fieldwork.
+
+All respondents had to be Belgium citizens with registered residence in
+Flanders and eligible to vote in the Belgian federal elections. Belgium
+citizens living in foreign countries have the right to vote but
+were not sampled for the election study. Also, voters above 85 years old
+were not approached to participate. This group comprises between 2 and 3 
+percent of the population in Flanders.
+A random selection of 4,000 voters in Flanders was selected by the Belgian
+National Register and drawn from their National Register of all voters in
+Flanders. The Belgian National Register made the random selection due
+to strict privacy regulations. The entire sample of 4,000 voters was used in
+the initial approach, and all drawn voters were invited to fill out the
+questionnaire.
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Belgium-Flanders Study provides a DEMOGRAPHIC and a COMBINED 
+POLITICAL and DEMOGRAPHIC WEIGHT. The weights were created using the 
+IPF-procedure in STATA.
+The demographic weight (E1010_2) was constructed based on the most recent
+available data for age, gender, and education level.
+The political weight (E1010_3) includes the same variables as the 
+demographic weight, and the vote choice as reported by the respondents
+compared to the official election results. Where necessary, Collaborators 
+calculated distributions themselves to make sure all information was correct
+for the specific geographical region. Available information was subdivided 
+by age so that the distributions are corrected for the population older than
+18 (which should give a better estimate for educational level, for example).
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - BELGIUM-WALLONIA (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Federal elections in Belgium were held on Sunday, May 26, 2019. The 
+study had two dimensions: a component designed to capture a representative 
+sample of French speakers and a component designed to capture a 
+representative sample of Dutch speakers. These two components are mapped 
+onto Belgium's two principal regions - Wallonia, composed principally of  
+French primary speakers, and Flanders, composed principally of primary Dutch 
+speakers. Consequently, separate samples were drawn for both 
+Belgium-Wallonia and Belgium-Flanders, which also captures the fact that
+both regions have substantially different political configurations, with
+different political actors contesting each region, and most parties 
+contesting one of the regions only. The Belgium-Wallonia sample is 
+representative of the eligible voting population residing in 
+Belgium-Wallonia only (i.e., electoral regions of Brabant, Hainaut, Liege, 
+Luxembourg, and Namur). The Belgium-Capital Region (Brussels), which is 
+principally French-speaking is deliberately not sampled because of 
+logistical challenges in the implementation of the study - principally its 
+geographic location within the Flanders region, and the challenges of 
+distributing the appropriate language mail-back questionnaire to respondents
+as a result.  
+
+Fieldwork for the Belgium-Wallonia component of the Belgian study began 
+three days after the election, on May 29, 2019. Data collection ended after 
+119 days, on September 24, 2019, with the total number of observations 
+from the Belgium-Flanders Study being 730 interviews. The study employed a 
+mixed-mode approach, with respondents having the option to self-select into 
+a mail-back survey or to participate in the survey via the Internet. 
+Respondents in Belgium-Wallonia received the French questionnaire. 
+KU Leuven, Center for Political Research, conducted the fieldwork.
+
+All respondents had to be Belgium citizens with registered residence in
+Wallonia and eligible to vote in the Belgian federal elections. Belgium
+citizens living in foreign countries have the right to vote but
+were not sampled for the election study. Also, voters above 85 years old
+were not approached to participate. This group comprises between 2 and 3 
+percent of the population in Wallonia.
+A random selection of 4,000 voters in Wallonia was selected by the Belgian
+National Register and drawn from their National Register of all voters in
+Wallonia. The Belgian National Register made the random selection due
+to strict privacy regulations. The entire sample of 4,000 voters was used
+in the initial approach, and all drawn voters were invited to fill out the
+questionnaire.
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Belgium-Wallonia Study provides a DEMOGRAPHIC and a COMBINED 
+POLITICAL and DEMOGRAPHIC WEIGHT. The weights were created using the 
+IPF-procedure in STATA.
+The demographic weight (E1010_2) was constructed based on the most recent
+available data for age, gender, and education level.
+The political weight (E1010_3) includes the same variables as the
+demographic weight, and the vote choice as reported by the respondents
+compared to the official election results. Where necessary, Collaborators 
+calculated distributions themselves to make sure all information was correct
+for the specific geographical region. Available information was subdivided 
+by age so that the distributions are corrected for the population older than
+18 (which should give a better estimate for educational level, for example).
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - BRAZIL (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Brazilian general elections were held on Sunday, October 7, 2018 
+(first round) with a second round of Presidential elections on Sunday, 
+October 28, 2018. The Brazilian Election Study was conducted between 
+November 10 and November 14, 2018. Fieldwork lasted 15 days, starting 34 
+days after the first round. IBOPE Inteligencia of Sao Paolo collected data 
+in face-to-face interviews using an electronic questionnaire. 
+Interviewing was conducted in Portuguese, with all Brazilian citizens aged 
+16 years old and older and registered to vote eligible to be interviewed. 
+The total number of observations from the Brazil Study is 2,506 interviews.
+
+The sample for the Brazilian study is stratified per state. In the case of
+states with metropolitan areas, its universe is stratified in metropolitan
+areas and the countryside. The cities, which constitute the primary sampling 
+units, were probabilistically selected in each stratum in the first step 
+through a systematic PPS (Probability Proportional to Size) method. By this
+method, 172 cities were selected. In the second stage, census tracts were
+selected with systematic PPS. In the third stage, a fixed number of 
+respondents were selected within each sampled tract according to quotas 
+based on gender, age, education, line of work, and the number of bathrooms
+in the household. These quotas were set considering the census update survey
+from IBGE (Brazilian Institute of Geography and Statistics) 2010, PNADC 2016
+(National Survey by Household Sample) and TSE 2018 (Superior Electoral
+Court). The households to be contacted within census tracts were chosen by
+random walk.
+
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - CANADA (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 43rd Canadian general election took place on Monday, October 21, 2019. 
+The Canadian Election Study comprised a post-election survey fielded 
+between October 22, 2019, and November 21, 2019 (lasting 31 days), although
+some respondent demographic information was collected in pre-election
+interviews. The data was collected by the organization Advantis Inc and
+data collection was funded by the Social Science and Research Council of
+Canada and archived by the Canadian Opinion Research Archive.
+
+The fieldwork for the survey was conducted by telephone and the Internet, 
+(mixed-mode approach) although all information gathered pre-election was 
+collected via telephone between September 10 and October 20, 2019. 
+All 4,021 respondents were called or e-mailed after the election according
+to their stated preference and asked to complete the post-election survey. 
+Hence, respondents could self-select into modes for the post-election 
+interview. Fieldwork commenced on October 22, 2019, and finished on November
+21, 2019, with 2,889 respondents participating (72% of the original sample). 
+72% (2,067 respondents) participated via telephone, while the remaining 28%
+(822 respondents) did so online, with an attrition rate of 28% vis-a-vis 
+the pre-election sample. 
+
+Interviews were conducted in English and in French, and the sample is 
+designed to be representative of the Canadian population aged 18 years and 
+older in the ten Canadian provinces. The territories, namely 
+Northwest Territories, Yukon Territory, and Nunavut, were excluded from the 
+sampling frame, in line with previous Canadian Election Studies. The 
+population of those areas is approximately 0.3%. Non-residential respondents 
+were excluded as well (0.2%). As the interviews were conducted by telephone, 
+another 0.7% of the population without a phone could not be reached. In sum, 
+it is estimated that 1.2% of the population was excluded from the sampling
+frame. 
+
+Respondents were selected by modified random digit dialing and a birthday 
+selection method within households. If there was more than one eligible 
+person in the household at a landline phone number, the person with the next
+birthday was requested as the survey respondent. The birthday selection 
+method was used as it ensures a random selection of respondents and is a 
+much less intrusive way to start an interview than asking about the number 
+of people in the household, thus making it easier for the interviewer to 
+secure the respondent's cooperation. The sample was stratified by province, 
+targeting 20% of the sample from each of Ontario, Quebec, the Prairies 
+(Saskatchewan, Manitoba and Alberta), the Atlantic provinces (divided evenly
+among Prince Edward Island, Nova Scotia, New Brunswick and Newfoundland) and
+British Columbia.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2019 Canada Study provides a COMBINED SAMPLE and DEMOGRAPHIC WEIGHT 
+for the post-election survey. The Collaborators decided the weight is
+required due to the stratification and the dual-frame (cell/landline phone) 
+design.
+In order to produce national estimates, it was necessary to correct for both
+the province of residence and the phone ownership type, as these are both 
+factors that influenced the sample design for the Canadian Election Study. 
+In order to determine the phone ownership type and hence the probability of
+inclusion of a particular respondent in the study, each respondent was 
+asked at the end of the pre-election survey if they had a wireless phone 
+(if they completed on landline) or a landline phone (if they completed on 
+wireless). Respondents were then assigned an ownership type of landline 
+only, wireless only, both, or refused/don't know. Population proportions 
+among the ten provinces were taken from the 2016 Census and 2017 data for 
+phone ownership by province was used to create a joint probability for 
+phone ownership among each of the provinces. Respondents who refused to 
+provide details about their phone ownership were given a phone ownership 
+type population proportion equal to their sample proportion within 
+province, so as not to artificially create population proportions for this 
+subset. Weights are calculated by dividing the population proportion by the
+sample proportion for each subgroup so that each is "adjusted up" or 
+"adjusted down" in the overall picture to provide a sample distribution 
+representative of the joint population proportion on the province and phone
+ownership metrics. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - CHILE (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The Chilean general elections were held on Sunday, November 19, 2017, with
+parliamentary elections to the lower and upper houses and the first round 
+of Presidential elections. A second round of Presidential elections followed
+on December 17, 2017. The fieldwork for the Chilean study started one day 
+after Round 2 of the Presidential elections (December 18, 2017), lasting 
+until January 31, 2018 (45 days). Fieldwork was carried out by the agency
+Feedback, based in Santiago, Chile. The survey was fielded in Spanish, with 
+face-to-face interviewing using a paper questionnaire. The total number of 
+observations from the Chile Study is 2,000 interviews.
+
+The Chilean 2017 study is meant to be representative of all citizens of 
+Chile aged 18 years living in Chile, including immigrants with at least 
+five years of residence, which is a requirement to get the right to vote 
+in Chile.
+The sample for the study was created in four stages. In the first stage,
+primary sampling units ("communas") were selected. These are the smallest
+administrative units in Chile. They were ordered by size, and every comuna
+with 50,000 inhabitants or more was automatically selected. Additionally,
+a sample of 22 comunas (with less than 50,000 inhabitants) was randomly
+selected. In the second stage, blocks inside the communas were selected 
+using stratified random sampling, with a probability of selection 
+proportional to the size of the blocks. In the third stage, households 
+within blocks were selected using random systematic sampling procedures. 
+Finally, respondents within households were selected using a Kish table. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2017 Chile Study provides a DEMOGRAPHIC WEIGHT. This post-
+stratification weight adjusts the sample to known characteristics of
+the population. The weight was constructed using Census data and adjusts 
+for gender and age of the respondents.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - COSTA RICA (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Costa Rica general election occurred on Sunday, February 4, 2018. 
+The post-election study was fielded between February 27, 2019, and March 6, 
+2019 (8 days), with fieldwork commencing 388 days after election day. 
+The Latin American Public Opinion Project (LAPOP) funded the data 
+collection, with fieldwork administered by the Political Studies and 
+Research Center (CIEP) at the University of Costa Rica. The total number of 
+observations from the Costa Rica Study is 1,456 interviews.
+
+Interviews were conducted in Spanish via the telephone. Costa Ricans without 
+access to a cell phone were excluded from the sampling frame (estimated to
+be 2.5% of the eligible population). Additionally, voters abroad are not
+included in the sampling frame, but there are no official estimates about
+the impact of this exclusion on the sampling frame. 
+
+The sampling frame is derived from Superintendence of Telecommunications
+(SUTEL), which publishes a list of cell phone numbers potentially for use 
+by cell phone operators in Costa Rica. These potential numbers form 
+the sampling units for the study. As the study was sampling individuals 
+assigned as owner of a cell phone number, it was theoretically possible 
+for more than one person in a single household to be interviewed. 
+Collaborators applied a formula that randomized numbers from the interval
+of each operator, with a stratification procedure applied taking into
+account the market share of each operator. Applying this procedure to 
+the SUTEL database, fifteen thousand potential cell phone numbers were 
+generated. Approximately 70% of these numbers were found to be inactive. Of 
+the remaining 4,570 numbers found to be valid, a sample was drawn, with 
+three contact attempts made to each number telephoned. Calls were made to 
+the numbers at different times of the day over a twelve-hour period. 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2018 Costa Rica Study provides a DEMOGRAPHIC WEIGHT. The weight was 
+constructed after Collaborators compared expected values of demographic 
+characteristics (gender, age and education) of the general population to the 
+sample population. The expected values of those characteristics of the 
+population were obtained from the National Household Survey. Collaborators 
+found that over- and under-representation in the survey were related to the 
+educational level. Respondents with higher education, namely university 
+degrees, were over-represented compared to those with lower education, 
+namely primary education.
+The weight adjusts for educational differences. The weight was constructed
+by dividing the value obtained in the sample by the expected value of the 
+population. For those respondents for whom no information on their 
+education is available, the demographic weight is coded 1.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - CZECHIA (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 Czech parliamentary elections were held on Friday, October 20, and 
+Saturday, October 21, 2017. The post-election survey was fielded between 
+October 23, 2017, and November 12, 2017, with fieldwork lasting 21 days. 
+The surveys were conducted face-to-face using either an electronic 
+questionnaire or a questionnaire on paper. Surveys were administered in 
+Czech. The total number of observations from the Czechia Study is 1,559 
+interviews.
+
+The fieldwork was carried out by the Center for Public Opinion Research 
+(CVVM) at the Institute of Sociology at the Czech Academy of Sciences. It
+was funded by the Czech Academy of Sciences. For participation, a person 
+needs to be an inhabitant of Czechia and above 18 years old, the eligible
+age to vote. The sample did not include people without a house or an 
+apartment to live in, about 1% of the eligible population. The survey 
+involved a quota sampling approach. Quotas were designed for each of the 
+14 electoral constituencies based on age, sex and education. Interviewers
+selected respondents in their county area based on fulfilling the quota 
+without further specifications. Hence, interviewers could technically 
+contact any address in the area. If a contacted person refused to take part
+in the survey, another person suitable to the quota was selected.
+
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - CZECHIA (2021)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2021 Czech parliamentary elections were held on Friday, October 8, and 
+Saturday, October 9, 2021. The elections and fieldwork took place during the 
+COVID-19 pandemic. The post-election survey was fielded between October 11, 
+2021, and November 24, 2021. The surveys were conducted face-to-face using 
+either an electronic questionnaire or a questionnaire on paper. Fieldwork 
+lasted for 45 days. Surveys were administered in Czech. The total number of 
+observations from the Czechia Study is 1,490 interviews.
+
+The fieldwork was carried out by the Center for Public Opinion Research 
+(CVVM) at the Institute of Sociology at the Czech Academy of Sciences. It
+was funded by the Czech Academy of Sciences. For participation, a person 
+needs to be an inhabitant of Czechia and above 18 years old, the eligible
+age to vote. The sample did not include people without a house or an 
+apartment to live in, about 1% of the eligible population. The survey 
+involved a quota sampling approach. Quotas were designed for each of the 
+14 electoral constituencies based on age, sex and education. Interviewers
+selected respondents in their county area based on fulfilling the quota 
+without further specifications. Hence, interviewers could technically 
+contact any address in the area. If a contacted person refused to take part
+in the survey, another person suitable to the quota was selected.
+
+
+<<>> POLITY WEIGHTS
+
+The 2021 Czechia Study provides a DEMOGRAPHIC WEIGHT. The data file contains 
+the post-stratification weighting variable created using the iterative 
+proportional weighting method. The variables used for the construction of 
+the weight are gender, age (5 categories), education (4 categories), size 
+of a municipality (8 categories), and region (14 categories). The source of 
+data for weighting is the Czech Statistical Office.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - DENMARK (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Danish general election took place on Wednesday, June 5, 2019. The 
+2019 Danish post-election study was conducted via the Internet between 
+June 6 and September 28, 2019 (lasting 115 days), by Epinion A/S. The
+questionnaire was administered in Danish. The sample is meant to represent
+eligible voters in Denmark - Danish citizens aged 18 and older who are
+registered to vote automatically if they permanently live in Denmark. The
+total number of observations from the Denmark Study is 1,418 interviews.
+
+The study is based on a simple random sample drawn from the Danish person 
+register ("CPR-register") wherein all Danish citizens and long-term 
+inhabitants of Denmark must be registered. Hence, individuals were the 
+primary sampling unit and had the same probability of being selected. 
+Respondents were initially contacted via both postal and "digital mail". 
+With few exceptions, digital mail is mandatory for Danish citizens. 
+The survey was personally sent to respondents by the Danish digital post and 
+verified by a personal access coding system. To increase response rates, 
+Collaborators conducted a lottery among all survey participants. Respondents
+could win gift cards with a total value of 75,000 DKK. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Denmark Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT. The demographic weight corrects 
+distributions in the sample to known socio-demographic population 
+characteristics (age, region, gender and education). 
+The political weight was created using raking and builds upon the 
+demographic weight, additionally adjusting the sample according to vote 
+choice in the 2019 Danish general election.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - EL SALVADOR (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 El Salvador Presidential elections were held on Sunday, February 3, 
+2019. The post-election survey was fielded between July 4, 2019, and July 
+24, 2019 (21 days in total). The survey was administered in Spanish, and the 
+fieldwork was carried out by the Fundacion Dr. Guillermo Manuel Ungo 
+(FUNDAUNGO). The surveys were conducted face-to-face using an electronic 
+questionnaire. The total number of observations from the El Salvador Study 
+is 1,488 interviews.  
+
+A person needed to be an inhabitant of El Salvador and above 18 years old 
+to be interviewed. The sample did not include institutionalized people, 
+about 0.9% of the eligible population, and military personnel, about 0.45%
+of the eligible population. 
+The survey employed a stratified random sample. In the stratified two-stage 
+sample, the primary sample unit was made up of the census segments and the 
+second one of the qualified respondents within the census segments. Within 
+each census segment, participants were selected by age and gender, according 
+to the national population distribution. The primary sampling units were 
+census segments selected by simple systematic random sampling. The secondary
+sampling units were households. Within each census segment, six households 
+were selected, in which one person completed the interview. The six 
+respondents were selected and interviewed according to gender and age quotas
+determined in accordance with the national population distribution. The 
+sample design also included stratification, as the population was divided 
+into geographic areas (urban and rural). Within each geographic area, random
+selection was used. Participants received a 3 USD telephone recharge. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 El Salvador Study provides a COMBINED DEMOGRAPHIC and POLITICAL
+WEIGHT. The weight ensures that the respondents who took part in the study
+represent, as well as possible, the views of the population. The weight 
+controls for age, education and gender, as well as electoral participation
+and self-reported voting. It was calculated using the raking procedure in
+SPSS.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - FINLAND (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Finnish Parliamentary elections were held on Sunday, April 14,
+2019. Fieldwork for the Finnish election study began three days after the
+election, on April 17, 2019. After 172 days, on October 5, 2019, data
+collection was completed, with the total number of observations from the 
+Finnish Study being 1,598 interviews. Market research company Taloustutkimus 
+Oy conducted the fieldwork, which was initially implemented using 
+face-to-face interviews using an electronic questionnaire (although a 
+subsequent contact by telephone for some respondents was required later - 
+see below for more information). Hence, the study is classified as using a
+mixed-mode approach. The survey was administered in Finnish and Swedish. 
+Respondents were citizens living in Finland who had the right to vote in 
+the Finnish 2019 parliamentary elections (18 years old and older). Citizens
+from Aland Islands were excluded from the sample (approximately 0.65% of 
+the population in Finland).
+
+The sampling method was random route sampling within primary sampling units
+used as starting points. ZIP codes were used as primary sampling units (PSU)
+and these were randomly selected within each stratum. The sample was
+stratified according to Eurostat NUTS-3 regions and degrees of urbanization
+(DEGURBA) and allocated to quotas based on gender, age, area, and degree of
+urbanization. The number of interviews was distributed to each stratum in
+proportion to the 18+ population in each stratum. Overall, 12,442
+households were in the sample. Households were selected so that the
+interviewer was assigned a random starting address within the PSU. Then
+interviewers selected households randomly. The interviewer screened
+household members at the beginning of the interview. If the selected
+respondent fitted the quotas, he/she was eligible for an interview. If an
+individual refused to participate in the interview, another respondent was 
+recruited using random route sampling.
+
+A telephone follow-up with some respondents after the initial fielding 
+of the survey was required due to a programming error by the data
+collection organization. This error impacted two CSES measures, namely, 
+turnout and vote choice variables. To alleviate the issue to the extent
+possible, the fieldwork agency attempted to recontact respondents by 
+telephone impacted by this error (N=288) to ask these respondents the 
+questions that had not been included in the original interview. These 
+respondents were not required to re-do the entire interview, merely the 
+missing questions. Consequently, 173 respondents are classified as having
+completed the interview in a mixed-mode fashion. For more information,
+please consult ELECTION STUDY NOTES for Finland (2019) for variable E1007 
+(Sampling Component), available in Part 2 of the CSES MODULE 5 Codebook.
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Finland Study provides a COMBINED DEMOGRAPHIC and POLITICAL WEIGHT.
+The combined weight (E1010_2 & E1010_3) is constructed according to the 
+results of the 2019 General Election. Weights correct any over- or under- 
+representation in the political party support data. Gender, age, language,
+party choice, and electoral district are variables that were used for the
+construction of the combined weight in the Finland (2019) dataset.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - FRANCE (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 French Presidential elections were held across two rounds: The
+first round was held on Sunday, April 23, 2017, and the second-round 
+run-off held on Sunday, May 7, 2017. Interviewing for the French election 
+study began on May 9, 2017 (two days after Round 2 of the Presidential 
+elections) and continued until May 23, 2017, for a total of 15 days. 
+Kantar Public conducted fieldwork, and the survey was administered in 
+French, face-to-face using an electronic questionnaire. The total number of 
+observations from the France Study is 1,830 interviews. 
+
+The sample is meant to be representative of the voting-eligible population,
+i.e., French citizens who were 18 years or older at the time of the election
+and registered to vote. Institutionalized persons were excluded from the 
+sample, as were citizens living in the overseas territories due to 
+cost considerations.
+
+The sample was realized as a two-stage stratified quota sample. 
+Stratification was based on a matrix cross-tabulating eight regions and four
+different types of agglomeration (with Paris and its suburbs forming one of
+these four categories). From the resulting matrix with 29 valid cells, 100
+primary sampling units were randomly selected at the electoral district 
+level (circonscriptions).
+Within the selected circonscriptions, interviewers were instructed to follow
+random routes starting from a random departure point within the district, 
+including instructions on how to navigate through roads, intersections, 
+city blocks, buildings, and mailboxes.
+
+In the second stage, respondents were selected to match predefined quotas 
+for gender (two categories), age (five categories), level of education (four
+categories), and a combination of occupation (retired or not) and profession
+(six categories). Quotas were designed to match the latest available data 
+from official statistical sources, with one exception: For education, 
+quotas deliberately underrepresent the lowest education level, reflecting 
+differences in voter registration patterns based on education.
+For each of the 100 primary sampling units, Collaborators aimed for 18 
+interviews. 
+
+<<>> POLITY WEIGHTS
+
+The 2017 France Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT. The demographic weight corrects 
+distributions in the sample to known socio-demographic population 
+characteristics (gender, age, occupation, region, size of agglomeration, 
+and respondents' diplomas). 
+The political weight builds upon the demographic weight and additionally 
+adjusts the sample according to the official election results of the first
+and the second round of the 2017 Presidential election.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GERMANY (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 German Federal election was held on Sunday, September 24, 2017. 
+The CSES survey was part of the German Longitudinal Election Study (GLES) 
+post-election cross-sectional component. Fieldwork was administered between 
+September 25 and November 30, 2017 (67 days in total) by Infratest dimap 
+Gesellschaft fuer Trend-und Wahlforschung GmbH. The survey was administered 
+in German face-to-face using an electronic questionnaire. The total number 
+of observations from the Germany Study is 2,032 interviews.  
+
+The sample is designed to be representative of all German citizens with 
+registered residence in Germany, aged 16 and older, who would be eligible 
+to vote in the German Federal elections by polling day. The CSES sample 
+includes respondents aged 18 or over by election day. Residents of islands 
+without land connection and institutionalized persons were excluded from the 
+sampling frame (together, less than 0.3% of the eligible population). 
+
+The survey employed a two-stage stratified random sampling procedure based 
+on resident registers. The primary sampling units were 162 randomly 
+selected sampling points (108 in Western Germany, 54 in Eastern Germany). 
+The sampling points corresponded to a set number of addresses to be 
+selected in the respective municipality during the second stage. Sampling 
+points were allocated to municipalities following a Cox algorithm. Because 
+of the designed oversampling of Eastern Germans, this procedure was 
+conducted separately for Eastern and Western Germany. The allocation 
+procedure of sampling points to municipalities accounted for stratification 
+along regional criteria. Larger municipalities could be allocated multiple 
+sampling points. After the allocation, a total of 162 sampling points were 
+selected by a systematic drawing procedure with random starts for each 
+regional stratum. In case multiple sampling points were drawn in a 
+municipality, the number of addresses selected was increased accordingly. 
+In the second stage, individual respondents were selected from the sampled 
+municipalities. The raw sample of respondents was drawn randomly from the 
+pre-selected municipalities. The selection made use of the state resident 
+register. Again, the procedure used stratification with an age-group x 
+gender-structure matrix. Large municipalities (100,000 inhabitants and 
+above) selected in the first stage were divided into up to 12 spatial 
+clusters. Out of those, four were randomly selected to be included in the 
+individual sampling procedure of the second stage. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2017 Germany Study provides a SAMPLE WEIGHT and a DEMOGRAPHIC WEIGHT.
+The sample weight is designed to account for the oversampling of East 
+German respondents. The demographic weight controls for gender, age, 
+educational attainment, functional regional centrality/periphery, and 
+residence in Eastern or Western Germany. Weights were calculated with an  
+iterative proportional fitting procedure. The weighting factors calculated 
+at each step are used as the basis for the respective following steps. 
+Excessively large individual weighting factors were avoided by trimming 
+to a set maximum after each step.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GERMANY (2021)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2021 German Federal election was held on Sunday, September 26, 2021.
+The elections and fieldwork took place during the COVID-19 pandemic. The 
+CSES survey was part of the German Longitudinal Election Study (GLES) 
+post-election cross-sectional component. Fieldwork was administered between 
+September 27 and November 31, 2021 (56 days in total) by Kantar Public, 
+Germany. The questionnaire was administered in German. Respondents could 
+self-select into two self-administered modes (mixed-mode approach), namely: 
+an Internet survey and a self-completion mail-back questionnaire. 
+To encourage participation in the Internet segment, Collaborators employed a 
+push-to-Internet design, in which sampled persons younger than 70 were only
+provided with the weblink initially and received the paper questionnaire 
+with the second reminder. The total number of observations from the Germany
+Study is 3,152 interviews.
+
+The sample is designed to be representative of all German citizens with 
+registered residence in Germany, aged 16 and older, who would be eligible 
+to vote in the German Federal elections by polling day. The CSES sample 
+includes respondents aged 18 or over by election day. Residents of islands 
+without land connection and institutionalized persons were excluded from the 
+sampling frame (together, less than 0.3% of the eligible population). 
+
+The survey employed a two-stage stratified random sampling procedure based 
+on resident registers. The primary sampling units were 162 randomly 
+selected sampling points (108 in Western Germany, 54 in Eastern Germany). 
+The sampling points corresponded to a set number of addresses to be 
+selected in the respective municipality during the second stage. Sampling 
+points were allocated to municipalities following a Cox algorithm. Due to 
+the designed oversampling of Eastern Germans, this procedure was conducted
+separately for Eastern and Western Germany. The allocation procedure of 
+sampling points to municipalities accounted for stratification along 
+regional criteria, such that larger municipalities could be allocated 
+multiple sampling points. 
+
+After the allocation, a total of 162 sampling points were selected by a 
+systematic sampling procedure with random starts for each regional stratum.
+In cases where multiple sampling points were drawn within a municipality, 
+the number of addresses selected was increased accordingly. 
+In the second stage, individual respondents were selected from the sampled 
+municipalities. The raw sample was drawn randomly from the pre-selected
+municipalities based on state resident registers. Again, the procedure used
+stratification with an age-group x gender-structure matrix. Large 
+municipalities (100,000 inhabitants and above) selected in the first stage
+were split into up to 12 spatial clusters. Out of those, four were randomly
+selected to be included in the individual sampling procedure of the second
+stage. Sampled individuals were invited to the survey by mail. 
+Invitation letters included a link to the online version of the 
+questionnaire. All persons within the sample received an unconditional 
+pre-paid incentive of 5 EUR and up to two reminders. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2021 Germany Study provides a SAMPLE WEIGHT and a DEMOGRAPHIC WEIGHT. 
+The sample weight is designed to account for the oversampling of East 
+Germans. The demographic weight adjusts the sample to known population 
+distributions regarding gender, age, educational attainment, functional 
+regional centrality/periphery, and residence in Eastern or Western Germany. 
+Weights were calculated through iterative proportional fitting (IPF). 
+Hence, the weighting factors calculated at each step were used as the basis
+for the respective following steps. Excessively large individual weighting 
+factors were avoided by trimming to a set maximum after each step.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GREAT BRITAIN (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 British general election took place on Thursday, June 8, 2017. 
+The post-election survey, part of the larger British Election Study (BES), 
+was fielded between June 26, 2017, and October 2, 2017, lasting 96 days. 
+The data was collected by a consortium of three fieldwork agencies: Gfk, 
+Kantar Public, and NatCen. The fieldwork was coordinated by Gfk. 
+
+The survey was principally administered face-to-face using an electronic 
+questionnaire, although some CSES questions were included in the self-
+completion questionnaire, which respondents could choose to self-complete  
+and mail-back or do so via the Internet (i.e., mixed-mode). Hence, 
+respondents could self-select into interview modes for the supplementary 
+questionnaire. The survey was administered in English, with the total number
+of observations from the Britain Study being 984 interviews (37% of which 
+were a mix of face-to-face and mail self-completion, and the remaining 63%
+a mix of face-to-face and the Internet). 
+
+The sample is representative of the population of 18 years and older 
+inhabitants living in Great Britain who were eligible to vote in the 2017 
+election. Those who are eligible to vote are British citizens, citizens of 
+the Republic of Ireland and citizens of a Commonwealth country with the 
+right to remain in the UK. The sampling frame is restricted to mainland
+Britain and does not include Northern Ireland or any other island territory,
+estimated to be less than 0.25% of the eligible population. The sample frame 
+also omitted institutionalized people, defined here as individuals who
+in incarceration, persons in residential care, or military personnel based
+overseas), as the sample was drawn from the Small User Postcode Address File 
+(PAF), which does not include these individuals. 
+
+The sample was selected based on a multi-stage design based on: (1) a 
+stratified random sample of 234 Parliamentary constituencies in mainland 
+Britain; (2) two Lower Layer Super Output Areas (LSOAs) per constituency 
+which were selected with probability proportional to size, (3) selection of 
+addresses from the Small User Postcode Address File (PAF), and (4) one 
+individual randomly selected per address by the interviewer. 
+The primary sampling units are parliamentary constituencies in mainland
+Britain (234 from 630 were sampled). In the first stage, the constituencies 
+were stratified by country and then (within England) by Region. Within each 
+country/region, constituencies were classified by party competition, defined 
+as a combination of winning party and party competition from the 2010 
+election. The final stage of stratification was to sort the constituencies 
+within each cell from the least to the most marginal. The constituencies 
+were then selected with probability proportional to population size.
+At each address, the interviewer established the number of dwellings, then 
+households, and finally people aged 18 or over who were eligible to vote in 
+the general election. At each of these levels, if there was more than one 
+unit present, one was selected by the interviewer using a Kish grid, 
+randomized for each address. Respondents received a gift voucher between 
+10 GBP and 25 GBP for their participation.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2017 Great Britain Study provides a COMBINED SAMPLE and DEMOGRAPHIC 
+WEIGHT. 
+There were two weights that were applied: selection weights to correct for
+unequal selection probabilities and post-stratification weights, accounting
+for differing levels of response from various groups in the population.
+The combined weight included in CSES was constructed after Collaborators
+found several demographics need to be considered for the non-response
+weighting. They decided that the demographics that should be corrected were
+age, gender, and region. The targets for these were taken from the Office 
+for National Statistics (ONS) mid-year population estimates, and weights 
+were calculated after the selection weights had been applied.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GREAT BRITAIN (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 British general election took place on Thursday, December 12, 2019.  
+The post-election survey, part of the larger British Election Study (BES), 
+was fielded between December 21, 2019, and July 13, 2020. The election took
+place before the COVID-19 pandemic declared on March 11, 2020. However, 
+fieldwork was partially conducted during the pandemic, lasting longer than 
+initially anticipated and involving a mixed-mode strategy due to COVID-19 
+pandemic restrictions. 
+
+Fieldwork was administered by a consortium of two fieldwork agencies: 
+Ipsos and NatCen. Fieldwork commenced nine days after polling day on 
+December 21, 2019, and lasted 206 days, with the survey administered in 
+English. Initially, the mode of interview was planned to be in-person using 
+an electronic questionnaire. However, when lockdown restrictions arising 
+from the COVID-19 pandemic were implemented in Britain in spring 2020, the 
+study adopted a mixed-mode approach, with a push-to-mail and push-to-
+Internet strategy. Hence, respondents could self-select into self-
+administered interview modes. Twenty-two percent (573 respondents) of the 
+sample in part responded to the survey face-to-face using an electronic 
+questionnaire. The remaining segment of the sample (1,914 respondents) were
+interviewed via the Internet or self-completion mail questionnaire or a 
+mixture of face-to-face (electronic questionnaire), and Internet or self-
+completion mail. The total number of observations from the Britain Study is
+2,537 interviews. 
+
+The sample is representative of the population of 18 years and older 
+inhabitants living in Great Britain who were eligible to vote in the 2019 
+election. Those who are eligible to vote are British citizens, citizens of 
+the Republic of Ireland and citizens of a Commonwealth country with the 
+right to remain in the UK. The sampling frame is restricted to mainland
+Britain and does not include Northern Ireland or any other island territory,
+estimated to be less than 0.25% of the eligible population. The sample frame 
+also omitted institutionalized people, defined here as individuals who were
+in incarceration, persons in residential care, or military personnel based
+overseas), as the sample was drawn from the Small User Postcode Address File 
+(PAF), which does not include these individuals. 
+The sample was selected based on a multi-stage design based on (1) a 
+stratified random sample of 400 Parliamentary constituencies, (2) two Lower 
+Layer Super Output Areas (LSOAs) per constituency, which were selected with  
+probability proportional to size, (3) selection of addresses from the Small  
+User PAF, and (4) one individual randomly selected per address by the 
+interviewer. The primary sampling units are parliamentary constituencies in 
+mainland Britain (400 out of 630 are sampled). 
+
+In the first stage, the constituencies were stratified by country and then 
+(within England) by Region. Within each country/region, constituencies were
+classified by party competition, defined as a combination of winning party 
+and party competition from the 2010 election. The final stage of 
+stratification was to sort the constituencies within each cell from the 
+least to the most marginal. The constituencies were then selected with 
+probability proportional to population size.
+At each address, the interviewer established the number of dwellings, then 
+households, and finally people aged 18 or over who were eligible to vote in 
+the election. At each of these levels, if there was more than one unit 
+present, one was selected by the interviewer using a Kish grid, randomized 
+for each address. Respondents received a gift voucher between 10 GBP and 25 
+GBP for their participation. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Great Britain Study provides a DEMOGRAPHIC WEIGHT. The weight 
+ensures that the respondents who took part in the study represent the views 
+of the population. It was constructed after Collaborators found several 
+demographics needed to be considered for the non-response weighting. They 
+decided that the demographics that should be corrected were age, gender, 
+education and region. The targets for these were taken from the Office for 
+National Statistics (ONS) mid-year population estimates.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GREECE (2015)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+Parliamentary elections in Greece were held on Sunday, September 20, 2015.
+This post-election cross-sectional study fielded the CSES MODULE 5 pilot 
+questionnaire. The fieldwork started 39 days after the election and ran 
+from October 29, 2015, to February 29, 2016 (106 days in total). Data 
+collection was conducted by the School of Political Sciences at the 
+Aristotle University of Thessaloniki. The survey was fielded in Greek and 
+is meant to be representative of all Greek citizens with voting rights (18
+years of age and older). The study employed a mixed-mode approach: telephone 
+and Internet. Respondents were recruited via telephone and offered to
+complete the survey via either mode if they did not have an e-mail address 
+or Internet access. Hence, respondents could self-select into interview 
+modes. With this recruitment procedure, approximately 18% of households in
+Greece were excluded because they did not have a phone. The total number of
+observations from the Greece Study is 1,078 interviews.
+
+The geographical area was sampled at the first stage, and the area code was
+identified. In stage two, the telephone numbers were selected by random
+sampling. Random Digital Dialing (RDD) method was used to select
+respondents for the study. The individual who answered the phone call was
+asked to participate in the survey after verifying that they were eligible 
+to vote. If the respondent had an e-mail address, he/she would be
+encouraged to fill out the questionnaire online. If the respondent had no
+e-mail address or Internet access, they would be offered a telephone
+interview. More than 800 respondents from the study conducted after the
+January 2015 elections said they were willing to participate again. They
+were also contacted, either via e-mail or via telephone. Up to four 
+follow-up reminders were sent through email to all the respondents to
+increase the response rate of the survey. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2015 Greece Study provides a DEMOGRAPHIC WEIGHT. The Weight was
+constructed using the method of raking on gender, age and education. With
+post-stratification, the population was partitioned into subgroups, then the
+original weights (in Greek case all equal to one) were multiplied by a 
+ratio which was formed by the corresponding population post-stratum size 
+in the nominator and the corresponding sample post-stratum size in the 
+denominator. Raking allows multiple grouping variables to be used by 
+post-stratifying on each variable in turn, and the process was repeated 
+until the weights stopped changing.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - GREECE (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Greek Parliamentary election was held on Sunday, July 7, 2019. 
+The 2019 Greek study was a post-election cross-sectional Internet survey 
+that was conducted between December 12, 2019, and March 7, 2020 (96 days 
+in total). The survey was administered in Greek and the School of Political 
+Sciences, Aristotle University of Thessaloniki was responsible for data 
+collection. The total number of observations from the Greece Study is 1,324 
+interviews. 
+
+The sample is meant to be representative of registered voters, that is, 
+Greek citizens aged 17 or above. Respondents were recruited via random digit 
+dialing of mobile phone numbers, such that individuals were the primary 
+sampling unit. Before their inclusion into the sampling frame, Collaborators 
+verified mobile phone numbers were active. Respondents not owning a personal
+mobile phone were excluded from the sampling frame (about 1% of the total 
+eligible population according to a 2021 Eurobarometer survey). 
+The individual who answered the phone call was asked to participate in the
+online survey after verifying their eligibility to vote. Collaborators 
+initially planned on offering alternative modes but eventually refrained 
+from doing so after contacting about one-third of sample members, as less 
+than 1% preferred a different mode to Internet interviews. Up to four 
+follow-up reminders were sent through SMS to all respondents to increase 
+the survey's response rate. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Greece Study provides a SAMPLE WEIGHT and a COMBINED SAMPLE and 
+DEMOGRAPHIC WEIGHT. The sample weight compensates for disproportionate 
+selection probabilities and was calculated as one divided by the number of 
+cell phones owned by an individual. 
+The combined sampling and demographic weight is built on top of the sampling
+weight and adjusts the data to match known demographic characteristics in
+the voting population (gender, age, education, and region of residence). 
+It was constructed using raking and trimmed at a value of 8.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - HONG KONG (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2016 elections to the Hong Kong Legislative Council (LegCo) were held
+on Sunday, September 4, 2016. This post-election cross-sectional study 
+fielded the CSES MODULE 5 pilot questionnaire and was a telephone survey, 
+conducted between September 6 and September 18, 2016 (13 days in total). 
+Fieldwork was administered by the Public Governance Programme, with the 
+survey administered in Cantonese and Putonghua. The total number 
+of observations from the Hong Kong Study is 1,020 interviews. 
+
+The sample is meant to be representative of registered voters, that is, 
+permanent residents of Hong Kong who are aged 18 or above. Institutionalized 
+persons were excluded from the sample (at most 0.3% of the total eligible 
+population). The same is true for military personnel who do not have 
+permanent residency in Hong Kong and therefore are not eligible to vote. 
+As fixed-line telephone numbers were called for interviews, other possible 
+exclusions resulted from an unknown percentage of residents without a 
+fixed-line phone connection. The residential fixed-line penetration rate 
+(RFLPR) was used as a proxy measurement and suggested that for every 100 
+households, there were 94.5 fixed telephone lines in 2016 in Hong Kong. 
+However, as some households have more than one fixed line, the number of 
+households without a fixed line is unknown. The total percentage of excluded 
+persons from the sample was estimated to be 5.8%.  
+
+The study was realized as a two-stage random sample. In the first stage, 
+phone numbers were selected randomly from the pool of numbers maintained by 
+Collaborators. The last two digits were exchanged with random numbers to 
+account for numbers not listed in the sampling frame. 
+In the second stage, individual respondents were randomly selected from the 
+households called. The person answering the phone call was asked how many 
+registered voters lived within the household. That number was logged, and
+from this, a random draw would determine one eligible person for interview. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2016 Hong Kong Study provides a DEMOGRAPHIC WEIGHT. It was constructed
+to correct for known divergences of the sample in comparison to the 
+population of registered voters. The weights take the distributions of age
+and gender into account, as indicated by official statistics. For each 
+particular age-gender category, the weight was obtained by dividing the 
+share of persons in the population for that category by the share of 
+respondents in the sample for that category.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - HUNGARY (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Hungarian Parliamentary election took place on Sunday, April 8, 
+2018. Interviewing for the Hungarian post-election study started 15 days 
+after the election, on April 23, with fieldwork lasting 13 days. The survey 
+was fielded in Hungarian, using face-to-face interviewing with an electronic
+questionnaire and was administered by Median Opinion and Market Research 
+Institute from Budapest, Hungary. All individuals residing in Hungary who
+are 18 years and older and have the right to vote were eligible respondents
+for the study. Institutionalized persons were excluded from the sample. 
+The total number of observations from the Hungary Study is 1,208 interviews. 
+
+The sample for the study was created using the multi-stage randomized
+procedure. In the first stage, 120 sampling units representative of the
+local population were selected based on the census data of the Hungarian
+Central Statistical Office (KSH). Then 20 addresses from each sampling unit
+were drawn. In the final stage, at each address, interviewers only
+interviewed one member of the household determined using the Leslie Kish
+key. In total, 1,097 interviews were conducted using this process, although
+120 interviews were excluded after audio recordings of the interviews 
+were assessed, yielding 957 completed and verified respondents. 
+
+However, the composition of the sample was heavily distorted regarding 
+gender and age. The distortion of the sample was compensated in an 
+additional round of data collection by determining quotas based on gender 
+and age and the missing components of the study. Through this process, 251 
+additional interviews were collected, yielding 1,208 participants in total.  
+
+
+<<>> POLITY WEIGHTS
+
+The 2018 Hungary Study provides a DEMOGRAPHIC WEIGHT. This weight was 
+designed to compensate for the demographic distortions of the sample and is 
+based on census data. The weight is calculated based on four dimensions: 
+gender, age (five categories), place of residence (three categories) and 
+education. Extreme values on the weight variable are recoded to the interval 
+between the minimal (0.3) and maximal (3.5) values.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ICELAND (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2016 Icelandic lower house election took place on Saturday, October 29, 
+2016. Fieldwork for the post-election study began on October 30, 2016, 
+lasting 87 days, and finishing on January 25, 2017. All interviews were 
+conducted by the Social Science Research Institute of the University of 
+Iceland via telephone (landline and cell phones). The survey was
+administered in Icelandic. 
+
+The total number of observations from the Iceland Study is 1,295 interviews.  
+The sample is meant to be representative of the eligible voting population 
+in Iceland (aged 18 or older). The primary sampling unit was individual 
+voters on the Iceland National Register. Individuals were selected from the 
+register using a simple random sample. This method yielded 2,600 potential 
+respondents in the final sample. Approximately 9.9% of the population were 
+excluded from the initial sampling procedure because they were listed as 
+"Do Not Call" in the National Iceland Register.
+ 
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ICELAND (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 Icelandic lower house election took place on Saturday, October 28,
+2017. Fieldwork for the post-election study began two days later, on October 
+30, 2017. The fieldwork period lasted for 83 days and was completed on 
+February 2, 2018. All interviews were conducted by the Social Science 
+Research Institute of the University of Iceland via telephone (landline and 
+cell phone). The survey was administered in Icelandic. 
+
+The total number of observations from the Iceland Study is 2,073 interviews. 
+The sample is meant to be representative of the eligible voting population 
+in Iceland (aged 18 or older). The primary sampling unit was individual 
+voters on the Iceland National Register. Individuals were selected from the 
+register using a simple random sample. The generated sample included 4,000 
+people who were sent a letter informing them about the study. Approximately 
+9.9% of the population was excluded from the initial sampling procedure 
+because they were listed as "Do Not Call" in the National Iceland Register.
+
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - INDIA (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Indian general election was held across seven phases between 
+Thursday, April 11, 2019, and Sunday, May 19, 2019. Fieldwork for the post-
+election study was conducted between May 15 to May 26, 2019 (12 days in
+total), by Cicero Associates & Consultants Pvt Ltd. All respondents eligible
+to vote, including those participating in the election in the seventh phase
+(on May 19, 2019), were interviewed after they had cast their ballot (i.e.,
+all interviews were conducted post-election). The survey was administered 
+face-to-face using an electronic questionnaire and in the following eleven 
+languages: Assamese, Bengali, Gujarati, Hindi, Kannada, Malayalam, Marathi,
+Oriya, Punjabi, Tamil, and Telugu. The total number of observations 
+from the India Study is 13,963 interviews.
+
+The sample is designed to represent all eligible voters within India's 
+largest 19 largest states, that is, citizens aged 18 and above who were 
+registered to vote. Out of India's 543 parliamentary constituencies, 509 
+are located in the 19 largest states covered in the survey. The states 
+excluded from the sampling frame are part of the hill states of the 
+Himalayan range or small Union Territories with five or fewer Parliamentary
+Constituencies (4.0% of the total voting-eligible population).
+
+The survey employed a multi-stage stratified random sample design. In the
+first stage, 336 assembly segments were sampled from India's 19 largest 
+states using the Probability Proportionate to Size (PPS) random sampling
+technique. These assembly segments constituted the primary sampling unit and 
+were finalized after checking demographic and political representativeness
+against demographic data from India's 2011 Census and past official election
+results. Within each sampled assembly segment, two polling booths were 
+randomly sampled by systematic random sampling. Afterward, the latest 
+electoral rolls for all 672 sampled polling stations were downloaded from
+India's election commission website. From each list, 30 voters were selected
+again by systematic random sampling. The sampled individual was substituted
+in case of non-contact with the housing unit after two callbacks or 
+refusals. For this purpose, separate lists of randomly sampled substitute
+respondents within the polling station were maintained. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 India Study provides one combined SAMPLE, DEMOGRAPHIC and 
+POLITICAL WEIGHT. The weight adjusts the data to match known demographic 
+characteristics (state, gender, locality, religious denomination, 
+caste groups) and vote choice. 
+Furthermore, the weight adjusts for over- or under-representation of Indian
+States in the dataset. The survey covered 19 big states of India, 
+representing 96.0% of the total electorate. Hence, the remaining states 
+not covered by the survey represent 4.0% of eligible voters. The weight 
+adjusts this 4.0% proportionately to the size of the sampled states. All 
+remaining weighting variables were applied at the national rather than the
+state level.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - IRELAND (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2016 Irish general election took place on Friday, February 26, 2016.
+This post-election study fielded the CSES MODULE 5 pilot questionnaire, 
+with fieldwork beginning on March 1, 2016, and being completed on March 6, 
+2016 (6 days in total). The fieldwork was administered by REDC Research & 
+Marketing Ltd. The survey was fielded in English via telephone. The total 
+number of observations from the Ireland Study is 1,000 interviews.
+
+To be eligible for inclusion in the study, respondents had to be Irish 
+citizens and be at least 18 years old. Institutionalized persons were 
+excluded from the sample. 
+The sample was drawn in two stages. In the first stage of the sampling 
+procedure, the field institute used the random digit dial (RDD) method to 
+randomly select households. These respondents were interviewed in twelve 
+pre-election polls leading up to the election. Half of the sample was 
+interviewed using an RDD landline, the other half using an RDD mobile phone 
+line. Approximately 65% of the respondents interviewed in the pre-election 
+polls agreed to be re-contacted for the post-election study in which the 
+CSES questionnaire was administered. This led to a sample poll of 8,000 
+respondents. A random contact approach was conducted among this set of
+respondents, applied to both landline and cell phones. The sample was 
+stratified along quotas so that it would accurately represent the 
+electorate. If necessary, to fulfill the quotas, new interviews from the 
+initial RDD were conducted. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2016 Ireland Study provides a DEMOGRAPHIC WEIGHT. The weight adjusts the 
+sample to match known demographic characteristics in the voting age 
+population (age, class, gender, and region).
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ISRAEL (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2020 Israeli legislative election was held on Monday, March 2, 2020. 
+The post-election survey was fielded between June 7, 2020, and August 6, 
+2020 (51 days). The election took place before the COVID-19 pandemic was 
+declared a pandemic on March 11, 2020, although fieldwork for the 2020 study 
+was conducted during the pandemic. The survey was administered by telephone 
+in Hebrew and Arabic. The fieldwork was carried out by the B.I. and Lucille 
+Cohen Institute for Public Opinion Research and funded by the Israeli 
+Science Foundation. The total number of observations from the Israel Study 
+is 1,209 interviews.
+
+To be interviewed, a person needed to be an Israeli citizen above 18 years 
+old. Institutionalized persons were excluded from the sample as sampling was 
+done using the country's official household registrar, which only includes 
+registered landline telephone numbers. The primary sampling units (PSU) 
+were individuals in households. These PSUs were selected using random 
+sampling from the national household registrar. 
+The sampling was conducted in two stages. In the first stage, a random 
+sample of adult citizens was compiled based on the national household 
+registrar. In the second stage, this sample was matched with phone numbers. 
+Only one adult in each household was interviewed. Respondents' identity was 
+verified verbally using full name and surname, including middle name
+when relevant. A household was designated non-sample when there was no 
+answer after five callbacks or all members of the household were deemed 
+ineligible. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2020 Israel Study provides a DEMOGRAPHIC WEIGHT. This weight adjusts the 
+sample to match known demographic characteristics in the voting age 
+population (age, gender, education, ethnic group). The post-stratification 
+weight was calculated using an iterative proportional fitting algorithm 
+(raking). To ensure that no single respondent receives too much influence 
+over weighted estimates, the final weights were trimmed using an upper 
+threshold of four.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ITALY (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Italian general election, involving elections to both the lower 
+and upper house, took place on Sunday, March 4, 2018. Fieldwork for the 
+study began four days later, on March 8, 2018, lasting 55 days, ending on 
+May 2, 2018. All surveys were administered by Demetra Opinioni.net, using
+a mixed-mode approach with respondents interviewed by telephone, cell phone,
+and the Internet. The total number of observations from the Italy Study is 
+2,001 interviews.
+
+The sample is meant to be representative of the voting age population 
+according to eligibility rule for the lower house elections, namely: Italian 
+residents aged 18 or older. The region Valle d'Aosta/Vallee d'Aoste and 
+the province Bolzano/Bozen were excluded from the sample frame because 
+voters living in the region voted under different electoral rules compared 
+to the rest of Italy. This resulted in the exclusion of approximately 1.5% 
+of the eligible voting population.
+
+The sample was drawn in two ways. Stage 1 involved Collaborators randomly 
+drawing electoral districts within seven macro areas excluding large urban 
+areas. Nine large urban areas were denoted and considered separately. 
+This sampling at the first stage produced 92 clusters, 83 districts and 
+9 urban areas. Stage 2 involved a random selection of districts for 
+non-urban areas, while individuals were randomly sampled in the urban areas. 
+Based on this sampling approach, the field institute selected respondents 
+for an Internet component of the study, a landline telephone component, 
+and a cell phone component. 
+
+For the Internet component (N=501), panelists of an existing Demetra 
+Opinioni.net Internet panel (total N of panel=13,734; initial recruitment by 
+telephone) were randomly selected within the selected districts from the 
+first sampling step as well as the nine larger cities. The chosen panelists 
+were invited to participate in the study via e-mail and provided with the 
+opportunity to complete the survey online. These respondents were offered a
+telephone top-up voucher or Amazon voucher worth 1EUR upon completion. Of 
+the approximately 800 panel respondents invited to participate, 59.6% 
+(N=501) did so (3.7% of the total panel). 
+
+For the second set of respondents (N=1,501), respondents were selected 
+using a dual frame (66% list frame and 34% Random Digit Dialing) through 
+random digit dialing based on the national phone book and random digit 
+dialing for cell phone interviews. Respondents selected from the 
+national phone book were interviewed using Computer Assisted Telephone 
+Interviewing (N of completed interviews=1,000) and respondents selected by
+random digit dialing for cell interviews were interviewed using Computer- 
+Assisted Mobile Interviewing (N of completed interviews=500). Respondents 
+chosen for the mobile phone interviews were asked at the beginning of the 
+interview about the city and neighborhood they resided in. If they did not
+live in a city or district sampled in the first stage, the interviews were
+canceled, and the respondents were flagged as ineligible. In total, the 
+two-stage sampling procedure resulted in approximately 20 interviews per 
+electoral district (range: 14 to 26 interviews) except for Milan (73 
+interviews), Naples (38 interviews), Rome (102 interviews) and Turin (47 
+interviews), where more respondents were interviewed. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2018 Italy Study provides a SAMPLE WEIGHT, a DEMOGRAPHIC WEIGHT, and 
+a POLITICAL WEIGHT, each of which was created for the whole sample. The 
+sample weight (E1010_1) adjusts the sample to correct for the different 
+selection probabilities of clusters (i.e., constituencies and large cities) 
+within different macro-areas as well as for the different probabilities of 
+selection of individuals within clusters. 
+The demographic weight (E1010_2) adjusts the sample to match known 
+demographic characteristics, namely gender (male, female), age group 
+(18-44, 45-59, 60+), geographical area (north, center, south), and 
+education (low, middle, high). The political weight (E1010_3) adjusts the 
+sample to the population frequencies by vote shares of the major coalitions 
+and parties (center-right and center-left) in the lower house election and  
+abstainers at the regional level. 
+Because the voting age differs between the lower house (18 years and older) 
+and the upper house (25 years and older), users should be aware that 
+applying any of the three weights when analyzing upper-house elections may
+result in non-representative results. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - JAPAN (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 Japanese general election was held on Sunday, October 22, 2017.
+Fieldwork for the Japanese study began on January 12, 2018 and was completed
+on March 13, 2018 (61 days in total). The survey was administered by The 
+Central Research Services, Inc. The study employed a mixed-mode approach. 
+Most data were collected face-to-face, using a paper questionnaire. 
+Respondents not reached in person were sent a copy of the questionnaire to
+self-complete and mail-back. Surveys were administered in Japanese.
+Respondents were adult citizens (18 years old and older) who held Japanese 
+citizenship and were registered voters for the 2017 general election. 
+The total number of observations from the Japan Study is 1,688 interviews.
+
+The sample for the Japanese study was drawn randomly in a stratified 
+multi-stage procedure. Electoral district's "chiten" (comparable to 
+precincts in the US) were the primary sampling unit, stratified by region
+(eleven categories) and city size based on the following five categories:
+21 big cities, cities with a population of more than 200,000, cities with 
+more than 100,000 inhabitants, other smaller cities, and towns or villages.
+This resulted in an 11 x 5 table with 55 cells. The number of chitens 
+(220 in total) was assigned to each cell proportionally to the size of the 
+population. Within the 220 chiten, 3,000 individuals were randomly selected
+from municipalities' electoral registers. These voter registration lists 
+provide names, gender, and age of the sampled individual, allowing 
+interviewers to assess respondents' identities before the interview. 
+After their participation, respondents received a voucher worth 1,000 JPY
+(roughly 10 USD). 
+
+
+<<>> POLITY WEIGHTS
+
+The 2017 Japan Study provides a COMBINED SAMPLE and DEMOGRAPHIC WEIGHT 
+and a DEMOGRAPHIC WEIGHT.
+The combined weight (E1010_1) corrects for variations in response rates 
+between geographic regions and demographic characteristics, while the
+demographic weight (E1010_2) only corrects for demographic characteristics.
+The combined weight was constructed using the categories of gender by age by
+location. The age variable was grouped into five categories, and the
+location was grouped into six categories to avoid using 11 locations and
+small weighting cells, given that the Japanese sample includes only 1,688 
+respondents in total. The demographic weight was constructed using gender 
+by age, with age being grouped into five categories.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - LATVIA (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN    
+
+The 2018 Latvian parliamentary elections were held on Saturday, October 6,
+2018. Fieldwork for the study began 39 days after the elections and was 
+conducted between November 14, 2018, and December 1, 2018 (18 days in 
+total). The fieldwork was carried out by TNS Latvia. The survey was 
+administered in Latvian and Russian via face-to-face interviews using an 
+electronic questionnaire. The total number of observations from the Latvia 
+Study is 1,011 interviews.
+
+The sample is meant to be representative of Latvian citizens aged 18-75 
+years old at the time of the election. The study employed a stratified 
+four-stage quasi-random probability approach. The size of each geographic 
+region determines proportionally the number of sampling points to be 
+allocated for each stratum. In total, there were four stages of sampling: 
+1) selection of sampling points; 2) selection of addresses; 3) selection of 
+households; and 4) selection of respondents. 
+
+The selection of sampling points comes from a list of Latvia's populated
+points with the number of citizens designating size. These are sorted by 
+region, district and urbanization level to ensure appropriate representation
+of regional and urban populations. The planned number of sample points is 
+calculated based on the assumption of 10 interviews per sample point. A 
+random number procedure determines the starting point in the list of cities 
+or parishes from which the selection of addresses/households starts. 
+Households are selected according to the route instructions - each second 
+dwelling in apartment buildings, each second home in an area of individual 
+houses; ascending or descending sequence varies depending on odd and even 
+sizes of the streets. In the last stage, individuals were selected granting
+precedence to the youngest male in the household. At each address, the
+interviewer clarified who of the present household members was the youngest
+man. If no male was present during the visit, the youngest woman in the 
+household was selected for the interview. If selected persons refused to 
+participate or could not be contacted after two visits, the household was
+dropped from the sample.
+
+
+<<>> POLITY WEIGHTS
+
+The 2018 Latvia Study provides a DEMOGRAPHIC WEIGHT. This weight was 
+designed to make the data representative of the total population by age, 
+nationality, region, type of residence, and gender. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - LITHUANIA (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The first round of Parliamentary elections in Lithuania was held on Sunday,
+October 9, 2016. In constituencies where no candidate won the required 
+majority, the second round of elections was held on Sunday, October 23, 
+2016. Interviewing for the Lithuanian post-election study started 33 days 
+after the first round on November 11, 2016, running for thirty days.  
+Baltic Surveys Ltd from Vilnius, Lithuania, conducted the fieldwork. 
+The survey was administered in Lithuanian, using face-to-face interviews 
+with a paper questionnaire. The study is meant to be representative of
+all citizens of Lithuania aged 18 years or older who are registered to 
+vote, with only homeless people being excluded from the sample frame.
+The total number of observations from the Lithuania Study is 1,500 
+interviews.
+
+The sample for the study was created using multi-stage stratified 
+proportional sampling. In the first stage, based on the Nomenclature of
+Territorial Units as used in the official EU statistics, the Republic of
+Lithuania was divided into ten administrative units (counties). Then, the
+total number of interviews in each survey region (county) was allocated to
+six strata in proportion to the population of each stratum. The stratum is
+defined by settlement size. In the third stage, primary sampling units 
+were randomly selected from each stratum (county and settlement size 
+combination cell) list. After that, households were selected using the
+random route from the starting point, and respondents within households 
+were selected by using the "last birthday rule" among all household members 
+aged 18 years and older. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2016 Lithuania Study provides a DEMOGRAPHIC WEIGHT. This weight was 
+designed to make the data representative of the total population by gender, 
+age and urban/rural population. Weights were calculated by dividing counts 
+based on official statistics with those achieved in the survey sample.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - LITHUANIA (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The first round of Lithuania's Parliamentary elections were held on Sunday,
+October 11, 2020. In constituencies where no candidate won the required 
+majority, the second round of elections was held on Sunday, October 25, 
+2020. The election and the fieldwork for the study took place during the
+COVID-19 pandemic. Fieldwork for the Lithuanian study started on January 21,
+2021, 102 days after the first round (88 days after round 2) and was 
+completed on February 21, 2021 (32 days in total). UAB Norstat LT was 
+responsible for fieldwork, and the survey was administered in Lithuanian. 
+The study is meant to be representative of all Lithuanian citizens aged 18
+years or older registered to vote. The total number of observations from 
+the Lithuania Study is 1,781 interviews.
+
+Respondents were interviewed via the Internet due to COVID-19 pandemic 
+restrictions. The sample was recruited via telephone using random digit 
+dialing (dual-frame with 10% landline and 90% cell phone numbers). Hence, 
+telephone numbers were the primary sampling unit. However, respondents 
+without telephone access were excluded from the sampling frame. 
+All phone numbers used for recruiting interviewees were randomly generated 
+as follows: All numbers started with "8" as the first digit, the general 
+code for dialing within Lithuania. In a second step, city or mobile dialing
+codes were added randomly. The remaining five or six digits were selected
+randomly as well, resulting in a final nine-digit number. In total, 120,000 
+randomly generated numbers were uploaded into the calling systems and used 
+for the survey. Depending on whether interviewers worked from the office or 
+remotely, two different calling systems were used.
+
+After a short telephone screening interview assessing eligibility, 
+respondents were invited to participate in the online survey upon providing 
+their mobile phone number or email address. If interviewees refused to 
+participate via the Internet, they were invited to answer a selected subset 
+of the questionnaire via telephone. However, as only a subset of CSES
+survey questions were asked with this approach, the 47 respondents who 
+participated in this way are not included in the CSES. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2020 Lithuania Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT. Both weights were constructed using the 
+function "rake()" available in the R-package "survey". The demographic 
+weight corrects distributions in the sample to known socio-demographic 
+population characteristics (gender, age, education, and settlement size) 
+based on the Lithuanian official statistics portal. 
+The political weight builds upon the demographic weight, additionally 
+adjusting the sample according to district candidate votes in the first 
+round of the 2020 Lithuanian parliamentary election, based on numbers 
+provided by Lithuania's Central Electoral Commission. 
+Due to sample imbalances, some of the weights were unusual in size. 
+Therefore, both weights were trimmed to range between 0.2 and 5 using the
+function "trimWeights()" available in the R-package "survey". In total, 
+weights for 12 respondents were trimmed for the demographic and 133 for the 
+combined weight (0.7% and 7.5% of the sample, respectively). 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - MEXICO (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Mexican general elections took place on Sunday, July 1, 2018. The 
+Mexican study featured a pre and post-election panel design in which 
+respondents were interviewed four times: twice before the general election 
+and twice after. The CSES sample comprises the third wave of interviews, 
+with 47.7% of respondents from the first pre-election wave completing the
+the third wave and thus answering the CSES survey. The total number of 
+observations from the Mexico Study is 1,239 interviews. 
+
+Post-election interviewing featuring the CSES survey started on July 12, 
+2018 and was completed on July 18, 2018 (7 days in total). Ipsos Mexico 
+conducted the fieldwork, administering the survey face-to-face using an 
+electronic questionnaire and in Spanish. The study is meant to be 
+representative of the national population aged 18 years or older, excluding 
+those who were institutionalized at the time of the survey (approx. 0.06% 
+of the total eligible population).
+
+The study was realized as a stratified multi-stage random cluster sample. 
+In the first stage, the universe was divided into three regions: states 
+with a governor by the National Action Party (PAN), states with a governor
+by the Institutional Revolutionary Party (PRI), and states with a governor
+by the Party of Democratic Revolution (PRD). An independent sample was drawn
+for each region. Within each region, precincts were clustered by county
+(municipalities), where clusters were divided into four equally sized groups
+ordered by the vote for PRI in the last election. These resulting clusters
+served as the primary sampling unit (PSU), where precincts within each 
+group were clustered with probability proportional to size (PPS).
+In a subsequent stage, precincts were selected with PPS. The sampled 
+precincts were then passed on to the fieldwork teams, who randomly selected
+blocs within each respective precinct area. In each block, houses were 
+selected following systematic methods of random start. At the last stage, 
+respondents within households were chosen with the last-birthday method. 
+In case the selected person was not available for an interview at the time,
+replacements with another eligible household member with the second to last
+birthday were permissible. If none of the selected household members could
+be interviewed after two visits, interviewers moved on to the next household
+to the right.
+
+Respondents received an incentive of 150 MXN (approximately 7 USD) if they
+participated in the second and third waves of the panel survey. Incentives
+were paid after each wave (waves 2 and 3). All respondents received the same
+incentives, even the reluctant respondents. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2018 Mexico Study provides one COMBINED SAMPLE and DEMOGRAPHIC WEIGHT. 
+For each respondent, the combined weight provides the inverse of the 
+selection probability for the first panel wave, based on the voting age 
+population within counties and precincts. The sampling weight is combined 
+with a post-stratification weight for gender and age distributions
+from the 2015 Mexican census.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - MONTENEGRO (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2016 Montenegrin Parliamentary elections were held on Sunday, October 
+16, 2016. The post-election cross-sectional study was fielded between 
+December 8, 2016, and January 16, 2017 (40 days in total). The fieldwork 
+was conducted by De Facto Consultancy based in Podgorica, with surveys 
+administered face-to-face using an electronic questionnaire and in 
+Montenegrin. The sample is meant to be representative of eligible 
+Montenegrin citizens aged 18 years or older and registered to vote. 
+Institutionalized persons (people in prison or hospitals) were excluded 
+from the sample (less than 1 percent of the eligible population). The total 
+number of observations from the Montenegro Study is 1,213 interviews.
+
+The sampling was conceptualized as a stratified multi-stage random sample 
+with three stages in total. In the first stage, the population was divided 
+into three regions, North, Center and South. These regions were the primary 
+sampling unit and chosen based on differences in population size, the 
+distribution of ethnic groups within a region, age groups, and the region's 
+geography, economy, and history. 
+Second, inside each regional stratum, polling stations were identified, 
+which constitute the smallest municipal unit and are at the same time a 
+unit for voting. These polling stations formed the second level of 
+stratification and were divided into three groups according to their size. 
+Polling stations were selected randomly from each group. 
+In the third and final stage, a random procedure based on 'step-and-go' was 
+employed inside polling stations to choose the household. The last person 
+to have had their birthday within the household was interviewed. 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2016 Montenegro Study provides a DEMOGRAPHIC WEIGHT based on census 
+data from 2011. The demographic weight is composed of two separate weights, 
+one adjusting for the four main national groups (Montenegrins, Serbs, 
+Albanians, and Bosniaks-Muslims), the other adjusting for gender and age 
+groups (18-34, 35-54, 55+). 
+The weight included in E1010_2 is a multiplication of the two individual
+weights. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - NETHERLANDS (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN 
+
+The 2017 Dutch general election was held on Wednesday, March 15, 2017. 
+The Dutch study was fielded between March 16, 2017, and July 4, 2017 (111
+days in total). The study featured a mixed-mode design combining 
+face-to-face interviews using an electronic questionnaire with a self-
+completion mail-back component, and a separate sample interviewed via the 
+Internet drawn from an online panel, where respondents were administered 
+the survey in a series of different interview blocks. Interviews were 
+conducted in Dutch. Kantar Public administered the face-to-face and self-
+completion mail-back component of the study, while CentERdata were 
+responsible for the Internet (online panel) component. The total number of 
+observations from the Netherlands Study is 1,903 interviews: 723 from the
+face-to-face/self-completion component and 1,180 from the Internet 
+component. 
+
+For both sampling components, questions were split between the main post-
+election interview and a supplementary questionnaire, the latter of which 
+contained most CSES survey items. The CSES sample only includes respondents
+who completed both questionnaires. Samples were drawn independently for 
+face-to-face and Internet interviews. Both samples aim to represent eligible
+voters - i.e., Dutch citizens aged 18 years or older.
+
+The face-to-face/self-completion component was realized as a probability 
+sample provided by Statistics Netherlands (CBS) with population registers 
+as the sampling frame. Sampling occurred in two steps: First, a sample of 
+municipalities was drawn, excluding only the small, Northern islands, 
+followed by a sample of individuals within those municipalities. 
+Interviewers visited respondents at home, reading the questions and entering
+their answers on a tablet. After completing the questionnaire, interviewers
+left a self-completion paper questionnaire with the respondent. Respondents
+were asked to complete this questionnaire at their convenience and return it
+by mail. In a final attempt to increase response rates at a late fieldwork
+stage, a small number of respondents were provided with a link to complete
+the supplementary questionnaire online. Eight respondents in the sample made 
+use of this opportunity. 
+Respondents were initially offered 15 EUR for participation in the survey, 
+with the option to donate it to charity. This amount was escalated to a 
+maximum of 50 EUR in subsequent rounds of refusal conversion.
+
+The online sample component was drawn randomly from the ongoing "LISS panel"
+(Langlopende Internet Studies voor de Sociale Wetenschappen). Members of the
+LISS panel participate in regular online surveys over an extended time 
+period. To reach people without a computer or Internet access, LISS provides
+the option to lend an easy-to-use computer with free Internet access. 
+Managed by the research agency CentERdata, the LISS panel was launched in 
+2007. To maintain the representativeness of the panel, respondents who 
+dropped out are replaced by new participants with similar registered 
+characteristics. Overall, the panel was refreshed in four subsequent waves
+in 2009, 2011-2012, 2013-2014 and 2016-2017. All four refreshment samples 
+were based on probability sampling from register data. Further, all but the 
+2011-2012 refreshment wave over-sampled difficult-to-reach groups with a 
+below-average response in the main recruitment - stratified by household 
+type, age, and ethnicity. 
+LISS panel respondents were incentivized relative to the length of the 
+questionnaire and paid about 5 EUR for filling in a 20-minute questionnaire. 
+For this purpose, the questionnaire was broken up into three parts of 
+roughly 20 minutes each. Upon completing the main questionnaire, respondents
+from the LISS panel were invited to fill in the supplementary questionnaire
+as a second online form.
+
+Survey data from both face-to-face and Internet interviews were supplemented 
+with data from population registers for a selected list of demographic 
+variables, namely marital status, household income, region of residence and 
+country of origin. Respondents provided consent before data collection.   
+Generally, register data is based on the most recently available data, 
+usually the year preceding data collection.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2017 Netherlands Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT.
+The demographic weight (E1010_2) corrects distributions in the sample to
+known socio-demographic population characteristics (age, gender, 
+municipality's degree of urbanization, region of residence, marital status, 
+and country of origin). 
+The political weight (E1010_3) builds upon the demographic weight and 
+additionally adjusts the sample according to vote choice (party vote shares
+and abstention).
+Weights were calculated step-wise based on the univariate distribution of 
+every characteristic. For every category of the first characteristic, the 
+count in the population was first divided by the count in the survey. 
+Subsequently, every respondent was assigned a weight reflecting the ratio 
+of their category. The sample distribution of the second characteristic was 
+calculated after applying weights for the first characteristic. This 
+procedure was repeated for every other characteristic. 
+All individual weights were then multiplied to obtain a single combined 
+weight variable for all characteristics together. In the final step, this 
+variable was divided by its mean such that all weights have an average of 1. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - NETHERLANDS (2021)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN 
+
+The 2021 Dutch general election was held on Wednesday, March 17, 2021, 
+(with additional voting taking place March 15-16, 2021). The election and 
+the fieldwork for the study took place during the COVID-19 pandemic. 
+The Dutch study was fielded between March 17, 2021 and May 17, 2021 (61 days
+in total). The study had a panel design with two distinct and independent 
+sampling components: 1) A fresh random register sample and 2) a sample drawn 
+from the "LISS" online panel (Langlopende Internet Studies voor de Sociale 
+Wetenschappen). All respondents were invited to be interviewed both before
+and after the election, with respondents in both components interviewed at
+least twice. 
+
+The study featured a mixed-mode design. All respondents to the LISS Panel 
+component were interviewed via the Internet. Respondents from the register 
+sample could choose to participate via Internet or a self-completion mail-
+back questionnaire. In a few instances, Collaborators received two completed
+questionnaires for the register sample: one on paper and one digitally. In
+those cases, the questionnaire in which most questions were answered was 
+included. In case of a tie, the dataset includes the interview that was 
+completed first. Interviews were conducted in Dutch. I&O Research 
+administered the register sample (Internet & Self-Completion), while 
+CentERdata were responsible for the Internet (online panel) component. 
+The total number of observations from the Netherlands Study is 3,485 
+interviews: 1,797 from the LISS Panel and 1,688 from the register sample. 
+
+The register sample completed the CSES survey without interruption. 
+Respondents to the LISS Panel had the CSES survey split into two components. 
+Given that most of the demographic questions and some CSES survey level 
+questions were elicited in pre-election interviews, in addition to CSES 
+survey questions being spread evenly across both waves of the LISS 
+post-election interview, only respondents who participated in all interview 
+rounds appear in the data. 
+
+The fresh 2021 sample is meant to be representative of eligible voters in 
+the Dutch 2021 parliamentary election, that is, registered Dutch citizens 
+aged 18 years on election day or older. Institutionalized persons were 
+excluded from the sampling frame (less than one percent of the voting 
+eligible population), as were Dutch nationals living abroad. 
+The sample was realized as a two-stage stratified cluster sample provided
+by Statistics Netherlands (CBS), with population registers as the sampling 
+frame. Sampling occurred in two steps: First, a stratified sample of 
+municipalities was drawn with probability proportional to population size,
+followed by a simple random sample of persons within those municipalities.
+Hence, individuals were the primary sampling unit. Sampled interviewees were
+invited to an online survey via mail but provided with the option to 
+complete paper-assisted self-interviews. After one week, respondents not 
+having participated yet received a reminder together with the paper 
+questionnaire. Respondents were initially offered 5 EUR for participation
+in the pre- and post-election survey each. This amount was increased to a
+maximum of 15 EUR per interview in subsequent rounds of refusal conversion.
+In the final contact approach of the post-election wave, incentives were 
+raised to 25 EUR. Additionally, respondents could participate in a lottery
+with a chance of winning 400 EUR in the form of a tablet, a gift card or a
+donation to a charity. This incentive was used both for the pre- and the 
+post-wave.
+
+The second sample component interviewed entirely online was drawn randomly 
+from the ongoing LISS panel, based on panel members eligible to vote in the
+2021 election. Panelists participate in regular online surveys over an 
+extended period. To reach people without a computer or Internet access,
+LISS provides the option to lend an easy-to-use computer with free Internet
+access. Managed by the research agency Centerdata, the LISS panel was 
+launched in 2007. To maintain the representativeness of the panel, 
+respondents who dropped out are replaced by new participants with similar
+registered characteristics. Overall, the panel was refreshed in five
+subsequent waves in 2009, 2011-2012, 2013-2014, 2016-2017 and 2019-2020. 
+All five refreshment samples were based on probability sampling from 
+register data. Further, all but the 2011-2012 refreshment wave oversampled
+difficult-to-reach groups with a below-average response in the main 
+recruitment - stratified by household type, age, and ethnicity. 
+LISS panelists are incentivized relative to the length of the questionnaire.
+As the questionnaire was split into three parts of equal size, respondents
+received 7.50 EUR per wave, amounting to 22.50 EUR.
+
+
+<<>> POLITY WEIGHTS
+
+The 2021 Netherlands Study provides a DEMOGRAPHIC WEIGHT and a COMBINED
+DEMOGRAPHIC and POLITICAL WEIGHT. 
+The demographic weight (E1010_2) corrects distributions in the sample to 
+known socio-demographic population characteristics (age, gender, and 
+respondents' origin, i.e., migration background). 
+The political weight (E1010_3) builds upon the demographic weight and 
+additionally adjusts the sample according to vote choice (party vote shares
+and abstention).
+
+Weights were calculated step-wise based on the univariate distribution of 
+every characteristic. For every category of the first characteristic, the 
+count in the population was first divided by the count in the survey. 
+Subsequently, every respondent was assigned a weight reflecting the ratio 
+of their category. The sample distribution of the second characteristic was 
+calculated after applying weights for the first characteristic. This 
+procedure was repeated for every other characteristic. 
+All individual weights were then multiplied to obtain a single combined 
+weight variable for all characteristics together. In the final step, this 
+variable was divided by its mean such that all weights have an average of 1. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - NEW ZEALAND (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 New Zealand Parliamentary election was held on Saturday, September 
+23, 2017. Fieldwork for the post-election study, part of the New Zealand
+Election Study (NZES), was conducted between September 26, 2017 and February 
+28, 2018 (156 days in total) and the survey was administered by COMPASS 
+(Centre of Methods and Policy Applications in the Social Sciences) at the 
+University of Auckland. The survey was administered in English, and the  
+study employed a mixed-mode approach, with respondents having the choice to 
+participate via the Internet or via self-completion mail-back. Hence, 
+respondents could self-select into interview modes. The total number of 
+observations from the New Zealand Study is 1,808 interviews: 1,558 via 
+self-completion mail-back and 250 via the Internet. While the NZES had 
+a panel component, only respondents joining the sample afresh in 2017 are 
+included in the CSES. 
+
+The sample consists of all eligible citizens that registered on the 
+electoral roll on the writ day, then aged between 18 and older. On the writ 
+day, the electoral roll contained about 88% of those eligible. 
+Enrollment continued after writ day until the day before the election, 
+with the final roll including just over 92% of the eligible population.
+Those in prison were excluded from the sample, but as they are not eligible
+to enroll or vote, this does not influence the sampling frame. Military 
+personnel was included in the sample. 
+
+The survey employed a random sampling procedure based on the electoral 
+rolls as of August 23, 2017. The electoral roll was split into four groups 
+to determine sampling units, namely: 
+- electors aged 18-30. 
+- electors aged 31 and over.
+- electors in Maori electorates aged 18-30.  
+- electors in Maori electorates aged 31 and over
+
+Young voters and those residing in Maori electorates were deliberately
+oversampled as they are known to have a lower likelihood of responding to
+surveys. The sample design included clustering and quota sampling in the 
+sense that it was sampled within the four segments. The survey used a 
+draw for four small monetary prizes as participation incentives. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2017 New Zealand Study provides a DEMOGRAPHIC WEIGHT. The weight 
+controls for gender and age as some groups were under or over-represented 
+even after re-sampling the over samples. Therefore, the weight makes the 
+survey representative of the electoral roll from which it was sampled 
+(about 92 percent of the voting population). For the weight construction, 
+respondents' age and gender were used. It was generated from a table 
+breaking down the entire roll by age and gender.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - NEW ZEALAND (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2020 New Zealand Parliamentary election was held on Saturday, October 
+17, 2020. The election and the fieldwork for the study took place during the 
+COVID-19 pandemic. Fieldwork for the post-election study, part of the New 
+Zealand Election Study (NZES), was conducted between October 21, 2020 and 
+May 1, 2021 (192 days in total) and the survey was administered by the 
+Public Policy Institute at the University of Auckland. The survey was 
+administered in English, Chinese, and Maori, and the study employed a 
+mixed-mode approach, with respondents having the choice to participate via 
+the Internet or via self-completion mail-back. Hence, respondents could 
+self-select into interview modes. The total number of observations from the
+New Zealand Study is 1,725 interviews: 999 via self-completion mail-back and
+726 via the Internet. 
+
+A person needed to be registered and above 18 years old to be interviewed. 
+The sample did not include institutionalized persons who were ineligible to 
+vote and people on the confidential roll (about 1% of the eligible 
+population).
+The survey employed a random sampling procedure based on the computerized 
+electoral rolls. The primary sampling units were individuals nested within 
+Maori descent and age. Maori descent and individuals between 18 and 29 were 
+over-sampled to adjust for lower response rates. In a further stage of 
+selection, the Maori sub-sample was randomly resampled to correspond to the 
+percentage on the electoral roll. The sample design thus included 
+clustering and stratification by Maori descent and age. Respondents 
+received a 20 NZD grocery voucher for their survey participation. For 90% 
+of the completed surveys, survey verification checked whether the reported 
+age and gender correctly matched. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2020 New Zealand Study provides a DEMOGRAPHIC WEIGHT. The weight 
+controls for gender, age and Maori descent as some groups were under 
+or over-represented even after re-sampling the over samples. Therefore, the 
+weight makes the survey representative of the electoral roll from which it 
+was sampled. For the weight construction, respondents' age, gender and 
+descent were used. It was generated from a table breaking down the entire 
+roll by those three factors.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - NORWAY (2017)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2017 Norwegian Parliamentary election took place on Monday, September 
+11, 2017. The study is a post-election survey, and in a change to previous 
+practice, was conducted as a standalone study to the Norwegian National 
+Election Study. The study was fielded between September 20, 2017, and 
+October 16, 2017 (36 days in total). Statistics Norway handled the fieldwork 
+with interviews via the Internet. The total number of observations from the 
+Norway Study is 1,792 interviews.
+
+The sampling frame for the study is a two-stage design. In the first stage,
+the country was divided into 363 primary sampling units (PSUs) based on
+the local municipalities. All PSUs with more than 30,000 inhabitants and
+some with a population number between 25,000 and 30,000 constitute
+separate strata. For the remaining PSUs, strata were formed as
+homogeneously as possible. In the second stage of the sampling, survey 
+units (individuals) were drawn from the population register, selected from 
+the 109 sampling areas, using systematic random sampling. The sampling 
+fraction in the second stage is proportional to the inverse selection 
+probability in the first stage. The final sample then is self-weighting 
+when both stages are taken into consideration. If a sampled unit from the 
+panel sample had moved out of their original PSU, it was still included in 
+the sample.
+
+The sample is meant to be representative of Norwegian citizens aged between 
+18 and 91. Norwegians without Internet access were excluded from the 
+sampling frame (estimated to be 2% of the eligible population). The sample 
+consisted of 5,000 people over the age of 18 drawn randomly from the 
+National registry covering all Norwegian inhabitants. As they sampled 
+individuals and not households, more than one person could have been 
+interviewed from a single household. Potential respondents received both an 
+e-mail and a text message for participation. Both contained a weblink which, 
+when activated, guided respondents to the survey. Additional reminders were 
+sent to those who did not participate in the survey after the initial 
+contact. The respondents did not receive any incentives for their 
+participation in the study. 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2017 Norway Study provides a DEMOGRAPHIC WEIGHT. The weight was 
+constructed after Collaborators found over- and under-representation in the
+survey were related to particular demographic characteristics. Respondents
+with higher education were over-represented compared to those with lower 
+education. Those in the age group 45-66 years were over-represented as well,
+whilst the oldest in the sample were underrepresented. 
+
+The weight adjusts for gender, age, and education, dividing the sample into
+18 different strata. Gender contained two categories: male and female. Age
+was divided into three categories: 30 years or under, 31 to 59 years, and
+60 years and over. Education was also divided into three categories: first
+no education/ primary school or unspecified, second high school, and third
+university/ college. The stratified weight is set then as equal to the
+number of persons in the strata in the population divided by the number of
+persons in the strata in the net sample.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - PERU (2021)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2021 Peruvian general elections were held on Sunday, April 11, 2021 
+(first round) with a second round of Presidential elections on Sunday, 
+June 6, 2021. The post-election survey was fielded between December 22, 
+2021, and January 7, 2022 (17 days in total). The survey was administered 
+face-to-face using an electronic questionnaire. The survey was administered 
+in Spanish, with fieldwork carried out by Ipsos Group S.A. The total number 
+of observations from the Peru Study is 1,199 interviews.
+
+A person needed to be registered and above 18 years old to be interviewed. 
+The sample did not include institutionalized persons who were not eligible 
+to vote, about 0.3% of the eligible population.
+The survey employed a stratified multi-stage sampling where the primary 
+sampling units were the localities of the country. The localities were
+selected using a systematic random selection proportional to the number of
+inhabitants of each locality. In the second stage of selection, the zones
+were selected. A zone is a subdivision of the district defined by the 
+National Institute of Statistics (INEI) and corresponds to about 40 blocks.
+In the third stage, households were selected and in the last one, 
+individuals. Whilst sampling units in the first three stages were randomly 
+selected, individuals in the last stage were selected by quotas of sex and
+age. Clustering was included in the first stage using localities.
+Stratification was used for selecting geographical regions in the country.
+For all completed surveys, respondents' identities were verified in real-
+time using the tablet with which the interviewees answered the questions. 
+
+
+<<>> POLITY WEIGHTS
+
+The 2021 Peru Study provides a DEMOGRAPHIC WEIGHT. The weight controls 
+for the distribution of the socioeconomic status and population of each 
+region from the Registro Nacional de Identificacion y Estado Civil (RENIEC) 
+and the Asociacion Peruana de Empresas de Mercado (APEIM). For the weight
+calculation, the data collection organization Ipsos Group S.A. used the 
+Quantum Weighting Program and a method called Rim Weighting.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - POLAND (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Polish parliamentary election was held on Sunday, October 13, 
+2019. The post-election survey was fielded between October 24, 2019, and 
+November 17, 2019 (a total of 25 days). The surveys were conducted face-to-
+face using an electronic questionnaire and were administered in Polish. 
+The fieldwork was carried out by the Polish research company PBS. The total 
+number of observations from the Poland Study is 2,003 interviews.
+
+A person needed to be registered and above 18 years old to be interviewed. 
+Institutionalized and military personnel were included in the address-based
+sampling frame. The survey employed a random sampling procedure where the 
+primary sampling units were the respondents. Respondents were selected in  
+the household using a Kish selection grid procedure. Stratification was used
+for selecting geographical regions in the country. Four attempts were made 
+to contact potential respondents before designating it as a failed contact 
+attempt. Interview verification was completed for 5% of respondents by 
+experienced fieldwork coordinators.
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Poland Study provides a DEMOGRAPHIC WEIGHT. The weight adjusts the 
+sample to population estimates for region, habitat, gender, age, and 
+education. For the weight calculation, the data collection organization 
+used a method called Rim weighting building on three dimensions: (1) region/ 
+habitat, (2) gender/ education, and (3) habitat/ gender/ age. 
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - PORTUGAL (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Portuguese lower house election took place on Sunday, October 6,
+2019. The post-election study was administered between October 12 and 
+December 15, 2019 (65 days in total), with interviewing face-to-face using
+an electronic questionnaire. Fieldwork was conducted by GfK Portugal, with
+questionnaires administered in Portuguese. The total number of observations 
+from the Portugal Study is 1,500 interviews.
+
+The sample is meant to be representative of individuals aged 18 years or
+older residing in continental Portugal. Portuguese citizenship was not 
+required to participate in the interview. The two autonomous regions Madeira
+and the Azores were excluded from the sample frame (5 percent of the 
+eligible population). The same holds for institutionalized persons (less 
+than 1 percent of the eligible population).
+
+The study is based on a multi-stage stratified random sample. The sample was
+stratified according to locality size ("habitat") and EU NUTS II regions; a 
+hierarchical geocode standard subdividing the territories of EU member 
+states. The NUTS II regions North, Centre, Lisbon, Alentejo, and Algarve 
+were also the primary sampling unit. In the first step, the random selection
+of localities within each of the five listed NUTS II regions was carried out
+following the General Index of INE's Population Census, based on the sample
+matrix of NUTS II regions and habitat. In each designated locality, sample
+points were then again sampled randomly. Afterward, households were selected
+through random route. From within each household, the adult who had the most
+recent birthday was selected for the interview in the last step. If the 
+selected person was not available, up to three more revisits were made to 
+reach the potential interviewee on different days (week and weekend) and 
+throughout different times of the day. After a fourth unsuccessful visit, 
+the selected individual was replaced by another person with similar 
+characteristics (sex, age group and location) from a different household. 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2019 Portugal Study provides a DEMOGRAPHIC WEIGHT and a COMBINED 
+DEMOGRAPHIC and POLITICAL WEIGHT. Both weights were created through 
+iterations in Marktab software.
+The demographic weight (E1010_2) adjusts the sample to known population 
+characteristics regarding gender, age, and educational attainment. 
+Population estimates were taken from the Portuguese National Institute for
+Statistics INE 2017 Estimates and Eurostat 2017 Schooling. 
+The political weight (E1010_3) is a combined weight that adjusts the sample
+to match the 2019 legislative election results on top of the demographic
+weight.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - ROMANIA (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN     
+
+The 2016 Romanian Parliamentary elections were held on Sunday, December 11,
+2016. This post-election study was carried out between December 13, 2016, 
+and February 20, 2017 (70 days in total). Interviews were conducted in 
+Romanian via face-to-face using an electronic questionnaire. The fieldwork 
+was conducted by the CCSAS from Cluj-Napoca, Romania. The total number of 
+observations from the Romania Study is 1,105 interviews.
+
+The sample is meant to be representative of Romanian citizens aged 18 years
+or older at the time of the election, but it excluded institutionalized 
+citizens (estimated to be 0.25% of the Romanian population). The sample was 
+designed by stratified two-stage probability sampling, with stratification 
+of the primary units (voting districts, namely areas comprising a number of 
+streets allocated to a polling station) proportional to the number of 
+secondary units (adults registered in the electoral register). In the second 
+stage, 10 respondents were selected by systematic sampling with equal 
+probabilities from the electoral register of each voting district selected 
+(the main sample). A reserve sample of 10 respondents was chosen to 
+compensate for refusals.
+
+
+<<>> POLITY WEIGHTS
+
+The 2016 Romania Study provides a SAMPLE WEIGHT, a DEMOGRAPHIC WEIGHT and a
+POLITICAL WEIGHT.
+The sample weight (E1010_1) is designed to correct for the variations in
+the probability of selection in the sample (as voting polls differ in size).
+The demographic weight (E1010_2) was computed after including the sample
+weight. It is designed to match known demographic characteristics of the
+population (according to the last available Census, from 2011). Demographic
+weight was computed by dividing the population structure to the sample
+structure. The structure was defined by the joint distribution of several
+variables: Gender (male/female), age categories (18-34, 35-49, 50-64, 65+),
+residence (urban/rural), and region (8 categories).
+The political weight (E1010_3) was computed after including the demographic
+weight, thus also consequently including the sample weight. It is designed
+to correct the sample to match the official (Central Electoral Bureau) 
+election results at the national level for both Parliament houses
+simultaneously.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - SLOVAKIA (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2020 Slovakian Parliamentary elections were held on Saturday, February
+29, 2020. The election took place just before the COVID-19 pandemic was 
+declared a pandemic on March 11, 2020, although fieldwork for the 2020 study 
+was conducted during the pandemic. Fieldwork began on June 9, 2020, after
+a wait of three months for the government to lift COVID-19 pandemic 
+restrictions which made face-to-face interviewing impossible. Fieldwork 
+lasted 84 days, was completed on August 31, 2020, and was administered by
+Kantar Slovakia. Data were collected via face-to-face interviewing using 
+an electronic questionnaire. The survey was administered in Slovakian. The 
+total number of observations from the Slovakia Study is 1,003 interviews.
+
+The sample is meant to be representative of Slovakian citizens aged 18
+years or older on election day. Up to 3% of citizens (homeless, imprisoned, 
+persons living in retirement homes) were excluded from the sample frame.
+The Slovakian study sample was created by random sampling from the
+register of all communities (villages and towns) in Slovakia based on the
+proportions of the population of age 18+ and the size of the community.
+In total, 143 territory sampling units were selected. Households in these
+units were chosen by a random walk (according to strict rules). Further,
+respondents in the household were selected following the closest birthday
+method. Due to the COVID-19 pandemic restrictions, the interviewing took
+longer than envisaged, and some PSUs were hard to reach. Because of that,
+interviewers could not cover approximately 20% of the PSUs selected in the
+original sample. To compensate for this, the Slovakian team agreed they
+would do another wave of sampling to collect the missing approximately 33%
+of the sample. In the end, 668 respondents answered the survey from the
+first round of fieldwork where 20% of PSUs were not visited, and 335
+respondents answered the survey in the second round of fieldwork.
+
+
+<<>> POLITY WEIGHTS
+
+The 2020 Slovakia Study provides a COMBINED SAMPLE and DEMOGRAPHIC WEIGHT. 
+The weight compensates for disproportionate probability of selection and 
+additionally adjusts the data to match known demographic characteristics,
+namely gender (two categories), age (five categories), region (eight 
+categories), education (five categories) and community size (five 
+categories). 
+Weights were calculated using an iterative proportional fitting algorithm
+(raking). After combining the sample with the demographic weight, the 
+weight was trimmed to a range between 0.3 and 3.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - SOUTH KOREA (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2016 South Korean lower house election was held on Wednesday, April 
+13, 2016. This post-election cross-sectional study fielded the CSES MODULE 
+5 pilot questionnaire. Fieldwork began on April 14, 2016, running seven days 
+until April 20, 2016, and was administered by the Korean Social Science Data 
+Center. Interviews were conducted face-to-face using a paper questionnaire 
+and were administered in Korean. The total number of observations from the 
+South Korea Study is 1,199 interviews. 
+
+The sample is meant to be representative of registered South Korean voters 
+aged 19 and above. People living on Cheju Island and other small islands 
+were excluded from the sample frame. This is common for Korean national 
+surveys, as people living in these regions are difficult to contact and 
+make up less than one percent of the population. 
+
+The sample was realized as a multi-stage random sample, for which electoral 
+districts represented the primary sampling units. In the first stage, 80 
+electoral districts were randomly sampled from a list of all electoral
+districts in South Korea. In the second stage, voting districts within each
+sampled electoral district were randomly sampled. In the third and final 
+stage, a simple random sample of voters was drawn within each voting 
+district, based on electoral registers provided by the Central Election 
+Management Committee. When contacting a respondent's household, 
+interviewers asked for the name of the respondent and identified her or 
+him to be the right person listed. Prior to the study, a token gift 
+(folding umbrella) was sent to the sampled individuals.
+
+
+<<>> POLITY WEIGHTS 
+
+No weights were provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - SWEDEN (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Swedish lower house election took place on Sunday, September 9, 
+2018. The Swedish study, part of the larger Swedish National Election Study
+(SNES), was administered as a standalone study for the 2018 contest, and
+fielded between September 10 and November 6, 2018 (a total of 58 days) by 
+Statistics Sweden (SCB). Due to an administrative lapse, this study fielded
+the CSES MODULE 5 pilot questionnaire and employed a mixed-mode approach 
+with respondents initially contacted via mail and offered the choice of 
+participating via the Internet or self-completing and mail-back. Hence, 
+respondents could self-select into interview modes. The total number of 
+observations from the Sweden Study is 3,784 interviews: 2,897 via self-
+completion mail-back and 887 via the Internet. 
+
+The sample was conceptualized as a simple random sample and is meant to be 
+representative of Swedish citizens living in Sweden who were entitled to 
+vote and between 18 and 80 years old. Eligible Swedish citizens living 
+abroad were excluded from the sample frame (about 2% of the population). 
+Individuals were sampled directly from population registers provided by 
+Statistics Sweden and were hence the primary sampling unit. To encourage
+participation, sampled respondents were sent letters to inform them about 
+the study's purpose and offered a gift card worth 50 SEK.
+
+
+<<>> POLITY WEIGHTS
+
+The 2018 Sweden Study provides a DEMOGRAPHIC WEIGHT. Weights were calculated
+using an iterative proportional fitting algorithm (raking).
+The demographic weight (E1010_2) adjusts the data to match known demographic
+characteristics, namely gender (male, female), age groups (18-25, 26-40,
+41-64, 65-80), and education (seven categories based on the Swedish
+education classification scheme "Svensk utbildningsnomenklatur (SUN)").
+In general, Collaborators used public register data on respondents to
+calculate the demographic weight, with the following exceptions:
+For age groups, no public records data were available for one respondent, 
+and the survey information was used instead.
+For education, public records data were unavailable for 857 respondents,
+due to the respondents not approving of the use of public records data.
+For these 857 individuals, Collaborators imputed data based on sex and age
+groups. Collaborators note they chose to make imputations based on census
+data even though survey data was available because they found an
+unexpectedly low correlation between survey responses and census register
+data on education in previous analyses. Particularly older age groups tend
+to overestimate their formal level of education. To get a cleaner measure,
+Collaborators hence decided against mixing survey responses with census
+data.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - SWITZERLAND (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Swiss Federal elections were held on Sunday, October 20, 2019.
+Fieldwork for the Swiss election study began on October 21, 2019, and was
+completed on January 5, 2020 (77 days in total). The fieldwork was 
+administered by FORS - the Swiss Centre for Expertise in the Social 
+Sciences. The total number of observations from the Switzerland Study is 
+4,645 interviews. 
+
+The study employed a mixed-mode approach with interviews collected via the 
+Internet and mail-back self-completion. All selected respondents were first 
+invited to complete the survey via the Internet. With the second reminder 
+(out of three), a paper version of the questionnaire was sent to those who 
+had not yet participated in the survey. Hence, all respondents who completed
+the survey after the reception of the second reminder self-selected into 
+the mode of interview. The survey was administered in German, French and 
+Italian. The sample was designed to be representative of all Swiss citizens
+residing in Switzerland who were at least 18 years old on Election Day 
+(October 20, 2019) and thus eligible to vote. Only Swiss citizens living 
+abroad were not included in the sample - 3.4% of all registered voters.
+
+The sample was drawn by the Federal Statistical Office (FSO) from their
+sampling frame of Swiss citizens who were at least 18 years old and
+residing in Switzerland at the time of the elections, with individuals as
+primary sampling units. The total number of individuals in the sample was
+17,866. The sample size was adjusted to have a minimum of at least 80
+respondents per canton in each of the 26 cantons (oversampling of small
+cantons). Additionally, the cantons of Ticino, Geneva and Zurich are
+traditionally over-sampled in the Swiss Election Study in order to have a
+larger N for the three main language regions (Italian-speaking,
+French-speaking and German-speaking, respectively).
+
+
+<<>> POLITY WEIGHTS
+
+The 2019 Switzerland Study provides a SAMPLE WEIGHT and a COMBINED SAMPLE
+and POLITICAL WEIGHT.
+The Sample Weight (E1010_1) corrects for the oversampling of small cantons  
+and two larger cantons (Ticino and Zurich). This weight was calculated as 
+the quotient of the proportion of eligible voters in the population of each
+canton and the proportion of respondents in the sample that falls within
+the canton.
+The Political Weight (E1010_3) corrects biases that result from
+oversampling, turnout, and party choice in the data. The weight is
+calculated by multiplying three weights, namely the Design, Turnout and
+Party Choice Weights. The turnout and party choice biases in survey data
+are common phenomena in Switzerland.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - TAIWAN (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+General elections in Taiwan were held on January 16, 2016. These included 
+Taiwan Presidential and legislative elections. This post-election study 
+fielded the CSES MODULE 5 pilot questionnaire, with fieldwork starting on 
+January 17, 2016, and was completed on April 28, 2016 (96 days in total). 
+Fieldwork was administered by the Election Study Center at the National 
+Chengchi University. The survey was administered in Chinese including the 
+Hakka, Mandarin, and Taiwanese dialects, and respondents were interviewed 
+face-to-face using an electronic questionnaire. For a small number of 
+interviews, Collaborators report due to technical difficulties such as 
+tablet power failure or system re-set, the mode shifted to a face-to-face
+interview using a questionnaire on paper, with the data inputted into the 
+system at a later time. The total number of observations from the Taiwan 
+Study is 1,690 interviews.
+
+The sample is meant to be representative of all qualified voters in Taiwan.
+These are all Taiwanese citizens who are 20 years or older. The survey used 
+a probability proportional to size (PPS) three-stage systematic sampling. 
+In the first stage, legislative constituencies were sampled according to
+major geographic regions. In the second stage, urban villages or rural
+villages were selected as sampling units. In the third stage, respondents
+were selected from household registration data provided by the Ministry
+of the Interior. In total, 7,601 citizens were selected for a potential 
+interview. All respondents received a gift as an incentive to participate 
+in the study.
+
+
+<<>> POLITY WEIGHTS
+
+The 2016 Taiwan Study provides a DEMOGRAPHIC WEIGHT. The provided data
+weights are constructed by raking with gender, age (5 groups), education
+(5 groups), and area (6 regions) to fit the sample to eligible voters in
+2016 Presidential and legislative elections. The demographic characteristics
+are based on "2015 Taiwan-Fuchien Demographic Fact Book, Republic of China",
+published by the Ministry of Interior, Republic of China.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - TAIWAN (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+General elections in Taiwan were held on January 11, 2020. The election took 
+place just before the COVID-19 pandemic was declared a pandemic on March 11, 
+2020, although fieldwork for the 2020 study was conducted in part during the 
+pandemic. The post-election survey was fielded between January 13 and 
+May 30, 2020 (139 days in total). The data was collected by the Election 
+Study Center, National Chengchi University. The survey was conducted 
+face-to-face using an electronic questionnaire, with the survey administered
+in Chinese. The total number of observations from the Taiwan Study is 
+1,680 interviews.
+
+To be interviewed, a person needed to be a Taiwanese citizen aged at least
+20 years old. Institutionalized persons (estimated to be 0.04% of the 
+population) were excluded from the sample as felons are ineligible to vote 
+in Taiwan. In the first stage of sampling, legislative constituencies were 
+sampled according to major geographic regions. In the second stage, urban 
+villages or rural villages were selected as sampling units. In the third 
+stage, samples were selected from address-based sampling of a geographical
+information system (GIS). The final stage was implemented via in-house 
+sampling that included two steps. First, the interviewer asked, "How many 
+adults who are over 20 years old and whose household registration is at this 
+address (regardless of whether they live here or not)?" Second, "among these 
+adults, [computer sampling results] is the person we wanted to interview."
+To increase the response rate, a notification letter for the interview was  
+sent to the respondents in advance, and they received a gift after finishing  
+the interview.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2020 Taiwan Study provides a DEMOGRAPHIC WEIGHT. Collaborators decided
+the weight is needed to adjust the sample to the general population of
+eligible voters in the 2020 Presidential and legislative elections. 
+Therefore, the survey data are weighted by gender, age (5 groups), education
+(5 groups), and area (6 regions). The population parameters are taken from
+the Statistical Yearbook of Interior published by the Ministry of The 
+Interior Republic of China in 2019.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - THAILAND (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Thai general election was held on Sunday, March 24, 2019. 
+The Thai 2019 study was conceptualized as a post-election survey conducted
+between April 25 and June 5, 2019 (42 days in total). Fieldwork was 
+administered by the King Prajadhipok's Institute. Interviews were conducted
+in local Thai dialects and Tribe languages and face-to-face using a paper 
+questionnaire.
+
+The multi-stage systematic random sample is meant to represent Thailand's 
+eligible voting population (i.e., Thai citizens aged 18 years or above and 
+registered to vote).
+For this survey, the country was divided into five regions corresponding to
+the four regions of Thailand plus the special administrative area of 
+Bangkok. Within each of the four regions, a list of Amphoe (districts) per 
+region was randomly selected (stage 1), with these districts serving as the
+primary sampling units. In stage 2, Tambol (subdistricts)were randomly 
+selected within each Amphoe. Afterward, a specified number of villages 
+(Muban) were sampled within each Tambol (stage 3). Stage 4 determined the 
+number of people to be surveyed within a village. 
+
+In each stage, the number of units for sampling within a geographic area 
+was chosen proportionally to population size. Individual respondents were 
+systematically sampled from lists provided by the Community Department of 
+the Ministry of Interior. In Bangkok, a list of sub-districts was randomly 
+selected in stage 1 in proportion to population size. Subsequently, 
+systematic sampling was applied to select individual respondents from 
+electoral registers. After the interview, respondents received a notebook 
+and a pen to thank them for their participation. 
+
+Researchers are advised that substitution of individuals was permissible at
+the final stage of selection in all five regions. The substitution process
+was coordinated by Collaborators and applied in cases where interviewers 
+could not contact the sampled person due to relocation, decease, illnesses 
+etc. Substituted individuals were sampled in the same manner as regular 
+respondents, matching the age and gender of the originally sampled person.
+The total number of observations from the Thailand Study is 1,536 
+interviews, of which 370 have been conducted with substituted persons. 
+
+
+<<>> POLITY WEIGHTS 
+
+No weights included.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - TUNISIA (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Tunisian parliamentary election took place on Sunday, October 6, 
+2019. The election took place before the COVID-19 pandemic was declared a 
+pandemic on March 11, 2020, although fieldwork for the study was conducted 
+during the pandemic. The post-election study was fielded between July 18
+and July 30, 2020 (11 days in total) and was administered face-to-face using 
+an electronic questionnaire in Arabic, by the polling agency One to One for 
+Research and Polling. COVID-19 restrictions in Tunisia were eased in 
+Summer 2020, permitting face-to-face fieldwork. The total number of 
+observations from the Tunisia Study is 1,477 interviews.
+
+To be interviewed, a person needed to be a Tunisian citizen 18 years old or
+older. Institutionalized persons were excluded from the sample as surveys 
+were only conducted within households.  The 2019 Tunisian Study used a 
+stratified multi-stage probability sample. The primary sampling units (PSU) 
+are the smallest units in the sampling frame called blocks. The PSUs are 
+randomly selected with the population proportional to size method. 
+Tunisia is divided into 24 governorates, 264 delegations and 2,084 sectors. 
+Each sector was divided into two independent categories: urban and rural. 
+The population was classified into 46 strata (two governorates, namely 
+Tunis and Monastir, are 100% urban). The sectors were then divided into 
+"blocks". The total number of blocks was 27,466. 
+The largest administrative unit, namely each governorate, got a portion of 
+the sample based on the percentage of the population related to the total 
+population. The rural and urban areas in each governorate then received a 
+portion from the sampling points based on the percentage of each area 
+within the governorate. The three stages of selection were: selecting the 
+blocks, selecting households, and selecting respondents. In the final 
+stage, the interviewers used the Kish table to randomly select one 
+respondent. From one house to another, the interviewers alternated between 
+female and male. 
+
+
+<<>> POLITY WEIGHTS
+
+No weights provided.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - TURKEY (2018)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2018 Turkish General Elections took place on Sunday, June 24, 2018. 
+This study was a post-election cross-sectional study, with fieldwork 
+taking place between July 23, 2018 and September 9, 2018 (49 days in total). 
+The fieldwork was conducted by Frekans Arastirma and the questionnaire 
+was administered face-to-face using a paper questionnaire in Turkish. The 
+total number of observations from the Turkey Study is 1,069 interviews. 
+
+The sample is designed to be representative of the Turkish voting-age 
+population (i.e., citizens aged 18 years or older). Institutionalized 
+persons in prisons or hospitals and military personnel were excluded from 
+the sampling frame (estimated to be 1% of the voting-eligible population).
+The sample was realized as a stratified multi-stage random sample. NUTS-2 
+regions, as given by the Turkish Statistical Institute (TUIK), formed the 
+basis for stratification. In the first step, the target sample
+was stratified according to each region's share of the urban and rural 
+population following the Address-Based Population Registration System 
+(ADNKS) records as of the end of 2017.
+Next, TUIK's address block data were used with a block size set at 400 
+residents. Address blocks were the primary sampling unit. Twenty voters were
+targeted to be reached within each block, and no substitution was allowed. 
+Based on the probability proportionate to population size (PPPS) principle,
+blocks were distributed to NUT1 regions.
+In a third step, for each of the twenty addresses within each block, up to 
+three visits were carried out with the expectation that approximately 50% 
+of the addresses would result in a completed interview. In rural areas where
+TUIK was unable to provide addresses, Collaborators contacted the village's
+headman (muhtar) and selected twenty addresses in a systematic random sample
+from the list of households in the village. 
+
+To select individuals within sampled households, names of all reported 
+eligible household members were written on cards. Then, a person in the 
+household was asked to randomly select one card with the name of the 
+individual to be interviewed. If, for any reason, the selected individual
+could not participate in the survey at the first visit, the same household
+was visited up to three times to obtain the interview. If the interview 
+could not be realized after three visits, the respective household was 
+dropped from the sample without being substituted.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2018 Turkey Study includes a DEMOGRAPHIC WEIGHT. The weight adjusts 
+the sample to the following known population distributions of gender, age, 
+and educational attainment: Males and Females, six age groups (18-24, 25-34, 
+35-44, 45-54, 55-64 and 65+-year-olds), and five education groups (below 
+primary school, primary school graduates, secondary school graduates, high
+school graduates, University graduates and above).
+The resulting 60 cells (2 x 6 x 5) were filled with the respective 
+respondents from within the sample to calculate the weight and to obtain 
+the national aggregates. As there are minor variations in the geographic 
+planned distribution of observations and realized interviews, Collaborators 
+calculated a separate geographic weight. The Demographic Weight included in 
+CSES is the product of this Geographic Weight and the Demographic Weight 
+described above.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - UNITED STATES (2016)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN 
+
+The 2016 United States general election was held on Tuesday, November 8,
+2016 and was part of the larger American National Election Study (ANES).  
+The ANES 2016 Time Series has a pre and post-election panel design in which 
+respondents were interviewed twice: once before the election and once after. 
+The CSES sample only includes respondents who took part in both rounds of 
+interviews. The study features a mixed-mode design combining face-to-face 
+interviewing with an electronic questionnaire with a separate sample 
+interviewed on the Internet. Respondents were assigned to modes which 
+remained consistent. Fieldwork featuring the CSES survey started on 
+November 9, 2016, and continued until January 9, 2017 (61 days in total). 
+The study was fielded by Westat, Inc. in both English and Spanish. The total 
+number of observations from the United States Study is 3,648 interviews: 
+1,058 via face-to-face, and 2,590 via the Internet.
+
+Probability samples were drawn independently for face-to-face and Internet
+components. Both samples are meant to be representative of U.S. citizens 
+aged 18 or older at the time of recruitment. As the sampling frame for both 
+modes was composed of lists of residential addresses provided by the U.S. 
+Postal Service, a respondent had to reside at the sampled address to be 
+eligible. Addresses where mail is not delivered were excluded from the 
+sampling frame. Residents from the states of Alaska and Hawaii were not 
+sampled for face-to-face interviews (less than one percent of the 
+population). Furthermore, addresses associated with more than one 
+dwelling unit ("drop point addresses") were excluded from the sampling 
+frame for Internet surveys (2.9 percent of residential addresses). 
+
+The face-to-face sample was realized as a multi-stage stratified cluster 
+sample. Primary sampling units (PSUs) were counties, or a combination of
+counties, with a minimum population of 50,000 people. The Los Angeles 
+County was divided into two PSUs due to its large size. For the 
+face-to-face mode, 60 PSUs were selected with probability proportional to 
+the number of adult citizens, previously stratified by Census region, the 
+prevalence of poverty, members of minority groups and population size. The 
+five largest PSUs were selected with certainty.
+In the second stage, within each PSU, four Census Block groups were drawn as 
+the secondary sampling units. Within these areas, households were sampled 
+randomly from addresses included in the U.S. Postal Service's computerized
+delivery sequence file (DSF). Interviewers were sent to the sampled address 
+and conducted a brief screening interview in which eligible respondents 
+from the household were listed. One person was randomly selected from this 
+list. During the last two weeks of pre-election fieldwork, half of the 
+remaining eligible cases were sub-sampled out to concentrate resources on
+a smaller set of cases (adaptive design).
+Depending on the level of pre-election incentives, respondents were
+initially offered 25, 50 or 100 USD for completing the post-election 
+interview. These amounts were increased to 50 or 100 USD, respectively, at
+the end of the fielding period.
+
+The Internet sample is based on a simple random sample from the list from  
+the DSF file, excluding drop point addresses and addresses contacted for the 
+ANES pretest. Selected addresses were sent letters asking one household 
+member to go online to complete a survey. That survey contained a 
+screening instrument to randomly select one person from all eligible 
+household members for the final interview. 
+For post-election Internet interviews, incentives were set to the amount 
+paid for the pre-election interview, that is, either 40 or 80 USD.
+Panel attrition rates were 10 percent for the face-to-face component, and 
+16 percent for the Internet component. 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2016 United States Study includes a COMBINED SAMPLE and DEMOGRAPHIC
+WEIGHT. The weight adjusts for unequal probability of selection, non-
+response, age by gender, race/ethnicity by educational attainment, marital 
+status by gender, race/ethnicity by census region, nation of birth and home 
+tenure by metropolitan status.
+The weight deposited with CSES is targeted to the complete U.S. 2016 
+dataset (including both Internet and face-to-face modes). Users interested 
+in conducting analyses with either face-to-face or web interviews only are 
+referred to the ANES 2016 Time Series Study, which provides individual 
+weights for each mode.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - UNITED STATES (2020)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN 
+
+The 2020 United States general election was held on Tuesday, November 3,
+2020 and was part of the larger American National Election Study (ANES). 
+The elections and the fieldwork took place during the COVID-19 pandemic. 
+The ANES 2020 Time Series study has a pre and post-election panel design in 
+which 4,779 respondents were interviewed twice: once before the election and 
+once after. Another 2,670 respondents were sampled for the 2016 ANES Time 
+Series Study and were re-interviewed in 2020 before and after the election. 
+The CSES sample includes respondents sampled in 2016 and 2020 who took part 
+in both rounds of the 2020 interviews.
+
+Fieldwork featuring the CSES survey started on November 8, 2020, and 
+continued until January 4, 2021 (58 days in total). The COVID-19 pandemic 
+made face-to-face interviewing unfeasible. In response, the 2020 ANES 
+implemented a contactless, sequential mixed-mode design. This design 
+combined self-administered Internet surveys, live in-person video 
+interviews, and telephone interviews. Respondents were assigned to modes 
+which remained consistent. The study was fielded by Westat, Inc. in both 
+English and Spanish. The total number of observations from the United States 
+Study is 7,449 interviews: 115 were completed via telephone, 7,060 via the 
+Internet, and 274 using in-person video call. 
+
+The fresh 2020 cross-sectional sample is meant to represent eligible voters
+in the 2020 Presidential election, as defined by being age 18 as of election
+day and being a U.S. citizen. Institutionalized persons were excluded from 
+the sampling frame. Further details on the sampling process with which 
+panelists from 2016 were recruited are detailed in CSES Codebook Part 6 in
+the "Overview of Study Design and Weights - United States (2016)". 
+
+The 2020 fresh cross-sectional sample is based on a simple random sample
+drawn from the computerized delivery sequence file (C-DSF) provided by 
+the U.S. Postal Service. All included residential addresses across the 50 
+states and Washington DC had an equal probability of selection. 
+Selected addresses were sent a series of letters, asking one household 
+member to go online to complete a survey. That survey contained a screening 
+instrument to randomly select one person from all eligible household members
+for the final interview. Upon completion of the screener, the selected 
+individual was randomly assigned to one of three sequential mode conditions:
+Internet-only, mixed Internet, and mixed video.
+
+Cases assigned to the Internet-only group were released in two replicates 
+for the pre-election survey and solely interviewed online. The first was
+released in mid-August 2020 with the other sample groups. The second 
+replicate was released on September 11, 2020, after the Republican and 
+Democratic conventions, roughly corresponding to the field period of 
+previous ANES Time Series studies.
+Respondents in the mixed Internet group were initially invited to complete  
+the survey online. Non-responding persons and refusals were shifted to the 
+telephone at the case level in the final weeks of the pre-election period. 
+Finally, upon completing the web screener, respondents in the mixed video 
+group were invited to complete the survey by live video interview via Zoom. 
+Following the invitation link, respondents were instructed to wait briefly
+to connect with an interviewer or set an appointment. In case of refusal or 
+non-response, respondents were shifted to the Internet. At the final stage, 
+non-respondents to the Internet survey were subsequently pushed to 
+telephone. Similar to the mixed Internet group, this shift occurred at the 
+case level in the final weeks of the pre-election period. All panelists 
+from the 2016 ANES Time Series study completed the 2020 survey via the 
+Internet. Invitations were made by e-mail and mail.
+
+Before the pre-election interview, selected addresses were sent invitation
+letters, including 10 USD in cash, that promised an additional 40 USD for 
+completing a survey online. Among all groups of the fresh 2020 sample, 
+non-responding households were offered escalated incentives of 100 USD for 
+completing the screener later in the field period. Additionally, individuals
+from under-represented groups with a low response rate were offered 200 USD
+as part of a targeted, adaptive design approach in the mixed-Internet group
+and for panelists from 2016. Likewise, to counter initial non-response, 
+200 USD escalations were offered to respondents from the mixed video group 
+for completing interviews by video. 
+For the post-election survey, pre-election respondents were offered the 
+incentive amount they received previously.
+
+The pre-election re-interview rate for the 2016-2020 panel cases was 77.9%.
+Of these, post-election re-interviews were conducted with 94.0% of 
+panelists. The cumulative 2020 re-interview rate was thus 73.2%.
+For the fresh 2020 sample, 87.9% of respondents from the pre-election survey
+also completed the post-election interview (88.1% in Internet-only, 88.7% in 
+mixed Internet and 84.6% in the mixed video group, respectively). 
+
+
+<<>> POLITY WEIGHTS 
+
+The 2020 United States Study includes a COMBINED SAMPLE and DEMOGRAPHIC 
+WEIGHT. The weight adjusts for unequal probability of selection, non-
+response, age by gender, marital status by gender, race/ethnicity by 
+educational attainment, race/ethnicity by Census region, nation of birth, 
+home tenure by metropolitan status, population density, household income, 
+and early voter status.
+The weight deposited with CSES (variable V200010b in the ANES 2020 Time 
+Series data) is targeted to the full post-election dataset, namely all three
+mode conditions from the 2020 fresh cross-sectional sample and sample 
+members from the 2016 ANES Time Series Study. Users interested in conducting
+analyses with a subset of these sample components only are referred to the 
+ANES 2020 Time Series Study, which provides individual weights for selected 
+components.
+
+
+---------------------------------------------------------------------------
+>>> OVERVIEW OF STUDY DESIGN AND WEIGHTS - URUGUAY (2019)
+---------------------------------------------------------------------------
+
+<<>> STUDY DESIGN
+
+The 2019 Uruguayan general election took place on Sunday, October 27, 2019. 
+The Uruguayan Study was carried out between January 28 and February 27, 
+2020 (31 days) with interviews conducted by telephone. The questionnaire was 
+administered in Spanish, and the fieldwork was carried out by Instituto 
+Factum. The total number of observations from the Uruguay Study is 1,200 
+interviews. 
+
+The sample is meant to be representative of the voting-eligible population,
+namely, Uruguayan citizens aged 18 years or older on election day. The 
+survey was realized as a two-stage quota sample with departments as the 
+primary sampling unit. The departments were selected proportionally to the
+electorates and hence not randomly. In a subsequent step, dual-frame 
+telephone surveys were conducted within departments (50% mobiles and 50%
+landlines). While mobile phone numbers were sampled via random digit 
+dialing, landline numbers originate from a listed sample. Apart from 
+clustering by departments, the sample design includes quota sampling by sex
+and age.
+
+
+<<>> POLITY WEIGHTS 
+
+The 2019 Uruguay Study provides a SAMPLE WEIGHT, a DEMOGRAPHIC WEIGHT, and 
+a POLITICAL WEIGHT. The sample weight is designed to account for a 
+sampling bias related to the different Uruguayan territories (based on 
+variable E2022 - Rural or Urban Residence). The demographic weight controls 
+for gender and age. The political weight adjusts for discrepancies in the 
+reported electoral behavior of respondents and the official electoral 
+results.
+
+
+/// END OF FILE
