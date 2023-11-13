@@ -43,13 +43,17 @@ library(ggridges)
 
 Opening:
 ```{r}
-selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv", header = TRUE)
+# selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/Data/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv", header = TRUE)
+# 
+# selects19 <- selects19 %>%
+#   select(sex, age, matches("f15200"), f20221) %>%
+#   filter(!is.na(selects19$sex) & !is.na(selects19$age) & !is.na(selects19$f15200) & !is.na(selects19$f20221))  # Remove rows where x or y is NA
+# 
+# selects19$f15200 <- as.numeric(selects19$f15200)
+# 
+# write.table(selects19, file = "~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
 
-selects19 <- selects19 %>%
-  select(sex, age, matches("f15200"), f20221) %>%
-  filter(!is.na(selects19$sex) & !is.na(selects19$age) & !is.na(selects19$f15200) & !is.na(selects19$f20221))  # Remove rows where x or y is NA
-
-selects19$f15200 <- as.numeric(selects19$f15200)
+selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", header = TRUE)
 ```
 
 Labeling languages:
