@@ -1,35 +1,32 @@
-# Week 4: Regression I (Prediction)
+# Week 4: Regression II (Model Specification)
 
 ## Aims
 
-1. Using regression analysis for quantitative descriptive purposes with real data
-2. Using simulation to instantiate how different properties of the data generating process alter the reliability of regression analysis
+1. Using multiple regressors and interaction terms in regression analysis for quantitative descriptive purposes with real data
+2. Using simulation to instantiate how different properties of the data generating process alter or not metrics of goodness of fit
 
-## Exercise: Context and Question
+*<span style="color: red;">Should we request them to do descriptive statistics?</span>.*
+*<span style="color: red;">Check: are all list numerals fine?</span>.*
+*<span style="color: red;">Check: do all parameters in the interpretation texts fine?</span>.*
 
-As developed in the following [entry](https://de.wikipedia.org/wiki/Eidgen%C3%B6ssische_Abstimmung_%C3%BCber_die_Totalrevision_des_CO2-Gesetzes#:~:text=Die%20Eidgen%C3%B6ssische%20Abstimmung%20%C3%BCber%20die,von%2051%2C59%20%25%20abgelehnt.), a referendum took place in 2021 to assess whether Swiss citizens approved or not a bill aimed at reducing greenhouse gas emissions.
 
-The bill was rejected by a narrow margin: 51.6% of votes went for the "No", while 48.4% for the "Yes". In the media, some analysts commented that a marked division or cleavage between rural and urban voters seems to have led to this result: a specially high rural turn-out seems to underlie such result. As the analyst commented, most urban inhabitants liked the bill while most rural inhabitants disliked it.
+## Exercise: Context and Questions
 
-Not satisfied with a simple impression, as a political scientist you want to quantitatively qualify your understanding about what happened in that election. Particularly, you want to know:
+Currently led by [Prof. Anke Tresch](https://forscenter.ch/staff/anke-tresch/), "[t]he Swiss Election Study (Selects) has been investigating the electoral behaviour of Swiss citizens in national elections since 1995. The project sheds light on the dynamics of the citizens’ opinion formation as well as on the determinants of their political participation and voting choice for a specific candidate or party." See more [here](https://forscenter.ch/projects/selects/).
 
-1. Given that more rural municipalities have smaller populations, was the turn-out higher in municipalities with smaller populations than in bigger ones?
-2. Was the turn-out higher in more agricultural municipalities than in less agricultural ones?
+In this exercise, you will use data for the year 2019. You will use it to answer the following questions:
 
-Thus, to analytically describe the voting results, you will perform some regressions using the following data.
+1. Do older voters have stronger right leaning preferences than younger ones?  age
+2. Does that behavior change across sexes? sex
+3. Does that behavior change depending on the main language spoken at the respondent's home? f20221
+4. What about the interaction sex-age?
+4. What about the interaction sex-language?
+4. What about the interaction age-language?
+4. What about the interaction sex-age-language?
+4. Do right leaning preferences become stronger the older voters are?
 
 
 ## Getting the data first
-
-To get the data, you will use an API (application programming interface). Put plainly, for the sake of this exercise you can think of an API like a [waiter](https://www.youtube.com/watch?v=s7wmiS2mSXY) to whom you make a request and who gets what ever you requested from the kitchen (a remote data source).
-
-In this case, you will use two APIs: to get election results in Switzerland, [`swissdd`](https://politanch.github.io/swissdd/index.html), and [`BFS`](https://github.com/lgnbhl/BFS) to get many other kinds of statistical information. Both APIs get information from the Federal Statistical Office (Bundesamt für Statistik).
-
-Skimm the functions of the [Swissdd](https://politanch.github.io/swissdd/reference/index.html) package. Then, inspect the [codebook](https://swissvotes.ch/storage/b47562b197b7725fcfa45b3e5a4abad1b4cf14cd377136f87fd4473329a51114) to understand what for the columns and rows stand for. Do not use more than 5 minutes doing it.
-
-To get the data, simply execute the following code. We present you with the code so, if you want, you can know how it works and you can play around with it on your own following the code's logic.
-
-Install the `Swissdd` package
 
 ```{r, include=FALSE}
 # Load necessary libraries
@@ -39,102 +36,49 @@ library(tidyverse)
 library(ggplot2)
 library(BFS)
 library(pxR)
+library(ggridges)
+
 ```
 
 
+Opening:
 ```{r}
-#First option  - from CRAN. If you install it from the github repository, make sure you have the `devtools` installed in advance.
-#install.packages("swissdd")
+# selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/Data/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv", header = TRUE)
+# 
+# selects19 <- selects19 %>%
+#   select(sex, age, matches("f15200"), f20221) %>%
+#   filter(!is.na(selects19$sex) & !is.na(selects19$age) & !is.na(selects19$f15200) & !is.na(selects19$f20221))  # Remove rows where x or y is NA
+# 
+# selects19$f15200 <- as.numeric(selects19$f15200)
+# 
+# write.table(selects19, file = "~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
 
-#Second option
-# install.packages("devtools") # it is necessary to comment the install.packages so the book can be rendered
-devtools::install_github("politanch/swissdd")
-# library(swissdd)
+selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", header = TRUE)
 ```
 
-Retrieve the [CO2 Act](https://swissvotes.ch/vote/644.00) information using `get_nationalvotes`. The vote took place in 13/06/2021.
-
+Labeling languages:
 ```{r}
-CO2<-get_nationalvotes(votedates = "2021-06-13")
+selects19 <- selects19 %>%
+  mutate(LanguageHome = case_when(
+    f20221 == 1 ~ "German/Swiss German",
+    f20221 == 2 ~ "French",
+    f20221 == 3 ~ "Italian",
+    f20221 == 4 ~ "Romansh",
+    f20221 == 5 ~ "Other"))
 ```
 
-As the same day of the CO2 Act vote more initiatives were voted, keep only the one we care about for this exercise. Notice that each initiative has a numerical identifier called `id`. [Here](https://swissvotes.ch/vote/644.00) you can find the numerical identifier under `Vote Nº`. Keep in mind that, the variable `id` has the same number as in `Vote Nº` with an additional zero to the right.
-
+Labeling sex:
 ```{r}
-CO2<- CO2 %>%
-  filter(id==6440)
+selects19 <- selects19 %>%
+  mutate(Sex = case_when(
+    sex == 1 ~ "Male",
+    sex == 2 ~ "Female"))
 ```
 
-The resulting data frame contains rows representing the results for a particular vote in a particular municipality. The columns qualify that vote. Use the `colnames()` function to see the names of the columns. Keep only those that might be relevant for your analysis.
-
+Renaming political preferences:
 ```{r}
-CO2<- CO2 %>%
-  select(canton_id, canton_name, mun_id, mun_name, jaStimmenInProzent, jaStimmenAbsolut, neinStimmenAbsolut, stimmbeteiligungInProzent, eingelegteStimmzettel, anzahlStimmberechtigte, gueltigeStimmen)
-```
+selects19 <- dplyr::rename(selects19, LeftToRight = f15200)
 
-Finally, as you want to see the turn-out differences between municipalities with different degrees of agriculture intensity you need to get some additional data. Run the following code.
-
-```{r}
-# install.packages("BFS")
-# library(BFS)
-#To see the information available in German
-# catalog_data_de <- bfs_get_catalog_data(language = "de")
-
-#To see the information available in English
-#catalog_data_en <- bfs_get_catalog_data(language = "en")
-
-#To see the information available in German that contains a particular word in the title
-#catalog_data_de <- bfs_get_catalog_data(language = "de", title="Gemeinde")
-
-#To get the asset number (i.e., numerical id for a data set)
-# asset_number <- catalog_data_de %>%
-#   filter(title == "Arealstatistik: Standardnomenklatur (NOAS04) nach Bezirk und Gemeinde, in Hektaren") %>%
-#   pull(number_asset)
-
-#Using that asset number, the metadata (i.e., data that describes the data set) can be accessed.
-#asset_meta <- bfs_get_asset_metadata(number_asset = asset_number)
-
-#From the metadata, the bfs number (i.e., a alphanumeric id for the data set) can be accessed.
-#bfs_number <- asset_meta$shop$orderNr
-
-#Finally, using the bfs number the data set can be accessed.
-#LandUse <- bfs_get_data(number_bfs = bfs_number)
-
-#If there is a “Too Many Requests” error message, you can follow this (https://github.com/lgnbhl/BFS#too-many-requests-error-message) 
-#or download the PX file from here https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/daten.assetdetail.24865343.html
-#install.packages("pxR")
-# library(pxR)
-#Open data
-LandUse <- read.px('~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/px-x-0202020000_102.px', encoding = "UTF-8")
-LandUseData<- LandUse$DATA$value
-
-#Rename variable
-LandUseData <- LandUseData %>%
-  rename_with(~ 'mun_name', 3)
-
-#Keep the data relevant for my analysis
-LandUseData<- LandUseData %>%
-  filter(Periode == "2013/18") %>%
-  filter(Standardnomenklatur..NOAS04.=="-b Landwirtschaftsflächen" | Standardnomenklatur..NOAS04.=="Fläche Total") %>%
-  filter(str_starts(str_trim(mun_name), fixed("."))) %>%
-  mutate(mun_name = str_replace_all(mun_name, fixed("......"), ""))
-
-# install.packages("tidyverse")
-#Adjust data from long to wide
-LandUseData <- LandUseData %>%
-  pivot_wider(names_from = Standardnomenklatur..NOAS04., values_from = value)
-
-#Rename variables
-LandUseData <- LandUseData %>%
-  rename_with(~ 'TotalAreaHa', 3) %>%
-  rename_with(~ 'AgriculturalAreaHa', 4) %>%
-  select(-Periode)
-```
-
-Using the additional data, you can now merge both data sets so you can know how did voters behave in more agricultural areas. Use the `inner_join` function. The numerical IDs are available in `LandUseData` but not in `CO2`. However, as both sources share the `mun_name`, you use that variable to match them.
-
-```{r}
-CO2 <- inner_join(CO2, LandUseData, by="mun_name")  
 ```
 
 ## Exercise: solution
@@ -143,478 +87,797 @@ CO2 <- inner_join(CO2, LandUseData, by="mun_name")
 
 ### Real data
 
-Using the previous data, you do the following to answer your two questions:
-
-i. Since you want to describe the turn-out across municipalities with different population sizes, you initially think of regressing the turn-out on the population size. As you lack the municipal population, you use the number of eligible voters `anzahlStimmberechtigte` as a proxy. Regress `stimmbeteiligungInProzent` (Voting participation in percent) on  `anzahlStimmberechtigte` (number of eligible voters) [without](https://www.geeksforgeeks.org/remove-intercept-from-regression-model-in-r/) the intercept. Report and interpret the parameter.
-
-Write the regression here.
-```{r}
-result <- lm(stimmbeteiligungInProzent ~ anzahlStimmberechtigte -1 , data = CO2)
-summary(result)
-```
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result)
-
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 5), '. It means that, across Swiss municipalities an increase of a thousand voters was associated with an average increase in the turn-out of ', round(unname(coeffs[1])*1000, digits = 5), ' percentage points.')
-
-```
-
-
-i. [Optional] Why could the number of eligible voters inform better your inquiry than the total municipal population? What difference across municipalities could make an analysis based on municipal population render the analysis less reliable?
-
-```{r}
-
-
-```
-
-i. To enrich your analysis, you generate a scatter plot showing the relation between the same pair of variables and qualifying it adding the regression line. Remember that you are doing the analysis without the intercept.
-
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = anzahlStimmberechtigte, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Number of eligible voters",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-
-
-
-```
-
-i. Given your preliminary analysis, you find that, on average, municipalities with bigger populations had a higher turn-out than those with smaller ones. As you know that most urban citizens preferred 'Yes' but the 'No' won, you call into question your first approach: while bigger municipalities had higher participation levels than smaller ones, the option preferred by most rural inhabitants won. In other words, it is not clear that the population size helps us to understand this voting results.
-
-Thus, to capture how rural a municipality is, you used the agricultural area of the municipality (`AgriculturalAreaHa`) as a regressor (aka. independent variable) for the same regressand (aka. dependent variable) of the previous point (i.e., voting participation in percent). Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.
-
-Write the regression here.
-```{r}
-result <- lm(stimmbeteiligungInProzent ~ AgriculturalAreaHa -1 , data = CO2)
-summary(result)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 5), '. It means that, across Swiss municipalities an increase of a thousand hectares was associated with an average increase in the turn-out of ', round(unname(coeffs[1])*1000, digits = 5), ' percentage points.')
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgriculturalAreaHa, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (Ha)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-
-i. The result from the previous point is consistent with the vote result given the urban-rural divide in preferences (i.e., municipalities with more agricultural area had higher participation rates). However, you notice that your comparisons across municipalities are not very rigorous because you are ignoring how important agricultural land with respect to the whole municipality area. An implication of that is that two municipalities with the same agricultural area could be taken as equally rural while one could have a very big urban area (e.g., Zurich) and the other have a very small one.
-
-Thus to make your analysis across more comparable units, you transform the absolute value of the agricultural area to a relative one: the percentage of the municipal area that is agricultural. Create the variable `AgricAreaPercent` to represent those transformed values. Regress the turn-out on the newly created variable. Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.
-
-Write the regression here.
-```{r}
-#Transform the units to make them comparable 
-CO2 <- CO2 %>%
-  mutate(AgricAreaPercent= 100*AgriculturalAreaHa/TotalAreaHa)
-
-#regression
-result0 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent -1 , data = CO2)
-summary(result0)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result0)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), '. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of ', round(unname(coeffs[1]), digits = 2), ' percentage points.')
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-i. The previous graph showed you the same relationship consistent with the vote. However, you now notice that the regression line is strange: if it is supposed to be the line described the general tendency in the relation between two variables, it is strange that it is very far from many observations and only close to few of them. Hence, you remember that the using the intercept increases the fit of the line. Accordingly, you do all the same steps of the previous point but this time with the intercept.
-
-Write the regression here.
-```{r}
-#regression
-result1 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent, data = CO2)
-summary(result1)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result1)
-cat('The beta value for', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), '. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of ', round(unname(coeffs[2]), digits = 2), ' percentage points.\n\nLikewise, should there be a municipality with no agricultural area, we could expect it to have a turn-out of ', round(unname(coeffs[1]), digits = 2), '. From there on, increasing one percentage point at a time up to 100 percentage points (i.e., a municipality with 100% of agricultural area), we would have a turn-out of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]*100), digits = 2))
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-i. [Optional] You noticed that the regression using the intercept fits better the data: on average, the distance from each point to the regression line is lower. See this [entry](https://en.wikipedia.org/wiki/Coefficient_of_determination), particularly the graph with the blue and red squares to understand the logic of the R^2 as a measure for goodness of fit. You want to compare both the regression lines with and without the intercept in one same graph. Do it. What lesson can you get from this comparison?
-
-```{r}
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x-1, se = FALSE, color = "red") +  # Adding the regression line
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-```
-
-i. [Optional] Now add a vertical line with the average for the agricultural area, and a horizontal one with the average turn-out. What does this new graph tell you about the descriptive performance of a regression with and without intercepts?
+1. Graph age vs. political preferences. Use a linear regression line to describe how the variables relate to each other.
 
 ```{r}
 #Means for Y and X
-mean_AgricAreaPercent <- mean(CO2$AgricAreaPercent, na.rm = TRUE)
-mean_stimmbeteiligungInProzent <- mean(CO2$stimmbeteiligungInProzent, na.rm = TRUE)
+mean_LeftRight <- mean(selects19$LeftToRight, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
 
 # Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
+ggplot(selects19, aes(x = age, y = LeftToRight)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "red") +  # Adding the regression line
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences"
   )
 
 ```
 
-i. Store the residualas as `residuals`. Plot the share of agricultural area against the residuals. What does it tell you regarding the ability of the model to describe the central tendency of the relationship across all values of the agricultural land share?
+
+
+2. Since the political preferences as well as years are defined in discrete values, many values can overlap for the same pair` (preference, age)`. Use the `ggridges` package to see how do preferences distribute across different age values.
+```{R}
+ggplot(selects19, aes(x = age, y = as.factor(LeftToRight), fill = as.factor(LeftToRight))) +
+  geom_density_ridges() +
+  geom_smooth(data = selects19, aes(x = age, y = LeftToRight, group = 1), 
+              method = "lm", formula = y ~ x, color = "red", se = FALSE) +
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +
+  scale_fill_viridis_d() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Age (years)",
+       y = "Political Preferences (left to right)",
+       title = "Political preferences by age level",
+       fill = "factor(LeftToRight)")
+
+```
+
+3. Regress the political preferences on age. As we learnt in the exercises from last week, the regression with intercept fits data better in most cases: act accordingly. Report and interpret the parameters. Graph some of the main components of the regression output.
+
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs<- coef(result)
+cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' and for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), '. \n\nIt means that, given our model, an increase of one year in age across the Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100)
+```
+Graph some of the main components of the regression output here.
 
 ```{r}
-residuals1 <- residuals(result1)
+ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
+  geom_point(size = 0.001) +
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = 0, color = "gray", size = 1) +
+  geom_text(aes(label = "Newborn",
+                x = max(selects19$age)+10,
+                y = 0.2+unname(coeffs[1])),
+                hjust = 1, vjust = 0, color = "gray")+ 
 
-ggplot(CO2, aes(x = AgricAreaPercent, y = residuals1)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "green")+  # Adding the
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = unname(coeffs[2]), color = "red", size = 1) +
+  geom_text(aes(label = "Average individual over time",
+                x = max(selects19$age)+10,
+                y = 0.4+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
+                hjust = 1, vjust = 0, color = "red") +
+
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Residuals (turn-out p.p.)",
-    title = "Scatter plot with Linear Regression Line"
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Lines Using Parameters from Regression"
   )
 ```
 
-i. [Optional] Repeat the previous point without the intercept. Does the linear regression remains a good tool for describing the central tendency of the relationship across all values of the agricultural land share?
+
+4. Now add the regressor `Sex` and do the same as in the previous point.
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age + Sex, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs<- coef(result)
+cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), ' and for ', names(coeffs[3]), ' is ', round(unname(coeffs[3]), digits = 2),
+    
+'. \n\nIt means that, given our model,  an increase of one year in age across the Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old female citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, '. Similarly, for each of those scenarios, should the individual be a male, it can be expected to have an average of ', round(unname(coeffs[3]), digits = 2), ' ideological units higher than a female individual under the same statistical circumstances.')
+```
+Graph some of the main components of the regression output here.
 
 ```{r}
-residuals0 <- residuals(result0)
+ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
+  geom_point(size = 0.001) +
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = 0, color = "gray", size = 1) +
+  geom_text(aes(label = "Newborn female",
+                x = max(selects19$age)+10,
+                y = 0.2+unname(coeffs[1])),
+                hjust = 1, vjust = 0, color = "gray")+ 
 
-ggplot(CO2, aes(x = AgricAreaPercent, y = residuals0)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "red")+  # Adding the
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = unname(coeffs[2]), color = "red", size = 1) +
+  geom_text(aes(label = "Female over time",
+                x = max(selects19$age)+10,
+                y = -0.8+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
+                hjust = 1, vjust = 0, color = "red") +
+
+  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
+              slope = unname(coeffs[2]), color = "orange", size = 1) +
+  geom_text(aes(label = "Male over time (newborn bonus)",
+                x = max(selects19$age)+10,
+                y = 0.6+unname(coeffs[1])+unname(coeffs[3]) + unname(coeffs[2]) * max(selects19$age)+0.2),
+                hjust = 1, vjust = 0, color = "orange") +
+
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Residuals (turn-out p.p.)",
-    title = "Scatter plot with Linear Regression Line"
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Lines Using Parameters from Regression"
   )
+
+```
+
+5. You now remember that average preferences can change not only across age and sex independently, but simultaneously: i.e., the average preferences across individuals in a same sex can change at different rates over time as well as begin from different points. Add the interaction  `Age` and `Sex` and do the same as in the previous point.
+
+
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age * Sex, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs<- coef(result)
+cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), ' for ', names(coeffs[3]), ' is ', round(unname(coeffs[3]), digits = 2),' and for ', names(coeffs[4]), ' is ', round(unname(coeffs[4]), digits = 2),
+    
+'. \n\nIt means that, given our model,  an increase of one year in age across the female Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, female newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old female citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, '. \n\nSimilarly, for each of those scenarios, should the individual be a male, it can be expected to have an average of ', round(unname(coeffs[3]), digits = 2), ' ideological units higher (i.e., self declare more right leaning) than a female individual under the same statistical circumstances. Finally, the rate at which right leaning prefferences increase over time is ', round(unname(coeffs[4]), digits = 2)*-1, ' lower than a female in the same statistical circumstances. Therefore, a 100 year old male can be expected to have an political preference of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[4]), digits = 2)*100)
+```
+
+Graph some of the main components of the regression output here.
+
+```{r}
+ggplot(selects19, aes(x = age, y = LeftToRight)) +
+  geom_point(size = 0) +
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = 0, color = "gray", size = 1) +
+  geom_text(aes(label = "Newborn female",
+                x = max(selects19$age)+10,
+                y = -0.5+unname(coeffs[1])),
+                hjust = 1, vjust = 0, color = "gray")+ 
+
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = unname(coeffs[2]), color = "red", size = 1) +
+  geom_text(aes(label = "Female over time",
+                x = max(selects19$age)+10,
+                y = -0.8+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
+                hjust = 1, vjust = 0, color = "red") +
+
+  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
+              slope = unname(coeffs[2])+unname(coeffs[4]), color = "orange", size = 1) +
+  geom_text(aes(label = "Male over time (newborn bonus+Δslope)",
+                x = max(selects19$age)+10,
+                y = 0.45+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[4])) * max(selects19$age)),
+                hjust = 1, vjust = 0, color = "orange") +
+  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Lines Using Parameters from Regression"
+  )
+```
+
+6. Following the same logic as in the previous point, you now add the `LanguageHome` categorical variable with the corresponding interactions. Do the same as in the previous point.
+
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age * Sex * LanguageHome, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs <- coef(result)
+cat('Interpreting a regression with ever more interactions is exponentially harder! Thus, find below some few cases aimed at signaling the general logic in the interpretation.',
+    
+'\n\nAn increase of one year in age across the female Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, female newborns whose household speaks mainly in French can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while a 100 year old female citizens whose household speaks mainly in French can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, 
+
+'.\n\nSimilarly, should one observe a random 100 year old male individual whose household speaks mainly in German, we can expected him have an average of ', round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[8]), digits = 2)*100+round(unname(coeffs[9]), digits = 2)*100+round(unname(coeffs[13]), digits = 2)+round(unname(coeffs[17]), digits = 2)*100, ' ideological units higher than a female newborn whose household speaks mainly in French. Consequently, the expected ideological value for the former would be of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[8]), digits = 2)*100+round(unname(coeffs[9]), digits = 2)*100+round(unname(coeffs[13]), digits = 2)+round(unname(coeffs[17]), digits = 2)*100)
+```
+Graph some of the main components of the regression output here.
+
+```{r}
+ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
+  geom_point(size = 0) +
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = 0, color = "gray", size = 1) +
+  geom_text(aes(label = "Newborn female French speaking household",
+                x = max(selects19$age)+10,
+                y = 0.1+unname(coeffs[1])),
+                hjust = 1, vjust = 0, color = "gray")+ 
+
+  geom_abline(intercept = unname(coeffs[1]),
+              slope = unname(coeffs[2]), color = "red", size = 1) +
+  geom_text(aes(label = "Female French speaking household over time",
+                x = max(selects19$age)+10,
+                y = -1.6+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
+                hjust = 1, vjust = 0, color = "red") +
+
+  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
+              slope = unname(coeffs[2])+unname(coeffs[8]), color = "orange", size = 1) +
+  geom_text(aes(label = "Male French household over time (newborn bonus+Δslope)",
+                x = max(selects19$age)+10,
+                y = 0.4+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[8])) * max(selects19$age)+0.2),
+                hjust = 1, vjust = 0, color = "orange") +
+  
+  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3])+unname(coeffs[13]),
+              slope = unname(coeffs[2])+unname(coeffs[8])+unname(coeffs[17]), color = "purple", size = 1) +
+  geom_text(aes(label = "Male German household over time (newborn & ling. bonus+Δslope)",
+                x = max(selects19$age)+10,
+                y = 1.2+unname(coeffs[1])+unname(coeffs[3])+unname(coeffs[13]) + (unname(coeffs[2])+unname(coeffs[8])+unname(coeffs[17])) * max(selects19$age)+0.2),
+                hjust = 1, vjust = 0, color = "purple") +  
+  # geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
+  #             slope = unname(coeffs[2])+unname(coeffs[4]), color = "blue", size = 1) +
+  # geom_text(aes(label = "Int.(fem)+Male+Age*Male",
+  #               x = max(selects19$age)+10,
+  #               y = 0.3+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[4])) * max(selects19$age)+0.2),
+  #               hjust = 1, vjust = 0, color = "blue") +
+  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Lines Using Parameters from Regression"
+  )
+```
+
+*<span style="color: red;">Ojo: Check that interpretations have the right parameters!</span>.*
+
+
+
+## Interactive Line Plot
+
+*<span style="color: red;">Should we exploit this here or somewhere else? I can make it work in R, but not in the book yet. If needed, I can check it out.</span>.*
+
+
+```{r}
+# # Example data frame
+# data <- data.frame(
+#   x = rnorm(100),
+#   y = rnorm(100)
+# )
+# 
+# # Shiny server function
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +  
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# # Example data frame
+# data <- data.frame(
+#   x = rnorm(100),
+#   y = rnorm(100)
+# )
+# 
+# # Shiny server function
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +  
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# update.packages(ask = FALSE)
+# 
+# 
+# library(shiny)
+# library(ggplot2)
+# 
+# ui <- fluidPage(
+#   titlePanel("Interactive Line Plot"),
+#   sidebarLayout(
+#     sidebarPanel(
+#       sliderInput("intercept", "Intercept:", min = -10, max = 10, value = 0),
+#       sliderInput("slope", "Slope:", min = -10, max = 10, value = 1)
+#     ),
+#     mainPanel(
+#       plotOutput("scatterPlot")
+#     )
+#   )
+# )
+# 
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# shinyApp(ui = ui, server = server)
 ```
 
 ### Simulated data
 
-i. You will now simulate the relationship between turn-out and share of agricultural land. Assume the parameters estimated in the last regression (i.e., the $\beta_0$ and $\beta_1$). Retrieve both parameters.
+1. In order to see the logic behind the $R^2$, first estimate the linear regression of `LeftToRight` on `Age`. Generate the variable `predicted_LeftToRight` with the generated parameters using [`predict()`](https://www.statology.org/r-lm-predict/) from the point 3 of the previous section (i.e., the one using real data).Generate the graph `predicted_LeftToRight` vs `Age`.
 
-
+Report the regression here.
 ```{r}
-coeffs<- coef(result1)
-print(coeffs)
-print(unname(coeffs[1]), digits = 5)
-print(unname(coeffs[2]), digits = 5)
+result <- lm(LeftToRight ~ age, data = selects19)
+selects19$predicted_LeftToRight <- predict(result)
 
+coeffs1 <- coef(result)
+rsq_sd1 <- summary(result)$r.squared
+cat('The R2 is: ', rsq_sd1, '\n\nIntercept:',unname(coeffs1[1]), '\n\nSlope:', unname(coeffs1[2]))
 ```
 
-
-i. Use the parameters to define the assumed data generating process. Assume that the process is deterministic (i.e., it has no stochastic component). Express the equation using mathematical notation.
-
-$$TurnOut_i = \beta_0 + \beta_1 * ShareAgriculturalLand$$
-
-i. Generate a normal distribution that preserves the mean and standard deviation of the original data on share of agricultural land.
-
+Report the graph here.
 ```{r}
-CO2$Sim_ShareAgric_norm <- rnorm(nrow(CO2), mean = mean_AgricAreaPercent, sd = sd(CO2$AgricAreaPercent))
+# Calculate means for Y and X
+mean_LeftRight <- mean(selects19$LeftToRight, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
 
-hist(CO2$Sim_ShareAgric_norm, 
-     main="Histogram of Share of Simulated Agricultural Land", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=mean_AgricAreaPercent, col="red", lwd=2, lty=2)
-```
-
-i. Predict the turn-out values given the simulated inputs on the share of agricultural land using the data generating process defined two points above. Graph relation between both variables using a liner regression line.
-```{r}
-CO2$Pred_TurnOut_Determ <- unname(coeffs[1]) + unname(coeffs[2])*CO2$Sim_ShareAgric_norm
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Determ)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = predicted_LeftToRight)) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)  
+  ) +
   theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic model"
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences (determ. sim.)"
   )
 
 
 ```
 
-i. Generate a normal distribution with error distribution with mean zero and standard deviation equal to the standard deviation of the residual of the model with intercept.
+2. Now generate the normally distributed residuals with mean zero and the same variance as the residuals of the model from the previous point.
 ```{r}
+# Calculate the variance of the residuals
+selects19$residual <- resid(result)
+residual_sd <- sqrt(var(resid(result)))
 
-CO2$Sim_resid_norm <- rnorm(nrow(CO2), mean = 0, sd = sd(residuals1))
-
-hist(CO2$Sim_resid_norm, 
-     main="Histogram of Simulated Normal Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
+# Set the seed for reproducibility
+set.seed(0)
+selects19$NormResiduals1 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd)
 
 ```
 
-i. Repeat the same model but now add the stochastic element. Graph relation between both variables using a liner regression line.
+3. Simulate new data using both the deterministic  (i.e., the the parameters estimated immediately above) and stochastic component (i.e., the residuals form the previous point). Graph the simulated data.
 ```{r}
-CO2$Pred_TurnOut_Stoch <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_norm
 
+selects19$Sim_LeftToRight_Det_Stoch <- selects19$predicted_LeftToRight + selects19$NormResiduals1
 
+#Means for Y and X
+mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
 
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Stoch)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Sim_ShareAgric_norm, na.rm = TRUE))) +  #
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model"
+    x = "Age (years)",
+    y = "Simulation: Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim.)"
   )
 
 ```
 
-i. [Optional] Now repeat the same simulation but generating errors that distribute uniformly and lognormally. For the lognormal distribution, use the same mean and standard deviations as in the immediately previous exercises. For the uniform, use the maximum, and minimum values of the residuals for the model with intercept.
+4. Now, estimate the regression between the real `age` and simulated `Sim_LeftToRight_Det_Stoch`. Once you do that, generate the $R^2$ for the model.
 
-Uniform simulated residuals:
 ```{r}
-CO2$Sim_resid_unif <- runif(nrow(CO2), min = min(residuals1), max = max(residuals1))
-
-hist(CO2$Sim_resid_unif, 
-     main="Histogram of Simulated Uniform Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
-
+result <- lm(LeftToRight ~ age, data = selects19)
+rsq_sd1 <- summary(result)$r.squared
+cat('The R2 is: ', rsq_sd1)
 
 ```
 
-Data generating process with uniform residuals:
+5. Repeat the previous three points but use half the standard deviation of the model of point 1. Is the $R^2$ lower now? Why? See [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry to understand the intuition: pay special attention to the graph with the red and blue squares.
+
+Generate the residuals here. 
 ```{r}
-CO2$Pred_TurnOut_Unif <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_unif
+# Set the seed for reproducibility
+set.seed(0)
+selects19$NormResiduals10 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.1)
 
+```
 
+Simulate new data and graph it here.
+```{r}
+selects19$Sim_LeftToRight_Det_Stoch_sd10 <- selects19$predicted_LeftToRight + selects19$NormResiduals10
 
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Unif)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Unif), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
+#Means for Y and X
+mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch_sd10, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_sd10)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
+    x = "Age (years)",
+    y = "Simulated data (half sd): Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences"
   )
 
 ```
 
-Lognormal simulated residuals:
+
+Report the new $R^2$ here:
 ```{r}
-CO2$Sim_resid_lnorm <- rlnorm(nrow(CO2), mean = 0, sd = sd(residuals1))
-
-
-
-hist(CO2$Sim_resid_lnorm, 
-     main="Histogram of Simulated Uniform Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
-
+result <- lm(Sim_LeftToRight_Det_Stoch_sd10 ~ age, data = selects19)
+rsq_sd10 <- summary(result)$r.squared
+cat('The R2 is: ', rsq_sd10)
 
 ```
 
-Data generating process with lognormal residuals without adjusting scale of Y:
+6. Repeat the previous point but use a hundredth the standard deviation of the model of point 1. Is the $R^2$ lower now? Why?
+
+Generate the residuals here. 
 ```{r}
-CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
+# Set the seed for reproducibility
+set.seed(0)
+selects19$NormResiduals100 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.01)
 
+```
 
+Simulate new data and graph it here.
+```{r}
+selects19$Sim_LeftToRight_Det_Stoch_hsd <- selects19$predicted_LeftToRight + selects19$NormResiduals100
 
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Lnorm, na.rm = TRUE))) +  #
+#Means for Y and X
+mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch_hsd, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_hsd)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (log normal error)"
+    x = "Age (years)",
+    y = "Simulated data (half sd): Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences"
   )
 
 ```
-Data generating process with lognormal residuals adjusting scale of Y:
+
+
+Report the new $R^2$ here:
 ```{r}
-CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
-  geom_point() +
-  scale_y_log10() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%) in logarithmic scale",
-    title = "Simulation: deterministic and stochastic model (log normal error)"
-  )
+result <- lm(Sim_LeftToRight_Det_Stoch_hsd ~ age, data = selects19)
+rsq_sd100 <- summary(result)$r.squared
+cat('The R2 is: ', rsq_sd100)
 
 ```
-Ask yourself: does it make sense to have participation values higher than 100%?
 
-
-Parabolic simulated residuals:
+7. Present in a table the $R^2$ for each value of the standard deviation.
 ```{r}
-CO2$parab_norm_resid<- -0.01*(CO2$Sim_ShareAgric_norm-mean(CO2$Sim_ShareAgric_norm))^2+CO2$Sim_resid_norm
-CO2$parab_norm_resid<- CO2$parab_norm_resid-mean(CO2$parab_norm_resid)
 
+table <- data.frame(
+  SD = c(1, 0.1, 0.01),
+  R2 = c(rsq_sd1, rsq_sd10, rsq_sd100)    # Replace these with the actual R-squared values
+)
 
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = parab_norm_resid)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +  # Adding the regression line
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Error",
-    title = "Simulation: of parabolic error"
-  )
-```
-What does the behavior of the error tell you about the potential reliability of a regression without quadratic terms?
-
-Data generating process with parabolic residuals:
-```{r}
-CO2$Pred_TurnOut_parab_norm_resid <- CO2$Pred_TurnOut_Determ + CO2$parab_norm_resid
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
-  )
+print(table)
 
 ```
-Would using a quadratic term in the regression produce a better fit? Graph the regression line with a quadratic term. 
+8. Graph $R^2$ agains the standard deviation fraction. Fit a linear regression line.
+```{r}
+ggplot(table, aes(x = SD, y = R2)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green")+
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Fraction of standard deviation",
+    y = "R2",
+    title = "Relation between R2 and standard deviation of residuals"
+  ) 
+```
+9. [Optional] Graph $R^2$ against the standard deviation fraction. Fit a regression line with a polynomial of degree 2. The regression line fits the data better. Is the polynomial regression more informative than the linear regression? Why? What lesson does this graph give you in terms of the importance of understanding the theoretical relations between variables beyond what an empirical approach could suggest? What does it teach you regarding the tension between under- and over-fitting data?
 
 ```{r}
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
+ggplot(table, aes(x = SD, y = R2)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, color='green') +
   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
-  )
+    x = "Fraction of standard deviation",
+    y = "R2",
+    title = "Relation between R2 and standard deviation of residuals"
+  ) 
 
+
+
+```
+10. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time multiply the slope's parameter by 5, while keeping the intercept unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+
+Print here
+```{r}
+result <- lm(LeftToRight ~ age, data = selects19)
+# summary(result)
+coeffs <- coef(result)
+cat('Intercept:',unname(coeffs[1]), '\n\nSlope:', unname(coeffs[2]))
+```
+
+Predict with the adjusted slope here.
+```{r}
+selects19$predicted_LeftToRight_AdjSlope <- unname(coeffs[1])+(unname(coeffs[2])*5)*selects19$age
+```
+
+Generate the graph here.
+```{r}
+#Means for Y and X
+mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjSlope, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope)) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_y_continuous(
+    limits = c(0, 15),
+    breaks = seq(0, 20, by = 1)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences (adj. slope)"
+  )
+```
+11. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjSlope_Stoch`. Generate the graph `predicted_LeftToRight_AdjSlope_Stoch` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+
+Report the simulation and the graph here.
+```{r}
+selects19$predicted_LeftToRight_AdjSlope_Stoch <- selects19$predicted_LeftToRight_AdjSlope + selects19$NormResiduals1
+
+#Means for Y and X
+mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjSlope_Stoch, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope_Stoch)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 20),
+    breaks = seq(0, 20, by = 1)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
+  labs(
+    x = "Age (years)",
+    y = "Simulation: Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim. with adjusted slope)"
+  )
+```
+
+Report the new $R^2$ here:
+```{r}
+result <- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)
+rsq_sd1_AdjSlope <- summary(result)$r.squared
+cat('The R2 is: ', rsq_sd1_AdjSlope)
+
+```
+
+Report why is the new $R^2$ higher than the one in point 4?
+
+```{r}
+print('The reason the R2 increased is that, while the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged), by increasing the slope of the generating process, the average distance between each observation and the average observation increased (i.e., Y\'s variance increased). See the graph with the red and blue squares mentioned in point 5.')
+```
+
+333333333333
+
+
+12. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time increase in two units the *intercept's* parameter (not the *slope's* parameter as in the point 10), while keeping the slope unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+
+Print here
+```{r}
+result <- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)
+# summary(result)
+coeffs12 <- coef(result)
+cat('Intercept:',unname(coeffs12[1]), '\n\nSlope:', unname(coeffs12[2]))
+```
+
+Predict with the adjusted slope here.
+```{r}
+selects19$predicted_LeftToRight_AdjIntecept <- unname(coeffs[1]+2)+(unname(coeffs[2]))*selects19$age
+```
+
+Generate the graph here.
+```{r}
+#Means for Y and X
+mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjIntecept, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntecept)) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_y_continuous(
+    limits = c(0, 15),
+    breaks = seq(0, 20, by = 1)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences (adj. slope)"
+  )
+```
+13. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjIntercep_Stoch`. Generate the graph `predicted_LeftToRight_AdjIntecept` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+
+Report the simulation and the graph here.
+```{r}
+selects19$predicted_LeftToRight_AdjIntercept_Stoch <- selects19$predicted_LeftToRight_AdjIntecept + selects19$residual
+
+#Means for Y and X
+mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjIntercept_Stoch, na.rm = TRUE)
+mean_age <- mean(selects19$age, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntercept_Stoch)) +
+  geom_point(size = 0) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(
+    limits = c(0, 20),
+    breaks = seq(0, 20, by = 1)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the plot title
+    panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+    panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+  ) +
+  labs(
+    x = "Age (years)",
+    y = "Simulation: Political Preferences (left to right)",
+    title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim. with adjusted intercept)"
+  )
+```
+Regress the `predicted_LeftToRight_AdjIntercept_Stoch` on `age`
+```{r}
+result <- lm(predicted_LeftToRight_AdjIntercept_Stoch ~ age, data = selects19)
+rsq_sd1_AdjIntercept <- summary(result)$r.squared
+coeffs13 <- coef(result)
+cat('Intercept:',unname(coeffs13[1]), '\n\nSlope:', unname(coeffs13[2]))
+```
+
+Report the $R^2$ generated in points 2, 11, and 13 here:
+```{r}
+tableSD1 <- data.frame(
+  LookR2 = c('Point 2', 'Point 12', 'Point 13'),
+  Model = c('Unchanged', 'P2 + (slope*5)', 'P2+(intercept+2)'),
+  R2 = c(rsq_sd1, rsq_sd1_AdjSlope, rsq_sd1_AdjIntercept),    
+  LookParams = c('Point 1', 'Point 12', 'Point 13'),
+  Intercept = c(unname(coeffs1[1]), unname(coeffs12[1]), unname(coeffs13[1])),    
+  Slope = c(unname(coeffs1[2]), unname(coeffs12[2]), unname(coeffs13[2]))
+)
+
+
+print(tableSD1)
+
+```
+
+14. Comparing the $R^2$ and the parameters across the models of points 1, 2, and 3 answer the following questions:
+
+  i. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the $R^2$?
+```{r}
+print('The R2 increases as seen in point 11')
+```
+
+  ii. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the $R^2$?
+```{r}
+print('The R2 stays unchanged as the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged) as well as the average distance between each observation and the average observation remained unchainged (i.e., Y\'s variance was kept unchanged)')
+
+```
+ 
+ iii. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the intercept and slope?
+```{r}
+print('It increases the estimated slope and decreases the intercept.')
+```
+ 
+ iv. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the intercept and slope?
+```{r}
+print('It keeps the estimated slope unchanged and the estimated intercept is the same as before the adjustment but increases by the same value that the whole data generating process was modified.')
+
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
 ```

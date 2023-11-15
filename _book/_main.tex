@@ -120,7 +120,7 @@
 
 \title{Intermediate Quantitative Methods}
 \author{Lucas Lemmann}
-\date{2023-11-12}
+\date{2023-11-13}
 
 \begin{document}
 \maketitle
@@ -1793,13 +1793,17 @@ Opening:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{selects19 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/1179\_Selects2019\_PES\_Data\_v1.1.0.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# selects19 \textless{}{-} read.csv("\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/Data/SELECTS 2019/1179\_Selects2019\_PES\_Data\_v1.1.0.csv", header = TRUE)}
+\CommentTok{\# }
+\CommentTok{\# selects19 \textless{}{-} selects19 \%\textgreater{}\%}
+\CommentTok{\#   select(sex, age, matches("f15200"), f20221) \%\textgreater{}\%}
+\CommentTok{\#   filter(!is.na(selects19$sex) \& !is.na(selects19$age) \& !is.na(selects19$f15200) \& !is.na(selects19$f20221))  \# Remove rows where x or y is NA}
+\CommentTok{\# }
+\CommentTok{\# selects19$f15200 \textless{}{-} as.numeric(selects19$f15200)}
+\CommentTok{\# }
+\CommentTok{\# write.table(selects19, file = "\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)}
 
-\NormalTok{selects19 }\OtherTok{\textless{}{-}}\NormalTok{ selects19 }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(sex, age, }\FunctionTok{matches}\NormalTok{(}\StringTok{"f15200"}\NormalTok{), f20221) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(selects19}\SpecialCharTok{$}\NormalTok{sex) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(selects19}\SpecialCharTok{$}\NormalTok{age) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(selects19}\SpecialCharTok{$}\NormalTok{f15200) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(selects19}\SpecialCharTok{$}\NormalTok{f20221))  }\CommentTok{\# Remove rows where x or y is NA}
-
-\NormalTok{selects19}\SpecialCharTok{$}\NormalTok{f15200 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(selects19}\SpecialCharTok{$}\NormalTok{f15200)}
+\NormalTok{selects19 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3000,10 +3004,10 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{tableSD1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{WhereToLookR2 =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Point 2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 12\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 13\textquotesingle{}}\NormalTok{),}
-  \AttributeTok{Model =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Unchanged\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 2 adjusting only slope (*5)\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 2 adjusting only intercept (+2)\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{LookR2 =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Point 2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 12\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 13\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{Model =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Unchanged\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P2 + (slope*5)\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P2+(intercept+2)\textquotesingle{}}\NormalTok{),}
   \AttributeTok{R2 =} \FunctionTok{c}\NormalTok{(rsq\_sd1, rsq\_sd1\_AdjSlope, rsq\_sd1\_AdjIntercept),    }
-  \AttributeTok{WhereToLookParams =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Point 1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 12\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 13\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{LookParams =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Point 1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 12\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Point 13\textquotesingle{}}\NormalTok{),}
   \AttributeTok{Intercept =} \FunctionTok{c}\NormalTok{(}\FunctionTok{unname}\NormalTok{(coeffs1[}\DecValTok{1}\NormalTok{]), }\FunctionTok{unname}\NormalTok{(coeffs12[}\DecValTok{1}\NormalTok{]), }\FunctionTok{unname}\NormalTok{(coeffs13[}\DecValTok{1}\NormalTok{])),    }
   \AttributeTok{Slope =} \FunctionTok{c}\NormalTok{(}\FunctionTok{unname}\NormalTok{(coeffs1[}\DecValTok{2}\NormalTok{]), }\FunctionTok{unname}\NormalTok{(coeffs12[}\DecValTok{2}\NormalTok{]), }\FunctionTok{unname}\NormalTok{(coeffs13[}\DecValTok{2}\NormalTok{]))}
 \NormalTok{)}
@@ -3014,14 +3018,10 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \end{Shaded}
 
 \begin{verbatim}
-##   WhereToLookR2                                 Model        R2
-## 1       Point 2                             Unchanged 0.0161515
-## 2      Point 12     Point 2 adjusting only slope (*5) 0.2973214
-## 3      Point 13 Point 2 adjusting only intercept (+2) 0.0161515
-##   WhereToLookParams Intercept      Slope
-## 1           Point 1  4.122055 0.01948902
-## 2          Point 12  4.071965 0.09874777
-## 3          Point 13  6.122055 0.01948902
+##     LookR2            Model        R2 LookParams Intercept      Slope
+## 1  Point 2        Unchanged 0.0161515    Point 1  4.122055 0.01948902
+## 2 Point 12   P2 + (slope*5) 0.2973214   Point 12  4.071965 0.09874777
+## 3 Point 13 P2+(intercept+2) 0.0161515   Point 13  6.122055 0.01948902
 \end{verbatim}
 
 \begin{enumerate}

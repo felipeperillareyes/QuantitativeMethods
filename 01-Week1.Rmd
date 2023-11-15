@@ -273,12 +273,6 @@ Consider using the packages `dplyr`, ``
     - Is there an statistically significant negative correlation between the number of steps and the BMI for females?
     - Is there an statistically significant positive correlation between the number of steps and the BMI for males?
   
-
-
-
-
-
-
 - 1st weeks, dplier: to check> to statistical analysis
 	- Doing basic code to make analysis (which is fine enough), but in dplier you could do it like this.
 	- Make descriptive statistics using an interesting
@@ -295,13 +289,9 @@ Looking!=seeing:
 
 ## Graph
 ```{r}
-# Install and load the ggplot2 package if you haven't already
 #install.packages("ggplot2")
 library(ggplot2)
 
-# Assuming you have a consolidated dataset named 'combined_data'
-
-# Create a scatterplot of steps vs bmi
 
 ggplot(female, aes(x = steps, y = bmi)) +
   geom_point() +
