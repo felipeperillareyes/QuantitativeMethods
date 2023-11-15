@@ -175,7 +175,7 @@ i. To enrich your analysis, you generate a scatter plot showing the relation bet
 ggplot(CO2, aes(x = anzahlStimmberechtigte, y = stimmbeteiligungInProzent)) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  
   theme_minimal() +
   labs(
     x = "Number of eligible voters",
@@ -489,10 +489,10 @@ CO2$Pred_TurnOut_Unif <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_unif
 
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Unif)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Unif), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") + 
+  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Unif), linetype = "dashed", color = "green") +  
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
+  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  
   theme_minimal() +
   labs(
     x = "Agricultural Area (%)",
@@ -528,9 +528,9 @@ CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
 
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") + 
+  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
   scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Lnorm, na.rm = TRUE))) +  #
   theme_minimal() +
   labs(
@@ -549,9 +549,9 @@ CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
   geom_point() +
   scale_y_log10() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  
+  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
   theme_minimal() +
   labs(
     x = "Agricultural Area (%)",
@@ -571,7 +571,7 @@ CO2$parab_norm_resid<- CO2$parab_norm_resid-mean(CO2$parab_norm_resid)
 
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = parab_norm_resid)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +  # Adding the regression line
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +
   theme_minimal() +
   labs(
     x = "Agricultural Area (%)",
@@ -589,9 +589,9 @@ CO2$Pred_TurnOut_parab_norm_resid <- CO2$Pred_TurnOut_Determ + CO2$parab_norm_re
 
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +
+  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") + 
   scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
   theme_minimal() +
   labs(
@@ -606,10 +606,10 @@ Would using a quadratic term in the regression produce a better fit? Graph the r
 ```{r}
 ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
+  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "purple") +
+  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
+  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  
   theme_minimal() +
   labs(
     x = "Agricultural Area (%)",

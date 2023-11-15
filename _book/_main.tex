@@ -120,7 +120,7 @@
 
 \title{Intermediate Quantitative Methods}
 \author{Lucas Lemmann}
-\date{2023-11-13}
+\date{2023-11-15}
 
 \begin{document}
 \maketitle
@@ -742,13 +742,9 @@ Value of diverse academic community while keeping a minimal set of shared assess
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Install and load the ggplot2 package if you haven\textquotesingle{}t already}
 \CommentTok{\#install.packages("ggplot2")}
 \FunctionTok{library}\NormalTok{(ggplot2)}
 
-\CommentTok{\# Assuming you have a consolidated dataset named \textquotesingle{}combined\_data\textquotesingle{}}
-
-\CommentTok{\# Create a scatterplot of steps vs bmi}
 
 \FunctionTok{ggplot}\NormalTok{(female, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ steps, }\AttributeTok{y =}\NormalTok{ bmi)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
@@ -811,17 +807,8 @@ Will be made available.
   Suicide awareness campaign, \href{https://www.youtube.com/watch?v=Lw-YPKR0grk}{here}.
 \end{itemize}
 
-\hypertarget{week-3}{%
-\chapter{Week 3}\label{week-3}}
-
-\hypertarget{exercise-1}{%
-\section{Exercise}\label{exercise-1}}
-
-\hypertarget{solution-2}{%
-\section{Solution}\label{solution-2}}
-
-\hypertarget{week-4-regression-i-prediction}{%
-\chapter{Week 4: Regression I (Prediction)}\label{week-4-regression-i-prediction}}
+\hypertarget{week-3-regression-i-prediction}{%
+\chapter{Week 3: Regression I (Prediction)}\label{week-3-regression-i-prediction}}
 
 \hypertarget{aims-1}{%
 \section{Aims}\label{aims-1}}
@@ -1050,7 +1037,7 @@ Report and interpret the parameter here.
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ anzahlStimmberechtigte, }\AttributeTok{y =}\NormalTok{ stimmbeteiligungInProzent)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{stimmbeteiligungInProzent, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  \CommentTok{\#}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{stimmbeteiligungInProzent, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{x =} \StringTok{"Number of eligible voters"}\NormalTok{,}
@@ -1585,10 +1572,10 @@ Data generating process with uniform residuals:
 
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ Pred\_TurnOut\_Unif)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Horizontal line at the mean of y}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of x}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  \CommentTok{\#}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{x =} \StringTok{"Agricultural Area (\%)"}\NormalTok{,}
@@ -1631,9 +1618,9 @@ Data generating process with lognormal residuals without adjusting scale of Y:
 
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ Pred\_TurnOut\_Lnorm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Lnorm), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Horizontal line at the mean of y}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of x}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Lnorm), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Lnorm, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  \CommentTok{\#}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
@@ -1656,9 +1643,9 @@ Data generating process with lognormal residuals adjusting scale of Y:
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ Pred\_TurnOut\_Lnorm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Lnorm), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Horizontal line at the mean of y}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of x}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Lnorm), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{x =} \StringTok{"Agricultural Area (\%)"}\NormalTok{,}
@@ -1681,7 +1668,7 @@ Parabolic simulated residuals:
 
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ parab\_norm\_resid)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{x =} \StringTok{"Agricultural Area (\%)"}\NormalTok{,}
@@ -1704,9 +1691,9 @@ Data generating process with parabolic residuals:
 
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ Pred\_TurnOut\_parab\_norm\_resid)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_parab\_norm\_resid), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Horizontal line at the mean of y}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of x}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_parab\_norm\_resid), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  \CommentTok{\#}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
@@ -1724,10 +1711,10 @@ Would using a quadratic term in the regression produce a better fit? Graph the r
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(CO2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sim\_ShareAgric\_norm, }\AttributeTok{y =}\NormalTok{ Pred\_TurnOut\_parab\_norm\_resid)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_parab\_norm\_resid), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Horizontal line at the mean of y}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of x}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  \CommentTok{\#}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_parab\_norm\_resid), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ mean\_AgricAreaPercent, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\FunctionTok{max}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Pred\_TurnOut\_Unif, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))) }\SpecialCharTok{+}  
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{x =} \StringTok{"Agricultural Area (\%)"}\NormalTok{,}
@@ -1739,8 +1726,8 @@ Would using a quadratic term in the regression produce a better fit? Graph the r
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
 
-\hypertarget{week-5-regression-ii-model-specification}{%
-\chapter{Week 5: Regression II (Model Specification)}\label{week-5-regression-ii-model-specification}}
+\hypertarget{week-4-regression-ii-model-specification}{%
+\chapter{Week 4: Regression II (Model Specification)}\label{week-4-regression-ii-model-specification}}
 
 \hypertarget{aims-2}{%
 \section{Aims}\label{aims-2}}
@@ -1892,9 +1879,6 @@ Renaming political preferences:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Assuming \textasciigrave{}data\textasciigrave{} is your dataframe with \textquotesingle{}age\textquotesingle{}, \textquotesingle{}political\_preference\textquotesingle{} and \textquotesingle{}LeftToRight\textquotesingle{} as columns}
-\CommentTok{\# Replace \textasciigrave{}data\textasciigrave{}, \textasciigrave{}age\textasciigrave{}, \textasciigrave{}political\_preference\textasciigrave{}, and \textasciigrave{}LeftToRight\textasciigrave{} with your actual dataframe and variable names.}
-
 \FunctionTok{ggplot}\NormalTok{(selects19, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{as.factor}\NormalTok{(LeftToRight), }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(LeftToRight))) }\SpecialCharTok{+}
   \FunctionTok{geom\_density\_ridges}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{data =}\NormalTok{ selects19, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ LeftToRight, }\AttributeTok{group =} \DecValTok{1}\NormalTok{), }
@@ -1904,9 +1888,10 @@ Renaming political preferences:
   \FunctionTok{scale\_fill\_viridis\_d}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Age (years)"}\NormalTok{,}
        \AttributeTok{y =} \StringTok{"Political Preferences (left to right)"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{"Ridge Plot of Age by Number of Houses"}\NormalTok{,}
+       \AttributeTok{title =} \StringTok{"Political preferences by age level"}\NormalTok{,}
        \AttributeTok{fill =} \StringTok{"factor(LeftToRight)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2362,7 +2347,7 @@ Graph some of the main components of the regression output here.
 \CommentTok{\# \# Shiny server function}
 \CommentTok{\# server \textless{}{-} function(input, output) \{}
 \CommentTok{\#   output$scatterPlot \textless{}{-} renderPlot(\{}
-\CommentTok{\#     ggplot(data, aes(x = x, y = y)) +  \# Ensure \textquotesingle{}data\textquotesingle{} is your data frame}
+\CommentTok{\#     ggplot(data, aes(x = x, y = y)) +  }
 \CommentTok{\#       geom\_point(size = 0) +}
 \CommentTok{\#       geom\_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)}
 \CommentTok{\#   \})}
@@ -2377,7 +2362,7 @@ Graph some of the main components of the regression output here.
 \CommentTok{\# \# Shiny server function}
 \CommentTok{\# server \textless{}{-} function(input, output) \{}
 \CommentTok{\#   output$scatterPlot \textless{}{-} renderPlot(\{}
-\CommentTok{\#     ggplot(data, aes(x = x, y = y)) +  \# Ensure \textquotesingle{}data\textquotesingle{} is your data frame}
+\CommentTok{\#     ggplot(data, aes(x = x, y = y)) +  }
 \CommentTok{\#       geom\_point(size = 0) +}
 \CommentTok{\#       geom\_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)}
 \CommentTok{\#   \})}
@@ -3105,6 +3090,15 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 
 \hypertarget{week-6}{%
 \chapter{Week 6}\label{week-6}}
+
+\hypertarget{exercise-1}{%
+\section{Exercise}\label{exercise-1}}
+
+\hypertarget{solution-2}{%
+\section{Solution}\label{solution-2}}
+
+\hypertarget{week-6-1}{%
+\chapter{Week 6}\label{week-6-1}}
 
 \hypertarget{exercise-2}{%
 \section{Exercise}\label{exercise-2}}

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Week 3: Regression I (Prediction) | Intermediate Quantitative Methods</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Week 3: Regression I (Prediction) | Intermediate Quantitative Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Week 3: Regression I (Prediction) | Intermediate Quantitative Methods" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Lucas Lemmann" />
+
+
+<meta name="date" content="2023-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-2.html"/>
+<link rel="next" href="week-4-regression-ii-model-specification.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Intermediate Quantitative Methods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-these-exercises"><i class="fa fa-check"></i><b>0.1</b> How to use these exercises?</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>0.2</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-descriptive-analysis"><i class="fa fa-check"></i><b>1.2</b> First Part: Descriptive Analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-exploratory-vs.-hypothesis-testing-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Exploratory VS. Hypothesis-Testing Analysis</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to"><i class="fa fa-check"></i><b>1.3.1</b> Preliminary steps: do this before doing the task that you were assigned to</a></li>
+<li class="chapter" data-level="1.3.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#task-1"><i class="fa fa-check"></i><b>1.3.2</b> Task 1:</a></li>
+<li class="chapter" data-level="1.3.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#task-2"><i class="fa fa-check"></i><b>1.3.3</b> Task 2:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#graph"><i class="fa fa-check"></i><b>1.4</b> Graph</a></li>
+<li class="chapter" data-level="1.5" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#solution"><i class="fa fa-check"></i><b>1.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#exercise"><i class="fa fa-check"></i><b>2.1</b> Exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#solution-1"><i class="fa fa-check"></i><b>2.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html"><i class="fa fa-check"></i><b>3</b> Week 3: Regression I (Prediction)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#aims-1"><i class="fa fa-check"></i><b>3.1</b> Aims</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-context-and-question"><i class="fa fa-check"></i><b>3.2</b> Exercise: Context and Question</a></li>
+<li class="chapter" data-level="3.3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#getting-the-data-first"><i class="fa fa-check"></i><b>3.3</b> Getting the data first</a></li>
+<li class="chapter" data-level="3.4" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-solution"><i class="fa fa-check"></i><b>3.4</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#real-data"><i class="fa fa-check"></i><b>3.4.1</b> Real data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#simulated-data"><i class="fa fa-check"></i><b>3.4.2</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html"><i class="fa fa-check"></i><b>4</b> Week 4: Regression II (Model Specification)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#aims-2"><i class="fa fa-check"></i><b>4.1</b> Aims</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-context-and-questions"><i class="fa fa-check"></i><b>4.2</b> Exercise: Context and Questions</a></li>
+<li class="chapter" data-level="4.3" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#getting-the-data-first-1"><i class="fa fa-check"></i><b>4.3</b> Getting the data first</a></li>
+<li class="chapter" data-level="4.4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-solution-1"><i class="fa fa-check"></i><b>4.4</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#real-data-1"><i class="fa fa-check"></i><b>4.4.1</b> Real data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#interactive-line-plot"><i class="fa fa-check"></i><b>4.5</b> Interactive Line Plot</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#simulated-data-1"><i class="fa fa-check"></i><b>4.5.1</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-6.html"><a href="week-6.html"><i class="fa fa-check"></i><b>5</b> Week 6</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="week-6.html"><a href="week-6.html#exercise-1"><i class="fa fa-check"></i><b>5.1</b> Exercise</a></li>
+<li class="chapter" data-level="5.2" data-path="week-6.html"><a href="week-6.html#solution-2"><i class="fa fa-check"></i><b>5.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-6-1.html"><a href="week-6-1.html"><i class="fa fa-check"></i><b>6</b> Week 6</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="week-6-1.html"><a href="week-6-1.html#exercise-2"><i class="fa fa-check"></i><b>6.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="week-6-1.html"><a href="week-6-1.html#solution-3"><i class="fa fa-check"></i><b>6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#exercise-3"><i class="fa fa-check"></i><b>7.1</b> Exercise</a></li>
+<li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#solution-4"><i class="fa fa-check"></i><b>7.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week-8.html"><a href="week-8.html"><i class="fa fa-check"></i><b>8</b> Week 8</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="week-8.html"><a href="week-8.html#exercise-4"><i class="fa fa-check"></i><b>8.1</b> Exercise</a></li>
+<li class="chapter" data-level="8.2" data-path="week-8.html"><a href="week-8.html#solution-5"><i class="fa fa-check"></i><b>8.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-9.html"><a href="week-9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="week-9.html"><a href="week-9.html#exercise-5"><i class="fa fa-check"></i><b>9.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.2" data-path="week-9.html"><a href="week-9.html#solution-6"><i class="fa fa-check"></i><b>9.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="week-10.html"><a href="week-10.html"><i class="fa fa-check"></i><b>10</b> Week 10</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="week-10.html"><a href="week-10.html#exercise-6"><i class="fa fa-check"></i><b>10.1</b> Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="week-10.html"><a href="week-10.html#solution-7"><i class="fa fa-check"></i><b>10.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="week-11.html"><a href="week-11.html"><i class="fa fa-check"></i><b>11</b> Week 11</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="week-11.html"><a href="week-11.html#exercise-7"><i class="fa fa-check"></i><b>11.1</b> Exercise</a></li>
+<li class="chapter" data-level="11.2" data-path="week-11.html"><a href="week-11.html#solution-8"><i class="fa fa-check"></i><b>11.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="week-12.html"><a href="week-12.html"><i class="fa fa-check"></i><b>12</b> Week 12</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="week-12.html"><a href="week-12.html#exercise-8"><i class="fa fa-check"></i><b>12.1</b> Exercise</a></li>
+<li class="chapter" data-level="12.2" data-path="week-12.html"><a href="week-12.html#solution-9"><i class="fa fa-check"></i><b>12.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="week-13.html"><a href="week-13.html"><i class="fa fa-check"></i><b>13</b> Week 13</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="week-13.html"><a href="week-13.html#exercise-9"><i class="fa fa-check"></i><b>13.1</b> Exercise</a></li>
+<li class="chapter" data-level="13.2" data-path="week-13.html"><a href="week-13.html#solution-10"><i class="fa fa-check"></i><b>13.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="week-14.html"><a href="week-14.html"><i class="fa fa-check"></i><b>14</b> Week 14</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="week-14.html"><a href="week-14.html#exercise-10"><i class="fa fa-check"></i><b>14.1</b> Exercise</a></li>
+<li class="chapter" data-level="14.2" data-path="week-14.html"><a href="week-14.html#solution-11"><i class="fa fa-check"></i><b>14.2</b> Solution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published using bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate Quantitative Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-3-regression-i-prediction" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Week 3: Regression I (Prediction)<a href="week-3-regression-i-prediction.html#week-3-regression-i-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="aims-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Aims<a href="week-3-regression-i-prediction.html#aims-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Using regression analysis for quantitative descriptive purposes with real data</li>
+<li>Using simulation to instantiate how different properties of the data generating process alter the reliability of regression analysis</li>
+</ol>
+</div>
+<div id="exercise-context-and-question" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Exercise: Context and Question<a href="week-3-regression-i-prediction.html#exercise-context-and-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As developed in the following <a href="https://de.wikipedia.org/wiki/Eidgen%C3%B6ssische_Abstimmung_%C3%BCber_die_Totalrevision_des_CO2-Gesetzes#:~:text=Die%20Eidgen%C3%B6ssische%20Abstimmung%20%C3%BCber%20die,von%2051%2C59%20%25%20abgelehnt.">entry</a>, a referendum took place in 2021 to assess whether Swiss citizens approved or not a bill aimed at reducing greenhouse gas emissions.</p>
+<p>The bill was rejected by a narrow margin: 51.6% of votes went for the “No”, while 48.4% for the “Yes”. In the media, some analysts commented that a marked division or cleavage between rural and urban voters seems to have led to this result: a specially high rural turn-out seems to underlie such result. As the analyst commented, most urban inhabitants liked the bill while most rural inhabitants disliked it.</p>
+<p>Not satisfied with a simple impression, as a political scientist you want to quantitatively qualify your understanding about what happened in that election. Particularly, you want to know:</p>
+<ol style="list-style-type: decimal">
+<li>Given that more rural municipalities have smaller populations, was the turn-out higher in municipalities with smaller populations than in bigger ones?</li>
+<li>Was the turn-out higher in more agricultural municipalities than in less agricultural ones?</li>
+</ol>
+<p>Thus, to analytically describe the voting results, you will perform some regressions using the following data.</p>
+</div>
+<div id="getting-the-data-first" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Getting the data first<a href="week-3-regression-i-prediction.html#getting-the-data-first" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To get the data, you will use an API (application programming interface). Put plainly, for the sake of this exercise you can think of an API like a <a href="https://www.youtube.com/watch?v=s7wmiS2mSXY">waiter</a> to whom you make a request and who gets what ever you requested from the kitchen (a remote data source).</p>
+<p>In this case, you will use two APIs: to get election results in Switzerland, <a href="https://politanch.github.io/swissdd/index.html"><code>swissdd</code></a>, and <a href="https://github.com/lgnbhl/BFS"><code>BFS</code></a> to get many other kinds of statistical information. Both APIs get information from the Federal Statistical Office (Bundesamt für Statistik).</p>
+<p>Skimm the functions of the <a href="https://politanch.github.io/swissdd/reference/index.html">Swissdd</a> package. Then, inspect the <a href="https://swissvotes.ch/storage/b47562b197b7725fcfa45b3e5a4abad1b4cf14cd377136f87fd4473329a51114">codebook</a> to understand what for the columns and rows stand for. Do not use more than 5 minutes doing it.</p>
+<p>To get the data, simply execute the following code. We present you with the code so, if you want, you can know how it works and you can play around with it on your own following the code’s logic.</p>
+<p>Install the <code>Swissdd</code> package</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="week-3-regression-i-prediction.html#cb45-1" tabindex="-1"></a><span class="co">#First option  - from CRAN. If you install it from the github repository, make sure you have the `devtools` installed in advance.</span></span>
+<span id="cb45-2"><a href="week-3-regression-i-prediction.html#cb45-2" tabindex="-1"></a><span class="co">#install.packages(&quot;swissdd&quot;)</span></span>
+<span id="cb45-3"><a href="week-3-regression-i-prediction.html#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="week-3-regression-i-prediction.html#cb45-4" tabindex="-1"></a><span class="co">#Second option</span></span>
+<span id="cb45-5"><a href="week-3-regression-i-prediction.html#cb45-5" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;) # it is necessary to comment the install.packages so the book can be rendered</span></span>
+<span id="cb45-6"><a href="week-3-regression-i-prediction.html#cb45-6" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;politanch/swissdd&quot;</span>)</span>
+<span id="cb45-7"><a href="week-3-regression-i-prediction.html#cb45-7" tabindex="-1"></a><span class="co"># library(swissdd)</span></span></code></pre></div>
+<p>Retrieve the <a href="https://swissvotes.ch/vote/644.00">CO2 Act</a> information using <code>get_nationalvotes</code>. The vote took place in 13/06/2021.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="week-3-regression-i-prediction.html#cb46-1" tabindex="-1"></a>CO2<span class="ot">&lt;-</span><span class="fu">get_nationalvotes</span>(<span class="at">votedates =</span> <span class="st">&quot;2021-06-13&quot;</span>)</span></code></pre></div>
+<p>As the same day of the CO2 Act vote more initiatives were voted, keep only the one we care about for this exercise. Notice that each initiative has a numerical identifier called <code>id</code>. <a href="https://swissvotes.ch/vote/644.00">Here</a> you can find the numerical identifier under <code>Vote Nº</code>. Keep in mind that, the variable <code>id</code> has the same number as in <code>Vote Nº</code> with an additional zero to the right.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="week-3-regression-i-prediction.html#cb47-1" tabindex="-1"></a>CO2<span class="ot">&lt;-</span> CO2 <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="week-3-regression-i-prediction.html#cb47-2" tabindex="-1"></a>  <span class="fu">filter</span>(id<span class="sc">==</span><span class="dv">6440</span>)</span></code></pre></div>
+<p>The resulting data frame contains rows representing the results for a particular vote in a particular municipality. The columns qualify that vote. Use the <code>colnames()</code> function to see the names of the columns. Keep only those that might be relevant for your analysis.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="week-3-regression-i-prediction.html#cb48-1" tabindex="-1"></a>CO2<span class="ot">&lt;-</span> CO2 <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="week-3-regression-i-prediction.html#cb48-2" tabindex="-1"></a>  <span class="fu">select</span>(canton_id, canton_name, mun_id, mun_name, jaStimmenInProzent, jaStimmenAbsolut, neinStimmenAbsolut, stimmbeteiligungInProzent, eingelegteStimmzettel, anzahlStimmberechtigte, gueltigeStimmen)</span></code></pre></div>
+<p>Finally, as you want to see the turn-out differences between municipalities with different degrees of agriculture intensity you need to get some additional data. Run the following code.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="week-3-regression-i-prediction.html#cb49-1" tabindex="-1"></a><span class="co"># install.packages(&quot;BFS&quot;)</span></span>
+<span id="cb49-2"><a href="week-3-regression-i-prediction.html#cb49-2" tabindex="-1"></a><span class="co"># library(BFS)</span></span>
+<span id="cb49-3"><a href="week-3-regression-i-prediction.html#cb49-3" tabindex="-1"></a><span class="co">#To see the information available in German</span></span>
+<span id="cb49-4"><a href="week-3-regression-i-prediction.html#cb49-4" tabindex="-1"></a><span class="co"># catalog_data_de &lt;- bfs_get_catalog_data(language = &quot;de&quot;)</span></span>
+<span id="cb49-5"><a href="week-3-regression-i-prediction.html#cb49-5" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="week-3-regression-i-prediction.html#cb49-6" tabindex="-1"></a><span class="co">#To see the information available in English</span></span>
+<span id="cb49-7"><a href="week-3-regression-i-prediction.html#cb49-7" tabindex="-1"></a><span class="co">#catalog_data_en &lt;- bfs_get_catalog_data(language = &quot;en&quot;)</span></span>
+<span id="cb49-8"><a href="week-3-regression-i-prediction.html#cb49-8" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="week-3-regression-i-prediction.html#cb49-9" tabindex="-1"></a><span class="co">#To see the information available in German that contains a particular word in the title</span></span>
+<span id="cb49-10"><a href="week-3-regression-i-prediction.html#cb49-10" tabindex="-1"></a><span class="co">#catalog_data_de &lt;- bfs_get_catalog_data(language = &quot;de&quot;, title=&quot;Gemeinde&quot;)</span></span>
+<span id="cb49-11"><a href="week-3-regression-i-prediction.html#cb49-11" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="week-3-regression-i-prediction.html#cb49-12" tabindex="-1"></a><span class="co">#To get the asset number (i.e., numerical id for a data set)</span></span>
+<span id="cb49-13"><a href="week-3-regression-i-prediction.html#cb49-13" tabindex="-1"></a><span class="co"># asset_number &lt;- catalog_data_de %&gt;%</span></span>
+<span id="cb49-14"><a href="week-3-regression-i-prediction.html#cb49-14" tabindex="-1"></a><span class="co">#   filter(title == &quot;Arealstatistik: Standardnomenklatur (NOAS04) nach Bezirk und Gemeinde, in Hektaren&quot;) %&gt;%</span></span>
+<span id="cb49-15"><a href="week-3-regression-i-prediction.html#cb49-15" tabindex="-1"></a><span class="co">#   pull(number_asset)</span></span>
+<span id="cb49-16"><a href="week-3-regression-i-prediction.html#cb49-16" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="week-3-regression-i-prediction.html#cb49-17" tabindex="-1"></a><span class="co">#Using that asset number, the metadata (i.e., data that describes the data set) can be accessed.</span></span>
+<span id="cb49-18"><a href="week-3-regression-i-prediction.html#cb49-18" tabindex="-1"></a><span class="co">#asset_meta &lt;- bfs_get_asset_metadata(number_asset = asset_number)</span></span>
+<span id="cb49-19"><a href="week-3-regression-i-prediction.html#cb49-19" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="week-3-regression-i-prediction.html#cb49-20" tabindex="-1"></a><span class="co">#From the metadata, the bfs number (i.e., a alphanumeric id for the data set) can be accessed.</span></span>
+<span id="cb49-21"><a href="week-3-regression-i-prediction.html#cb49-21" tabindex="-1"></a><span class="co">#bfs_number &lt;- asset_meta$shop$orderNr</span></span>
+<span id="cb49-22"><a href="week-3-regression-i-prediction.html#cb49-22" tabindex="-1"></a></span>
+<span id="cb49-23"><a href="week-3-regression-i-prediction.html#cb49-23" tabindex="-1"></a><span class="co">#Finally, using the bfs number the data set can be accessed.</span></span>
+<span id="cb49-24"><a href="week-3-regression-i-prediction.html#cb49-24" tabindex="-1"></a><span class="co">#LandUse &lt;- bfs_get_data(number_bfs = bfs_number)</span></span>
+<span id="cb49-25"><a href="week-3-regression-i-prediction.html#cb49-25" tabindex="-1"></a></span>
+<span id="cb49-26"><a href="week-3-regression-i-prediction.html#cb49-26" tabindex="-1"></a><span class="co">#If there is a “Too Many Requests” error message, you can follow this (https://github.com/lgnbhl/BFS#too-many-requests-error-message) </span></span>
+<span id="cb49-27"><a href="week-3-regression-i-prediction.html#cb49-27" tabindex="-1"></a><span class="co">#or download the PX file from here https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/daten.assetdetail.24865343.html</span></span>
+<span id="cb49-28"><a href="week-3-regression-i-prediction.html#cb49-28" tabindex="-1"></a><span class="co">#install.packages(&quot;pxR&quot;)</span></span>
+<span id="cb49-29"><a href="week-3-regression-i-prediction.html#cb49-29" tabindex="-1"></a><span class="co"># library(pxR)</span></span>
+<span id="cb49-30"><a href="week-3-regression-i-prediction.html#cb49-30" tabindex="-1"></a><span class="co">#Open data</span></span>
+<span id="cb49-31"><a href="week-3-regression-i-prediction.html#cb49-31" tabindex="-1"></a>LandUse <span class="ot">&lt;-</span> <span class="fu">read.px</span>(<span class="st">&#39;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/px-x-0202020000_102.px&#39;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb49-32"><a href="week-3-regression-i-prediction.html#cb49-32" tabindex="-1"></a>LandUseData<span class="ot">&lt;-</span> LandUse<span class="sc">$</span>DATA<span class="sc">$</span>value</span>
+<span id="cb49-33"><a href="week-3-regression-i-prediction.html#cb49-33" tabindex="-1"></a></span>
+<span id="cb49-34"><a href="week-3-regression-i-prediction.html#cb49-34" tabindex="-1"></a><span class="co">#Rename variable</span></span>
+<span id="cb49-35"><a href="week-3-regression-i-prediction.html#cb49-35" tabindex="-1"></a>LandUseData <span class="ot">&lt;-</span> LandUseData <span class="sc">%&gt;%</span></span>
+<span id="cb49-36"><a href="week-3-regression-i-prediction.html#cb49-36" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="st">&#39;mun_name&#39;</span>, <span class="dv">3</span>)</span>
+<span id="cb49-37"><a href="week-3-regression-i-prediction.html#cb49-37" tabindex="-1"></a></span>
+<span id="cb49-38"><a href="week-3-regression-i-prediction.html#cb49-38" tabindex="-1"></a><span class="co">#Keep the data relevant for my analysis</span></span>
+<span id="cb49-39"><a href="week-3-regression-i-prediction.html#cb49-39" tabindex="-1"></a>LandUseData<span class="ot">&lt;-</span> LandUseData <span class="sc">%&gt;%</span></span>
+<span id="cb49-40"><a href="week-3-regression-i-prediction.html#cb49-40" tabindex="-1"></a>  <span class="fu">filter</span>(Periode <span class="sc">==</span> <span class="st">&quot;2013/18&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-41"><a href="week-3-regression-i-prediction.html#cb49-41" tabindex="-1"></a>  <span class="fu">filter</span>(Standardnomenklatur..NOAS04.<span class="sc">==</span><span class="st">&quot;-b Landwirtschaftsflächen&quot;</span> <span class="sc">|</span> Standardnomenklatur..NOAS04.<span class="sc">==</span><span class="st">&quot;Fläche Total&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-42"><a href="week-3-regression-i-prediction.html#cb49-42" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(<span class="fu">str_trim</span>(mun_name), <span class="fu">fixed</span>(<span class="st">&quot;.&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb49-43"><a href="week-3-regression-i-prediction.html#cb49-43" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mun_name =</span> <span class="fu">str_replace_all</span>(mun_name, <span class="fu">fixed</span>(<span class="st">&quot;......&quot;</span>), <span class="st">&quot;&quot;</span>))</span>
+<span id="cb49-44"><a href="week-3-regression-i-prediction.html#cb49-44" tabindex="-1"></a></span>
+<span id="cb49-45"><a href="week-3-regression-i-prediction.html#cb49-45" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb49-46"><a href="week-3-regression-i-prediction.html#cb49-46" tabindex="-1"></a><span class="co">#Adjust data from long to wide</span></span>
+<span id="cb49-47"><a href="week-3-regression-i-prediction.html#cb49-47" tabindex="-1"></a>LandUseData <span class="ot">&lt;-</span> LandUseData <span class="sc">%&gt;%</span></span>
+<span id="cb49-48"><a href="week-3-regression-i-prediction.html#cb49-48" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Standardnomenklatur..NOAS04., <span class="at">values_from =</span> value)</span>
+<span id="cb49-49"><a href="week-3-regression-i-prediction.html#cb49-49" tabindex="-1"></a></span>
+<span id="cb49-50"><a href="week-3-regression-i-prediction.html#cb49-50" tabindex="-1"></a><span class="co">#Rename variables</span></span>
+<span id="cb49-51"><a href="week-3-regression-i-prediction.html#cb49-51" tabindex="-1"></a>LandUseData <span class="ot">&lt;-</span> LandUseData <span class="sc">%&gt;%</span></span>
+<span id="cb49-52"><a href="week-3-regression-i-prediction.html#cb49-52" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="st">&#39;TotalAreaHa&#39;</span>, <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-53"><a href="week-3-regression-i-prediction.html#cb49-53" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="st">&#39;AgriculturalAreaHa&#39;</span>, <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-54"><a href="week-3-regression-i-prediction.html#cb49-54" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Periode)</span></code></pre></div>
+<p>Using the additional data, you can now merge both data sets so you can know how did voters behave in more agricultural areas. Use the <code>inner_join</code> function. The numerical IDs are available in <code>LandUseData</code> but not in <code>CO2</code>. However, as both sources share the <code>mun_name</code>, you use that variable to match them.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="week-3-regression-i-prediction.html#cb50-1" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(CO2, LandUseData, <span class="at">by=</span><span class="st">&quot;mun_name&quot;</span>)  </span></code></pre></div>
+</div>
+<div id="exercise-solution" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Exercise: solution<a href="week-3-regression-i-prediction.html#exercise-solution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Note:</strong> Remember that you can copy the code from one point to answer another point. Simply make the necessary adjustments.</p>
+<div id="real-data" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Real data<a href="week-3-regression-i-prediction.html#real-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the previous data, you do the following to answer your two questions:</p>
+<ol style="list-style-type: lower-roman">
+<li>Since you want to describe the turn-out across municipalities with different population sizes, you initially think of regressing the turn-out on the population size. As you lack the municipal population, you use the number of eligible voters <code>anzahlStimmberechtigte</code> as a proxy. Regress <code>stimmbeteiligungInProzent</code> (Voting participation in percent) on <code>anzahlStimmberechtigte</code> (number of eligible voters) <a href="https://www.geeksforgeeks.org/remove-intercept-from-regression-model-in-r/">without</a> the intercept. Report and interpret the parameter.</li>
+</ol>
+<p>Write the regression here.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="week-3-regression-i-prediction.html#cb51-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lm</span>(stimmbeteiligungInProzent <span class="sc">~</span> anzahlStimmberechtigte <span class="sc">-</span><span class="dv">1</span> , <span class="at">data =</span> CO2)</span>
+<span id="cb51-2"><a href="week-3-regression-i-prediction.html#cb51-2" tabindex="-1"></a><span class="fu">summary</span>(result)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = stimmbeteiligungInProzent ~ anzahlStimmberechtigte - 
+##     1, data = CO2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -556.58   52.77   61.07   68.11   96.02 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(&gt;|t|)    
+## anzahlStimmberechtigte 0.0026344  0.0001777   14.82   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 62.41 on 2131 degrees of freedom
+## Multiple R-squared:  0.09349,    Adjusted R-squared:  0.09307 
+## F-statistic: 219.8 on 1 and 2131 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Report and interpret the parameter here.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="week-3-regression-i-prediction.html#cb53-1" tabindex="-1"></a>coeffs<span class="ot">&lt;-</span> <span class="fu">coef</span>(result)</span>
+<span id="cb53-2"><a href="week-3-regression-i-prediction.html#cb53-2" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="week-3-regression-i-prediction.html#cb53-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;The beta value for&#39;</span>, <span class="fu">names</span>(coeffs[<span class="dv">1</span>]), <span class="st">&#39; is &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">5</span>), <span class="st">&#39;. It means that, across Swiss municipalities an increase of a thousand voters was associated with an average increase in the turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">1000</span>, <span class="at">digits =</span> <span class="dv">5</span>), <span class="st">&#39; percentage points.&#39;</span>)</span></code></pre></div>
+<pre><code>## The beta value for anzahlStimmberechtigte  is  0.00263 . It means that, across Swiss municipalities an increase of a thousand voters was associated with an average increase in the turn-out of  2.63439  percentage points.</code></pre>
+<ol style="list-style-type: lower-roman">
+<li><p>[Optional] Why could the number of eligible voters inform better your inquiry than the total municipal population? What difference across municipalities could make an analysis based on municipal population render the analysis less reliable?</p></li>
+<li><p>To enrich your analysis, you generate a scatter plot showing the relation between the same pair of variables and qualifying it adding the regression line. Remember that you are doing the analysis without the intercept.</p></li>
+</ol>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="week-3-regression-i-prediction.html#cb55-1" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb55-2"><a href="week-3-regression-i-prediction.html#cb55-2" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> anzahlStimmberechtigte, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb55-3"><a href="week-3-regression-i-prediction.html#cb55-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb55-4"><a href="week-3-regression-i-prediction.html#cb55-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb55-5"><a href="week-3-regression-i-prediction.html#cb55-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  </span>
+<span id="cb55-6"><a href="week-3-regression-i-prediction.html#cb55-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb55-7"><a href="week-3-regression-i-prediction.html#cb55-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb55-8"><a href="week-3-regression-i-prediction.html#cb55-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Number of eligible voters&quot;</span>,</span>
+<span id="cb55-9"><a href="week-3-regression-i-prediction.html#cb55-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb55-10"><a href="week-3-regression-i-prediction.html#cb55-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb55-11"><a href="week-3-regression-i-prediction.html#cb55-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>Given your preliminary analysis, you find that, on average, municipalities with bigger populations had a higher turn-out than those with smaller ones. As you know that most urban citizens preferred ‘Yes’ but the ‘No’ won, you call into question your first approach: while bigger municipalities had higher participation levels than smaller ones, the option preferred by most rural inhabitants won. In other words, it is not clear that the population size helps us to understand this voting results.</li>
+</ol>
+<p>Thus, to capture how rural a municipality is, you used the agricultural area of the municipality (<code>AgriculturalAreaHa</code>) as a regressor (aka. independent variable) for the same regressand (aka. dependent variable) of the previous point (i.e., voting participation in percent). Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.</p>
+<p>Write the regression here.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="week-3-regression-i-prediction.html#cb56-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lm</span>(stimmbeteiligungInProzent <span class="sc">~</span> AgriculturalAreaHa <span class="sc">-</span><span class="dv">1</span> , <span class="at">data =</span> CO2)</span>
+<span id="cb56-2"><a href="week-3-regression-i-prediction.html#cb56-2" tabindex="-1"></a><span class="fu">summary</span>(result)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = stimmbeteiligungInProzent ~ AgriculturalAreaHa - 
+##     1, data = CO2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -357.41   40.38   51.27   58.59   87.83 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## AgriculturalAreaHa 0.0312861  0.0009688   32.29   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 53.71 on 2131 degrees of freedom
+## Multiple R-squared:  0.3286, Adjusted R-squared:  0.3283 
+## F-statistic:  1043 on 1 and 2131 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Report and interpret the parameter here.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="week-3-regression-i-prediction.html#cb58-1" tabindex="-1"></a>coeffs<span class="ot">&lt;-</span> <span class="fu">coef</span>(result)</span>
+<span id="cb58-2"><a href="week-3-regression-i-prediction.html#cb58-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;The beta value for&#39;</span>, <span class="fu">names</span>(coeffs[<span class="dv">1</span>]), <span class="st">&#39; is &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">5</span>), <span class="st">&#39;. It means that, across Swiss municipalities an increase of a thousand hectares was associated with an average increase in the turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">1000</span>, <span class="at">digits =</span> <span class="dv">5</span>), <span class="st">&#39; percentage points.&#39;</span>)</span></code></pre></div>
+<pre><code>## The beta value for AgriculturalAreaHa  is  0.03129 . It means that, across Swiss municipalities an increase of a thousand hectares was associated with an average increase in the turn-out of  31.28612  percentage points.</code></pre>
+<p>Present the graph here.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="week-3-regression-i-prediction.html#cb60-1" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb60-2"><a href="week-3-regression-i-prediction.html#cb60-2" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgriculturalAreaHa, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="week-3-regression-i-prediction.html#cb60-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb60-4"><a href="week-3-regression-i-prediction.html#cb60-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb60-5"><a href="week-3-regression-i-prediction.html#cb60-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb60-6"><a href="week-3-regression-i-prediction.html#cb60-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb60-7"><a href="week-3-regression-i-prediction.html#cb60-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb60-8"><a href="week-3-regression-i-prediction.html#cb60-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (Ha)&quot;</span>,</span>
+<span id="cb60-9"><a href="week-3-regression-i-prediction.html#cb60-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb60-10"><a href="week-3-regression-i-prediction.html#cb60-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb60-11"><a href="week-3-regression-i-prediction.html#cb60-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>The result from the previous point is consistent with the vote result given the urban-rural divide in preferences (i.e., municipalities with more agricultural area had higher participation rates). However, you notice that your comparisons across municipalities are not very rigorous because you are ignoring how important agricultural land with respect to the whole municipality area. An implication of that is that two municipalities with the same agricultural area could be taken as equally rural while one could have a very big urban area (e.g., Zurich) and the other have a very small one.</li>
+</ol>
+<p>Thus to make your analysis across more comparable units, you transform the absolute value of the agricultural area to a relative one: the percentage of the municipal area that is agricultural. Create the variable <code>AgricAreaPercent</code> to represent those transformed values. Regress the turn-out on the newly created variable. Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.</p>
+<p>Write the regression here.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="week-3-regression-i-prediction.html#cb61-1" tabindex="-1"></a><span class="co">#Transform the units to make them comparable </span></span>
+<span id="cb61-2"><a href="week-3-regression-i-prediction.html#cb61-2" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> CO2 <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="week-3-regression-i-prediction.html#cb61-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgricAreaPercent=</span> <span class="dv">100</span><span class="sc">*</span>AgriculturalAreaHa<span class="sc">/</span>TotalAreaHa)</span>
+<span id="cb61-4"><a href="week-3-regression-i-prediction.html#cb61-4" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="week-3-regression-i-prediction.html#cb61-5" tabindex="-1"></a><span class="co">#regression</span></span>
+<span id="cb61-6"><a href="week-3-regression-i-prediction.html#cb61-6" tabindex="-1"></a>result0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(stimmbeteiligungInProzent <span class="sc">~</span> AgricAreaPercent <span class="sc">-</span><span class="dv">1</span> , <span class="at">data =</span> CO2)</span>
+<span id="cb61-7"><a href="week-3-regression-i-prediction.html#cb61-7" tabindex="-1"></a><span class="fu">summary</span>(result0)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = stimmbeteiligungInProzent ~ AgricAreaPercent - 1, 
+##     data = CO2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -42.102  -7.509   6.449  23.631  83.331 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## AgricAreaPercent  1.26144    0.01012   124.7   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 22.75 on 2131 degrees of freedom
+## Multiple R-squared:  0.8795, Adjusted R-squared:  0.8794 
+## F-statistic: 1.555e+04 on 1 and 2131 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Report and interpret the parameter here.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="week-3-regression-i-prediction.html#cb63-1" tabindex="-1"></a>coeffs<span class="ot">&lt;-</span> <span class="fu">coef</span>(result0)</span>
+<span id="cb63-2"><a href="week-3-regression-i-prediction.html#cb63-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;The beta value for&#39;</span>, <span class="fu">names</span>(coeffs[<span class="dv">1</span>]), <span class="st">&#39; is &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&#39;. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&#39; percentage points.&#39;</span>)</span></code></pre></div>
+<pre><code>## The beta value for AgricAreaPercent  is  1.26 . It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of  1.26  percentage points.</code></pre>
+<p>Present the graph here.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="week-3-regression-i-prediction.html#cb65-1" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb65-2"><a href="week-3-regression-i-prediction.html#cb65-2" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb65-3"><a href="week-3-regression-i-prediction.html#cb65-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb65-4"><a href="week-3-regression-i-prediction.html#cb65-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb65-5"><a href="week-3-regression-i-prediction.html#cb65-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb65-6"><a href="week-3-regression-i-prediction.html#cb65-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb65-7"><a href="week-3-regression-i-prediction.html#cb65-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb65-8"><a href="week-3-regression-i-prediction.html#cb65-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb65-9"><a href="week-3-regression-i-prediction.html#cb65-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb65-10"><a href="week-3-regression-i-prediction.html#cb65-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb65-11"><a href="week-3-regression-i-prediction.html#cb65-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>The previous graph showed you the same relationship consistent with the vote. However, you now notice that the regression line is strange: if it is supposed to be the line described the general tendency in the relation between two variables, it is strange that it is very far from many observations and only close to few of them. Hence, you remember that the using the intercept increases the fit of the line. Accordingly, you do all the same steps of the previous point but this time with the intercept.</li>
+</ol>
+<p>Write the regression here.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="week-3-regression-i-prediction.html#cb66-1" tabindex="-1"></a><span class="co">#regression</span></span>
+<span id="cb66-2"><a href="week-3-regression-i-prediction.html#cb66-2" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(stimmbeteiligungInProzent <span class="sc">~</span> AgricAreaPercent, <span class="at">data =</span> CO2)</span>
+<span id="cb66-3"><a href="week-3-regression-i-prediction.html#cb66-3" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = stimmbeteiligungInProzent ~ AgricAreaPercent, data = CO2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -19.971  -4.760  -0.270   4.314  39.145 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      55.189867   0.384603   143.5   &lt;2e-16 ***
+## AgricAreaPercent  0.219491   0.007894    27.8   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.969 on 2130 degrees of freedom
+## Multiple R-squared:  0.2663, Adjusted R-squared:  0.2659 
+## F-statistic: 773.1 on 1 and 2130 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Report and interpret the parameter here.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="week-3-regression-i-prediction.html#cb68-1" tabindex="-1"></a>coeffs<span class="ot">&lt;-</span> <span class="fu">coef</span>(result1)</span>
+<span id="cb68-2"><a href="week-3-regression-i-prediction.html#cb68-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;The beta value for&#39;</span>, <span class="fu">names</span>(coeffs[<span class="dv">2</span>]), <span class="st">&#39; is &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">2</span>]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&#39;. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">2</span>]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&#39; percentage points.</span><span class="sc">\n\n</span><span class="st">Likewise, should there be a municipality with no agricultural area, we could expect it to have a turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&#39;. From there on, increasing one percentage point at a time up to 100 percentage points (i.e., a municipality with 100% of agricultural area), we would have a turn-out of &#39;</span>, <span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">2</span>)<span class="sc">+</span><span class="fu">round</span>(<span class="fu">unname</span>(coeffs[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## The beta value for AgricAreaPercent  is  0.22 . It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of  0.22  percentage points.
+## 
+## Likewise, should there be a municipality with no agricultural area, we could expect it to have a turn-out of  55.19 . From there on, increasing one percentage point at a time up to 100 percentage points (i.e., a municipality with 100% of agricultural area), we would have a turn-out of  77.14</code></pre>
+<p>Present the graph here.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="week-3-regression-i-prediction.html#cb70-1" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb70-2"><a href="week-3-regression-i-prediction.html#cb70-2" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb70-3"><a href="week-3-regression-i-prediction.html#cb70-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb70-4"><a href="week-3-regression-i-prediction.html#cb70-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb70-5"><a href="week-3-regression-i-prediction.html#cb70-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb70-6"><a href="week-3-regression-i-prediction.html#cb70-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb70-7"><a href="week-3-regression-i-prediction.html#cb70-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb70-8"><a href="week-3-regression-i-prediction.html#cb70-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb70-9"><a href="week-3-regression-i-prediction.html#cb70-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb70-10"><a href="week-3-regression-i-prediction.html#cb70-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb70-11"><a href="week-3-regression-i-prediction.html#cb70-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>[Optional] You noticed that the regression using the intercept fits better the data: on average, the distance from each point to the regression line is lower. See this <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">entry</a>, particularly the graph with the blue and red squares to understand the logic of the R^2 as a measure for goodness of fit. You want to compare both the regression lines with and without the intercept in one same graph. Do it. What lesson can you get from this comparison?</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="week-3-regression-i-prediction.html#cb71-1" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="week-3-regression-i-prediction.html#cb71-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb71-3"><a href="week-3-regression-i-prediction.html#cb71-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x<span class="dv">-1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb71-4"><a href="week-3-regression-i-prediction.html#cb71-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb71-5"><a href="week-3-regression-i-prediction.html#cb71-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb71-6"><a href="week-3-regression-i-prediction.html#cb71-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb71-7"><a href="week-3-regression-i-prediction.html#cb71-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb71-8"><a href="week-3-regression-i-prediction.html#cb71-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb71-9"><a href="week-3-regression-i-prediction.html#cb71-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb71-10"><a href="week-3-regression-i-prediction.html#cb71-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb71-11"><a href="week-3-regression-i-prediction.html#cb71-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>[Optional] Now add a vertical line with the average for the agricultural area, and a horizontal one with the average turn-out. What does this new graph tell you about the descriptive performance of a regression with and without intercepts?</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="week-3-regression-i-prediction.html#cb72-1" tabindex="-1"></a><span class="co">#Means for Y and X</span></span>
+<span id="cb72-2"><a href="week-3-regression-i-prediction.html#cb72-2" tabindex="-1"></a>mean_AgricAreaPercent <span class="ot">&lt;-</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>AgricAreaPercent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb72-3"><a href="week-3-regression-i-prediction.html#cb72-3" tabindex="-1"></a>mean_stimmbeteiligungInProzent <span class="ot">&lt;-</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb72-4"><a href="week-3-regression-i-prediction.html#cb72-4" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="week-3-regression-i-prediction.html#cb72-5" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb72-6"><a href="week-3-regression-i-prediction.html#cb72-6" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> stimmbeteiligungInProzent)) <span class="sc">+</span></span>
+<span id="cb72-7"><a href="week-3-regression-i-prediction.html#cb72-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb72-8"><a href="week-3-regression-i-prediction.html#cb72-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb72-9"><a href="week-3-regression-i-prediction.html#cb72-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb72-10"><a href="week-3-regression-i-prediction.html#cb72-10" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_stimmbeteiligungInProzent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  <span class="co"># Horizontal line at the mean of y</span></span>
+<span id="cb72-11"><a href="week-3-regression-i-prediction.html#cb72-11" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  <span class="co"># Vertical line at the mean of x</span></span>
+<span id="cb72-12"><a href="week-3-regression-i-prediction.html#cb72-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb72-13"><a href="week-3-regression-i-prediction.html#cb72-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb72-14"><a href="week-3-regression-i-prediction.html#cb72-14" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb72-15"><a href="week-3-regression-i-prediction.html#cb72-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb72-16"><a href="week-3-regression-i-prediction.html#cb72-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb72-17"><a href="week-3-regression-i-prediction.html#cb72-17" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb72-18"><a href="week-3-regression-i-prediction.html#cb72-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>Store the residualas as <code>residuals</code>. Plot the share of agricultural area against the residuals. What does it tell you regarding the ability of the model to describe the central tendency of the relationship across all values of the agricultural land share?</li>
+</ol>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="week-3-regression-i-prediction.html#cb73-1" tabindex="-1"></a>residuals1 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(result1)</span>
+<span id="cb73-2"><a href="week-3-regression-i-prediction.html#cb73-2" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="week-3-regression-i-prediction.html#cb73-3" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> residuals1)) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="week-3-regression-i-prediction.html#cb73-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-5"><a href="week-3-regression-i-prediction.html#cb73-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x , <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>)<span class="sc">+</span>  <span class="co"># Adding the</span></span>
+<span id="cb73-6"><a href="week-3-regression-i-prediction.html#cb73-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb73-7"><a href="week-3-regression-i-prediction.html#cb73-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb73-8"><a href="week-3-regression-i-prediction.html#cb73-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb73-9"><a href="week-3-regression-i-prediction.html#cb73-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Residuals (turn-out p.p.)&quot;</span>,</span>
+<span id="cb73-10"><a href="week-3-regression-i-prediction.html#cb73-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb73-11"><a href="week-3-regression-i-prediction.html#cb73-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>[Optional] Repeat the previous point without the intercept. Does the linear regression remains a good tool for describing the central tendency of the relationship across all values of the agricultural land share?</li>
+</ol>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="week-3-regression-i-prediction.html#cb74-1" tabindex="-1"></a>residuals0 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(result0)</span>
+<span id="cb74-2"><a href="week-3-regression-i-prediction.html#cb74-2" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="week-3-regression-i-prediction.html#cb74-3" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> AgricAreaPercent, <span class="at">y =</span> residuals0)) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="week-3-regression-i-prediction.html#cb74-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-5"><a href="week-3-regression-i-prediction.html#cb74-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x , <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span>  <span class="co"># Adding the</span></span>
+<span id="cb74-6"><a href="week-3-regression-i-prediction.html#cb74-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb74-7"><a href="week-3-regression-i-prediction.html#cb74-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb74-8"><a href="week-3-regression-i-prediction.html#cb74-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb74-9"><a href="week-3-regression-i-prediction.html#cb74-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Residuals (turn-out p.p.)&quot;</span>,</span>
+<span id="cb74-10"><a href="week-3-regression-i-prediction.html#cb74-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter plot with Linear Regression Line&quot;</span></span>
+<span id="cb74-11"><a href="week-3-regression-i-prediction.html#cb74-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="576" /></p>
+</div>
+<div id="simulated-data" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Simulated data<a href="week-3-regression-i-prediction.html#simulated-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: lower-roman">
+<li>You will now simulate the relationship between turn-out and share of agricultural land. Assume the parameters estimated in the last regression (i.e., the <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>). Retrieve both parameters.</li>
+</ol>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="week-3-regression-i-prediction.html#cb75-1" tabindex="-1"></a>coeffs<span class="ot">&lt;-</span> <span class="fu">coef</span>(result1)</span>
+<span id="cb75-2"><a href="week-3-regression-i-prediction.html#cb75-2" tabindex="-1"></a><span class="fu">print</span>(coeffs)</span></code></pre></div>
+<pre><code>##      (Intercept) AgricAreaPercent 
+##        55.189867         0.219491</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="week-3-regression-i-prediction.html#cb77-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">unname</span>(coeffs[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 55.19</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="week-3-regression-i-prediction.html#cb79-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">unname</span>(coeffs[<span class="dv">2</span>]), <span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.21949</code></pre>
+<ol style="list-style-type: lower-roman">
+<li>Use the parameters to define the assumed data generating process. Assume that the process is deterministic (i.e., it has no stochastic component). Express the equation using mathematical notation.</li>
+</ol>
+<p><span class="math display">\[TurnOut_i = \beta_0 + \beta_1 * ShareAgriculturalLand\]</span></p>
+<ol style="list-style-type: lower-roman">
+<li>Generate a normal distribution that preserves the mean and standard deviation of the original data on share of agricultural land.</li>
+</ol>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="week-3-regression-i-prediction.html#cb81-1" tabindex="-1"></a>CO2<span class="sc">$</span>Sim_ShareAgric_norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(CO2), <span class="at">mean =</span> mean_AgricAreaPercent, <span class="at">sd =</span> <span class="fu">sd</span>(CO2<span class="sc">$</span>AgricAreaPercent))</span>
+<span id="cb81-2"><a href="week-3-regression-i-prediction.html#cb81-2" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="week-3-regression-i-prediction.html#cb81-3" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>Sim_ShareAgric_norm, </span>
+<span id="cb81-4"><a href="week-3-regression-i-prediction.html#cb81-4" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Histogram of Share of Simulated Agricultural Land&quot;</span>, </span>
+<span id="cb81-5"><a href="week-3-regression-i-prediction.html#cb81-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Data Values&quot;</span>, </span>
+<span id="cb81-6"><a href="week-3-regression-i-prediction.html#cb81-6" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Frequency&quot;</span>, </span>
+<span id="cb81-7"><a href="week-3-regression-i-prediction.html#cb81-7" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb81-8"><a href="week-3-regression-i-prediction.html#cb81-8" tabindex="-1"></a>     <span class="at">border=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb81-9"><a href="week-3-regression-i-prediction.html#cb81-9" tabindex="-1"></a></span>
+<span id="cb81-10"><a href="week-3-regression-i-prediction.html#cb81-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>mean_AgricAreaPercent, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>Predict the turn-out values given the simulated inputs on the share of agricultural land using the data generating process defined two points above. Graph relation between both variables using a liner regression line.</li>
+</ol>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="week-3-regression-i-prediction.html#cb82-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="ot">&lt;-</span> <span class="fu">unname</span>(coeffs[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">unname</span>(coeffs[<span class="dv">2</span>])<span class="sc">*</span>CO2<span class="sc">$</span>Sim_ShareAgric_norm</span>
+<span id="cb82-2"><a href="week-3-regression-i-prediction.html#cb82-2" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="week-3-regression-i-prediction.html#cb82-3" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="week-3-regression-i-prediction.html#cb82-4" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_Determ)) <span class="sc">+</span></span>
+<span id="cb82-5"><a href="week-3-regression-i-prediction.html#cb82-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb82-6"><a href="week-3-regression-i-prediction.html#cb82-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb82-7"><a href="week-3-regression-i-prediction.html#cb82-7" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_stimmbeteiligungInProzent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  <span class="co"># Horizontal line at the mean of y</span></span>
+<span id="cb82-8"><a href="week-3-regression-i-prediction.html#cb82-8" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  <span class="co"># Vertical line at the mean of x</span></span>
+<span id="cb82-9"><a href="week-3-regression-i-prediction.html#cb82-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>stimmbeteiligungInProzent, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb82-10"><a href="week-3-regression-i-prediction.html#cb82-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb82-11"><a href="week-3-regression-i-prediction.html#cb82-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb82-12"><a href="week-3-regression-i-prediction.html#cb82-12" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb82-13"><a href="week-3-regression-i-prediction.html#cb82-13" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb82-14"><a href="week-3-regression-i-prediction.html#cb82-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic model&quot;</span></span>
+<span id="cb82-15"><a href="week-3-regression-i-prediction.html#cb82-15" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>Generate a normal distribution with error distribution with mean zero and standard deviation equal to the standard deviation of the residual of the model with intercept.</li>
+</ol>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="week-3-regression-i-prediction.html#cb83-1" tabindex="-1"></a>CO2<span class="sc">$</span>Sim_resid_norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(CO2), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sd</span>(residuals1))</span>
+<span id="cb83-2"><a href="week-3-regression-i-prediction.html#cb83-2" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="week-3-regression-i-prediction.html#cb83-3" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>Sim_resid_norm, </span>
+<span id="cb83-4"><a href="week-3-regression-i-prediction.html#cb83-4" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Histogram of Simulated Normal Residuals&quot;</span>, </span>
+<span id="cb83-5"><a href="week-3-regression-i-prediction.html#cb83-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Data Values&quot;</span>, </span>
+<span id="cb83-6"><a href="week-3-regression-i-prediction.html#cb83-6" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Frequency&quot;</span>, </span>
+<span id="cb83-7"><a href="week-3-regression-i-prediction.html#cb83-7" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb83-8"><a href="week-3-regression-i-prediction.html#cb83-8" tabindex="-1"></a>     <span class="at">border=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb83-9"><a href="week-3-regression-i-prediction.html#cb83-9" tabindex="-1"></a></span>
+<span id="cb83-10"><a href="week-3-regression-i-prediction.html#cb83-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>Repeat the same model but now add the stochastic element. Graph relation between both variables using a liner regression line.</li>
+</ol>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="week-3-regression-i-prediction.html#cb84-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_Stoch <span class="ot">&lt;-</span> CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2<span class="sc">$</span>Sim_resid_norm</span>
+<span id="cb84-2"><a href="week-3-regression-i-prediction.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="week-3-regression-i-prediction.html#cb84-3" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="week-3-regression-i-prediction.html#cb84-4" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="week-3-regression-i-prediction.html#cb84-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_Stoch)) <span class="sc">+</span></span>
+<span id="cb84-6"><a href="week-3-regression-i-prediction.html#cb84-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb84-7"><a href="week-3-regression-i-prediction.html#cb84-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  <span class="co"># Adding the regression line</span></span>
+<span id="cb84-8"><a href="week-3-regression-i-prediction.html#cb84-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_stimmbeteiligungInProzent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  <span class="co"># Horizontal line at the mean of y</span></span>
+<span id="cb84-9"><a href="week-3-regression-i-prediction.html#cb84-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  <span class="co"># Vertical line at the mean of x</span></span>
+<span id="cb84-10"><a href="week-3-regression-i-prediction.html#cb84-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>Sim_ShareAgric_norm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb84-11"><a href="week-3-regression-i-prediction.html#cb84-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb84-12"><a href="week-3-regression-i-prediction.html#cb84-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb84-13"><a href="week-3-regression-i-prediction.html#cb84-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb84-14"><a href="week-3-regression-i-prediction.html#cb84-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb84-15"><a href="week-3-regression-i-prediction.html#cb84-15" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model&quot;</span></span>
+<span id="cb84-16"><a href="week-3-regression-i-prediction.html#cb84-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="576" /></p>
+<ol style="list-style-type: lower-roman">
+<li>[Optional] Now repeat the same simulation but generating errors that distribute uniformly and lognormally. For the lognormal distribution, use the same mean and standard deviations as in the immediately previous exercises. For the uniform, use the maximum, and minimum values of the residuals for the model with intercept.</li>
+</ol>
+<p>Uniform simulated residuals:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="week-3-regression-i-prediction.html#cb85-1" tabindex="-1"></a>CO2<span class="sc">$</span>Sim_resid_unif <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(CO2), <span class="at">min =</span> <span class="fu">min</span>(residuals1), <span class="at">max =</span> <span class="fu">max</span>(residuals1))</span>
+<span id="cb85-2"><a href="week-3-regression-i-prediction.html#cb85-2" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="week-3-regression-i-prediction.html#cb85-3" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>Sim_resid_unif, </span>
+<span id="cb85-4"><a href="week-3-regression-i-prediction.html#cb85-4" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Histogram of Simulated Uniform Residuals&quot;</span>, </span>
+<span id="cb85-5"><a href="week-3-regression-i-prediction.html#cb85-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Data Values&quot;</span>, </span>
+<span id="cb85-6"><a href="week-3-regression-i-prediction.html#cb85-6" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Frequency&quot;</span>, </span>
+<span id="cb85-7"><a href="week-3-regression-i-prediction.html#cb85-7" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb85-8"><a href="week-3-regression-i-prediction.html#cb85-8" tabindex="-1"></a>     <span class="at">border=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb85-9"><a href="week-3-regression-i-prediction.html#cb85-9" tabindex="-1"></a></span>
+<span id="cb85-10"><a href="week-3-regression-i-prediction.html#cb85-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="576" /></p>
+<p>Data generating process with uniform residuals:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="week-3-regression-i-prediction.html#cb86-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_Unif <span class="ot">&lt;-</span> CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2<span class="sc">$</span>Sim_resid_unif</span>
+<span id="cb86-2"><a href="week-3-regression-i-prediction.html#cb86-2" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="week-3-regression-i-prediction.html#cb86-3" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="week-3-regression-i-prediction.html#cb86-4" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="week-3-regression-i-prediction.html#cb86-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_Unif)) <span class="sc">+</span></span>
+<span id="cb86-6"><a href="week-3-regression-i-prediction.html#cb86-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb86-7"><a href="week-3-regression-i-prediction.html#cb86-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb86-8"><a href="week-3-regression-i-prediction.html#cb86-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>Pred_TurnOut_Unif), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb86-9"><a href="week-3-regression-i-prediction.html#cb86-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb86-10"><a href="week-3-regression-i-prediction.html#cb86-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>Pred_TurnOut_Unif, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  </span>
+<span id="cb86-11"><a href="week-3-regression-i-prediction.html#cb86-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb86-12"><a href="week-3-regression-i-prediction.html#cb86-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb86-13"><a href="week-3-regression-i-prediction.html#cb86-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb86-14"><a href="week-3-regression-i-prediction.html#cb86-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb86-15"><a href="week-3-regression-i-prediction.html#cb86-15" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (uniform error)&quot;</span></span>
+<span id="cb86-16"><a href="week-3-regression-i-prediction.html#cb86-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="576" /></p>
+<p>Lognormal simulated residuals:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="week-3-regression-i-prediction.html#cb87-1" tabindex="-1"></a>CO2<span class="sc">$</span>Sim_resid_lnorm <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="fu">nrow</span>(CO2), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sd</span>(residuals1))</span>
+<span id="cb87-2"><a href="week-3-regression-i-prediction.html#cb87-2" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="week-3-regression-i-prediction.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="week-3-regression-i-prediction.html#cb87-4" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="week-3-regression-i-prediction.html#cb87-5" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>Sim_resid_lnorm, </span>
+<span id="cb87-6"><a href="week-3-regression-i-prediction.html#cb87-6" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Histogram of Simulated Uniform Residuals&quot;</span>, </span>
+<span id="cb87-7"><a href="week-3-regression-i-prediction.html#cb87-7" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Data Values&quot;</span>, </span>
+<span id="cb87-8"><a href="week-3-regression-i-prediction.html#cb87-8" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Frequency&quot;</span>, </span>
+<span id="cb87-9"><a href="week-3-regression-i-prediction.html#cb87-9" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb87-10"><a href="week-3-regression-i-prediction.html#cb87-10" tabindex="-1"></a>     <span class="at">border=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb87-11"><a href="week-3-regression-i-prediction.html#cb87-11" tabindex="-1"></a></span>
+<span id="cb87-12"><a href="week-3-regression-i-prediction.html#cb87-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="576" /></p>
+<p>Data generating process with lognormal residuals without adjusting scale of Y:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="week-3-regression-i-prediction.html#cb88-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_Lnorm <span class="ot">&lt;-</span> CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2<span class="sc">$</span>Sim_resid_lnorm</span>
+<span id="cb88-2"><a href="week-3-regression-i-prediction.html#cb88-2" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="week-3-regression-i-prediction.html#cb88-3" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="week-3-regression-i-prediction.html#cb88-4" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="week-3-regression-i-prediction.html#cb88-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_Lnorm)) <span class="sc">+</span></span>
+<span id="cb88-6"><a href="week-3-regression-i-prediction.html#cb88-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb88-7"><a href="week-3-regression-i-prediction.html#cb88-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb88-8"><a href="week-3-regression-i-prediction.html#cb88-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>Pred_TurnOut_Lnorm), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb88-9"><a href="week-3-regression-i-prediction.html#cb88-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb88-10"><a href="week-3-regression-i-prediction.html#cb88-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>Pred_TurnOut_Lnorm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb88-11"><a href="week-3-regression-i-prediction.html#cb88-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb88-12"><a href="week-3-regression-i-prediction.html#cb88-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb88-13"><a href="week-3-regression-i-prediction.html#cb88-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb88-14"><a href="week-3-regression-i-prediction.html#cb88-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb88-15"><a href="week-3-regression-i-prediction.html#cb88-15" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (log normal error)&quot;</span></span>
+<span id="cb88-16"><a href="week-3-regression-i-prediction.html#cb88-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="576" />
+Data generating process with lognormal residuals adjusting scale of Y:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="week-3-regression-i-prediction.html#cb89-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_Lnorm <span class="ot">&lt;-</span> CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2<span class="sc">$</span>Sim_resid_lnorm</span>
+<span id="cb89-2"><a href="week-3-regression-i-prediction.html#cb89-2" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="week-3-regression-i-prediction.html#cb89-3" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="week-3-regression-i-prediction.html#cb89-4" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="week-3-regression-i-prediction.html#cb89-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_Lnorm)) <span class="sc">+</span></span>
+<span id="cb89-6"><a href="week-3-regression-i-prediction.html#cb89-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb89-7"><a href="week-3-regression-i-prediction.html#cb89-7" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb89-8"><a href="week-3-regression-i-prediction.html#cb89-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb89-9"><a href="week-3-regression-i-prediction.html#cb89-9" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>Pred_TurnOut_Lnorm), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb89-10"><a href="week-3-regression-i-prediction.html#cb89-10" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb89-11"><a href="week-3-regression-i-prediction.html#cb89-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb89-12"><a href="week-3-regression-i-prediction.html#cb89-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb89-13"><a href="week-3-regression-i-prediction.html#cb89-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb89-14"><a href="week-3-regression-i-prediction.html#cb89-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%) in logarithmic scale&quot;</span>,</span>
+<span id="cb89-15"><a href="week-3-regression-i-prediction.html#cb89-15" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (log normal error)&quot;</span></span>
+<span id="cb89-16"><a href="week-3-regression-i-prediction.html#cb89-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="576" />
+Ask yourself: does it make sense to have participation values higher than 100%?</p>
+<p>Parabolic simulated residuals:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="week-3-regression-i-prediction.html#cb90-1" tabindex="-1"></a>CO2<span class="sc">$</span>parab_norm_resid<span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.01</span><span class="sc">*</span>(CO2<span class="sc">$</span>Sim_ShareAgric_norm<span class="sc">-</span><span class="fu">mean</span>(CO2<span class="sc">$</span>Sim_ShareAgric_norm))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>CO2<span class="sc">$</span>Sim_resid_norm</span>
+<span id="cb90-2"><a href="week-3-regression-i-prediction.html#cb90-2" tabindex="-1"></a>CO2<span class="sc">$</span>parab_norm_resid<span class="ot">&lt;-</span> CO2<span class="sc">$</span>parab_norm_resid<span class="sc">-</span><span class="fu">mean</span>(CO2<span class="sc">$</span>parab_norm_resid)</span>
+<span id="cb90-3"><a href="week-3-regression-i-prediction.html#cb90-3" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="week-3-regression-i-prediction.html#cb90-4" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="week-3-regression-i-prediction.html#cb90-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb90-6"><a href="week-3-regression-i-prediction.html#cb90-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb90-7"><a href="week-3-regression-i-prediction.html#cb90-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
+<span id="cb90-8"><a href="week-3-regression-i-prediction.html#cb90-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb90-9"><a href="week-3-regression-i-prediction.html#cb90-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb90-10"><a href="week-3-regression-i-prediction.html#cb90-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb90-11"><a href="week-3-regression-i-prediction.html#cb90-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Error&quot;</span>,</span>
+<span id="cb90-12"><a href="week-3-regression-i-prediction.html#cb90-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: of parabolic error&quot;</span></span>
+<span id="cb90-13"><a href="week-3-regression-i-prediction.html#cb90-13" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="576" />
+What does the behavior of the error tell you about the potential reliability of a regression without quadratic terms?</p>
+<p>Data generating process with parabolic residuals:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="week-3-regression-i-prediction.html#cb91-1" tabindex="-1"></a>CO2<span class="sc">$</span>Pred_TurnOut_parab_norm_resid <span class="ot">&lt;-</span> CO2<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2<span class="sc">$</span>parab_norm_resid</span>
+<span id="cb91-2"><a href="week-3-regression-i-prediction.html#cb91-2" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="week-3-regression-i-prediction.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="week-3-regression-i-prediction.html#cb91-4" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="week-3-regression-i-prediction.html#cb91-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb91-6"><a href="week-3-regression-i-prediction.html#cb91-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb91-7"><a href="week-3-regression-i-prediction.html#cb91-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb91-8"><a href="week-3-regression-i-prediction.html#cb91-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>Pred_TurnOut_parab_norm_resid), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb91-9"><a href="week-3-regression-i-prediction.html#cb91-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb91-10"><a href="week-3-regression-i-prediction.html#cb91-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>Pred_TurnOut_Unif, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb91-11"><a href="week-3-regression-i-prediction.html#cb91-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb91-12"><a href="week-3-regression-i-prediction.html#cb91-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb91-13"><a href="week-3-regression-i-prediction.html#cb91-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb91-14"><a href="week-3-regression-i-prediction.html#cb91-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb91-15"><a href="week-3-regression-i-prediction.html#cb91-15" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (uniform error)&quot;</span></span>
+<span id="cb91-16"><a href="week-3-regression-i-prediction.html#cb91-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="576" />
+Would using a quadratic term in the regression produce a better fit? Graph the regression line with a quadratic term.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="week-3-regression-i-prediction.html#cb92-1" tabindex="-1"></a><span class="fu">ggplot</span>(CO2, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb92-2"><a href="week-3-regression-i-prediction.html#cb92-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb92-3"><a href="week-3-regression-i-prediction.html#cb92-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb92-4"><a href="week-3-regression-i-prediction.html#cb92-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>Pred_TurnOut_parab_norm_resid), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb92-5"><a href="week-3-regression-i-prediction.html#cb92-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb92-6"><a href="week-3-regression-i-prediction.html#cb92-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2<span class="sc">$</span>Pred_TurnOut_Unif, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  </span>
+<span id="cb92-7"><a href="week-3-regression-i-prediction.html#cb92-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb92-8"><a href="week-3-regression-i-prediction.html#cb92-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb92-9"><a href="week-3-regression-i-prediction.html#cb92-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb92-10"><a href="week-3-regression-i-prediction.html#cb92-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Voting Participation (%)&quot;</span>,</span>
+<span id="cb92-11"><a href="week-3-regression-i-prediction.html#cb92-11" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (uniform error)&quot;</span></span>
+<span id="cb92-12"><a href="week-3-regression-i-prediction.html#cb92-12" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="576" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-4-regression-ii-model-specification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Week3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
