@@ -120,7 +120,7 @@
 
 \title{Intermediate Quantitative Methods}
 \author{Lucas Lemmann}
-\date{2023-11-15}
+\date{2023-11-22}
 
 \begin{document}
 \maketitle
@@ -3088,8 +3088,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 ## [1] "It keeps the estimated slope unchanged and the estimated intercept is the same as before the adjustment but increases by the same value that the whole data generating process was modified."
 \end{verbatim}
 
-\hypertarget{week-6}{%
-\chapter{Week 6}\label{week-6}}
+\hypertarget{week-5}{%
+\chapter{Week 5}\label{week-5}}
 
 \hypertarget{exercise-1}{%
 \section{Exercise}\label{exercise-1}}
@@ -3097,8 +3097,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{solution-2}{%
 \section{Solution}\label{solution-2}}
 
-\hypertarget{week-6-1}{%
-\chapter{Week 6}\label{week-6-1}}
+\hypertarget{week-6}{%
+\chapter{Week 6}\label{week-6}}
 
 \hypertarget{exercise-2}{%
 \section{Exercise}\label{exercise-2}}
@@ -3115,14 +3115,327 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{solution-4}{%
 \section{Solution}\label{solution-4}}
 
-\hypertarget{week-8}{%
-\chapter{Week 8}\label{week-8}}
+\hypertarget{week-8-causality-iii-observational-data}{%
+\chapter{Week 8: Causality III (Observational Data)}\label{week-8-causality-iii-observational-data}}
+
+\hypertarget{aims-3}{%
+\section{Aims}\label{aims-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using simulated data to instantiate the logic behind, diff-in-diff and panel data (i.e., within, between, and twoway fixed effects) methods.
+\item
+  Using real data to estimate a causal effect using a two'way fixed effects model.
+\end{enumerate}
 
 \hypertarget{exercise-4}{%
 \section{Exercise}\label{exercise-4}}
 
-\hypertarget{solution-5}{%
-\section{Solution}\label{solution-5}}
+\hypertarget{simulated-data-2}{%
+\subsection{Simulated data}\label{simulated-data-2}}
+
+The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see\href{https://www.youtube.com/watch?v=1SchyQ77VFg}{here}). It's purpose is simply to illustrate the logic og the fixed effects models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \AttributeTok{City =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}NYC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NYC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NYC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Boston\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Boston\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Boston\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Amherst\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Amherst\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Amherst\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{Time =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{Unemployment =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{),}
+  \AttributeTok{Crime =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{Treatment =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(data)}
+
+\CommentTok{\# Overall averages}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_OverallAverage =} \FunctionTok{mean}\NormalTok{(Crime),}
+         \AttributeTok{X\_OverallAverage =} \FunctionTok{mean}\NormalTok{(Unemployment))}
+
+\CommentTok{\# Within averages         }
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(City) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Crime), }
+         \AttributeTok{X\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Unemployment))       }
+
+\CommentTok{\# Between averages}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Time) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Crime), }
+         \AttributeTok{X\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Unemployment))}
+\end{Highlighting}
+\end{Shaded}
+
+First the basic graph
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+    \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}
+\NormalTok{       )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-113-1.pdf}
+
+Now use shapes for distinguishing cities.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Apply shape by City only to points}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Regression line for all data}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+    \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
+
+Now also use color for distinguishing also periods.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City), }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Apply shape by City only to points}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"yellow"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Regression line for all data}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+    \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+All previous regressions are counter intuitive, why?. Now restrict the regression to each city. What does this suggest regarding the ability of linear regression to capture relations between our variables of interest this scenario? Can we use a regression regardless of how we frame it? Is theory important for guiding how the regression is used? If so, in this case, how?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+  \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
+
+Now, having seen how regressions are theory dependent for defining how they are framed, let's see how fixed effects work.
+
+Assume that the data generating process behind the relation between \texttt{unemployment} and \texttt{crime} is given by the following formula.
+
+\[Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}\]
+With \[t=1, ..., T\]
+and
+\[i=1, ..., N\]
+
+Where \(Y_{it}\) is \texttt{crime} for city \(i\) at time \(t\), \(\alpha_{i}\) is a time invariant unobservable (or unobserved) factor influencing the levels of \texttt{crime} in city \(i\) (i.e., it's influence is constant across all periods). \(\beta_{t}\) is a city invariant unobservable (or unobserved) factor influencing the levels of \texttt{crime} at period \(t\) (i.e., it's influence is constant across all cities). \(\gamma_{it}\) is the marginal effect of \(X_{it}\), the \texttt{unemployment} level at city \(i\) in period \(t\). Finally, \(\epsilon_{it}\) is the residual for city \(i\) in period \(t\)
+
+Thus, in order to get rid of the time invariant factor, we can implement the following transformation.
+
+\(\bar{X}_{i.} = \frac{1}{T}*sum_{t=1}^{T} X_{it}.\)
+
+\sum\_\{n=1\}\^{}\{N\} a\_n
+
+\$
+
+\[Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}\]
+
+{perhaps showing only the within case is enough? I'm considering to use \href{https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf}{this} paper, particularly page 8.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+  \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+\hypertarget{real-data-2}{%
+\subsection{Real data}\label{real-data-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 }\OtherTok{\textless{}{-}}\NormalTok{ swissdd}\SpecialCharTok{::}\FunctionTok{get\_nationalvotes}\NormalTok{(}\AttributeTok{geolevel =} \StringTok{"national"}\NormalTok{, }\AttributeTok{from\_date=}\StringTok{"2000{-}03{-}12"}\NormalTok{, }\AttributeTok{to\_date =} \StringTok{"2015{-}06{-}14"}\NormalTok{)}
+
+\NormalTok{df1}\OtherTok{\textless{}{-}}\NormalTok{ df1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{"stimmbeteiligungInProzent"}\NormalTok{,}\StringTok{"votedate"}\NormalTok{)}
+  
+\NormalTok{df1 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(df1, }\AttributeTok{Y\_National\_BetweenAverage =}\NormalTok{ stimmbeteiligungInProzent, }\AttributeTok{vote\_date =}\NormalTok{ votedate)}
+
+
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"/Users/fperil/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/replication/data/ballot\_days\_final.rds"}\NormalTok{)  }
+
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}} \FunctionTok{inner\_join}\NormalTok{(ballot\_days\_final, df1, }\AttributeTok{by=}\StringTok{"vote\_date"}\NormalTok{)  }
+
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}}\NormalTok{ ballot\_days\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(muninr) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_municipal\_WithinAverage =} \FunctionTok{mean}\NormalTok{(turnout, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+         \AttributeTok{X\_municipal\_WithinAverage =} \FunctionTok{mean}\NormalTok{(postage, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+
+
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}}\NormalTok{ ballot\_days\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_National\_OverallAverage =} \FunctionTok{mean}\NormalTok{(turnout, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+         \AttributeTok{X\_National\_OverallAverage =} \FunctionTok{mean}\NormalTok{(postage, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}}\NormalTok{ ballot\_days\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(vote\_date) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{X\_National\_BetweenAverage =} \FunctionTok{mean}\NormalTok{(postage, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+         
+
+\NormalTok{ballot\_days\_final}\OtherTok{\textless{}{-}}\NormalTok{ ballot\_days\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{Y\_demeaned\_within =}\NormalTok{ turnout}\SpecialCharTok{{-}}\NormalTok{Y\_municipal\_WithinAverage,}
+          \AttributeTok{Y\_demeaned\_between =}\NormalTok{ turnout}\SpecialCharTok{{-}}\NormalTok{Y\_National\_BetweenAverage,}
+          \AttributeTok{Y\_double\_demeaned =}\NormalTok{ turnout}\SpecialCharTok{{-}}\NormalTok{Y\_municipal\_WithinAverage}\SpecialCharTok{{-}}\NormalTok{Y\_National\_BetweenAverage}\SpecialCharTok{+}\NormalTok{Y\_National\_OverallAverage,}
+          \AttributeTok{X\_demeaned\_within =}\NormalTok{ postage}\SpecialCharTok{{-}}\NormalTok{X\_municipal\_WithinAverage,}
+          \AttributeTok{X\_demeaned\_between =}\NormalTok{ postage}\SpecialCharTok{{-}}\NormalTok{X\_National\_BetweenAverage,}
+          \AttributeTok{X\_double\_demeaned =}\NormalTok{ postage}\SpecialCharTok{{-}}\NormalTok{X\_municipal\_WithinAverage}\SpecialCharTok{{-}}\NormalTok{X\_National\_BetweenAverage}\SpecialCharTok{+}\NormalTok{X\_National\_OverallAverage}
+\NormalTok{        )}
+\end{Highlighting}
+\end{Shaded}
+
+Results: One way fixed effects: within
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# One way fixed effects: within}
+\NormalTok{OW\_FE\_WI }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y\_demeaned\_within }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X\_demeaned\_within }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{ ballot\_days\_final)}
+\FunctionTok{summary}\NormalTok{(OW\_FE\_WI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y_demeaned_within ~ X_demeaned_within - 1, data = ballot_days_final)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -37.03  -6.53  -0.03   6.67  53.07 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## X_demeaned_within     1.46       0.15    9.73   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 10.01 on 89319 degrees of freedom
+##   (1210 observations deleted due to missingness)
+## Multiple R-squared:  0.001059,   Adjusted R-squared:  0.001048 
+## F-statistic: 94.67 on 1 and 89319 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Results: One way fixed effects: between
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# One way fixed effects: between}
+\NormalTok{OW\_FE\_BE }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y\_demeaned\_between }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X\_demeaned\_between }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{ ballot\_days\_final)}
+\FunctionTok{summary}\NormalTok{(OW\_FE\_BE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y_demeaned_between ~ X_demeaned_between - 1, data = ballot_days_final)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -32.706  -6.728  -2.224   2.430  48.172 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(>|t|)    
+## X_demeaned_between   1.3944     0.1132   12.32   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.553 on 89319 degrees of freedom
+##   (1210 observations deleted due to missingness)
+## Multiple R-squared:  0.001696,   Adjusted R-squared:  0.001685 
+## F-statistic: 151.8 on 1 and 89319 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Results: Two way fixed effects: between
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Two way fixed effects: between}
+\NormalTok{TW\_FE }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y\_double\_demeaned }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X\_double\_demeaned }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{ ballot\_days\_final)}
+\FunctionTok{summary}\NormalTok{(TW\_FE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y_double_demeaned ~ X_double_demeaned - 1, data = ballot_days_final)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -32.706  -6.728  -2.224   2.430  48.172 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## X_double_demeaned   1.3944     0.1132   12.32   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.553 on 89319 degrees of freedom
+##   (1210 observations deleted due to missingness)
+## Multiple R-squared:  0.001696,   Adjusted R-squared:  0.001685 
+## F-statistic: 151.8 on 1 and 89319 DF,  p-value: < 2.2e-16
+\end{verbatim}
 
 \hypertarget{week-9}{%
 \chapter{Week 9}\label{week-9}}
@@ -3130,8 +3443,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-5}{%
 \section{Exercise}\label{exercise-5}}
 
-\hypertarget{solution-6}{%
-\section{Solution}\label{solution-6}}
+\hypertarget{solution-5}{%
+\section{Solution}\label{solution-5}}
 
 \hypertarget{week-10}{%
 \chapter{Week 10}\label{week-10}}
@@ -3139,8 +3452,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-6}{%
 \section{Exercise}\label{exercise-6}}
 
-\hypertarget{solution-7}{%
-\section{Solution}\label{solution-7}}
+\hypertarget{solution-6}{%
+\section{Solution}\label{solution-6}}
 
 \hypertarget{week-11}{%
 \chapter{Week 11}\label{week-11}}
@@ -3148,8 +3461,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-7}{%
 \section{Exercise}\label{exercise-7}}
 
-\hypertarget{solution-8}{%
-\section{Solution}\label{solution-8}}
+\hypertarget{solution-7}{%
+\section{Solution}\label{solution-7}}
 
 \hypertarget{week-12}{%
 \chapter{Week 12}\label{week-12}}
@@ -3157,8 +3470,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-8}{%
 \section{Exercise}\label{exercise-8}}
 
-\hypertarget{solution-9}{%
-\section{Solution}\label{solution-9}}
+\hypertarget{solution-8}{%
+\section{Solution}\label{solution-8}}
 
 \hypertarget{week-13}{%
 \chapter{Week 13}\label{week-13}}
@@ -3166,8 +3479,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-9}{%
 \section{Exercise}\label{exercise-9}}
 
-\hypertarget{solution-10}{%
-\section{Solution}\label{solution-10}}
+\hypertarget{solution-9}{%
+\section{Solution}\label{solution-9}}
 
 \hypertarget{week-14}{%
 \chapter{Week 14}\label{week-14}}
@@ -3175,8 +3488,8 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{exercise-10}{%
 \section{Exercise}\label{exercise-10}}
 
-\hypertarget{solution-11}{%
-\section{Solution}\label{solution-11}}
+\hypertarget{solution-10}{%
+\section{Solution}\label{solution-10}}
 
   \bibliography{book.bib,packages.bib}
 

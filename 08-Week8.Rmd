@@ -1,7 +1,267 @@
-# Week 8
+# Week 8: Causality III (Observational Data)
+
+
+```{r, include=FALSE}
+# install.packages("Hmisc")
+# install.packages("tidyverse")
+# install.packages("stargazer")
+# install.packages("plm")
+# install.packages("lmtest")
+# install.packages("sandwich")
+# install.packages("xtable")
+# install.packages("plm")
+# install.packages("lmtest")
+# install.packages("ggplot2")
+
+
+library(dplyr)
+library(Hmisc)     # CRAN v4.4`-2
+library(tidyverse) # CRAN v1.3.1
+library(stargazer) # CRAN v5.2.2
+library(plm)       # CRAN v2.2-3
+library(lmtest)    # CRAN v0.9-38
+library(sandwich)  # CRAN v2.5-1
+library(xtable)    # CRAN v1.8-4
+library(ggplot2)
+```
+
+## Aims
+1. Using simulated data to instantiate the logic behind, diff-in-diff and panel data (i.e., within, between, and twoway fixed effects) methods.
+2. Using real data to estimate a causal effect using a two'way fixed effects model.
+
 
 ## Exercise
 
+### Simulated data
 
-## Solution
+The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see[here](https://www.youtube.com/watch?v=1SchyQ77VFg)). It's purpose is simply to illustrate the logic og the fixed effects models.
+
+```{r}
+data <- list(
+  City = c('NYC', 'NYC', 'NYC', 'Boston', 'Boston', 'Boston', 'Amherst', 'Amherst', 'Amherst'),
+  Time = c(1, 2, 3, 1, 2, 3, 1, 2, 3),
+  Unemployment = c(2, 3, 3, 4, 5, 5, 6, 7, 8),
+  Crime = c(5, 6, 9, 3, 4, 7, 1, 2, 3),
+  Treatment = c(0, 0, 1, 0, 0, 1, 0, 0, 0)
+)
+
+df <- data.frame(data)
+
+# Overall averages
+df <- df %>%
+  mutate(Y_OverallAverage = mean(Crime),
+         X_OverallAverage = mean(Unemployment))
+
+# Within averages         
+df <- df %>%
+  group_by(City) %>%
+  mutate(Y_WithinAverage = mean(Crime), 
+         X_WithinAverage = mean(Unemployment))       
+
+# Between averages
+df <- df %>%
+  group_by(Time) %>%
+  mutate(Y_WithinAverage = mean(Crime), 
+         X_WithinAverage = mean(Unemployment))
+
+```
+
+First the basic graph
+
+```{r}
+ggplot(df, aes(x = Unemployment, y = Crime)) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(title = "Unemployment vs Crime",
+       x = "Unemployment",
+       y = "Crime"
+       )
+```
+
+Now use shapes for distinguishing cities.
+```{r}
+ggplot(df, aes(x = Unemployment, y = Crime)) +
+  geom_point(aes(shape = factor(City)), size = 5) +  # Apply shape by City only to points
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Regression line for all data
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(title = "Unemployment vs Crime by City and Time",
+       x = "Unemployment",
+       y = "Crime",
+       shape = "City")
+```
+
+Now also use color for distinguishing also periods.
+```{r}
+ggplot(df, aes(x = Unemployment, y = Crime)) +
+  geom_point(aes(shape = factor(City), color = factor(Time)), size = 5) +  # Apply shape by City only to points
+  scale_color_manual(values = c("yellow", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Regression line for all data
+  scale_y_continuous(
+    limits = c(0, 10),
+    breaks = seq(0, 10, by = 1)) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(title = "Unemployment vs Crime by City and Time",
+       x = "Unemployment",
+       y = "Crime",
+       color = "Time",
+       shape = "City")
+
+```
+
+
+All previous regressions are counter intuitive, why?. Now restrict the regression to each city. What does this suggest regarding the ability of linear regression to capture relations between our variables of interest this scenario? Can we use a regression regardless of how we frame it? Is theory important for guiding how the regression is used? If so, in this case, how?
+```{r}
+ggplot(df, aes(x = Unemployment, y = Crime, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("red", "green", "blue")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+
+  scale_y_continuous(
+  limits = c(0, 10),
+  breaks = seq(0, 10, by = 1)) +
+  
+  labs(title = "Unemployment vs Crime by City and Time",
+       x = "Unemployment",
+       y = "Crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+
+```
+
+Now, having seen how regressions are theory dependent for defining how they are framed, let's see how fixed effects work.
+
+Assume that the data generating process behind the relation between `unemployment` and `crime` is given by the following formula.
+
+$$Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}$$
+With $$t=1, ..., T$$
+and 
+$$i=1, ..., N$$
+
+Where $Y_{it}$ is `crime` for city $i$ at time $t$, $\alpha_{i}$ is a time invariant unobservable (or unobserved) factor influencing the levels of `crime` in city $i$ (i.e., it's influence is constant across all periods). $\beta_{t}$ is a city invariant unobservable (or unobserved) factor influencing the levels of `crime` at period $t$  (i.e., it's influence is constant across all cities). $\gamma_{it}$ is the marginal effect of $X_{it}$, the `unemployment` level at city $i$ in period $t$. Finally, $\epsilon_{it}$ is the residual for city $i$ in period $t$
+
+Thus, in order to get rid of the time invariant factor, we can implement the following transformation.
+
+$\bar{X}_{i.} = \frac{1}{T}*sum_{t=1}^{T} X_{it}.$
+
+\sum_{n=1}^{N} a_n
+
+
+$
+
+$$Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}$$
+
+<font color=red> </font>
+
+<span style="color:red">perhaps showing only the within case is enough? I'm considering to use [this](https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf) paper, particularly page 8.</span>
+
+```{r}
+ggplot(df, aes(x = Unemployment, y = Crime, shape = factor(City))) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +  # Adding the regression line
+  scale_y_continuous(
+  limits = c(0, 10),
+  breaks = seq(0, 10, by = 1)) +
+  
+  labs(title = "Unemployment vs Crime by City and Time",
+       x = "Unemployment",
+       y = "Crime",
+       shape = "City") +
+  theme_minimal()
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+
+
+
+
+
+  
+         
+
+### Real data
+
+
+```{r}
+df1 <- swissdd::get_nationalvotes(geolevel = "national", from_date="2000-03-12", to_date = "2015-06-14")
+
+df1<- df1 %>%
+  select("stimmbeteiligungInProzent","votedate")
+  
+df1 <- dplyr::rename(df1, Y_National_BetweenAverage = stimmbeteiligungInProzent, vote_date = votedate)
+
+
+ballot_days_final <- readRDS("/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/replication/data/ballot_days_final.rds")  
+
+ballot_days_final <- inner_join(ballot_days_final, df1, by="vote_date")  
+
+ballot_days_final <- ballot_days_final %>%
+  group_by(muninr) %>%
+  mutate(Y_municipal_WithinAverage = mean(turnout, na.rm = TRUE), 
+         X_municipal_WithinAverage = mean(postage, na.rm = TRUE))
+
+
+ballot_days_final <- ballot_days_final %>%
+  mutate(Y_National_OverallAverage = mean(turnout, na.rm = TRUE),
+         X_National_OverallAverage = mean(postage, na.rm = TRUE))
+
+ballot_days_final <- ballot_days_final %>%
+  group_by(vote_date) %>%
+  mutate(X_National_BetweenAverage = mean(postage, na.rm = TRUE))
+         
+
+ballot_days_final<- ballot_days_final %>%
+  mutate( Y_demeaned_within = turnout-Y_municipal_WithinAverage,
+          Y_demeaned_between = turnout-Y_National_BetweenAverage,
+          Y_double_demeaned = turnout-Y_municipal_WithinAverage-Y_National_BetweenAverage+Y_National_OverallAverage,
+          X_demeaned_within = postage-X_municipal_WithinAverage,
+          X_demeaned_between = postage-X_National_BetweenAverage,
+          X_double_demeaned = postage-X_municipal_WithinAverage-X_National_BetweenAverage+X_National_OverallAverage
+        )
+```
+
+Results: One way fixed effects: within
+
+```{r}
+# One way fixed effects: within
+OW_FE_WI <- lm(Y_demeaned_within ~ X_demeaned_within - 1, data = ballot_days_final)
+summary(OW_FE_WI)
+```
+
+Results: One way fixed effects: between
+
+```{r}
+# One way fixed effects: between
+OW_FE_BE <- lm(Y_demeaned_between ~ X_demeaned_between - 1, data = ballot_days_final)
+summary(OW_FE_BE)
+```
+
+Results: Two way fixed effects: between
+
+```{r}
+# Two way fixed effects: between
+TW_FE <- lm(Y_double_demeaned ~ X_double_demeaned - 1, data = ballot_days_final)
+summary(TW_FE)
+```
+
+
 
