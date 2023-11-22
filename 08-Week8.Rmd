@@ -34,7 +34,7 @@ library(ggplot2)
 
 ### Simulated data
 
-The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see[here](https://www.youtube.com/watch?v=1SchyQ77VFg)). It's purpose is simply to illustrate the logic og the fixed effects models.
+The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see [here](https://www.youtube.com/watch?v=1SchyQ77VFg)). It's purpose is simply to illustrate the logic og the fixed effects models.
 
 ```{r}
 data <- list(
@@ -124,8 +124,8 @@ All previous regressions are counter intuitive, why?. Now restrict the regressio
 ```{r}
 ggplot(df, aes(x = Unemployment, y = Crime, color = factor(Time), shape = factor(City))) +
   geom_point(size = 5) +
-  scale_color_manual(values = c("red", "green", "blue")) +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+  scale_color_manual(values = c("yellow", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
 
   scale_y_continuous(
   limits = c(0, 10),
@@ -155,16 +155,8 @@ Thus, in order to get rid of the time invariant factor, we can implement the fol
 
 $\bar{X}_{i.} = \frac{1}{T}*sum_{t=1}^{T} X_{it}.$
 
-\sum_{n=1}^{N} a_n
 
-
-$
-
-$$Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}$$
-
-<font color=red> </font>
-
-<span style="color:red">perhaps showing only the within case is enough? I'm considering to use [this](https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf) paper, particularly page 8.</span>
+<span style="color:red">perhaps showing only the within case is enough? I'm considering to use **[this](https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf)** paper, particularly page 8.</span>
 
 ```{r}
 ggplot(df, aes(x = Unemployment, y = Crime, shape = factor(City))) +
@@ -262,6 +254,5 @@ Results: Two way fixed effects: between
 TW_FE <- lm(Y_double_demeaned ~ X_double_demeaned - 1, data = ballot_days_final)
 summary(TW_FE)
 ```
-
-
+<span style="color:red">Introduce here the estimation using _plm_ </span>
 

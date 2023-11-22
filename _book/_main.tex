@@ -3136,7 +3136,7 @@ Report the \(R^2\) generated in points 2, 11, and 13 here:
 \hypertarget{simulated-data-2}{%
 \subsection{Simulated data}\label{simulated-data-2}}
 
-The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see\href{https://www.youtube.com/watch?v=1SchyQ77VFg}{here}). It's purpose is simply to illustrate the logic og the fixed effects models.
+The following data is NOT real and is inspired by Ben Lambert's video on fixed effects (see \href{https://www.youtube.com/watch?v=1SchyQ77VFg}{here}). It's purpose is simply to illustrate the logic og the fixed effects models.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3241,8 +3241,8 @@ All previous regressions are counter intuitive, why?. Now restrict the regressio
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"yellow"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
 
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}
   \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
@@ -3274,13 +3274,7 @@ Thus, in order to get rid of the time invariant factor, we can implement the fol
 
 \(\bar{X}_{i.} = \frac{1}{T}*sum_{t=1}^{T} X_{it}.\)
 
-\sum\_\{n=1\}\^{}\{N\} a\_n
-
-\$
-
-\[Y_{it}=\alpha_{i}+\beta_{t}+\gamma_{it}X_{it}+\epsilon_{it}\]
-
-{perhaps showing only the within case is enough? I'm considering to use \href{https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf}{this} paper, particularly page 8.}
+{perhaps showing only the within case is enough? I'm considering to use \textbf{\href{https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf}{this}} paper, particularly page 8.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3436,6 +3430,8 @@ Results: Two way fixed effects: between
 ## Multiple R-squared:  0.001696,   Adjusted R-squared:  0.001685 
 ## F-statistic: 151.8 on 1 and 89319 DF,  p-value: < 2.2e-16
 \end{verbatim}
+
+{Introduce here the estimation using \emph{plm} }
 
 \hypertarget{week-9}{%
 \chapter{Week 9}\label{week-9}}
