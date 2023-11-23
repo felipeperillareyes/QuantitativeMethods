@@ -120,7 +120,7 @@
 
 \title{Intermediate Quantitative Methods}
 \author{Lucas Lemmann}
-\date{2023-11-22}
+\date{2023-11-23}
 
 \begin{document}
 \maketitle
@@ -3164,8 +3164,17 @@ The following data is NOT real and is inspired by Ben Lambert's video on fixed e
 \CommentTok{\# Between averages}
 \NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Time) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Crime), }
-         \AttributeTok{X\_WithinAverage =} \FunctionTok{mean}\NormalTok{(Unemployment))}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Y\_BetweenAverage =} \FunctionTok{mean}\NormalTok{(Crime), }
+         \AttributeTok{X\_BetweenAverage =} \FunctionTok{mean}\NormalTok{(Unemployment))}
+         
+\NormalTok{df}\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{Y\_demeaned\_within =}\NormalTok{ Crime}\SpecialCharTok{{-}}\NormalTok{Y\_WithinAverage,}
+          \AttributeTok{Y\_demeaned\_between =}\NormalTok{ Crime}\SpecialCharTok{{-}}\NormalTok{Y\_BetweenAverage,}
+          \AttributeTok{Y\_double\_demeaned =}\NormalTok{ Crime}\SpecialCharTok{{-}}\NormalTok{Y\_WithinAverage}\SpecialCharTok{{-}}\NormalTok{Y\_BetweenAverage}\SpecialCharTok{+}\NormalTok{Y\_OverallAverage,}
+          \AttributeTok{X\_demeaned\_within =}\NormalTok{ Unemployment}\SpecialCharTok{{-}}\NormalTok{X\_WithinAverage,}
+          \AttributeTok{X\_demeaned\_between =}\NormalTok{ Unemployment}\SpecialCharTok{{-}}\NormalTok{X\_BetweenAverage,}
+          \AttributeTok{X\_double\_demeaned =}\NormalTok{ Unemployment}\SpecialCharTok{{-}}\NormalTok{X\_WithinAverage}\SpecialCharTok{{-}}\NormalTok{X\_BetweenAverage}\SpecialCharTok{+}\NormalTok{X\_OverallAverage}
+\NormalTok{        )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3218,7 +3227,7 @@ Now also use color for distinguishing also periods.
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City), }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Apply shape by City only to points}
-  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"yellow"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
   \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Regression line for all data}
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}
     \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
@@ -3241,7 +3250,7 @@ All previous regressions are counter intuitive, why?. Now restrict the regressio
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"yellow"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
   \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
 
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}
@@ -3276,11 +3285,22 @@ Thus, in order to get rid of the time invariant factor, we can implement the fol
 
 {perhaps showing only the within case is enough? I'm considering to use \textbf{\href{https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf}{this}} paper, particularly page 8.}
 
+Plus vertical line for within mean values.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+\NormalTok{X\_WithinAverage\_NYC }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_WithinAverage[df}\SpecialCharTok{$}\NormalTok{City}\SpecialCharTok{==}\StringTok{\textquotesingle{}NYC\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{X\_WithinAverage\_Boston }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_WithinAverage[df}\SpecialCharTok{$}\NormalTok{City}\SpecialCharTok{==}\StringTok{\textquotesingle{}Boston\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{X\_WithinAverage\_Amherst }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_WithinAverage[df}\SpecialCharTok{$}\NormalTok{City}\SpecialCharTok{==}\StringTok{\textquotesingle{}Amherst\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+
+
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Unemployment, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ X\_WithinAverage\_NYC, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ X\_WithinAverage\_Boston, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ X\_WithinAverage\_Amherst, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}
   \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
   \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
@@ -3288,12 +3308,175 @@ Thus, in order to get rid of the time invariant factor, we can implement the fol
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Unemployment vs Crime by City and Time"}\NormalTok{,}
        \AttributeTok{x =} \StringTok{"Unemployment"}\NormalTok{,}
        \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
        \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+Demeaned within unemployment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ X\_demeaned\_within, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+  \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Demeaned within unemployment vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Demeaned unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
+
+Also demeaned within crime.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ X\_demeaned\_within, }\AttributeTok{y =}\NormalTok{ Y\_demeaned\_within)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City), }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Demeaned unemployment vs Demeaned crime by City and Time (within )"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Demeaned unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Demeaned crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-119-1.pdf}
+
+Unemployment over time with horizontal line for between mean values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X\_BetweenAverage\_T1 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{X\_BetweenAverage\_T2 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}2\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{X\_BetweenAverage\_T3 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{X\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}3\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+
+
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Time, }\AttributeTok{y =}\NormalTok{ Unemployment, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ X\_BetweenAverage\_T1, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"gold"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ X\_BetweenAverage\_T2, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"orange"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ X\_BetweenAverage\_T3, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Time vs Unemployment by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Unemployment"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
+
+Crime over time with horizontal line for between mean values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y\_BetweenAverage\_T1 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Y\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{Y\_BetweenAverage\_T2 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Y\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}2\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\NormalTok{Y\_BetweenAverage\_T3 }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Y\_BetweenAverage[df}\SpecialCharTok{$}\NormalTok{Time}\SpecialCharTok{==}\StringTok{\textquotesingle{}3\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+
+
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Time, }\AttributeTok{y =}\NormalTok{ Crime, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ Y\_BetweenAverage\_T1, }\AttributeTok{linetype =} \StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ Y\_BetweenAverage\_T2, }\AttributeTok{linetype =} \StringTok{"twodash"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ Y\_BetweenAverage\_T3, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"lightgray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Vertical line at the mean of}
+
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Time vs Crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
+
+Demeaned unemployment over time with horizontal line for between mean values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Time, }\AttributeTok{y =}\NormalTok{ X\_demeaned\_between, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Time vs demeaned between unemployment by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Demeaned unemployment"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-122-1.pdf}
+
+Demeaned crime over time with horizontal line for between mean values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Time, }\AttributeTok{y =}\NormalTok{ Y\_demeaned\_between, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time), }\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  \CommentTok{\# scale\_y\_continuous(}
+  \CommentTok{\# limits = c(0, 10),}
+  \CommentTok{\# breaks = seq(0, 10, by = 1)) +}
+  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Time vs demeaned between crime by City and Time"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Demeaned crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
+
+Demeaned crime over time with horizontal line for between mean values. \textbf{Very hard to interpret!}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ X\_demeaned\_between, }\AttributeTok{y =}\NormalTok{ Y\_demeaned\_between)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =} \FunctionTok{factor}\NormalTok{(City), }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(Time)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Apply shape by City only to points}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Adding the regression line}
+  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Demeaned unemployment vs demeaned crime by City and Time (between)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Demeaned unemployment"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Demeaned crime"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{shape =} \StringTok{"City"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+
+{Missing!! all demeaned (i.e., twoway fixed effects)}
 
 \hypertarget{real-data-2}{%
 \subsection{Real data}\label{real-data-2}}

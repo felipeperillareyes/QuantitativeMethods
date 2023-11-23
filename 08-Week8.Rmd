@@ -61,9 +61,17 @@ df <- df %>%
 # Between averages
 df <- df %>%
   group_by(Time) %>%
-  mutate(Y_WithinAverage = mean(Crime), 
-         X_WithinAverage = mean(Unemployment))
-
+  mutate(Y_BetweenAverage = mean(Crime), 
+         X_BetweenAverage = mean(Unemployment))
+         
+df<- df %>%
+  mutate( Y_demeaned_within = Crime-Y_WithinAverage,
+          Y_demeaned_between = Crime-Y_BetweenAverage,
+          Y_double_demeaned = Crime-Y_WithinAverage-Y_BetweenAverage+Y_OverallAverage,
+          X_demeaned_within = Unemployment-X_WithinAverage,
+          X_demeaned_between = Unemployment-X_BetweenAverage,
+          X_double_demeaned = Unemployment-X_WithinAverage-X_BetweenAverage+X_OverallAverage
+        )
 ```
 
 First the basic graph
@@ -104,7 +112,7 @@ Now also use color for distinguishing also periods.
 ```{r}
 ggplot(df, aes(x = Unemployment, y = Crime)) +
   geom_point(aes(shape = factor(City), color = factor(Time)), size = 5) +  # Apply shape by City only to points
-  scale_color_manual(values = c("yellow", "orange", "red")) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Regression line for all data
   scale_y_continuous(
     limits = c(0, 10),
@@ -124,7 +132,7 @@ All previous regressions are counter intuitive, why?. Now restrict the regressio
 ```{r}
 ggplot(df, aes(x = Unemployment, y = Crime, color = factor(Time), shape = factor(City))) +
   geom_point(size = 5) +
-  scale_color_manual(values = c("yellow", "orange", "red")) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
 
   scale_y_continuous(
@@ -158,10 +166,21 @@ $\bar{X}_{i.} = \frac{1}{T}*sum_{t=1}^{T} X_{it}.$
 
 <span style="color:red">perhaps showing only the within case is enough? I'm considering to use **[this](https://economics.princeton.edu/wp-content/uploads/2021/08/two_way_mundlak-Wooldridge.pdf)** paper, particularly page 8.</span>
 
+
+Plus vertical line for within mean values.
 ```{r}
-ggplot(df, aes(x = Unemployment, y = Crime, shape = factor(City))) +
+X_WithinAverage_NYC = df$X_WithinAverage[df$City=='NYC'][1]
+X_WithinAverage_Boston = df$X_WithinAverage[df$City=='Boston'][1]
+X_WithinAverage_Amherst = df$X_WithinAverage[df$City=='Amherst'][1]
+
+
+ggplot(df, aes(x = Unemployment, y = Crime, color = factor(Time), shape = factor(City))) +
   geom_point(size = 5) +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +  # Adding the regression line
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  geom_vline(xintercept = X_WithinAverage_NYC, linetype = "dashed", color = "lightgray") +  # Vertical line at the mean of
+  geom_vline(xintercept = X_WithinAverage_Boston, linetype = "dashed", color = "lightgray") +  # Vertical line at the mean of
+  geom_vline(xintercept = X_WithinAverage_Amherst, linetype = "dashed", color = "lightgray") +  # Vertical line at the mean of
   scale_y_continuous(
   limits = c(0, 10),
   breaks = seq(0, 10, by = 1)) +
@@ -169,26 +188,148 @@ ggplot(df, aes(x = Unemployment, y = Crime, shape = factor(City))) +
   labs(title = "Unemployment vs Crime by City and Time",
        x = "Unemployment",
        y = "Crime",
+       color = "Time",
        shape = "City") +
   theme_minimal()
 ```
 
+Demeaned within unemployment.
 ```{r}
-```
 
-```{r}
-```
-
-```{r}
-```
-
-
-
-
-
-
+ggplot(df, aes(x = X_demeaned_within, y = Crime, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  scale_y_continuous(
+  limits = c(0, 10),
+  breaks = seq(0, 10, by = 1)) +
   
-         
+  labs(title = "Demeaned within unemployment vs Crime by City and Time",
+       x = "Demeaned unemployment",
+       y = "Crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+Also demeaned within crime.
+```{r}
+
+ggplot(df, aes(x = X_demeaned_within, y = Y_demeaned_within)) +
+  geom_point(aes(shape = factor(City), color = factor(Time)), size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+
+  labs(title = "Demeaned unemployment vs Demeaned crime by City and Time (within )",
+       x = "Demeaned unemployment",
+       y = "Demeaned crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+Unemployment over time with horizontal line for between mean values.
+```{r}
+X_BetweenAverage_T1 = df$X_BetweenAverage[df$Time=='1'][1]
+X_BetweenAverage_T2 = df$X_BetweenAverage[df$Time=='2'][1]
+X_BetweenAverage_T3 = df$X_BetweenAverage[df$Time=='3'][1]
+
+
+ggplot(df, aes(x = Time, y = Unemployment, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  geom_hline(yintercept = X_BetweenAverage_T1, linetype = "dashed", color = "gold") +  # Vertical line at the mean of
+  geom_hline(yintercept = X_BetweenAverage_T2, linetype = "dashed", color = "orange") +  # Vertical line at the mean of
+  geom_hline(yintercept = X_BetweenAverage_T3, linetype = "dashed", color = "red") +  # Vertical line at the mean of
+  labs(title = "Time vs Unemployment by City and Time",
+       x = "Time",
+       y = "Unemployment",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+
+Crime over time with horizontal line for between mean values.
+```{r}
+Y_BetweenAverage_T1 = df$Y_BetweenAverage[df$Time=='1'][1]
+Y_BetweenAverage_T2 = df$Y_BetweenAverage[df$Time=='2'][1]
+Y_BetweenAverage_T3 = df$Y_BetweenAverage[df$Time=='3'][1]
+
+
+ggplot(df, aes(x = Time, y = Crime, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  geom_hline(yintercept = Y_BetweenAverage_T1, linetype = "dotted", color = "lightgray") +  # Vertical line at the mean of
+  geom_hline(yintercept = Y_BetweenAverage_T2, linetype = "twodash", color = "lightgray") +  # Vertical line at the mean of
+  geom_hline(yintercept = Y_BetweenAverage_T3, linetype = "dashed", color = "lightgray") +  # Vertical line at the mean of
+
+  labs(title = "Time vs Crime by City and Time",
+       x = "Time",
+       y = "Crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+
+
+Demeaned unemployment over time with horizontal line for between mean values.
+```{r}
+ggplot(df, aes(x = Time, y = X_demeaned_between, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  labs(title = "Time vs demeaned between unemployment by City and Time",
+       x = "Time",
+       y = "Demeaned unemployment",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+
+Demeaned crime over time with horizontal line for between mean values.
+```{r}
+ggplot(df, aes(x = Time, y = Y_demeaned_between, color = factor(Time), shape = factor(City))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  # scale_y_continuous(
+  # limits = c(0, 10),
+  # breaks = seq(0, 10, by = 1)) +
+  
+  labs(title = "Time vs demeaned between crime by City and Time",
+       x = "Time",
+       y = "Demeaned crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+Demeaned crime over time with horizontal line for between mean values. **Very hard to interpret!**
+```{r}
+ggplot(df, aes(x = X_demeaned_between, y = Y_demeaned_between)) +
+  geom_point(aes(shape = factor(City), color = factor(Time)), size = 5) +  # Apply shape by City only to points
+  scale_color_manual(values = c("gold", "orange", "red")) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "gray") +  # Adding the regression line
+  
+  labs(title = "Demeaned unemployment vs demeaned crime by City and Time (between)",
+       x = "Demeaned unemployment",
+       y = "Demeaned crime",
+       color = "Time",
+       shape = "City") +
+  theme_minimal()
+```
+
+
+<span style="color:red">Missing!! all demeaned (i.e., twoway fixed effects)</span>
+
+
+
+
 
 ### Real data
 
