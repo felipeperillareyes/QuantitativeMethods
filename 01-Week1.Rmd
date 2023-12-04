@@ -19,12 +19,11 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width =
 1. To refresh your R skills.
 2. Performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).
 
-## First Part: Descriptive Analysis
+## First Part: REPETITION R/RStudio
 
-1. Download the files `f.txt` and `m.txt`. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 5 observations for each file.
+1. Download the files `f.txt` and `m.txt`. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 3 observations for each file.
 
-<span style="color:red">Adjust using the links from GitHub []()</span>
-
+Note: remember that this book was developed as an R-project, which is a way to ensure reproducibility of projects. One of the advantages of R-projects is that files are stored in directories (i.e., folders) that are defined relative to the R-project. For example, if the folder `Data` is stored in the same folder as the project, files stored in `Data` can be accessed as follows: `female <- read.table("Data/f.txt", header = TRUE, sep = "\t")`.To learn more about R-projects, check [this](https://rfortherestofus.com/2022/10/rstudio-projects) entry.
 
 ```{r}
 # Your code goes here
@@ -35,13 +34,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width =
 
 ```{r}
 # open data
-female <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt", header = TRUE, sep = "\t")
+female <- read.table("Data/f.txt", header = TRUE, sep = "\t")
 
 # explore data
 head(female, 3)
 
 # open data
-male <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt", header = TRUE, sep = "\t")
+male <- read.table("Data/m.txt", header = TRUE, sep = "\t")
 
 # explore data
 head(male, 3)
@@ -233,8 +232,8 @@ all <- bind_rows(female, male, .id = NULL)
 cat("The new dataframe has ", nrow(all), "individuals\n")
 
 # Without assuming that `sex` was created for each dataframe
-female <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt", header = TRUE, sep = "\t")
-male <- read.table("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt", header = TRUE, sep = "\t")
+female <- read.table("Data/f.txt", header = TRUE, sep = "\t")
+male <- read.table("Data/m.txt", header = TRUE, sep = "\t")
 
 all <- bind_rows(female, male, .id = 'sex')
 cat("The new dataframe has ", nrow(all), "individuals\n")
