@@ -105,7 +105,7 @@ Finally, as you want to see the turn-out differences between municipalities with
 #install.packages("pxR")
 # library(pxR)
 #Open data
-LandUse <- read.px('~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/px-x-0202020000_102.px', encoding = "UTF-8")
+LandUse <- read.px('Data/px-x-0202020000_102.px', encoding = "UTF-8")
 LandUseData<- LandUse$DATA$value
 
 #Rename variable

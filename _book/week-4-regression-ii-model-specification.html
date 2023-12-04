@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Lucas Lemmann" />
 
 
-<meta name="date" content="2023-11-23" />
+<meta name="date" content="2023-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
-<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-descriptive-analysis"><i class="fa fa-check"></i><b>1.2</b> First Part: Descriptive Analysis</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-repetition-rrstudio"><i class="fa fa-check"></i><b>1.2</b> First Part: REPETITION R/RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-exploratory-vs.-hypothesis-testing-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Exploratory VS. Hypothesis-Testing Analysis</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to"><i class="fa fa-check"></i><b>1.3.1</b> Preliminary steps: do this before doing the task that you were assigned to</a></li>
@@ -306,9 +306,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb93-6"><a href="week-4-regression-ii-model-specification.html#cb93-6" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb93-7"><a href="week-4-regression-ii-model-specification.html#cb93-7" tabindex="-1"></a><span class="co"># selects19$f15200 &lt;- as.numeric(selects19$f15200)</span></span>
 <span id="cb93-8"><a href="week-4-regression-ii-model-specification.html#cb93-8" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb93-9"><a href="week-4-regression-ii-model-specification.html#cb93-9" tabindex="-1"></a><span class="co"># write.table(selects19, file = &quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv&quot;, sep = &quot;,&quot;, row.names = FALSE)</span></span>
+<span id="cb93-9"><a href="week-4-regression-ii-model-specification.html#cb93-9" tabindex="-1"></a><span class="co"># write.table(selects19, file = &quot;Data/SELECTS 2019/data.csv&quot;, sep = &quot;,&quot;, row.names = FALSE)</span></span>
 <span id="cb93-10"><a href="week-4-regression-ii-model-specification.html#cb93-10" tabindex="-1"></a></span>
-<span id="cb93-11"><a href="week-4-regression-ii-model-specification.html#cb93-11" tabindex="-1"></a>selects19 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb93-11"><a href="week-4-regression-ii-model-specification.html#cb93-11" tabindex="-1"></a>selects19 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Data/SELECTS 2019/data.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Labeling languages:</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="week-4-regression-ii-model-specification.html#cb94-1" tabindex="-1"></a>selects19 <span class="ot">&lt;-</span> selects19 <span class="sc">%&gt;%</span></span>
 <span id="cb94-2"><a href="week-4-regression-ii-model-specification.html#cb94-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">LanguageHome =</span> <span class="fu">case_when</span>(</span>

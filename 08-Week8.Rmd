@@ -343,7 +343,7 @@ df1<- df1 %>%
 df1 <- dplyr::rename(df1, Y_National_BetweenAverage = stimmbeteiligungInProzent, vote_date = votedate)
 
 
-ballot_days_final <- readRDS("/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/replication/data/ballot_days_final.rds")  
+ballot_days_final <- readRDS("Data/replication/data/ballot_days_final.rds")  
 
 ballot_days_final <- inner_join(ballot_days_final, df1, by="vote_date")  
 

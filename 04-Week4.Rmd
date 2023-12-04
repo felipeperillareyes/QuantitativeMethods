@@ -51,9 +51,9 @@ Opening:
 # 
 # selects19$f15200 <- as.numeric(selects19$f15200)
 # 
-# write.table(selects19, file = "~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
+# write.table(selects19, file = "Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
 
-selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", header = TRUE)
+selects19 <- read.csv("Data/SELECTS 2019/data.csv", header = TRUE)
 ```
 
 Labeling languages:

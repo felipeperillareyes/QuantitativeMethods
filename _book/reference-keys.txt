@@ -2,7 +2,7 @@ how-to-use-these-exercises
 schedule
 week-1-diys-1
 aims
-first-part-descriptive-analysis
+first-part-repetition-rrstudio
 second-part-exploratory-vs.-hypothesis-testing-analysis
 preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to
 task-1

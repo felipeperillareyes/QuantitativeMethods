@@ -29,6 +29,7 @@ What is this book about? What for?
 - To prevent redundant communications (i.e., emails with the same information), share your questions regarding the exercises in the forum. Labs will emphasize the most voted questions.
 - While we encourage and foster a collaborative learning process, we expect you to work individually first.
   - I.e., try to address the task on your own first, identify what is limiting you, try to solve it on your own (not for too long), and, if you cannot find a solution, reach out your classmates. Once you find your solution, consider discussing the solution with your classmates.
+- All the files behind this book can be found in its GitHub repository.
 
 ## Schedule
 
@@ -49,6 +50,8 @@ What is this book about? What for?
 | 12              |13/05-19/05        | Lab 5           |
 | 13              |20/05-26/05        | DIYS 6          |
 | 14              |27/05-02/06        | DIYS 7          |
+
+
 
 
 

@@ -120,7 +120,7 @@
 
 \title{Intermediate Quantitative Methods}
 \author{Lucas Lemmann}
-\date{2023-11-23}
+\date{2023-12-04}
 
 \begin{document}
 \maketitle
@@ -164,6 +164,8 @@ What is this book about? What for?
   \item
     I.e., try to address the task on your own first, identify what is limiting you, try to solve it on your own (not for too long), and, if you cannot find a solution, reach out your classmates. Once you find your solution, consider discussing the solution with your classmates.
   \end{itemize}
+\item
+  All the files behind this book can be found in its GitHub repository.
 \end{itemize}
 
 \hypertarget{schedule}{%
@@ -208,17 +210,17 @@ Week & Dates & Exercise type \\
   Performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).
 \end{enumerate}
 
-\hypertarget{first-part-descriptive-analysis}{%
-\section{First Part: Descriptive Analysis}\label{first-part-descriptive-analysis}}
+\hypertarget{first-part-repetition-rrstudio}{%
+\section{First Part: REPETITION R/RStudio}\label{first-part-repetition-rrstudio}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Download the files \texttt{f.txt} and \texttt{m.txt}. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 5 observations for each file.
+  Download the files \texttt{f.txt} and \texttt{m.txt}. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 3 observations for each file.
 \end{enumerate}
 
-{Adjust using the links from GitHub \href{}{}}
+Note: remember that this book was developed as an R-project, which is a way to ensure reproducibility of projects. One of the advantages of R-projects is that files are stored in directories (i.e., folders) that are defined relative to the R-project. For example, if the folder \texttt{Data} is stored in the same folder as the project, files stored in \texttt{Data} can be accessed as follows: \texttt{female\ \textless{}-\ read.table("Data/f.txt",\ header\ =\ TRUE,\ sep\ =\ "\textbackslash{}t")}.To learn more about R-projects, check \href{https://rfortherestofus.com/2022/10/rstudio-projects}{this} entry.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -231,7 +233,7 @@ Week & Dates & Exercise type \\
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# open data}
-\NormalTok{female }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{female }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"Data/f.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
 
 \CommentTok{\# explore data}
 \FunctionTok{head}\NormalTok{(female, }\DecValTok{3}\NormalTok{)}
@@ -248,7 +250,7 @@ Week & Dates & Exercise type \\
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# open data}
-\NormalTok{male }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{male }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"Data/m.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
 
 \CommentTok{\# explore data}
 \FunctionTok{head}\NormalTok{(male, }\DecValTok{3}\NormalTok{)}
@@ -639,8 +641,8 @@ Notes:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Without assuming that \textasciigrave{}sex\textasciigrave{} was created for each dataframe}
-\NormalTok{female }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
-\NormalTok{male }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{female }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"Data/f.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{male }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"Data/m.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
 
 \NormalTok{all }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(female, male, }\AttributeTok{.id =} \StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{)}
 \FunctionTok{cat}\NormalTok{(}\StringTok{"The new dataframe has "}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(all), }\StringTok{"individuals}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
@@ -927,7 +929,7 @@ Finally, as you want to see the turn-out differences between municipalities with
 \CommentTok{\#install.packages("pxR")}
 \CommentTok{\# library(pxR)}
 \CommentTok{\#Open data}
-\NormalTok{LandUse }\OtherTok{\textless{}{-}} \FunctionTok{read.px}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/px{-}x{-}0202020000\_102.px\textquotesingle{}}\NormalTok{, }\AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{)}
+\NormalTok{LandUse }\OtherTok{\textless{}{-}} \FunctionTok{read.px}\NormalTok{(}\StringTok{\textquotesingle{}Data/px{-}x{-}0202020000\_102.px\textquotesingle{}}\NormalTok{, }\AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{)}
 \NormalTok{LandUseData}\OtherTok{\textless{}{-}}\NormalTok{ LandUse}\SpecialCharTok{$}\NormalTok{DATA}\SpecialCharTok{$}\NormalTok{value}
 
 \CommentTok{\#Rename variable}
@@ -1788,9 +1790,9 @@ Opening:
 \CommentTok{\# }
 \CommentTok{\# selects19$f15200 \textless{}{-} as.numeric(selects19$f15200)}
 \CommentTok{\# }
-\CommentTok{\# write.table(selects19, file = "\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)}
+\CommentTok{\# write.table(selects19, file = "Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)}
 
-\NormalTok{selects19 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/SELECTS 2019/data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{selects19 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Data/SELECTS 2019/data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3491,7 +3493,7 @@ Demeaned crime over time with horizontal line for between mean values. \textbf{V
 \NormalTok{df1 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(df1, }\AttributeTok{Y\_National\_BetweenAverage =}\NormalTok{ stimmbeteiligungInProzent, }\AttributeTok{vote\_date =}\NormalTok{ votedate)}
 
 
-\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"/Users/fperil/Documents/0\_IPZ/2023\_2/Leemann{-}QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/replication/data/ballot\_days\_final.rds"}\NormalTok{)  }
+\NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"Data/replication/data/ballot\_days\_final.rds"}\NormalTok{)  }
 
 \NormalTok{ballot\_days\_final }\OtherTok{\textless{}{-}} \FunctionTok{inner\_join}\NormalTok{(ballot\_days\_final, df1, }\AttributeTok{by=}\StringTok{"vote\_date"}\NormalTok{)  }
 

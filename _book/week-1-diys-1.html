@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Lucas Lemmann" />
 
 
-<meta name="date" content="2023-11-23" />
+<meta name="date" content="2023-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
-<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-descriptive-analysis"><i class="fa fa-check"></i><b>1.2</b> First Part: Descriptive Analysis</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-repetition-rrstudio"><i class="fa fa-check"></i><b>1.2</b> First Part: REPETITION R/RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-exploratory-vs.-hypothesis-testing-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Exploratory VS. Hypothesis-Testing Analysis</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to"><i class="fa fa-check"></i><b>1.3.1</b> Preliminary steps: do this before doing the task that you were assigned to</a></li>
@@ -277,16 +277,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Performing some basic analyses (i.e., descriptive, exploratory, and hypothesis testing ones).</li>
 </ol>
 </div>
-<div id="first-part-descriptive-analysis" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> First Part: Descriptive Analysis<a href="week-1-diys-1.html#first-part-descriptive-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="first-part-repetition-rrstudio" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> First Part: REPETITION R/RStudio<a href="week-1-diys-1.html#first-part-repetition-rrstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Download the files <code>f.txt</code> and <code>m.txt</code>. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 5 observations for each file.</li>
+<li>Download the files <code>f.txt</code> and <code>m.txt</code>. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 3 observations for each file.</li>
 </ol>
-<p><span style="color:red">Adjust using the links from GitHub <a href=""></a></span></p>
+<p>Note: remember that this book was developed as an R-project, which is a way to ensure reproducibility of projects. One of the advantages of R-projects is that files are stored in directories (i.e., folders) that are defined relative to the R-project. For example, if the folder <code>Data</code> is stored in the same folder as the project, files stored in <code>Data</code> can be accessed as follows: <code>female &lt;- read.table("Data/f.txt", header = TRUE, sep = "\t")</code>.To learn more about R-projects, check <a href="https://rfortherestofus.com/2022/10/rstudio-projects">this</a> entry.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="week-1-diys-1.html#cb1-1" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code></pre></div>
 <p><span style="color:red">For the exercise before publishing the solution</span></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="week-1-diys-1.html#cb2-1" tabindex="-1"></a><span class="co"># open data</span></span>
-<span id="cb2-2"><a href="week-1-diys-1.html#cb2-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb2-2"><a href="week-1-diys-1.html#cb2-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Data/f.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
 <span id="cb2-3"><a href="week-1-diys-1.html#cb2-3" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="week-1-diys-1.html#cb2-4" tabindex="-1"></a><span class="co"># explore data</span></span>
 <span id="cb2-5"><a href="week-1-diys-1.html#cb2-5" tabindex="-1"></a><span class="fu">head</span>(female, <span class="dv">3</span>)</span></code></pre></div>
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2  4 14861 17.2
 ## 3  5 14861 17.2</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-1-diys-1.html#cb4-1" tabindex="-1"></a><span class="co"># open data</span></span>
-<span id="cb4-2"><a href="week-1-diys-1.html#cb4-2" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb4-2"><a href="week-1-diys-1.html#cb4-2" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Data/m.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
 <span id="cb4-3"><a href="week-1-diys-1.html#cb4-3" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="week-1-diys-1.html#cb4-4" tabindex="-1"></a><span class="co"># explore data</span></span>
 <span id="cb4-5"><a href="week-1-diys-1.html#cb4-5" tabindex="-1"></a><span class="fu">head</span>(male, <span class="dv">3</span>)</span></code></pre></div>
@@ -466,8 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb37-3"><a href="week-1-diys-1.html#cb37-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;The new dataframe has &quot;</span>, <span class="fu">nrow</span>(all), <span class="st">&quot;individuals</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## The new dataframe has  1786 individuals</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="week-1-diys-1.html#cb39-1" tabindex="-1"></a><span class="co"># Without assuming that `sex` was created for each dataframe</span></span>
-<span id="cb39-2"><a href="week-1-diys-1.html#cb39-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/f.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb39-3"><a href="week-1-diys-1.html#cb39-3" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/m.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb39-2"><a href="week-1-diys-1.html#cb39-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Data/f.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb39-3"><a href="week-1-diys-1.html#cb39-3" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Data/m.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
 <span id="cb39-4"><a href="week-1-diys-1.html#cb39-4" tabindex="-1"></a></span>
 <span id="cb39-5"><a href="week-1-diys-1.html#cb39-5" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(female, male, <span class="at">.id =</span> <span class="st">&#39;sex&#39;</span>)</span>
 <span id="cb39-6"><a href="week-1-diys-1.html#cb39-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;The new dataframe has &quot;</span>, <span class="fu">nrow</span>(all), <span class="st">&quot;individuals</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>

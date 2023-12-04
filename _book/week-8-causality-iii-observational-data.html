@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Lucas Lemmann" />
 
 
-<meta name="date" content="2023-11-23" />
+<meta name="date" content="2023-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
-<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-descriptive-analysis"><i class="fa fa-check"></i><b>1.2</b> First Part: Descriptive Analysis</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-repetition-rrstudio"><i class="fa fa-check"></i><b>1.2</b> First Part: REPETITION R/RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-exploratory-vs.-hypothesis-testing-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Exploratory VS. Hypothesis-Testing Analysis</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#preliminary-steps-do-this-before-doing-the-task-that-you-were-assigned-to"><i class="fa fa-check"></i><b>1.3.1</b> Preliminary steps: do this before doing the task that you were assigned to</a></li>
@@ -536,7 +536,7 @@ and
 <span id="cb178-6"><a href="week-8-causality-iii-observational-data.html#cb178-6" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(df1, <span class="at">Y_National_BetweenAverage =</span> stimmbeteiligungInProzent, <span class="at">vote_date =</span> votedate)</span>
 <span id="cb178-7"><a href="week-8-causality-iii-observational-data.html#cb178-7" tabindex="-1"></a></span>
 <span id="cb178-8"><a href="week-8-causality-iii-observational-data.html#cb178-8" tabindex="-1"></a></span>
-<span id="cb178-9"><a href="week-8-causality-iii-observational-data.html#cb178-9" tabindex="-1"></a>ballot_days_final <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/QuantitativeMethods/Data/replication/data/ballot_days_final.rds&quot;</span>)  </span>
+<span id="cb178-9"><a href="week-8-causality-iii-observational-data.html#cb178-9" tabindex="-1"></a>ballot_days_final <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;Data/replication/data/ballot_days_final.rds&quot;</span>)  </span>
 <span id="cb178-10"><a href="week-8-causality-iii-observational-data.html#cb178-10" tabindex="-1"></a></span>
 <span id="cb178-11"><a href="week-8-causality-iii-observational-data.html#cb178-11" tabindex="-1"></a>ballot_days_final <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(ballot_days_final, df1, <span class="at">by=</span><span class="st">&quot;vote_date&quot;</span>)  </span>
 <span id="cb178-12"><a href="week-8-causality-iii-observational-data.html#cb178-12" tabindex="-1"></a></span>
