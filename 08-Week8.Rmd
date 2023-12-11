@@ -214,7 +214,6 @@ ggplot(df, aes(x = X_demeaned_within, y = Crime, color = factor(Time), shape = f
 
 Also demeaned within crime.
 ```{r}
-
 ggplot(df, aes(x = X_demeaned_within, y = Y_demeaned_within)) +
   geom_point(aes(shape = factor(City), color = factor(Time)), size = 5) +
   scale_color_manual(values = c("gold", "orange", "red")) +
@@ -326,9 +325,6 @@ ggplot(df, aes(x = X_demeaned_between, y = Y_demeaned_between)) +
 
 
 <span style="color:red">Missing!! all demeaned (i.e., twoway fixed effects)</span>
-
-
-
 
 
 ### Real data

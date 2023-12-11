@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 Data transformation | Intermediate Quantitative Methods</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 Data transformation | Intermediate Quantitative Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 Data transformation | Intermediate Quantitative Methods" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Lucas Lemmann" />
+
+
+<meta name="date" content="2023-12-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="potentially-useful-exercises.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Intermediate Quantitative Methods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-these-exercises"><i class="fa fa-check"></i><b>0.1</b> How to use these exercises?</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>0.2</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-repetition-rrstudio"><i class="fa fa-check"></i><b>1.2</b> First Part: REPETITION R/RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-some-simple-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Some Simple Analysis</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-adjust-the-data"><i class="fa fa-check"></i><b>1.3.1</b> First, adjust the data</a></li>
+<li class="chapter" data-level="1.3.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-answer-the-following-questions"><i class="fa fa-check"></i><b>1.3.2</b> Second, answer the following questions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#exercise"><i class="fa fa-check"></i><b>2.1</b> Exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#solution"><i class="fa fa-check"></i><b>2.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html"><i class="fa fa-check"></i><b>3</b> Week 3: Regression I (Prediction)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#aims-1"><i class="fa fa-check"></i><b>3.1</b> Aims</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-context-and-question"><i class="fa fa-check"></i><b>3.2</b> Exercise: Context and Question</a></li>
+<li class="chapter" data-level="3.3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-solution"><i class="fa fa-check"></i><b>3.3</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#real-data"><i class="fa fa-check"></i><b>3.3.1</b> Real data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#simulated-data"><i class="fa fa-check"></i><b>3.3.2</b> Simulated data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#appendix-getting-the-data-first"><i class="fa fa-check"></i><b>3.4</b> Appendix: Getting the data first</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html"><i class="fa fa-check"></i><b>4</b> Week 4: Regression II (Model Specification)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#aims-2"><i class="fa fa-check"></i><b>4.1</b> Aims</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-context-and-questions"><i class="fa fa-check"></i><b>4.2</b> Exercise: Context and questions</a></li>
+<li class="chapter" data-level="4.3" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#adjusting-the-data-first"><i class="fa fa-check"></i><b>4.3</b> Adjusting the data first</a></li>
+<li class="chapter" data-level="4.4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-solution-1"><i class="fa fa-check"></i><b>4.4</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#real-data-1"><i class="fa fa-check"></i><b>4.4.1</b> Real data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#simulated-data-1"><i class="fa fa-check"></i><b>4.4.2</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#exercise-1"><i class="fa fa-check"></i><b>5.1</b> Exercise</a></li>
+<li class="chapter" data-level="5.2" data-path="week-5.html"><a href="week-5.html#solution-1"><i class="fa fa-check"></i><b>5.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-6.html"><a href="week-6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="week-6.html"><a href="week-6.html#exercise-2"><i class="fa fa-check"></i><b>6.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="week-6.html"><a href="week-6.html#solution-2"><i class="fa fa-check"></i><b>6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#exercise-3"><i class="fa fa-check"></i><b>7.1</b> Exercise</a></li>
+<li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#solution-3"><i class="fa fa-check"></i><b>7.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html"><i class="fa fa-check"></i><b>8</b> Week 8: Causality III (Observational Data)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#aims-3"><i class="fa fa-check"></i><b>8.1</b> Aims</a></li>
+<li class="chapter" data-level="8.2" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#exercise-4"><i class="fa fa-check"></i><b>8.2</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#simulated-data-2"><i class="fa fa-check"></i><b>8.2.1</b> Simulated data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#real-data-2"><i class="fa fa-check"></i><b>8.2.2</b> Real data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-9.html"><a href="week-9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="week-9.html"><a href="week-9.html#exercise-5"><i class="fa fa-check"></i><b>9.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.2" data-path="week-9.html"><a href="week-9.html#solution-4"><i class="fa fa-check"></i><b>9.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="week-10.html"><a href="week-10.html"><i class="fa fa-check"></i><b>10</b> Week 10</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="week-10.html"><a href="week-10.html#exercise-6"><i class="fa fa-check"></i><b>10.1</b> Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="week-10.html"><a href="week-10.html#solution-5"><i class="fa fa-check"></i><b>10.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="week-11.html"><a href="week-11.html"><i class="fa fa-check"></i><b>11</b> Week 11</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="week-11.html"><a href="week-11.html#exercise-7"><i class="fa fa-check"></i><b>11.1</b> Exercise</a></li>
+<li class="chapter" data-level="11.2" data-path="week-11.html"><a href="week-11.html#solution-6"><i class="fa fa-check"></i><b>11.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="week-12.html"><a href="week-12.html"><i class="fa fa-check"></i><b>12</b> Week 12</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="week-12.html"><a href="week-12.html#exercise-8"><i class="fa fa-check"></i><b>12.1</b> Exercise</a></li>
+<li class="chapter" data-level="12.2" data-path="week-12.html"><a href="week-12.html#solution-7"><i class="fa fa-check"></i><b>12.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="week-13.html"><a href="week-13.html"><i class="fa fa-check"></i><b>13</b> Week 13</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="week-13.html"><a href="week-13.html#exercise-9"><i class="fa fa-check"></i><b>13.1</b> Exercise</a></li>
+<li class="chapter" data-level="13.2" data-path="week-13.html"><a href="week-13.html#solution-8"><i class="fa fa-check"></i><b>13.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="week-14.html"><a href="week-14.html"><i class="fa fa-check"></i><b>14</b> Week 14</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="week-14.html"><a href="week-14.html#exercise-10"><i class="fa fa-check"></i><b>14.1</b> Exercise</a></li>
+<li class="chapter" data-level="14.2" data-path="week-14.html"><a href="week-14.html#solution-9"><i class="fa fa-check"></i><b>14.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html"><i class="fa fa-check"></i><b>15</b> Potentially useful exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#taken-out-from-week-3"><i class="fa fa-check"></i><b>15.1</b> Taken out from Week 3</a></li>
+<li class="chapter" data-level="15.2" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#taken-out-from-week-4"><i class="fa fa-check"></i><b>15.2</b> Taken out from Week 4</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#simulated-data-3"><i class="fa fa-check"></i><b>15.2.1</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>16</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="data-transformation.html"><a href="data-transformation.html#week-1-gorilla"><i class="fa fa-check"></i><b>16.1</b> Week 1: Gorilla</a></li>
+<li class="chapter" data-level="16.2" data-path="data-transformation.html"><a href="data-transformation.html#week-4-restricted-variables-from-selects"><i class="fa fa-check"></i><b>16.2</b> Week 4: restricted variables from SELECTS</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published using bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate Quantitative Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-transformation" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Data transformation<a href="data-transformation.html#data-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="week-1-gorilla" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Week 1: Gorilla<a href="data-transformation.html#week-1-gorilla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <a href="https://communities.sas.com/t5/Graphics-Programming/Fun-With-SAS-ODS-Graphics-Don-t-Miss-the-Gorilla-in-the-Data/td-p/697286">original data</a> of the <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w#citeas">original paper</a> was adjusted to put it in a substantively relevant format.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-transformation.html#cb209-1" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/f.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb209-2"><a href="data-transformation.html#cb209-2" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/m.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb209-3"><a href="data-transformation.html#cb209-3" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="data-transformation.html#cb209-4" tabindex="-1"></a>male <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(male, <span class="at">ScreenTime =</span> steps, <span class="at">ClosenessPopulistParty=</span>bmi  )</span>
+<span id="cb209-5"><a href="data-transformation.html#cb209-5" tabindex="-1"></a></span>
+<span id="cb209-6"><a href="data-transformation.html#cb209-6" tabindex="-1"></a>female <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(female, <span class="at">ScreenTime =</span> steps, <span class="at">ClosenessPopulistParty=</span>bmi  )</span>
+<span id="cb209-7"><a href="data-transformation.html#cb209-7" tabindex="-1"></a></span>
+<span id="cb209-8"><a href="data-transformation.html#cb209-8" tabindex="-1"></a>female <span class="ot">&lt;-</span>female <span class="sc">%&gt;%</span></span>
+<span id="cb209-9"><a href="data-transformation.html#cb209-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ClosenessPopulistParty=</span> <span class="dv">10</span><span class="sc">*</span>(female<span class="sc">$</span>ClosenessPopulistParty<span class="sc">-</span><span class="fu">min</span>(female<span class="sc">$</span>ClosenessPopulistParty))<span class="sc">/</span>(<span class="fu">max</span>(ClosenessPopulistParty)<span class="sc">-</span><span class="fu">min</span>(female<span class="sc">$</span>ClosenessPopulistParty)))</span>
+<span id="cb209-10"><a href="data-transformation.html#cb209-10" tabindex="-1"></a></span>
+<span id="cb209-11"><a href="data-transformation.html#cb209-11" tabindex="-1"></a>male <span class="ot">&lt;-</span>male <span class="sc">%&gt;%</span></span>
+<span id="cb209-12"><a href="data-transformation.html#cb209-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ClosenessPopulistParty=</span> <span class="dv">10</span><span class="sc">*</span>(male<span class="sc">$</span>ClosenessPopulistParty<span class="sc">-</span><span class="fu">min</span>(male<span class="sc">$</span>ClosenessPopulistParty))<span class="sc">/</span>(<span class="fu">max</span>(male<span class="sc">$</span>ClosenessPopulistParty)<span class="sc">-</span><span class="fu">min</span>(male<span class="sc">$</span>ClosenessPopulistParty)))</span>
+<span id="cb209-13"><a href="data-transformation.html#cb209-13" tabindex="-1"></a></span>
+<span id="cb209-14"><a href="data-transformation.html#cb209-14" tabindex="-1"></a></span>
+<span id="cb209-15"><a href="data-transformation.html#cb209-15" tabindex="-1"></a><span class="fu">write.table</span>(female, <span class="st">&quot;Data/f.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb209-16"><a href="data-transformation.html#cb209-16" tabindex="-1"></a><span class="fu">write.table</span>(male, <span class="st">&quot;Data/m.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
+</div>
+<div id="week-4-restricted-variables-from-selects" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Week 4: restricted variables from SELECTS<a href="data-transformation.html#week-4-restricted-variables-from-selects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-transformation.html#cb210-1" tabindex="-1"></a>selects19 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb210-2"><a href="data-transformation.html#cb210-2" tabindex="-1"></a></span>
+<span id="cb210-3"><a href="data-transformation.html#cb210-3" tabindex="-1"></a>selects19 <span class="ot">&lt;-</span> selects19 <span class="sc">%&gt;%</span></span>
+<span id="cb210-4"><a href="data-transformation.html#cb210-4" tabindex="-1"></a>  <span class="fu">select</span>(sex, age, <span class="fu">matches</span>(<span class="st">&quot;f15200&quot;</span>), f20221) <span class="sc">%&gt;%</span></span>
+<span id="cb210-5"><a href="data-transformation.html#cb210-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(selects19<span class="sc">$</span>sex) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(selects19<span class="sc">$</span>age) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(selects19<span class="sc">$</span>f15200) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(selects19<span class="sc">$</span>f20221))  <span class="co"># Remove rows where x or y is NA</span></span>
+<span id="cb210-6"><a href="data-transformation.html#cb210-6" tabindex="-1"></a></span>
+<span id="cb210-7"><a href="data-transformation.html#cb210-7" tabindex="-1"></a>selects19<span class="sc">$</span>f15200 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(selects19<span class="sc">$</span>f15200)</span>
+<span id="cb210-8"><a href="data-transformation.html#cb210-8" tabindex="-1"></a></span>
+<span id="cb210-9"><a href="data-transformation.html#cb210-9" tabindex="-1"></a><span class="fu">write.table</span>(selects19, <span class="at">file =</span> <span class="st">&quot;Data/SELECTS 2019/data.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="potentially-useful-exercises.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/TranformedData.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,5 +1,30 @@
 # Week 3: Regression I (Prediction)
 
+```{r, include=FALSE}
+# install.packages("Hmisc")
+# install.packages("tidyverse")
+# install.packages("stargazer")
+# install.packages("plm")
+# install.packages("lmtest")
+# install.packages("sandwich")
+# install.packages("xtable")
+# install.packages("plm")
+# install.packages("lmtest")
+# install.packages("ggplot2")
+
+
+library(dplyr)
+library(Hmisc)     # CRAN v4.4`-2
+library(tidyverse) # CRAN v1.3.1
+library(stargazer) # CRAN v5.2.2
+library(plm)       # CRAN v2.2-3
+library(lmtest)    # CRAN v0.9-38
+library(sandwich)  # CRAN v2.5-1
+library(xtable)    # CRAN v1.8-4
+library(ggplot2)
+```
+
+
 ## Aims
 
 1. Using regression analysis for quantitative descriptive purposes with real data
@@ -9,7 +34,7 @@
 
 As developed in the following [entry](https://de.wikipedia.org/wiki/Eidgen%C3%B6ssische_Abstimmung_%C3%BCber_die_Totalrevision_des_CO2-Gesetzes#:~:text=Die%20Eidgen%C3%B6ssische%20Abstimmung%20%C3%BCber%20die,von%2051%2C59%20%25%20abgelehnt.), a referendum took place in 2021 to assess whether Swiss citizens approved or not a bill aimed at reducing greenhouse gas emissions.
 
-The bill was rejected by a narrow margin: 51.6% of votes went for the "No", while 48.4% for the "Yes". In the media, some analysts commented that a marked division or cleavage between rural and urban voters seems to have led to this result: a specially high rural turn-out seems to underlie such result. As the analyst commented, most urban inhabitants liked the bill while most rural inhabitants disliked it.
+The bill was rejected by a narrow margin: 51.6% of votes went for the "No", while 48.4% for the "Yes". In the media, some analysts commented that a marked division or cleavage between rural and urban voters seems to have led to this result. According to their **narrative**, a specially high rural turn-out seems to underlie such result. As the analyst commented, most urban inhabitants liked the bill while most rural inhabitants disliked it.
 
 Not satisfied with a simple impression, as a political scientist you want to quantitatively qualify your understanding about what happened in that election. Particularly, you want to know:
 
@@ -19,7 +44,534 @@ Not satisfied with a simple impression, as a political scientist you want to qua
 Thus, to analytically describe the voting results, you will perform some regressions using the following data.
 
 
-## Getting the data first
+## Exercise: solution
+
+**Note:** Remember that you can copy the code from one point to answer another point. Simply make the necessary adjustments.
+
+### Real data
+
+Open the file `CO2_land.csv`. 
+
+```{r}
+CO2_land <- read.csv("Data/CO2_land.csv", header = TRUE)
+```
+
+**Note**: in the Appendix you can find how to get the data using APIs of the Swiss Federal Statistical Office.
+
+Using such a file, you embark in doing the following to answer your two questions:
+
+i. Since you want to describe the turn-out across municipalities with different population sizes, you initially think of regressing the turn-out on the population size. As you lack the municipal population, you use the number of eligible voters `anzahlStimmberechtigte` as a proxy. To have a preliminary notion on the relation between `stimmbeteiligungInProzent` (Turn-out in percent) on  `anzahlStimmberechtigte` (number of eligible voters), generate a scatter plot and add as many straight lines as you want to visually guess which one would be the one that goes closest to each data point. [This](https://ggplot2.tidyverse.org/reference/geom_abline.html) entry could be of help. Remember that a straight line is defined in therms of its slope and intercept parameters. Begin with a slope of zero and an intercept equal to 50. Then, change only one parameter at a time.
+
+```{r}
+guess_int_1= 50
+guess_slope_1= 0
+  
+guess_int_2= mean(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE)
+
+guess_slope_3=-0.01
+  
+guess_slope_4=-0.0005
+  
+guess_slope_5=-0.0003
+
+
+
+
+ggplot(CO2_land, aes(x = anzahlStimmberechtigte, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_abline(intercept = guess_int_1,
+              slope = guess_slope_1, color = "#FF0000", size = 1) + #first guess
+  
+  geom_abline(intercept = guess_int_2,   
+              slope = guess_slope_1, color = "#FF4500", size = 1) + #a good guess, only changing intercept
+  
+  geom_abline(intercept = guess_int_2, 
+              slope = guess_slope_3, color = "#FFA500", size = 1) + #decreasing the slope, keeping the intercept
+  
+  geom_abline(intercept = guess_int_2, 
+              slope = guess_slope_4, color = "#9ACD32", size = 1) + #decreasing the slope, keeping the intercept
+  
+  geom_abline(intercept = guess_int_2,   
+              slope = guess_slope_5, color = "#008000", size = 1) + #best visual guess
+
+  scale_y_continuous(limits = c(0, max(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE))) +  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  labs(
+    x = "Number of eligible voters",
+    y = "Turn-out (%)",
+    title = "Scatter plot with straight lines using the eye-meter"
+  )
+
+
+```
+
+ii. Add to the previous graph the linear regression line.
+
+```{r}
+ggplot(CO2_land, aes(x = anzahlStimmberechtigte, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_abline(intercept = guess_int_1,
+              slope = guess_slope_1, color = "#FF0000", size = 1) + #first guess
+  
+  geom_abline(intercept = guess_int_2,   
+              slope = guess_slope_1, color = "#FF4500", size = 1) + #a good guess, only changing intercept
+  
+  geom_abline(intercept = guess_int_2, 
+              slope = guess_slope_3, color = "#FFA500", size = 1) + #decreasing the slope, keeping the intercept
+  
+  geom_abline(intercept = guess_int_2, 
+              slope = guess_slope_4, color = "#9ACD32", size = 1) + #decreasing the slope, keeping the intercept
+  
+  geom_abline(intercept = guess_int_2,   
+              slope = guess_slope_5, color = "#008000", size = 1) + #best visual guess
+  
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +  #mathematically estimated best possible parameters
+  scale_y_continuous(limits = c(0, max(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE))) +  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  labs(
+    x = "Number of eligible voters",
+    y = "Turn-out (%)",
+    title = "Scatter plot with straight lines using the eye-meter and the regression line"
+  )
+
+
+```
+
+iii. You have now instantiated the intuition behind the linear regression by forming different lines that are visually intuitive about the relation between our variables of interest. Since you know that the linear regression line is the straight line that is closest to all points, you want to go beyond your "eye-meter" and use a precise measurement. Regress `stimmbeteiligungInProzent` on  `anzahlStimmberechtigte`. Report and interpret the parameters.
+
+Write the regression here.
+```{r}
+result1 <- lm(stimmbeteiligungInProzent ~ anzahlStimmberechtigte , data = CO2_land)
+summary(result1)
+```
+Report and interpret the parameters here:
+```{r}
+coeffs1<- coef(result1)
+coeffs1
+```
+The estimated `r names(coeffs1[1])` is `r round(unname(coeffs1[1]), digits = 2)`, while the estimated slope for  `r names(coeffs1[2])` is `r round(unname(coeffs1[2]), digits = 5)`. It means that, across Swiss municipalities, an increase of a thousand voters was associated with an average decrease in the turn-out of `r round(unname(coeffs1[2])*1000, digits = 2)` percentage points.
+
+
+iv. Since you don't want to take for granted that the mathematically estimated parameters are the ones that generate the best possible fit for a straight line, you want to compare the Sum of Squared Residuals (SSR) across the lines that you generated in the previous point. Generate and compare the SSR for each of those lines. Are the parameters estimated by R the best among your estimations?
+
+
+```{r}
+
+# It's easier to calculate the residuals simply using the model
+CO2_land$ResidRegression<- residuals(result1)
+CO2_land$SqResidRegression<- (residuals(result1))^2
+CO2_land$SumSqResidRegression<- sum(CO2_land$SqResidRegression)
+
+#But it's also possible to easily calculate the squared residuals (SR) for each model
+
+CO2_land$SR_Guess1= ((guess_int_1 + guess_slope_1 * CO2_land$anzahlStimmberechtigte)-CO2_land$stimmbeteiligungInProzent)^2
+CO2_land$SR_Guess2= ((guess_int_2 + guess_slope_1 * CO2_land$anzahlStimmberechtigte)-CO2_land$stimmbeteiligungInProzent)^2
+CO2_land$SR_Guess3= ((guess_int_1 + guess_slope_3 * CO2_land$anzahlStimmberechtigte)-CO2_land$stimmbeteiligungInProzent)^2
+CO2_land$SR_Guess4= ((guess_int_1 + guess_slope_4 * CO2_land$anzahlStimmberechtigte)-CO2_land$stimmbeteiligungInProzent)^2
+CO2_land$SR_Guess5= ((guess_int_1 + guess_slope_5 * CO2_land$anzahlStimmberechtigte)-CO2_land$stimmbeteiligungInProzent)^2
+
+# And sum of squared residuals (SSR)
+CO2_land$SSR_Guess1= sum(CO2_land$SR_Guess1)
+CO2_land$SSR_Guess2= sum(CO2_land$SR_Guess2)
+CO2_land$SSR_Guess3= sum(CO2_land$SR_Guess3)
+CO2_land$SSR_Guess4= sum(CO2_land$SR_Guess4)
+CO2_land$SSR_Guess5= sum(CO2_land$SR_Guess5)
+
+if ((CO2_land$SumSqResidRegression[1]<CO2_land$SSR_Guess1[1]) & (CO2_land$SumSqResidRegression[1]<CO2_land$SSR_Guess2[1]) & (CO2_land$SumSqResidRegression[1]<CO2_land$SSR_Guess3[1]) & (CO2_land$SumSqResidRegression[1]<CO2_land$SSR_Guess4[1]) & (CO2_land$SumSqResidRegression[1]<CO2_land$SSR_Guess5[1])){
+  print("Yes, as it is mathematically necessary, the SSR for the mathematically estimated model is the lowest across all estimated scenarios! :)")
+}
+```
+
+v. Notice that some few municipalities have numbers of voters that are very high compared to the typical values. As a consequence, the regression line is very influenced by those observations (i.e., small displacements in the area where there are many observations have a lower influence on the line than displacements of the same magnitude and direction in the area with few observations). As a consequence, you want to analyze how do the previous estimates change when you restrict your analysis to municipalities with less than 50K eligible voters. Estimate the regression and compare the respective parameters of the models. What slope is higher? What intercept is higher? How does obviating those observations influence our parameters?
+
+```{r}
+CO2_land_filtered <- CO2_land %>% 
+  filter(anzahlStimmberechtigte < 50000)
+
+result2 <- lm(stimmbeteiligungInProzent ~ anzahlStimmberechtigte , data = CO2_land_filtered)
+summary(result2)
+coeffs2<- coef(result2)
+coeffs2
+```
+```{r}
+if ((coeffs1[1]>coeffs2[1]) & (coeffs1[1]!=coeffs2[1])){
+  print("The original model has a higher intercept than the one only on the restricted observations.")
+} else{
+  print("The model only on the restricted observations has a higher intercept than the original one.")
+}
+```
+
+
+```{r}
+if ((coeffs1[2]>coeffs2[2]) & (coeffs1[2]!=coeffs2[2])){
+  print("The original model has a higher slope than the one only on the restricted observations.")
+} else{
+  print("The model only on the restricted observations has a higher slope than the original one.")
+}
+```
+
+The reason the parameters changed is because the new model needs to fit data that is concentrated in a more clearly negative relation between our variables of interest.
+
+vi. [Optional] Modify slightly the parameters estimated using the linear regression. For example, keeping the intercept unchanged, increase or decrease the slope in 1 percent every time. Now, compare the sum of squared residuals. Do your experiments show smaller SSR? Is it possible?
+
+
+vii. Finally, you want to analyze a counterfactual scenario: What would have been the outcome of the referendum should the turn-out in each of the municipalities would have been as high as in Zurich?
+
+```{r}
+OriginalOutcome =  sum(CO2_land$jaStimmenAbsolut)/(sum(CO2_land$jaStimmenAbsolut)+sum(CO2_land$neinStimmenAbsolut))
+CO2_land$Valid_TurnOut =CO2_land$gueltigeStimmen/CO2_land$anzahlStimmberechtigte
+
+CO2_land$OriginalOutcome_test =  CO2_land$jaStimmenInProzent * CO2_land$anzahlStimmberechtigte * CO2_land$Valid_TurnOut /100
+
+
+
+# Min
+TurnOut_min= min(CO2_land$Valid_TurnOut)
+CO2_land$Yes_Conterfactual_min= CO2_land$jaStimmenInProzent * CO2_land$anzahlStimmberechtigte * TurnOut_min /100
+CO2_land$No_Conterfactual_min=  (100-CO2_land$jaStimmenInProzent) * CO2_land$anzahlStimmberechtigte * TurnOut_min /100
+CounterfactualOutcome_min=  sum(CO2_land$Yes_Conterfactual_min)/(sum(CO2_land$Yes_Conterfactual_min)+sum(CO2_land$No_Conterfactual_min))
+
+# Max
+TurnOut_max= max(CO2_land$Valid_TurnOut)
+CO2_land$Yes_Conterfactual_max= CO2_land$jaStimmenInProzent * CO2_land$anzahlStimmberechtigte * TurnOut_max 
+CO2_land$No_Conterfactual_max=  (100-CO2_land$jaStimmenInProzent) * CO2_land$anzahlStimmberechtigte * TurnOut_max 
+CounterfactualOutcome_max=  sum(CO2_land$Yes_Conterfactual_max)/(sum(CO2_land$Yes_Conterfactual_max)+sum(CO2_land$No_Conterfactual_max))
+
+# Zurich
+TurnOut_Zurich= CO2_land$Valid_TurnOut[CO2_land$mun_id==261]
+CO2_land$Yes_Conterfactual_Zurich= CO2_land$jaStimmenInProzent * CO2_land$anzahlStimmberechtigte * TurnOut_Zurich 
+CO2_land$No_Conterfactual_Zurich=  (100-CO2_land$jaStimmenInProzent) * CO2_land$anzahlStimmberechtigte * TurnOut_Zurich 
+CounterfactualOutcome_Zurich=  sum(CO2_land$Yes_Conterfactual_Zurich)/(sum(CO2_land$Yes_Conterfactual_Zurich)+sum(CO2_land$No_Conterfactual_Zurich))
+
+# Luzern
+TurnOut_Luzern= CO2_land$Valid_TurnOut[CO2_land$mun_id==1061]
+CO2_land$Yes_Conterfactual_Luzern= CO2_land$jaStimmenInProzent * CO2_land$anzahlStimmberechtigte * TurnOut_Luzern 
+CO2_land$No_Conterfactual_Luzern=  (100-CO2_land$jaStimmenInProzent) * CO2_land$anzahlStimmberechtigte * TurnOut_Luzern 
+CounterfactualOutcome_Luzern=  sum(CO2_land$Yes_Conterfactual_Luzern)/(sum(CO2_land$Yes_Conterfactual_Luzern)+sum(CO2_land$No_Conterfactual_Luzern))
+
+
+cat('The original percentage for Yes was:', OriginalOutcome, 
+    "\nThe counterfactual using the minimum turnout would have been: ", CounterfactualOutcome_min,
+    "\nThe counterfactual using the maximum turnout would have been: ", CounterfactualOutcome_max,
+    "\nThe counterfactual using Zurich\'s turnout would have been: ", CounterfactualOutcome_Zurich,
+    "\nThe counterfactual using Luzern\'s turnout would have been: ", CounterfactualOutcome_Luzern)
+
+```
+```{r}
+if ((CounterfactualOutcome_min >.5) | (CounterfactualOutcome_max >.5) | (CounterfactualOutcome_Zurich >.5) | (CounterfactualOutcome_Luzern >.5)){
+  print('There is at least one counterfactual where the outcome changes')
+}else{
+  print('There is no counterfactual where the outcome changes')
+}
+```
+
+
+
+viii. Given your preliminary analysis, you find that, on average, municipalities with bigger populations had a lower turn-out than those with smaller ones. To bring some more nuance to your analysis and capture how rural a municipality is, you use the agricultural area of the municipality (`AgriculturalAreaHa`) as a regressor (aka. independent variable) for the same regressand (aka. dependent variable) of the previous point (i.e., Turn-out in percent). Report and interpret the parameter. Also present the corresponding graph.
+
+Write the regression here.
+```{r}
+result <- lm(stimmbeteiligungInProzent ~ AgriculturalAreaHa , data = CO2_land)
+summary(result)
+
+```
+
+Report and interpret the parameter here.
+```{r}
+coeffs<- coef(result)
+coeffs
+```
+The estimated `r names(coeffs[1])` is `r round(unname(coeffs[1]), digits = 2)`, while the estimated slope for  `r names(coeffs[2])` is `r round(unname(coeffs[2]), digits = 2)`. It means that, across Swiss municipalities, an increase of a thousand voters was associated with an average decrease in the turn-out of `r round(unname(coeffs[2])*1000, digits = 2)` percentage points.
+
+Present the graph here.
+```{r}
+# Create a scatter plot
+ggplot(CO2_land, aes(x = AgriculturalAreaHa, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x , se = FALSE, color = "purple") +  # Adding the regression line
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (Ha)",
+    y = "Turn-out (%)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+
+
+```
+
+
+ix. The result from the previous point is consistent with the result of the vote given the urban-rural divide in preferences (i.e., municipalities with more agricultural area had higher participation rates). However, you notice that your comparisons across municipalities are not very rigorous because you are ignoring how important agricultural land is with respect to the whole municipality area. An implication of that is that two municipalities with the same agricultural area could be taken as equally rural while one could have a very big urban area (e.g., Zurich) and the other have a very small one.
+
+Thus to make your analysis across more comparable units, you transform the absolute value of the agricultural area to a relative one: the percentage of the municipal area that is agricultural. Create the variable `AgricAreaPercent` to represent those transformed values. Regress the turn-out on the newly created variable. Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.
+
+Write the regression here.
+```{r}
+#Transform the units to make them comparable 
+CO2_land <- CO2_land %>%
+  mutate(AgricAreaPercent= 100*AgriculturalAreaHa/TotalAreaHa)
+
+#regression
+result0 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent , data = CO2_land)
+summary(result0)
+
+```
+
+Report and interpret the parameter here.
+```{r}
+coeffs<- coef(result0)
+coeffs
+```
+The estimated `r names(coeffs[1])` is `r round(unname(coeffs[1]), digits = 2)`, while the estimated slope for  `r names(coeffs[2])` is `r round(unname(coeffs[2]), digits = 2)`. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of `r round(unname(coeffs[2]), digits = 2)` percentage points.
+
+
+Present the graph here.
+```{r}
+# Create a scatter plot
+ggplot(CO2_land, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+
+
+```
+
+x. [Optional] While analyzing your results, you asked yourself: what would have happened with my regression if it is estimated without an intercept? In particular, you asked yourself: does the the distance from each data point to the regression line decrease when an intercept is used? See this [entry](https://en.wikipedia.org/wiki/Coefficient_of_determination), particularly the graph with the blue and red squares to understand the logic of the R^2 as a measure for goodness of fit. You want to compare both the regression lines with and without the intercept in one same graph. Do it. What lesson can you get from this comparison?
+
+```{r}
+ggplot(CO2_land, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x-1, se = FALSE, color = "red") +  # Adding the regression line
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
+  scale_y_continuous(limits = c(25, max(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+
+```
+
+The lesson is that using the intercept is always desirable as it can potentially improve the goodness of fit, while doesn't worsen it (i.e., the optimal intercept could be estimated to be zero). As it is clear from the graph, not using the intercept provides less reliable predictions and general descriptions for the relation between our variables of interest.
+
+
+xi. [Optional] Now add a vertical line with the average for the agricultural area, and a horizontal one with the average turn-out. What does this new graph tell you about the descriptive performance of a regression with and without intercepts?
+
+```{r}
+#Means for Y and X
+mean_AgricAreaPercent <- mean(CO2_land$AgricAreaPercent, na.rm = TRUE)
+mean_stimmbeteiligungInProzent <- mean(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE)
+
+# Create a scatter plot
+ggplot(CO2_land, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "red") +  # Adding the regression line
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
+  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(limits = c(25, max(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+
+```
+The descriptive performance of a regression with an intercept is better than without it. As the graph shows, the vertical and horizontal lines for the averages of the dependent and independent variables overlap with each other in exactly the same place where the regression line with intercept goes through. This shows the capability of single linear regression to capture central tendency of the fitted data. On the contrary, the regression without intercept does not do that. Once again, this shows how the descriptive performance of a regression with intercept captures more intuitively the general relation between one variable and another.
+
+xii. Store the residuals as `residuals`. Plot the share of agricultural area against the residuals. What does it tell you regarding the ability of the model to describe the central tendency of the relationship across all values of the agricultural land share?
+
+```{r}
+residuals0 <- residuals(result0)
+
+ggplot(CO2_land, aes(x = AgricAreaPercent, y = residuals0)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "green")+  # Adding the
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Residuals (turn-out p.p.)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+```
+The existence of a horizontal slope between the residuals (i.e., the distance between the prediction and the real value) and the agricultural share suggests that our model has systematically captured the relation between our variables: the average error does not not change systematically across the values of the agricultural share.
+
+xiii. [Optional] Repeat the previous point without the intercept. Does the linear regression remains a good tool for describing the central tendency of the relationship across all values of the agricultural land share?
+
+```{r}
+#regression
+result1 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent -1 , data = CO2_land)
+summary(result1)
+
+residuals1 <- residuals(result1)
+
+ggplot(CO2_land, aes(x = AgricAreaPercent, y = residuals1)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "red")+  # Adding the
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Residuals (turn-out p.p.)",
+    title = "Scatter plot with Linear Regression Line"
+  )
+```
+
+Unlike the graph of the previous point showed that no systematic relation between the residual and our regressor was not captured by our model, the graph of this point shows a systematic behavior of the residuals. In this case, it is the fact that the model is too inflexible (i.e., the line must always go through the origin) which leads the model to predict the values of our regressand in a systematically mistaken way: the average error does change systematically across the values of the agricultural share, being systematically positive for lower age values, while systematically negative for high age values.
+
+### Simulated data
+
+i. You will now simulate the relationship between turn-out and share of agricultural land. Assume the parameters estimated in the last regression (i.e., the $\beta_0$ and $\beta_1$). Retrieve both parameters.
+
+
+```{r}
+coeffs<- coef(result0)
+print(coeffs)
+print(unname(coeffs[1]), digits = 2)
+print(unname(coeffs[2]), digits = 2)
+
+```
+
+
+ii. Use the parameters to define the assumed data generating process. Assume that the process is deterministic (i.e., it has no stochastic component). Express the equation using mathematical notation.
+
+$$TurnOut_i = \beta_0 + \beta_1 * ShareAgriculturalLand$$
+
+iii. Generate a normal distribution that preserves the mean and standard deviation of the original data on share of agricultural land.
+
+```{r}
+set.seed(123) # to ensure reproducibility: should different people use different random draws, the results won't be consistent. Thus, should all use the same random draw, all should have the same results.
+CO2_land$Sim_ShareAgric_norm <- rnorm(nrow(CO2_land), mean = mean_AgricAreaPercent, sd = sd(CO2_land$AgricAreaPercent))
+
+hist(CO2_land$Sim_ShareAgric_norm, 
+     main="Histogram of Share of Simulated Agricultural Land", 
+     xlab="Data Values", 
+     ylab="Frequency", 
+     col="blue", 
+     border="black")
+
+abline(v=mean_AgricAreaPercent, col="red", lwd=2, lty=2)
+```
+
+iv. Predict the turn-out values given the simulated inputs on the share of agricultural land using the data generating process defined in point i). Graph relation between both variables using a liner regression line.
+```{r}
+CO2_land$Pred_TurnOut_Determ <- unname(coeffs[1]) + unname(coeffs[2])*CO2_land$Sim_ShareAgric_norm
+
+
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Determ)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
+  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(limits = c(25, max(CO2_land$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Simulation: deterministic model"
+  )
+
+
+```
+As expected, this deterministic model generates points on top of the regression line defined by the intercept and slope of the data generating process. Unlike in reality, we have no random errors generating random deviations from the regression line (i.e., we have no cloud of points, but they are all on top of the line).
+
+v. Generate a normal distribution with error distribution with mean zero and standard deviation equal to the standard deviation of the residual of the model with intercept.
+```{r}
+set.seed(123)
+CO2_land$Sim_resid_norm <- rnorm(nrow(CO2_land), mean = 0, sd = sd(residuals0))
+
+hist(CO2_land$Sim_resid_norm, 
+     main="Histogram of Simulated Normal Residuals", 
+     xlab="Data Values", 
+     ylab="Frequency", 
+     col="blue", 
+     border="black")
+
+abline(v=0, col="red", lwd=2, lty=2)
+
+```
+
+vi. Now add the stochastic element to the fully deterministic model of point iv). Graph the relation between both variables using a liner regression line.
+```{r}
+CO2_land$Pred_TurnOut_Stoch <- CO2_land$Pred_TurnOut_Determ + CO2_land$Sim_resid_norm
+
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Stoch)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
+  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+  scale_y_continuous(limits = c(25, max(CO2_land$Sim_ShareAgric_norm, na.rm = TRUE))) +  #
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Simulation: deterministic and stochastic model"
+  )
+
+```
+The previous graph presents the relation between our simulated independent variable and residual, both of which fully generate our dependent variable (i.e., only using the regression parameters to predict the observations over the line and then adding the residuals we can generate all the values for our dependent variable).
+
+
+vii. [Optional] Now repeat the same simulation but generating errors that distribute uniformly. Use the maximum, and minimum values of the residuals for the model with intercept to define the distribution of residuals.
+
+Uniform simulated residuals:
+```{r}
+set.seed(123)
+CO2_land$Sim_resid_unif <- runif(nrow(CO2_land), min = min(residuals0), max = max(residuals0))
+
+hist(CO2_land$Sim_resid_unif, 
+     main="Histogram of Simulated Uniform Residuals", 
+     xlab="Data Values", 
+     ylab="Frequency", 
+     col="blue", 
+     border="black")
+
+abline(v=0, col="red", lwd=2, lty=2)
+
+
+```
+
+Data generating process with uniform residuals:
+```{r}
+CO2_land$Pred_TurnOut_Unif <- CO2_land$Pred_TurnOut_Determ + CO2_land$Sim_resid_unif
+
+
+
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Unif)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") + 
+  geom_hline(yintercept = mean(CO2_land$Pred_TurnOut_Unif), linetype = "dashed", color = "green") +  
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
+  scale_y_continuous(limits = c(25, max(CO2_land$Pred_TurnOut_Unif, na.rm = TRUE))) +  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Simulation: deterministic and stochastic model (uniform error)"
+  )
+
+```
+
+
+## Appendix: Getting the data first
 
 To get the data, you will use an API (application programming interface). Put plainly, for the sake of this exercise you can think of an API like a [waiter](https://www.youtube.com/watch?v=s7wmiS2mSXY) to whom you make a request and who gets what ever you requested from the kitchen (a remote data source).
 
@@ -39,6 +591,7 @@ library(tidyverse)
 library(ggplot2)
 library(BFS)
 library(pxR)
+
 ```
 
 
@@ -48,7 +601,7 @@ library(pxR)
 
 #Second option
 # install.packages("devtools") # it is necessary to comment the install.packages so the book can be rendered
-devtools::install_github("politanch/swissdd")
+devtools::install_github("politanch/swissdd", force = TRUE)
 # library(swissdd)
 ```
 
@@ -135,486 +688,6 @@ Using the additional data, you can now merge both data sets so you can know how 
 
 ```{r}
 CO2 <- inner_join(CO2, LandUseData, by="mun_name")  
-```
 
-## Exercise: solution
-
-**Note:** Remember that you can copy the code from one point to answer another point. Simply make the necessary adjustments.
-
-### Real data
-
-Using the previous data, you do the following to answer your two questions:
-
-i. Since you want to describe the turn-out across municipalities with different population sizes, you initially think of regressing the turn-out on the population size. As you lack the municipal population, you use the number of eligible voters `anzahlStimmberechtigte` as a proxy. Regress `stimmbeteiligungInProzent` (Voting participation in percent) on  `anzahlStimmberechtigte` (number of eligible voters) [without](https://www.geeksforgeeks.org/remove-intercept-from-regression-model-in-r/) the intercept. Report and interpret the parameter.
-
-Write the regression here.
-```{r}
-result <- lm(stimmbeteiligungInProzent ~ anzahlStimmberechtigte -1 , data = CO2)
-summary(result)
-```
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result)
-
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 5), '. It means that, across Swiss municipalities an increase of a thousand voters was associated with an average increase in the turn-out of ', round(unname(coeffs[1])*1000, digits = 5), ' percentage points.')
-
-```
-
-
-i. [Optional] Why could the number of eligible voters inform better your inquiry than the total municipal population? What difference across municipalities could make an analysis based on municipal population render the analysis less reliable?
-
-```{r}
-
-
-```
-
-i. To enrich your analysis, you generate a scatter plot showing the relation between the same pair of variables and qualifying it adding the regression line. Remember that you are doing the analysis without the intercept.
-
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = anzahlStimmberechtigte, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  
-  theme_minimal() +
-  labs(
-    x = "Number of eligible voters",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-
-
-
-```
-
-i. Given your preliminary analysis, you find that, on average, municipalities with bigger populations had a higher turn-out than those with smaller ones. As you know that most urban citizens preferred 'Yes' but the 'No' won, you call into question your first approach: while bigger municipalities had higher participation levels than smaller ones, the option preferred by most rural inhabitants won. In other words, it is not clear that the population size helps us to understand this voting results.
-
-Thus, to capture how rural a municipality is, you used the agricultural area of the municipality (`AgriculturalAreaHa`) as a regressor (aka. independent variable) for the same regressand (aka. dependent variable) of the previous point (i.e., voting participation in percent). Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.
-
-Write the regression here.
-```{r}
-result <- lm(stimmbeteiligungInProzent ~ AgriculturalAreaHa -1 , data = CO2)
-summary(result)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 5), '. It means that, across Swiss municipalities an increase of a thousand hectares was associated with an average increase in the turn-out of ', round(unname(coeffs[1])*1000, digits = 5), ' percentage points.')
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgriculturalAreaHa, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (Ha)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-
-i. The result from the previous point is consistent with the vote result given the urban-rural divide in preferences (i.e., municipalities with more agricultural area had higher participation rates). However, you notice that your comparisons across municipalities are not very rigorous because you are ignoring how important agricultural land with respect to the whole municipality area. An implication of that is that two municipalities with the same agricultural area could be taken as equally rural while one could have a very big urban area (e.g., Zurich) and the other have a very small one.
-
-Thus to make your analysis across more comparable units, you transform the absolute value of the agricultural area to a relative one: the percentage of the municipal area that is agricultural. Create the variable `AgricAreaPercent` to represent those transformed values. Regress the turn-out on the newly created variable. Again, do the regression without intercept. Report and interpret the parameter. Also present the corresponding graph.
-
-Write the regression here.
-```{r}
-#Transform the units to make them comparable 
-CO2 <- CO2 %>%
-  mutate(AgricAreaPercent= 100*AgriculturalAreaHa/TotalAreaHa)
-
-#regression
-result0 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent -1 , data = CO2)
-summary(result0)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result0)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), '. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of ', round(unname(coeffs[1]), digits = 2), ' percentage points.')
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(0, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-i. The previous graph showed you the same relationship consistent with the vote. However, you now notice that the regression line is strange: if it is supposed to be the line described the general tendency in the relation between two variables, it is strange that it is very far from many observations and only close to few of them. Hence, you remember that the using the intercept increases the fit of the line. Accordingly, you do all the same steps of the previous point but this time with the intercept.
-
-Write the regression here.
-```{r}
-#regression
-result1 <- lm(stimmbeteiligungInProzent ~ AgricAreaPercent, data = CO2)
-summary(result1)
-
-```
-
-Report and interpret the parameter here.
-```{r}
-coeffs<- coef(result1)
-cat('The beta value for', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), '. It means that, across Swiss municipalities an increase of one percentage point in the share of agricultural land was associated with an average increase in the turn-out of ', round(unname(coeffs[2]), digits = 2), ' percentage points.\n\nLikewise, should there be a municipality with no agricultural area, we could expect it to have a turn-out of ', round(unname(coeffs[1]), digits = 2), '. From there on, increasing one percentage point at a time up to 100 percentage points (i.e., a municipality with 100% of agricultural area), we would have a turn-out of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]*100), digits = 2))
-
-```
-
-Present the graph here.
-```{r}
-# Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-
-```
-
-i. [Optional] You noticed that the regression using the intercept fits better the data: on average, the distance from each point to the regression line is lower. See this [entry](https://en.wikipedia.org/wiki/Coefficient_of_determination), particularly the graph with the blue and red squares to understand the logic of the R^2 as a measure for goodness of fit. You want to compare both the regression lines with and without the intercept in one same graph. Do it. What lesson can you get from this comparison?
-
-```{r}
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x-1, se = FALSE, color = "red") +  # Adding the regression line
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-```
-
-i. [Optional] Now add a vertical line with the average for the agricultural area, and a horizontal one with the average turn-out. What does this new graph tell you about the descriptive performance of a regression with and without intercepts?
-
-```{r}
-#Means for Y and X
-mean_AgricAreaPercent <- mean(CO2$AgricAreaPercent, na.rm = TRUE)
-mean_stimmbeteiligungInProzent <- mean(CO2$stimmbeteiligungInProzent, na.rm = TRUE)
-
-# Create a scatter plot
-ggplot(CO2, aes(x = AgricAreaPercent, y = stimmbeteiligungInProzent)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x - 1, se = FALSE, color = "red") +  # Adding the regression line
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-
-```
-
-i. Store the residualas as `residuals`. Plot the share of agricultural area against the residuals. What does it tell you regarding the ability of the model to describe the central tendency of the relationship across all values of the agricultural land share?
-
-```{r}
-residuals1 <- residuals(result1)
-
-ggplot(CO2, aes(x = AgricAreaPercent, y = residuals1)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "green")+  # Adding the
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Residuals (turn-out p.p.)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-```
-
-i. [Optional] Repeat the previous point without the intercept. Does the linear regression remains a good tool for describing the central tendency of the relationship across all values of the agricultural land share?
-
-```{r}
-residuals0 <- residuals(result0)
-
-ggplot(CO2, aes(x = AgricAreaPercent, y = residuals0)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x , se = TRUE, color = "red")+  # Adding the
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Residuals (turn-out p.p.)",
-    title = "Scatter plot with Linear Regression Line"
-  )
-```
-
-### Simulated data
-
-i. You will now simulate the relationship between turn-out and share of agricultural land. Assume the parameters estimated in the last regression (i.e., the $\beta_0$ and $\beta_1$). Retrieve both parameters.
-
-
-```{r}
-coeffs<- coef(result1)
-print(coeffs)
-print(unname(coeffs[1]), digits = 5)
-print(unname(coeffs[2]), digits = 5)
-
-```
-
-
-i. Use the parameters to define the assumed data generating process. Assume that the process is deterministic (i.e., it has no stochastic component). Express the equation using mathematical notation.
-
-$$TurnOut_i = \beta_0 + \beta_1 * ShareAgriculturalLand$$
-
-i. Generate a normal distribution that preserves the mean and standard deviation of the original data on share of agricultural land.
-
-```{r}
-CO2$Sim_ShareAgric_norm <- rnorm(nrow(CO2), mean = mean_AgricAreaPercent, sd = sd(CO2$AgricAreaPercent))
-
-hist(CO2$Sim_ShareAgric_norm, 
-     main="Histogram of Share of Simulated Agricultural Land", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=mean_AgricAreaPercent, col="red", lwd=2, lty=2)
-```
-
-i. Predict the turn-out values given the simulated inputs on the share of agricultural land using the data generating process defined two points above. Graph relation between both variables using a liner regression line.
-```{r}
-CO2$Pred_TurnOut_Determ <- unname(coeffs[1]) + unname(coeffs[2])*CO2$Sim_ShareAgric_norm
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Determ)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$stimmbeteiligungInProzent, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic model"
-  )
-
-
-```
-
-i. Generate a normal distribution with error distribution with mean zero and standard deviation equal to the standard deviation of the residual of the model with intercept.
-```{r}
-
-CO2$Sim_resid_norm <- rnorm(nrow(CO2), mean = 0, sd = sd(residuals1))
-
-hist(CO2$Sim_resid_norm, 
-     main="Histogram of Simulated Normal Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
-
-```
-
-i. Repeat the same model but now add the stochastic element. Graph relation between both variables using a liner regression line.
-```{r}
-CO2$Pred_TurnOut_Stoch <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_norm
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Stoch)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  # Adding the regression line
-  geom_hline(yintercept = mean_stimmbeteiligungInProzent, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(limits = c(25, max(CO2$Sim_ShareAgric_norm, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model"
-  )
-
-```
-
-i. [Optional] Now repeat the same simulation but generating errors that distribute uniformly and lognormally. For the lognormal distribution, use the same mean and standard deviations as in the immediately previous exercises. For the uniform, use the maximum, and minimum values of the residuals for the model with intercept.
-
-Uniform simulated residuals:
-```{r}
-CO2$Sim_resid_unif <- runif(nrow(CO2), min = min(residuals1), max = max(residuals1))
-
-hist(CO2$Sim_resid_unif, 
-     main="Histogram of Simulated Uniform Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
-
-
-```
-
-Data generating process with uniform residuals:
-```{r}
-CO2$Pred_TurnOut_Unif <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_unif
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Unif)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") + 
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Unif), linetype = "dashed", color = "green") +  
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
-  )
-
-```
-
-Lognormal simulated residuals:
-```{r}
-CO2$Sim_resid_lnorm <- rlnorm(nrow(CO2), mean = 0, sd = sd(residuals1))
-
-
-
-hist(CO2$Sim_resid_lnorm, 
-     main="Histogram of Simulated Uniform Residuals", 
-     xlab="Data Values", 
-     ylab="Frequency", 
-     col="blue", 
-     border="black")
-
-abline(v=0, col="red", lwd=2, lty=2)
-
-
-```
-
-Data generating process with lognormal residuals without adjusting scale of Y:
-```{r}
-CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") + 
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Lnorm, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (log normal error)"
-  )
-
-```
-Data generating process with lognormal residuals adjusting scale of Y:
-```{r}
-CO2$Pred_TurnOut_Lnorm <- CO2$Pred_TurnOut_Determ + CO2$Sim_resid_lnorm
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_Lnorm)) +
-  geom_point() +
-  scale_y_log10() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +  
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_Lnorm), linetype = "dashed", color = "green") +  
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%) in logarithmic scale",
-    title = "Simulation: deterministic and stochastic model (log normal error)"
-  )
-
-```
-Ask yourself: does it make sense to have participation values higher than 100%?
-
-
-Parabolic simulated residuals:
-```{r}
-CO2$parab_norm_resid<- -0.01*(CO2$Sim_ShareAgric_norm-mean(CO2$Sim_ShareAgric_norm))^2+CO2$Sim_resid_norm
-CO2$parab_norm_resid<- CO2$parab_norm_resid-mean(CO2$parab_norm_resid)
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = parab_norm_resid)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Error",
-    title = "Simulation: of parabolic error"
-  )
-```
-What does the behavior of the error tell you about the potential reliability of a regression without quadratic terms?
-
-Data generating process with parabolic residuals:
-```{r}
-CO2$Pred_TurnOut_parab_norm_resid <- CO2$Pred_TurnOut_Determ + CO2$parab_norm_resid
-
-
-
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") + 
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
-  )
-
-```
-Would using a quadratic term in the regression produce a better fit? Graph the regression line with a quadratic term. 
-
-```{r}
-ggplot(CO2, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "purple") +
-  geom_hline(yintercept = mean(CO2$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
-  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
-  scale_y_continuous(limits = c(25, max(CO2$Pred_TurnOut_Unif, na.rm = TRUE))) +  
-  theme_minimal() +
-  labs(
-    x = "Agricultural Area (%)",
-    y = "Voting Participation (%)",
-    title = "Simulation: deterministic and stochastic model (uniform error)"
-  )
-
+write.csv(CO2, "Data/CO2_land.csv")
 ```

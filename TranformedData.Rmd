@@ -1,0 +1,41 @@
+# Data transformation
+
+## Week 1: Gorilla
+
+The [original data](https://communities.sas.com/t5/Graphics-Programming/Fun-With-SAS-ODS-Graphics-Don-t-Miss-the-Gorilla-in-the-Data/td-p/697286) of the [original paper](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w#citeas) was adjusted to put it in a substantively relevant format.
+
+```{r}
+female <- read.table("/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/f.txt", header = TRUE, sep = "\t")
+male <- read.table("/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/m.txt", header = TRUE, sep = "\t")
+
+male <- dplyr::rename(male, ScreenTime = steps, ClosenessPopulistParty=bmi  )
+
+female <- dplyr::rename(female, ScreenTime = steps, ClosenessPopulistParty=bmi  )
+
+female <-female %>%
+  mutate(ClosenessPopulistParty= 10*(female$ClosenessPopulistParty-min(female$ClosenessPopulistParty))/(max(ClosenessPopulistParty)-min(female$ClosenessPopulistParty)))
+
+male <-male %>%
+  mutate(ClosenessPopulistParty= 10*(male$ClosenessPopulistParty-min(male$ClosenessPopulistParty))/(max(male$ClosenessPopulistParty)-min(male$ClosenessPopulistParty)))
+
+
+write.table(female, "Data/f.txt", sep = ";")
+write.table(male, "Data/m.txt", sep = ";")
+
+
+```
+
+## Week 4: restricted variables from SELECTS
+
+```{r}
+selects19 <- read.csv("/Users/fperil/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/OriginalData/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv", header = TRUE)
+
+selects19 <- selects19 %>%
+  select(sex, age, matches("f15200"), f20221) %>%
+  filter(!is.na(selects19$sex) & !is.na(selects19$age) & !is.na(selects19$f15200) & !is.na(selects19$f20221))  # Remove rows where x or y is NA
+
+selects19$f15200 <- as.numeric(selects19$f15200)
+
+write.table(selects19, file = "Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
+```
+

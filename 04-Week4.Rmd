@@ -1,33 +1,4 @@
 # Week 4: Regression II (Model Specification)
-
-## Aims
-
-1. Using multiple regressors and interaction terms in regression analysis for quantitative descriptive purposes with real data
-2. Using simulation to instantiate how different properties of the data generating process alter or not metrics of goodness of fit
-
-*<span style="color: red;">Should we request them to do descriptive statistics?</span>.*
-*<span style="color: red;">Check: are all list numerals fine?</span>.*
-*<span style="color: red;">Check: do all parameters in the interpretation texts fine?</span>.*
-
-
-## Exercise: Context and Questions
-
-Currently led by [Prof. Anke Tresch](https://forscenter.ch/staff/anke-tresch/), "[t]he Swiss Election Study (Selects) has been investigating the electoral behaviour of Swiss citizens in national elections since 1995. The project sheds light on the dynamics of the citizens’ opinion formation as well as on the determinants of their political participation and voting choice for a specific candidate or party." See more [here](https://forscenter.ch/projects/selects/).
-
-In this exercise, you will use data for the year 2019. You will use it to answer the following questions:
-
-1. Do older voters have stronger right leaning preferences than younger ones?  age
-2. Does that behavior change across sexes? sex
-3. Does that behavior change depending on the main language spoken at the respondent's home? f20221
-4. What about the interaction sex-age?
-4. What about the interaction sex-language?
-4. What about the interaction age-language?
-4. What about the interaction sex-age-language?
-4. Do right leaning preferences become stronger the older voters are?
-
-
-## Getting the data first
-
 ```{r, include=FALSE}
 # Load necessary libraries
 library(swissdd)
@@ -40,45 +11,65 @@ library(ggridges)
 
 ```
 
+## Aims
 
-Opening:
+1. Using multiple regressors and interaction terms in regression analysis for quantitative descriptive purposes with real data
+2. Using simulation to instantiate how different properties of the data generating process alter or not metrics of goodness of fit
+
+## Exercise: Context and questions
+
+Currently led by [Prof. Anke Tresch](https://forscenter.ch/staff/anke-tresch/), "[t]he Swiss Election Study (Selects) has been investigating the electoral behaviour of Swiss citizens in national elections since 1995. The project sheds light on the dynamics of the citizens’ opinion formation as well as on the determinants of their political participation and voting choice for a specific candidate or party." See more [here](https://forscenter.ch/projects/selects/).
+
+In this exercise, you will use data for the year 2019. You will use it to answer the following questions:
+
+1. Do older voters have stronger right leaning preferences than younger ones?
+2. Do political preferences vary across sexes?
+3. Do political preferences vary across the main language spoken at the respondent's home? 
+4. Do differences in political preferences across sexes vary depending on the respondents' age?
+5. Do differences in political preferences across sexes vary depending on the respondents' main language?
+6. Do differences in political preferences across main languages vary depending on the respondents' age?
+7. Do differences in political preferences across sexes vary depending on the respondents' age and main language?
+
+## Adjusting the data first
+
+In the folder `SELECTS 2019`, you can find the file `data.csv`. It is a version of the SELECTS data for 2019 only with the variables relevant for our exercise.
+
+1. Open the file:
 ```{r}
-# selects19 <- read.csv("~/Documents/0_IPZ/2023_2/Leemann-QuantMethods/QuantitativeMethods/Data/SELECTS 2019/1179_Selects2019_PES_Data_v1.1.0.csv", header = TRUE)
-# 
-# selects19 <- selects19 %>%
-#   select(sex, age, matches("f15200"), f20221) %>%
-#   filter(!is.na(selects19$sex) & !is.na(selects19$age) & !is.na(selects19$f15200) & !is.na(selects19$f20221))  # Remove rows where x or y is NA
-# 
-# selects19$f15200 <- as.numeric(selects19$f15200)
-# 
-# write.table(selects19, file = "Data/SELECTS 2019/data.csv", sep = ",", row.names = FALSE)
-
 selects19 <- read.csv("Data/SELECTS 2019/data.csv", header = TRUE)
 ```
 
-Labeling languages:
+2. In order to store information in smaller files, researchers use codebooks to numerically represent values that, otherwise, would be much more space consuming in their respective representation in text form. Use the file `Selects2019_Codebook_EN.pdf` to create the variable  `LanguageHome` where the numerical values for the variable `f20221` (i.e., "Main language spoken in family or at home") are preplaced with their respective text values.
 ```{r}
 selects19 <- selects19 %>%
-  mutate(LanguageHome = case_when(
-    f20221 == 1 ~ "German/Swiss German",
+  mutate(LanguageHome = case_when( #a new variable is created
+#each numerical value in the codebook is replace with it's corresponding text value
+    f20221 == 1 ~ "German/Swiss German", 
     f20221 == 2 ~ "French",
     f20221 == 3 ~ "Italian",
     f20221 == 4 ~ "Romansh",
     f20221 == 5 ~ "Other"))
 ```
 
-Labeling sex:
+3. As we have seen in week 1, it is a good practice to name your variables so their interpretation is easy. For example, instead of using `sex` as a variable name, using `female` facilitates understanding that a zero represents `male` while a one represents `female`. Again, use the codebook to transform the variable `sex` into `female`.
+
+Relabel the `sex` variable:
 ```{r}
 selects19 <- selects19 %>%
-  mutate(Sex = case_when(
-    sex == 1 ~ "Male",
-    sex == 2 ~ "Female"))
+  mutate(sex = case_when(
+    sex == 1 ~ 0,
+    sex == 2 ~ 1))
 ```
 
-Renaming political preferences:
+Rename the variable `sex` as `female`. Take the chance and rename `f15200` (i.e., "Left-right placement - Self") as `LeftToRight`.
 ```{r}
-selects19 <- dplyr::rename(selects19, LeftToRight = f15200)
+selects19 <- dplyr::rename(selects19, LeftToRight = f15200, female = sex)
+```
 
+4. Print the name of all the variables available so you can use them later on.
+
+```{r}
+names(selects19)
 ```
 
 ## Exercise: solution
@@ -90,19 +81,19 @@ selects19 <- dplyr::rename(selects19, LeftToRight = f15200)
 1. Graph age vs. political preferences. Use a linear regression line to describe how the variables relate to each other.
 
 ```{r}
-#Means for Y and X
+#Means for Y and X: to have a clearer notion on the center of mass of the data.
 mean_LeftRight <- mean(selects19$LeftToRight, na.rm = TRUE)
 mean_age <- mean(selects19$age, na.rm = TRUE)
 
 # Create a scatter plot
 ggplot(selects19, aes(x = age, y = LeftToRight)) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
-  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
-  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
-  scale_y_continuous(
-    limits = c(0, 10),
-    breaks = seq(0, 10, by = 1)) +
+  # Adding the regression line
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  
+  # Horizontal line at the mean of y
+  geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  
+  # Vertical line at the mean of x
+  geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(
@@ -113,12 +104,13 @@ ggplot(selects19, aes(x = age, y = LeftToRight)) +
 
 ```
 
-
+Therefore, we can say that, indeed, older voters have stronger right leaning preferences than younger ones.
 
 2. Since the political preferences as well as years are defined in discrete values, many values can overlap for the same pair` (preference, age)`. Use the `ggridges` package to see how do preferences distribute across different age values.
-```{R}
+```{r}
 ggplot(selects19, aes(x = age, y = as.factor(LeftToRight), fill = as.factor(LeftToRight))) +
-  geom_density_ridges() +
+  # to show the age distribution for each level of political preference
+  geom_density_ridges() + 
   geom_smooth(data = selects19, aes(x = age, y = LeftToRight, group = 1), 
               method = "lm", formula = y ~ x, color = "red", se = FALSE) +
   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +
@@ -136,7 +128,7 @@ ggplot(selects19, aes(x = age, y = as.factor(LeftToRight), fill = as.factor(Left
 
 3. Regress the political preferences on age. As we learnt in the exercises from last week, the regression with intercept fits data better in most cases: act accordingly. Report and interpret the parameters. Graph some of the main components of the regression output.
 
-Write the regression here.
+- Write the regression here.
 ```{r}
 #regression
 result <- lm(LeftToRight ~ age, data = selects19)
@@ -144,152 +136,133 @@ summary(result)
 
 ```
 
-Report and interpret the parameters here.
+- Report and interpret the parameters here.
 ```{r}
 coeffs<- coef(result)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' and for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), '. \n\nIt means that, given our model, an increase of one year in age across the Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100)
+coeffs
 ```
-Graph some of the main components of the regression output here.
+The beta value for `r names(coeffs[1])` is `r round(unname(coeffs[1]), digits = 2)`, and for `r `names(coeffs[2])` is `r round(unname(coeffs[2]), digits = 2)`. 
+
+It means that, *given our model*, an increase of one year in age across the Swiss citizens is associated with an average increase in the `LeftToRight` self-declared scale of `r round(unname(coeffs[2]), digits = 2)` ideological units. Likewise, , *given our model*, newborns can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)`, while 100 year old citizens can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100`. We must, nonetheless, remain cautious and keep our predictions as much as possible within the range of regressors our sample provides us with.
+
+- Graph some of the main components of the regression output here.
 
 ```{r}
 ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
   geom_point(size = 0.001) +
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = 0, color = "gray", size = 1) +
-  geom_text(aes(label = "Newborn",
-                x = max(selects19$age)+10,
-                y = 0.2+unname(coeffs[1])),
-                hjust = 1, vjust = 0, color = "gray")+ 
-
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = unname(coeffs[2]), color = "red", size = 1) +
-  geom_text(aes(label = "Average individual over time",
-                x = max(selects19$age)+10,
-                y = 0.4+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
-                hjust = 1, vjust = 0, color = "red") +
-
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(
-    x = "Age (years)",
-    y = "Political Preferences (left to right)",
-    title = "Lines Using Parameters from Regression"
-  )
-```
-
-
-4. Now add the regressor `Sex` and do the same as in the previous point.
-Write the regression here.
-```{r}
-#regression
-result <- lm(LeftToRight ~ age + Sex, data = selects19)
-summary(result)
-
-```
-
-Report and interpret the parameters here.
-```{r}
-coeffs<- coef(result)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), ' and for ', names(coeffs[3]), ' is ', round(unname(coeffs[3]), digits = 2),
-    
-'. \n\nIt means that, given our model,  an increase of one year in age across the Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old female citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, '. Similarly, for each of those scenarios, should the individual be a male, it can be expected to have an average of ', round(unname(coeffs[3]), digits = 2), ' ideological units higher than a female individual under the same statistical circumstances.')
-```
-Graph some of the main components of the regression output here.
-
-```{r}
-ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
-  geom_point(size = 0.001) +
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = 0, color = "gray", size = 1) +
-  geom_text(aes(label = "Newborn female",
-                x = max(selects19$age)+10,
-                y = 0.2+unname(coeffs[1])),
-                hjust = 1, vjust = 0, color = "gray")+ 
-
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = unname(coeffs[2]), color = "red", size = 1) +
-  geom_text(aes(label = "Female over time",
-                x = max(selects19$age)+10,
-                y = -0.8+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
-                hjust = 1, vjust = 0, color = "red") +
-
-  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
-              slope = unname(coeffs[2]), color = "orange", size = 1) +
-  geom_text(aes(label = "Male over time (newborn bonus)",
-                x = max(selects19$age)+10,
-                y = 0.6+unname(coeffs[1])+unname(coeffs[3]) + unname(coeffs[2]) * max(selects19$age)+0.2),
-                hjust = 1, vjust = 0, color = "orange") +
-
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(
-    x = "Age (years)",
-    y = "Political Preferences (left to right)",
-    title = "Lines Using Parameters from Regression"
-  )
-
-```
-
-5. You now remember that average preferences can change not only across age and sex independently, but simultaneously: i.e., the average preferences across individuals in a same sex can change at different rates over time as well as begin from different points. Add the interaction  `Age` and `Sex` and do the same as in the previous point.
-
-
-Write the regression here.
-```{r}
-#regression
-result <- lm(LeftToRight ~ age * Sex, data = selects19)
-summary(result)
-
-```
-
-Report and interpret the parameters here.
-```{r}
-coeffs<- coef(result)
-cat('The beta value for', names(coeffs[1]), ' is ', round(unname(coeffs[1]), digits = 2), ' for ', names(coeffs[2]), ' is ', round(unname(coeffs[2]), digits = 2), ' for ', names(coeffs[3]), ' is ', round(unname(coeffs[3]), digits = 2),' and for ', names(coeffs[4]), ' is ', round(unname(coeffs[4]), digits = 2),
-    
-'. \n\nIt means that, given our model,  an increase of one year in age across the female Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, female newborns can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while 100 year old female citizens can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, '. \n\nSimilarly, for each of those scenarios, should the individual be a male, it can be expected to have an average of ', round(unname(coeffs[3]), digits = 2), ' ideological units higher (i.e., self declare more right leaning) than a female individual under the same statistical circumstances. Finally, the rate at which right leaning prefferences increase over time is ', round(unname(coeffs[4]), digits = 2)*-1, ' lower than a female in the same statistical circumstances. Therefore, a 100 year old male can be expected to have an political preference of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[4]), digits = 2)*100)
-```
-
-Graph some of the main components of the regression output here.
-
-```{r}
-ggplot(selects19, aes(x = age, y = LeftToRight)) +
-  geom_point(size = 0) +
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = 0, color = "gray", size = 1) +
-  geom_text(aes(label = "Newborn female",
-                x = max(selects19$age)+10,
-                y = -0.5+unname(coeffs[1])),
-                hjust = 1, vjust = 0, color = "gray")+ 
-
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = unname(coeffs[2]), color = "red", size = 1) +
-  geom_text(aes(label = "Female over time",
-                x = max(selects19$age)+10,
-                y = -0.8+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
-                hjust = 1, vjust = 0, color = "red") +
-
-  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
-              slope = unname(coeffs[2])+unname(coeffs[4]), color = "orange", size = 1) +
-  geom_text(aes(label = "Male over time (newborn bonus+Δslope)",
-                x = max(selects19$age)+10,
-                y = 0.45+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[4])) * max(selects19$age)),
-                hjust = 1, vjust = 0, color = "orange") +
+  geom_abline(aes(intercept = unname(coeffs[1]),
+                slope = 0, 
+                color = "Newborn")) +
+  
+  geom_abline(aes(intercept = unname(coeffs[1]),
+                slope = unname(coeffs[2]), 
+                color = "Average individual over time")) +
+  
+  # Define colors for the legend
+  scale_color_manual(name = "Lines", values = c("Newborn" = "gray", "Average individual over time" = "red")) +
   
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(
     x = "Age (years)",
     y = "Political Preferences (left to right)",
-    title = "Lines Using Parameters from Regression"
+    title = "Relationship political preferences across ages"
   )
 ```
+
+
+4. Now regress `LeftToRight` on `age` and `female`. do the same as in the previous point. Report and interpret the parameters. Graph some of the main components of the regression output.
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age + female, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs<- coef(result)
+coeffs
+```
+The beta value for `r names(coeffs[1])`, ' is `r round(unname(coeffs[1]), digits = 2)`, for `r names(coeffs[2])`, is `r round(unname(coeffs[2]), digits = 2)`, and for `r names(coeffs[3])` is `r round(unname(coeffs[3]), digits = 2)`.
+
+It means that, given our model,  an increase of one year in age across the Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of `r round(unname(coeffs[2]), digits = 2)`, *ideological units*. Likewise, male newborns can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)`, while 100 year old male citizens can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100`. Similarly, for each of those scenarios, should the individual be a female, it can be expected to have an average of `r abs(round(unname(coeffs[3]), digits = 2))` ideological units lower than a male individual under the same statistical circumstances. In other words, by design, our particular model only captures the average evolution of ideology over time but does not distinguish whether nor how it varies across sexes. Finally, just as in the previous point, we must remain cautious and keep our predictions as much as possible within the range of regressors our sample provides us with.
+
+
+- Graph some of the main components of the regression output here.
+
+```{r}
+ggplot(selects19, aes(x = age, y = LeftToRight)) + 
+  geom_point(size = 0.001) +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = 0, color = "Male newborn")) +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = 0, color = "Female newborn")) +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = unname(coeffs[2]), color = "Male over time")) +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = unname(coeffs[2]), color = "Female over time")) +
+  scale_color_manual(name = "Lines", values = c("Male newborn" = "gray", "Female newborn" = "red", "Male over time" = "orange", "Female over time" = "purple")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Relationship political preferences across ages by sex \n(without interaction)",
+    color = "Line Type"
+  )
+
+
+```
+
+5. You now remember that average political preferences across age can change across sexes: i.e., the average preferences across individuals in a same sex can change at different rates over time as well as begin from different departure points. Add the interaction  `Age` and `female` and do the same as in the previous point.
+
+
+Write the regression here.
+```{r}
+#regression
+result <- lm(LeftToRight ~ age * female, data = selects19)
+summary(result)
+
+```
+
+Report and interpret the parameters here.
+```{r}
+coeffs<- coef(result)
+coeffs
+```
+
+The beta value for `r names(coeffs[1])`  is `r round(unname(coeffs[1]), digits = 2)` for `r names(coeffs[2])` is `r round(unname(coeffs[2]), digits = 2)` for `r names(coeffs[3])` is `r round(unname(coeffs[3]), digits = 2)` and for `r names(coeffs[4])` is `r round(unname(coeffs[4]), digits = 2)`.
+    
+It means that, *given our model*,  an increase of one year in age across the male Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of `r round(unname(coeffs[2]), digits = 2)` ideological units. Likewise, while male newborns can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)`, female newborns can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[3]), digits = 2)`. Also, while 100 year old male citizens can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100`, 100 year old females can be expected to have an average ideological value of `r round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[3]), digits = 2)+(round(unname(coeffs[2]), digits = 2)+round(unname(coeffs[4]), digits = 2))*100`.
+
+Finally, while, *given our model*, females have lower initial ideological initial values, the rate at which right leaning preferences increase among them over time is `r round(unname(coeffs[4]), digits = 2)` ideological units per year higher than in males. Therefore, we can expect males' and females' average ideological values to converge when they are around 100 years old. Finally, just as in the previous point, we must remain cautious and keep our predictions as much as possible within the range of regressors our sample provides us with.
+
+- Graph some of the main components of the regression output here.
+
+```{r}
+ggplot(selects19, aes(x = age, y = LeftToRight)) + 
+  geom_point(size = 0.001) +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = 0, color = "Male newborn")) +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = 0, color = "Female newborn")) +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = unname(coeffs[2]), color = "Male over time")) +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = unname(coeffs[2])+unname(coeffs[4]), color = "Female over time")) +
+  scale_color_manual(name = "Lines", values = c("Male newborn" = "gray", "Female newborn" = "red", "Male over time" = "orange", "Female over time" = "purple")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Age (years)",
+    y = "Political Preferences (left to right)",
+    title = "Relationship political preferences across ages by sex \n(with interaction)"
+  )
+```
+
+Unlike the previous point, in this point our model did not presume that the rate at which right leaning preferences increase among them over time is shared between males and females. Indeed, what the model shows is that both the intercepts and slopes are different for both groups. Particularly, *give our model*, the particular mix of intercepts and slopes allow females and males to converge on their average ideological values over time.
 
 6. Following the same logic as in the previous point, you now add the `LanguageHome` categorical variable with the corresponding interactions. Do the same as in the previous point.
 
 Write the regression here.
 ```{r}
 #regression
-result <- lm(LeftToRight ~ age * Sex * LanguageHome, data = selects19)
+result <- lm(LeftToRight ~ age * female * LanguageHome, data = selects19)
 summary(result)
 
 ```
@@ -297,133 +270,130 @@ summary(result)
 Report and interpret the parameters here.
 ```{r}
 coeffs <- coef(result)
-cat('Interpreting a regression with ever more interactions is exponentially harder! Thus, find below some few cases aimed at signaling the general logic in the interpretation.',
-    
-'\n\nAn increase of one year in age across the female Swiss citizens is associated with an average increase in the LeftToRight self-declared scale of ', round(unname(coeffs[2]), digits = 2), ' \'ideological units\'. Likewise, female newborns whose household speaks mainly in French can be expected to have an average ideological value of ',round(unname(coeffs[1]), digits = 2),', while a 100 year old female citizens whose household speaks mainly in French can be expected to have an average ideological value of.', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100, 
-
-'.\n\nSimilarly, should one observe a random 100 year old male individual whose household speaks mainly in German, we can expected him have an average of ', round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[8]), digits = 2)*100+round(unname(coeffs[9]), digits = 2)*100+round(unname(coeffs[13]), digits = 2)+round(unname(coeffs[17]), digits = 2)*100, ' ideological units higher than a female newborn whose household speaks mainly in French. Consequently, the expected ideological value for the former would be of ', round(unname(coeffs[1]), digits = 2)+round(unname(coeffs[2]), digits = 2)*100+round(unname(coeffs[3]), digits = 2)+round(unname(coeffs[8]), digits = 2)*100+round(unname(coeffs[9]), digits = 2)*100+round(unname(coeffs[13]), digits = 2)+round(unname(coeffs[17]), digits = 2)*100)
+coeffs
 ```
-Graph some of the main components of the regression output here.
+Interpreting a regression with ever more interactions is **exponentially harder!** The reason is that the potential scenarios to evaluate must take into account the interaction between the categorical variables of sex (i.e., two potential values) and language  (i.e., five potential values)  as well as the continuous variable age. In our simplest model with no interaction in point 3 we had only two parameters, in point 4 we had three, in point 5 we had four parameters with one interaction. However, in point 6 we have *20* parameters. Consequently, below we present only some few cases aimed at signaling the general logic in the interpretation: we compare the male and female cases between French and Swiss German individuals.
+
+First of all, the reference group are male newborns in French speaking households. For them, *given our model*, we can expect the average political preference to be `r round(unname(coeffs[1]), digits = 2)`. In contrast, male newborns in Swiss German speaking households can be expected to have `r round(unname(coeffs[4]), digits = 2)` ideological units more than the reference group, i.e., `r round(unname(coeffs[1]) + unname(coeffs[4]), digits = 2)`. Female newborns in French speaking households can be expected to have `r round(unname(coeffs[3]), digits = 2)` ideological units less than the reference group, i.e., `r round(unname(coeffs[1]) + unname(coeffs[3]), digits = 2)`. On the other hand, Female newborns in Swiss German speaking households can be expected to have `r round(unname(coeffs[13]), digits = 2)` ideological units less than the reference group, i.e., `r round(unname(coeffs[1]) + unname(coeffs[13]), digits = 2)`.
+
+Likewise, for 100 year old males from French speaking households, we can expect their average political preference value to be `r round(unname(coeffs[1]) + unname(coeffs[2])*100, digits = 2)`. On the contrary, 100 year old males from Swiss German speaking households can be expected to have `r round(unname(coeffs[4])+ unname(coeffs[9])*100, digits = 2)` ideological units more than the reference group, i.e., `r round(unname(coeffs[1]) +unname(coeffs[4]) + (unname(coeffs[2]) + unname(coeffs[9]))*100, digits = 2)`. In the case of 100 year old females from French speaking households, we can expect their average political preference value to be `r round(unname(coeffs[1]) + unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[8]))*100, digits = 2)`, while for 100 year old females from Swiss German speaking households we can expect their average political preference value to be `r round(unname(coeffs[1]) + unname(coeffs[3]) + unname(coeffs[4]) +unname(coeffs[13]) + (unname(coeffs[2]) + unname(coeffs[8]) + unname(coeffs[17]))*100, digits = 2)`.
+
+
+- Graph some of the main components of the regression output here.
 
 ```{r}
-ggplot(selects19, aes(x = age, y = LeftToRight)) +  # Removed selects19$ from aes(), not necessary
-  geom_point(size = 0) +
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = 0, color = "gray", size = 1) +
-  geom_text(aes(label = "Newborn female French speaking household",
-                x = max(selects19$age)+10,
-                y = 0.1+unname(coeffs[1])),
-                hjust = 1, vjust = 0, color = "gray")+ 
+ggplot(selects19, aes(x = age, y = LeftToRight)) +
+  geom_point(size = 0.001) +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = 0, color = "Male newborn French"), linetype = "dashed") +
+  geom_abline(aes(intercept = unname(coeffs[1]), slope = unname(coeffs[2]), color = "Male over time French")) +
 
-  geom_abline(intercept = unname(coeffs[1]),
-              slope = unname(coeffs[2]), color = "red", size = 1) +
-  geom_text(aes(label = "Female French speaking household over time",
-                x = max(selects19$age)+10,
-                y = -1.6+unname(coeffs[1]) + unname(coeffs[2]) * max(selects19$age)),
-                hjust = 1, vjust = 0, color = "red") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[4]), slope = 0, color = "Male newborn Swiss German"), linetype = "dashed") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[4]), slope = unname(coeffs[2]) + unname(coeffs[9]), color = "Male over time Swiss German")) +
 
-  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
-              slope = unname(coeffs[2])+unname(coeffs[8]), color = "orange", size = 1) +
-  geom_text(aes(label = "Male French household over time (newborn bonus+Δslope)",
-                x = max(selects19$age)+10,
-                y = 0.4+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[8])) * max(selects19$age)+0.2),
-                hjust = 1, vjust = 0, color = "orange") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = 0, color = "Female newborn French"), size = 2, linetype = "dashed") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]), slope = unname(coeffs[2]) + unname(coeffs[8]), color = "Female over time French"), size = 2) +
   
-  geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3])+unname(coeffs[13]),
-              slope = unname(coeffs[2])+unname(coeffs[8])+unname(coeffs[17]), color = "purple", size = 1) +
-  geom_text(aes(label = "Male German household over time (newborn & ling. bonus+Δslope)",
-                x = max(selects19$age)+10,
-                y = 1.2+unname(coeffs[1])+unname(coeffs[3])+unname(coeffs[13]) + (unname(coeffs[2])+unname(coeffs[8])+unname(coeffs[17])) * max(selects19$age)+0.2),
-                hjust = 1, vjust = 0, color = "purple") +  
-  # geom_abline(intercept = unname(coeffs[1])+unname(coeffs[3]),
-  #             slope = unname(coeffs[2])+unname(coeffs[4]), color = "blue", size = 1) +
-  # geom_text(aes(label = "Int.(fem)+Male+Age*Male",
-  #               x = max(selects19$age)+10,
-  #               y = 0.3+unname(coeffs[1])+unname(coeffs[3]) + (unname(coeffs[2])+unname(coeffs[4])) * max(selects19$age)+0.2),
-  #               hjust = 1, vjust = 0, color = "blue") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]) + unname(coeffs[4]) + unname(coeffs[13]),
+                  slope = 0, color = "Female newborn Swiss German"), linetype = "dashed") +
+  geom_abline(aes(intercept = unname(coeffs[1]) + unname(coeffs[3]) + unname(coeffs[4]) + unname(coeffs[13]),
+                  slope = unname(coeffs[2]) + unname(coeffs[8]) + unname(coeffs[17]), color = "Female over time Swiss German")) +
+  
+  scale_color_manual(name = "Lines", values = c("Male newborn French" = "blue", "Male over time French" = "blue", "Male newborn Swiss German" = "red", "Male over time Swiss German" = "red", "Female newborn French" = "orange", "Female over time French" = "orange", "Female newborn Swiss German"= "purple", "Female over time Swiss German"= "purple")) +
+
+  scale_linetype_manual(name = "Lines", values = c("Male newborn French" = "dashed", "Male over time French" = "solid", "Male newborn Swiss German" = "dashed", "Male over time Swiss German" = "solid", "Female newborn French" = "dashed", "Female over time French" = "solid", "Female newborn Swiss German" = "dashed", "Female over time Swiss German" = "solid")) +
+
   
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(
     x = "Age (years)",
     y = "Political Preferences (left to right)",
-    title = "Lines Using Parameters from Regression"
+    title = "Relationship political preferences across ages by sex and language \n(with interaction)"
   )
+
+
 ```
 
-*<span style="color: red;">Ojo: Check that interpretations have the right parameters!</span>.*
-
-
-
-## Interactive Line Plot
-
-*<span style="color: red;">Should we exploit this here or somewhere else? I can make it work in R, but not in the book yet. If needed, I can check it out.</span>.*
-
-
-```{r}
-# # Example data frame
-# data <- data.frame(
-#   x = rnorm(100),
-#   y = rnorm(100)
-# )
-# 
-# # Shiny server function
-# server <- function(input, output) {
-#   output$scatterPlot <- renderPlot({
-#     ggplot(data, aes(x = x, y = y)) +  
-#       geom_point(size = 0) +
-#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
-#   })
-# }
-# 
-# # Example data frame
-# data <- data.frame(
-#   x = rnorm(100),
-#   y = rnorm(100)
-# )
-# 
-# # Shiny server function
-# server <- function(input, output) {
-#   output$scatterPlot <- renderPlot({
-#     ggplot(data, aes(x = x, y = y)) +  
-#       geom_point(size = 0) +
-#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
-#   })
-# }
-# 
-# update.packages(ask = FALSE)
-# 
-# 
-# library(shiny)
-# library(ggplot2)
-# 
-# ui <- fluidPage(
-#   titlePanel("Interactive Line Plot"),
-#   sidebarLayout(
-#     sidebarPanel(
-#       sliderInput("intercept", "Intercept:", min = -10, max = 10, value = 0),
-#       sliderInput("slope", "Slope:", min = -10, max = 10, value = 1)
-#     ),
-#     mainPanel(
-#       plotOutput("scatterPlot")
-#     )
-#   )
-# )
-# 
-# server <- function(input, output) {
-#   output$scatterPlot <- renderPlot({
-#     ggplot(data, aes(x = x, y = y)) +
-#       geom_point(size = 0) +
-#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
-#   })
-# }
-# 
-# shinyApp(ui = ui, server = server)
-```
 
 ### Simulated data
 
-1. In order to see the logic behind the $R^2$, first estimate the linear regression of `LeftToRight` on `Age`. Generate the variable `predicted_LeftToRight` with the generated parameters using [`predict()`](https://www.statology.org/r-lm-predict/) from the point 3 of the previous section (i.e., the one using real data).Generate the graph `predicted_LeftToRight` vs `Age`.
+1. In order to see the logic behind the $R^2$, you will simulate what happens to it under different circumstances. To begin with, generate a random normal distribution of $X$ and $\epsilon$ both with mean 0 and standard deviation of 1.
+
+```{r}
+set.seed(123)  # For reproducibility
+df <- data.frame(X = rnorm(1000, mean = 0, sd = 1), epsilon = rnorm(100, mean = 0, sd = 1))
+```
+
+2. Generate values for $Y$ using the following data generating process. Graph it and regress $Y$ on $X$.
+
+$$Y=1+2X+\epsilon$$
+```{r}
+df$Y <- 1+2*df$X+df$epsilon
+
+ggplot(df, aes(x = X, y = Y)) +
+  geom_smooth(data = df, aes(x = X, y = Y), 
+              method = "lm", formula = y ~ x, color = "red", se = FALSE) +
+  geom_point()
+```
+
+```{r}
+result1 <- lm( Y ~ X, data = df)
+coef(result1)
+
+```
+
+2. Now generate the normally distributed residuals with mean zero and variance equal to 5, 4, 3, 2, 1/2, 1/3, 1/4, and 1/5. Use each residual to create a new $Y$. Then, keeping the same $X$ unchanged, regress all the resulting $Y$s on $X$. Present all the resulting $R^2$ in a new dataframe to then graph the relation between the variance of the residual and the $R^2$. What lesson do you take out of this graph?
+```{r}
+set.seed(123)  # For reproducibility
+df$ep5 <- rnorm(1000, mean = 0, sd = 5)
+df$ep4 <- rnorm(1000, mean = 0, sd = 4)
+df$ep3 <- rnorm(1000, mean = 0, sd = 3)
+df$ep2 <- rnorm(1000, mean = 0, sd = 2)
+df$ep1_2 <- rnorm(1000, mean = 0, sd = 1/2)
+df$ep1_3 <- rnorm(1000, mean = 0, sd = 1/3)
+df$ep1_4 <- rnorm(1000, mean = 0, sd = 1/4)
+df$ep1_5 <- rnorm(1000, mean = 0, sd = 1/5)
+
+df$Y5 <- 1+2*df$X+df$ep5
+df$Y4 <- 1+2*df$X+df$ep4
+df$Y3 <- 1+2*df$X+df$ep3
+df$Y2 <- 1+2*df$X+df$ep2
+df$Y_2 <- 1+2*df$X+df$ep1_2
+df$Y_3 <- 1+2*df$X+df$ep1_3
+df$Y_4 <- 1+2*df$X+df$ep1_4
+df$Y_5 <- 1+2*df$X+df$ep1_5
+
+result5 <- lm( Y5 ~ X, data = df)
+result4 <- lm( Y4 ~ X, data = df)
+result3 <- lm( Y3 ~ X, data = df)
+result2 <- lm( Y2 ~ X, data = df)
+result_2 <- lm( Y_2 ~ X, data = df)
+result_3 <- lm( Y_3 ~ X, data = df)
+result_4 <- lm( Y_4 ~ X, data = df)
+result_5 <- lm( Y_5 ~ X, data = df)
+
+df_rsqrd <- data.frame(
+  SD = c(5, 4, 3, 2, 1, 1/2, 1/3, 1/4, 1/5),
+  R2 = c(summary(result5)$r.squared,
+         summary(result4)$r.squared,
+         summary(result3)$r.squared,
+         summary(result2)$r.squared,
+         summary(result1)$r.squared,
+         summary(result_2)$r.squared,
+         summary(result_3)$r.squared,
+         summary(result_4)$r.squared,
+         summary(result_5)$r.squared)
+        )
+
+ggplot(df_rsqrd, aes(x = SD, y = R2)) +
+  geom_smooth(data = df_rsqrd, aes(x = SD, y = R2), 
+              method = "lm", formula = y ~ x, color = "red", se = FALSE) +
+  geom_point()
+```
+
+As shown in [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry, the bigger the sum of squared residuals is as a share of the regressand's variance, the less capable out model to capture the relation between our regressand and regressor. Thus, as the graph shows, the smaller variance of the residual, the higher the $R^2$. In other words, the more dispersed observations are around *each section of the regression line*, the lower the goodness of fit our model has to describe our data.
+
+3. In order to see the logic behind the $R^2$, first estimate the linear regression of `LeftToRight` on `Age`. Generate the variable `predicted_LeftToRight` with the generated parameters using [`predict()`](https://www.statology.org/r-lm-predict/) from the point 3 of the previous section (i.e., the one using real data).Generate the graph `predicted_LeftToRight` vs `Age`.
 
 Report the regression here.
 ```{r}
@@ -448,7 +418,7 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight)) +
   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
   scale_y_continuous(
     limits = c(0, 10),
-    breaks = seq(0, 10, by = 1)  
+    breaks = seq(0, 10, by = 1)
   ) +
   theme_minimal() +
   theme(
@@ -461,11 +431,11 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight)) +
     y = "Political Preferences (left to right)",
     title = "Scatter plot Age vs. Political Preferences (determ. sim.)"
   )
-
-
 ```
 
-2. Now generate the normally distributed residuals with mean zero and the same variance as the residuals of the model from the previous point.
+4. Now generate the normally distributed residuals with mean zero and the same variance as the residuals of the model from the previous point.
+
+
 ```{r}
 # Calculate the variance of the residuals
 selects19$residual <- resid(result)
@@ -474,10 +444,9 @@ residual_sd <- sqrt(var(resid(result)))
 # Set the seed for reproducibility
 set.seed(0)
 selects19$NormResiduals1 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd)
-
 ```
 
-3. Simulate new data using both the deterministic  (i.e., the the parameters estimated immediately above) and stochastic component (i.e., the residuals form the previous point). Graph the simulated data.
+5. Simulate new data using both the deterministic  (i.e., the the parameters estimated immediately above) and stochastic component (i.e., the residuals form the previous point). Graph the simulated data.
 ```{r}
 
 selects19$Sim_LeftToRight_Det_Stoch <- selects19$predicted_LeftToRight + selects19$NormResiduals1
@@ -511,7 +480,7 @@ ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch)) +
 
 ```
 
-4. Now, estimate the regression between the real `age` and simulated `Sim_LeftToRight_Det_Stoch`. Once you do that, generate the $R^2$ for the model.
+5. Now, estimate the regression between the real `age` and simulated `Sim_LeftToRight_Det_Stoch`. Once you do that, generate the $R^2$ for the model.
 
 ```{r}
 result <- lm(LeftToRight ~ age, data = selects19)
@@ -520,7 +489,7 @@ cat('The R2 is: ', rsq_sd1)
 
 ```
 
-5. Repeat the previous three points but use half the standard deviation of the model of point 1. Is the $R^2$ lower now? Why? See [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry to understand the intuition: pay special attention to the graph with the red and blue squares.
+7. Repeat the previous three points but use half the standard deviation of the model of point 1. Is the $R^2$ lower now? Why? See [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry to understand the intuition: pay special attention to the graph with the red and blue squares.
 
 Generate the residuals here. 
 ```{r}
@@ -566,7 +535,7 @@ cat('The R2 is: ', rsq_sd10)
 
 ```
 
-6. Repeat the previous point but use a hundredth the standard deviation of the model of point 1. Is the $R^2$ lower now? Why?
+8. Repeat the previous point but use a hundredth the standard deviation of the model of point 1. Is the $R^2$ lower now? Why?
 
 Generate the residuals here. 
 ```{r}
@@ -612,7 +581,7 @@ cat('The R2 is: ', rsq_sd100)
 
 ```
 
-7. Present in a table the $R^2$ for each value of the standard deviation.
+9. Present in a table the $R^2$ for each value of the standard deviation.
 ```{r}
 
 table <- data.frame(
@@ -623,7 +592,7 @@ table <- data.frame(
 print(table)
 
 ```
-8. Graph $R^2$ agains the standard deviation fraction. Fit a linear regression line.
+10. Graph $R^2$ agains the standard deviation fraction. Fit a linear regression line.
 ```{r}
 ggplot(table, aes(x = SD, y = R2)) +
   geom_point(size = 0) +
@@ -636,7 +605,7 @@ ggplot(table, aes(x = SD, y = R2)) +
     title = "Relation between R2 and standard deviation of residuals"
   ) 
 ```
-9. [Optional] Graph $R^2$ against the standard deviation fraction. Fit a regression line with a polynomial of degree 2. The regression line fits the data better. Is the polynomial regression more informative than the linear regression? Why? What lesson does this graph give you in terms of the importance of understanding the theoretical relations between variables beyond what an empirical approach could suggest? What does it teach you regarding the tension between under- and over-fitting data?
+11. [Optional] Graph $R^2$ against the standard deviation fraction. Fit a regression line with a polynomial of degree 2. The regression line fits the data better. Is the polynomial regression more informative than the linear regression? Why? What lesson does this graph give you in terms of the importance of understanding the theoretical relations between variables beyond what an empirical approach could suggest? What does it teach you regarding the tension between under- and over-fitting data?
 
 ```{r}
 ggplot(table, aes(x = SD, y = R2)) +
@@ -653,7 +622,7 @@ ggplot(table, aes(x = SD, y = R2)) +
 
 
 ```
-10. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time multiply the slope's parameter by 5, while keeping the intercept unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+12. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time multiply the slope's parameter by 5, while keeping the intercept unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
 
 Print here
 ```{r}
@@ -696,7 +665,7 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope)) +
     title = "Scatter plot Age vs. Political Preferences (adj. slope)"
   )
 ```
-11. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjSlope_Stoch`. Generate the graph `predicted_LeftToRight_AdjSlope_Stoch` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+13. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjSlope_Stoch`. Generate the graph `predicted_LeftToRight_AdjSlope_Stoch` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
 
 Report the simulation and the graph here.
 ```{r}
@@ -745,7 +714,7 @@ print('The reason the R2 increased is that, while the distance from each observa
 333333333333
 
 
-12. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time increase in two units the *intercept's* parameter (not the *slope's* parameter as in the point 10), while keeping the slope unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+14. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time increase in two units the *intercept's* parameter (not the *slope's* parameter as in the point 10), while keeping the slope unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
 
 Print here
 ```{r}
@@ -775,7 +744,7 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntecept)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(
     limits = c(0, 15),
-    breaks = seq(0, 20, by = 1)) +
+    breaks = seq(0, 15, by = 1)) +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5), # Center the plot title
@@ -788,7 +757,7 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntecept)) +
     title = "Scatter plot Age vs. Political Preferences (adj. slope)"
   )
 ```
-13. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjIntercep_Stoch`. Generate the graph `predicted_LeftToRight_AdjIntecept` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+15. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjIntercep_Stoch`. Generate the graph `predicted_LeftToRight_AdjIntecept` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
 
 Report the simulation and the graph here.
 ```{r}
@@ -805,8 +774,8 @@ ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntercept_Stoch)) +
   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
   scale_y_continuous(
-    limits = c(0, 20),
-    breaks = seq(0, 20, by = 1)) +
+    limits = c(0, 15),
+    breaks = seq(0, 15, by = 1)) +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5), # Center the plot title
@@ -843,11 +812,11 @@ print(tableSD1)
 
 ```
 
-14. Comparing the $R^2$ and the parameters across the models of points 1, 2, and 3 answer the following questions:
+16. Comparing the $R^2$ and the parameters across the models of points 1, 2, and 3 answer the following questions:
 
   i. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the $R^2$?
 ```{r}
-print('The R2 increases as seen in point 11')
+print('The R2 increases as seen in point 13')
 ```
 
   ii. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the $R^2$?
@@ -864,20 +833,4 @@ print('It increases the estimated slope and decreases the intercept.')
  iv. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the intercept and slope?
 ```{r}
 print('It keeps the estimated slope unchanged and the estimated intercept is the same as before the adjustment but increases by the same value that the whole data generating process was modified.')
-
-```
-
-```{r}
-```
-
-```{r}
-```
-
-```{r}
-```
-
-```{r}
-```
-
-```{r}
 ```

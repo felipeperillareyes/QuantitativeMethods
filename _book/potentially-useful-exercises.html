@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Potentially useful exercises | Intermediate Quantitative Methods</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Potentially useful exercises | Intermediate Quantitative Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Potentially useful exercises | Intermediate Quantitative Methods" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Lucas Lemmann" />
+
+
+<meta name="date" content="2023-12-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-14.html"/>
+<link rel="next" href="data-transformation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Intermediate Quantitative Methods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-these-exercises"><i class="fa fa-check"></i><b>0.1</b> How to use these exercises?</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>0.2</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html"><i class="fa fa-check"></i><b>1</b> Week 1: DIYS 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#aims"><i class="fa fa-check"></i><b>1.1</b> Aims:</a></li>
+<li class="chapter" data-level="1.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-part-repetition-rrstudio"><i class="fa fa-check"></i><b>1.2</b> First Part: REPETITION R/RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-part-some-simple-analysis"><i class="fa fa-check"></i><b>1.3</b> Second Part: Some Simple Analysis</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#first-adjust-the-data"><i class="fa fa-check"></i><b>1.3.1</b> First, adjust the data</a></li>
+<li class="chapter" data-level="1.3.2" data-path="week-1-diys-1.html"><a href="week-1-diys-1.html#second-answer-the-following-questions"><i class="fa fa-check"></i><b>1.3.2</b> Second, answer the following questions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#exercise"><i class="fa fa-check"></i><b>2.1</b> Exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#solution"><i class="fa fa-check"></i><b>2.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html"><i class="fa fa-check"></i><b>3</b> Week 3: Regression I (Prediction)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#aims-1"><i class="fa fa-check"></i><b>3.1</b> Aims</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-context-and-question"><i class="fa fa-check"></i><b>3.2</b> Exercise: Context and Question</a></li>
+<li class="chapter" data-level="3.3" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#exercise-solution"><i class="fa fa-check"></i><b>3.3</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#real-data"><i class="fa fa-check"></i><b>3.3.1</b> Real data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#simulated-data"><i class="fa fa-check"></i><b>3.3.2</b> Simulated data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week-3-regression-i-prediction.html"><a href="week-3-regression-i-prediction.html#appendix-getting-the-data-first"><i class="fa fa-check"></i><b>3.4</b> Appendix: Getting the data first</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html"><i class="fa fa-check"></i><b>4</b> Week 4: Regression II (Model Specification)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#aims-2"><i class="fa fa-check"></i><b>4.1</b> Aims</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-context-and-questions"><i class="fa fa-check"></i><b>4.2</b> Exercise: Context and questions</a></li>
+<li class="chapter" data-level="4.3" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#adjusting-the-data-first"><i class="fa fa-check"></i><b>4.3</b> Adjusting the data first</a></li>
+<li class="chapter" data-level="4.4" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#exercise-solution-1"><i class="fa fa-check"></i><b>4.4</b> Exercise: solution</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#real-data-1"><i class="fa fa-check"></i><b>4.4.1</b> Real data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="week-4-regression-ii-model-specification.html"><a href="week-4-regression-ii-model-specification.html#simulated-data-1"><i class="fa fa-check"></i><b>4.4.2</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#exercise-1"><i class="fa fa-check"></i><b>5.1</b> Exercise</a></li>
+<li class="chapter" data-level="5.2" data-path="week-5.html"><a href="week-5.html#solution-1"><i class="fa fa-check"></i><b>5.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-6.html"><a href="week-6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="week-6.html"><a href="week-6.html#exercise-2"><i class="fa fa-check"></i><b>6.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="week-6.html"><a href="week-6.html#solution-2"><i class="fa fa-check"></i><b>6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#exercise-3"><i class="fa fa-check"></i><b>7.1</b> Exercise</a></li>
+<li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#solution-3"><i class="fa fa-check"></i><b>7.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html"><i class="fa fa-check"></i><b>8</b> Week 8: Causality III (Observational Data)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#aims-3"><i class="fa fa-check"></i><b>8.1</b> Aims</a></li>
+<li class="chapter" data-level="8.2" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#exercise-4"><i class="fa fa-check"></i><b>8.2</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#simulated-data-2"><i class="fa fa-check"></i><b>8.2.1</b> Simulated data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="week-8-causality-iii-observational-data.html"><a href="week-8-causality-iii-observational-data.html#real-data-2"><i class="fa fa-check"></i><b>8.2.2</b> Real data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-9.html"><a href="week-9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="week-9.html"><a href="week-9.html#exercise-5"><i class="fa fa-check"></i><b>9.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.2" data-path="week-9.html"><a href="week-9.html#solution-4"><i class="fa fa-check"></i><b>9.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="week-10.html"><a href="week-10.html"><i class="fa fa-check"></i><b>10</b> Week 10</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="week-10.html"><a href="week-10.html#exercise-6"><i class="fa fa-check"></i><b>10.1</b> Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="week-10.html"><a href="week-10.html#solution-5"><i class="fa fa-check"></i><b>10.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="week-11.html"><a href="week-11.html"><i class="fa fa-check"></i><b>11</b> Week 11</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="week-11.html"><a href="week-11.html#exercise-7"><i class="fa fa-check"></i><b>11.1</b> Exercise</a></li>
+<li class="chapter" data-level="11.2" data-path="week-11.html"><a href="week-11.html#solution-6"><i class="fa fa-check"></i><b>11.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="week-12.html"><a href="week-12.html"><i class="fa fa-check"></i><b>12</b> Week 12</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="week-12.html"><a href="week-12.html#exercise-8"><i class="fa fa-check"></i><b>12.1</b> Exercise</a></li>
+<li class="chapter" data-level="12.2" data-path="week-12.html"><a href="week-12.html#solution-7"><i class="fa fa-check"></i><b>12.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="week-13.html"><a href="week-13.html"><i class="fa fa-check"></i><b>13</b> Week 13</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="week-13.html"><a href="week-13.html#exercise-9"><i class="fa fa-check"></i><b>13.1</b> Exercise</a></li>
+<li class="chapter" data-level="13.2" data-path="week-13.html"><a href="week-13.html#solution-8"><i class="fa fa-check"></i><b>13.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="week-14.html"><a href="week-14.html"><i class="fa fa-check"></i><b>14</b> Week 14</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="week-14.html"><a href="week-14.html#exercise-10"><i class="fa fa-check"></i><b>14.1</b> Exercise</a></li>
+<li class="chapter" data-level="14.2" data-path="week-14.html"><a href="week-14.html#solution-9"><i class="fa fa-check"></i><b>14.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html"><i class="fa fa-check"></i><b>15</b> Potentially useful exercises</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#taken-out-from-week-3"><i class="fa fa-check"></i><b>15.1</b> Taken out from Week 3</a></li>
+<li class="chapter" data-level="15.2" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#taken-out-from-week-4"><i class="fa fa-check"></i><b>15.2</b> Taken out from Week 4</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="potentially-useful-exercises.html"><a href="potentially-useful-exercises.html#simulated-data-3"><i class="fa fa-check"></i><b>15.2.1</b> Simulated data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>16</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="data-transformation.html"><a href="data-transformation.html#week-1-gorilla"><i class="fa fa-check"></i><b>16.1</b> Week 1: Gorilla</a></li>
+<li class="chapter" data-level="16.2" data-path="data-transformation.html"><a href="data-transformation.html#week-4-restricted-variables-from-selects"><i class="fa fa-check"></i><b>16.2</b> Week 4: restricted variables from SELECTS</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published using bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate Quantitative Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="potentially-useful-exercises" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Potentially useful exercises<a href="potentially-useful-exercises.html#potentially-useful-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="taken-out-from-week-3" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Taken out from Week 3<a href="potentially-useful-exercises.html#taken-out-from-week-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Parabolic simulated residuals:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="potentially-useful-exercises.html#cb204-1" tabindex="-1"></a>CO2_land<span class="sc">$</span>parab_norm_resid<span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.01</span><span class="sc">*</span>(CO2_land<span class="sc">$</span>Sim_ShareAgric_norm<span class="sc">-</span><span class="fu">mean</span>(CO2_land<span class="sc">$</span>Sim_ShareAgric_norm))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>CO2_land<span class="sc">$</span>Sim_resid_norm</span>
+<span id="cb204-2"><a href="potentially-useful-exercises.html#cb204-2" tabindex="-1"></a>CO2_land<span class="sc">$</span>parab_norm_resid<span class="ot">&lt;-</span> CO2_land<span class="sc">$</span>parab_norm_resid<span class="sc">-</span><span class="fu">mean</span>(CO2_land<span class="sc">$</span>parab_norm_resid)</span>
+<span id="cb204-3"><a href="potentially-useful-exercises.html#cb204-3" tabindex="-1"></a></span>
+<span id="cb204-4"><a href="potentially-useful-exercises.html#cb204-4" tabindex="-1"></a></span>
+<span id="cb204-5"><a href="potentially-useful-exercises.html#cb204-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2_land, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb204-6"><a href="potentially-useful-exercises.html#cb204-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb204-7"><a href="potentially-useful-exercises.html#cb204-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
+<span id="cb204-8"><a href="potentially-useful-exercises.html#cb204-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb204-9"><a href="potentially-useful-exercises.html#cb204-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb204-10"><a href="potentially-useful-exercises.html#cb204-10" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb204-11"><a href="potentially-useful-exercises.html#cb204-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb204-12"><a href="potentially-useful-exercises.html#cb204-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Error&quot;</span>,</span>
+<span id="cb204-13"><a href="potentially-useful-exercises.html#cb204-13" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: of parabolic error&quot;</span></span>
+<span id="cb204-14"><a href="potentially-useful-exercises.html#cb204-14" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="576" />
+What does the behavior of the error tell you about the potential reliability of a regression without quadratic terms?</p>
+<p>Data generating process with parabolic residuals:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="potentially-useful-exercises.html#cb205-1" tabindex="-1"></a>CO2_land<span class="sc">$</span>Pred_TurnOut_parab_norm_resid <span class="ot">&lt;-</span> CO2_land<span class="sc">$</span>Pred_TurnOut_Determ <span class="sc">+</span> CO2_land<span class="sc">$</span>parab_norm_resid</span>
+<span id="cb205-2"><a href="potentially-useful-exercises.html#cb205-2" tabindex="-1"></a></span>
+<span id="cb205-3"><a href="potentially-useful-exercises.html#cb205-3" tabindex="-1"></a></span>
+<span id="cb205-4"><a href="potentially-useful-exercises.html#cb205-4" tabindex="-1"></a></span>
+<span id="cb205-5"><a href="potentially-useful-exercises.html#cb205-5" tabindex="-1"></a><span class="fu">ggplot</span>(CO2_land, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb205-6"><a href="potentially-useful-exercises.html#cb205-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb205-7"><a href="potentially-useful-exercises.html#cb205-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb205-8"><a href="potentially-useful-exercises.html#cb205-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2_land<span class="sc">$</span>Pred_TurnOut_parab_norm_resid), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb205-9"><a href="potentially-useful-exercises.html#cb205-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb205-10"><a href="potentially-useful-exercises.html#cb205-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2_land<span class="sc">$</span>Pred_TurnOut_Unif, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  <span class="co">#</span></span>
+<span id="cb205-11"><a href="potentially-useful-exercises.html#cb205-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb205-12"><a href="potentially-useful-exercises.html#cb205-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb205-13"><a href="potentially-useful-exercises.html#cb205-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb205-14"><a href="potentially-useful-exercises.html#cb205-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb205-15"><a href="potentially-useful-exercises.html#cb205-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Turn-out (%)&quot;</span>,</span>
+<span id="cb205-16"><a href="potentially-useful-exercises.html#cb205-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (uniform error)&quot;</span></span>
+<span id="cb205-17"><a href="potentially-useful-exercises.html#cb205-17" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="576" />
+Would using a quadratic term in the regression produce a better fit? Graph the regression line with a quadratic term.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="potentially-useful-exercises.html#cb206-1" tabindex="-1"></a><span class="fu">ggplot</span>(CO2_land, <span class="fu">aes</span>(<span class="at">x =</span> Sim_ShareAgric_norm, <span class="at">y =</span> Pred_TurnOut_parab_norm_resid)) <span class="sc">+</span></span>
+<span id="cb206-2"><a href="potentially-useful-exercises.html#cb206-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb206-3"><a href="potentially-useful-exercises.html#cb206-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb206-4"><a href="potentially-useful-exercises.html#cb206-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(CO2_land<span class="sc">$</span>Pred_TurnOut_parab_norm_resid), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb206-5"><a href="potentially-useful-exercises.html#cb206-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_AgricAreaPercent, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb206-6"><a href="potentially-useful-exercises.html#cb206-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="fu">max</span>(CO2_land<span class="sc">$</span>Pred_TurnOut_Unif, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">+</span>  </span>
+<span id="cb206-7"><a href="potentially-useful-exercises.html#cb206-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb206-8"><a href="potentially-useful-exercises.html#cb206-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb206-9"><a href="potentially-useful-exercises.html#cb206-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb206-10"><a href="potentially-useful-exercises.html#cb206-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Agricultural Area (%)&quot;</span>,</span>
+<span id="cb206-11"><a href="potentially-useful-exercises.html#cb206-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Turn-out (%)&quot;</span>,</span>
+<span id="cb206-12"><a href="potentially-useful-exercises.html#cb206-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Simulation: deterministic and stochastic model (uniform error)&quot;</span></span>
+<span id="cb206-13"><a href="potentially-useful-exercises.html#cb206-13" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="576" /></p>
+</div>
+<div id="taken-out-from-week-4" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Taken out from Week 4<a href="potentially-useful-exercises.html#taken-out-from-week-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="potentially-useful-exercises.html#cb207-1" tabindex="-1"></a><span class="co"># ## Interactive Line Plot</span></span>
+<span id="cb207-2"><a href="potentially-useful-exercises.html#cb207-2" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-3"><a href="potentially-useful-exercises.html#cb207-3" tabindex="-1"></a><span class="co"># *&lt;span style=&quot;color: red;&quot;&gt;Should we exploit this here or somewhere else? I can make it work in R, but not in the book yet. If needed, I can check it out.&lt;/span&gt;.*</span></span>
+<span id="cb207-4"><a href="potentially-useful-exercises.html#cb207-4" tabindex="-1"></a></span>
+<span id="cb207-5"><a href="potentially-useful-exercises.html#cb207-5" tabindex="-1"></a><span class="co"># # Example data frame</span></span>
+<span id="cb207-6"><a href="potentially-useful-exercises.html#cb207-6" tabindex="-1"></a><span class="co"># data &lt;- data.frame(</span></span>
+<span id="cb207-7"><a href="potentially-useful-exercises.html#cb207-7" tabindex="-1"></a><span class="co">#   x = rnorm(100),</span></span>
+<span id="cb207-8"><a href="potentially-useful-exercises.html#cb207-8" tabindex="-1"></a><span class="co">#   y = rnorm(100)</span></span>
+<span id="cb207-9"><a href="potentially-useful-exercises.html#cb207-9" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb207-10"><a href="potentially-useful-exercises.html#cb207-10" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-11"><a href="potentially-useful-exercises.html#cb207-11" tabindex="-1"></a><span class="co"># # Shiny server function</span></span>
+<span id="cb207-12"><a href="potentially-useful-exercises.html#cb207-12" tabindex="-1"></a><span class="co"># server &lt;- function(input, output) {</span></span>
+<span id="cb207-13"><a href="potentially-useful-exercises.html#cb207-13" tabindex="-1"></a><span class="co">#   output$scatterPlot &lt;- renderPlot({</span></span>
+<span id="cb207-14"><a href="potentially-useful-exercises.html#cb207-14" tabindex="-1"></a><span class="co">#     ggplot(data, aes(x = x, y = y)) +  </span></span>
+<span id="cb207-15"><a href="potentially-useful-exercises.html#cb207-15" tabindex="-1"></a><span class="co">#       geom_point(size = 0) +</span></span>
+<span id="cb207-16"><a href="potentially-useful-exercises.html#cb207-16" tabindex="-1"></a><span class="co">#       geom_abline(intercept = input$intercept, slope = input$slope, color = &quot;red&quot;, size = 1)</span></span>
+<span id="cb207-17"><a href="potentially-useful-exercises.html#cb207-17" tabindex="-1"></a><span class="co">#   })</span></span>
+<span id="cb207-18"><a href="potentially-useful-exercises.html#cb207-18" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb207-19"><a href="potentially-useful-exercises.html#cb207-19" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-20"><a href="potentially-useful-exercises.html#cb207-20" tabindex="-1"></a><span class="co"># # Example data frame</span></span>
+<span id="cb207-21"><a href="potentially-useful-exercises.html#cb207-21" tabindex="-1"></a><span class="co"># data &lt;- data.frame(</span></span>
+<span id="cb207-22"><a href="potentially-useful-exercises.html#cb207-22" tabindex="-1"></a><span class="co">#   x = rnorm(100),</span></span>
+<span id="cb207-23"><a href="potentially-useful-exercises.html#cb207-23" tabindex="-1"></a><span class="co">#   y = rnorm(100)</span></span>
+<span id="cb207-24"><a href="potentially-useful-exercises.html#cb207-24" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb207-25"><a href="potentially-useful-exercises.html#cb207-25" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-26"><a href="potentially-useful-exercises.html#cb207-26" tabindex="-1"></a><span class="co"># # Shiny server function</span></span>
+<span id="cb207-27"><a href="potentially-useful-exercises.html#cb207-27" tabindex="-1"></a><span class="co"># server &lt;- function(input, output) {</span></span>
+<span id="cb207-28"><a href="potentially-useful-exercises.html#cb207-28" tabindex="-1"></a><span class="co">#   output$scatterPlot &lt;- renderPlot({</span></span>
+<span id="cb207-29"><a href="potentially-useful-exercises.html#cb207-29" tabindex="-1"></a><span class="co">#     ggplot(data, aes(x = x, y = y)) +  </span></span>
+<span id="cb207-30"><a href="potentially-useful-exercises.html#cb207-30" tabindex="-1"></a><span class="co">#       geom_point(size = 0) +</span></span>
+<span id="cb207-31"><a href="potentially-useful-exercises.html#cb207-31" tabindex="-1"></a><span class="co">#       geom_abline(intercept = input$intercept, slope = input$slope, color = &quot;red&quot;, size = 1)</span></span>
+<span id="cb207-32"><a href="potentially-useful-exercises.html#cb207-32" tabindex="-1"></a><span class="co">#   })</span></span>
+<span id="cb207-33"><a href="potentially-useful-exercises.html#cb207-33" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb207-34"><a href="potentially-useful-exercises.html#cb207-34" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-35"><a href="potentially-useful-exercises.html#cb207-35" tabindex="-1"></a><span class="co"># update.packages(ask = FALSE)</span></span>
+<span id="cb207-36"><a href="potentially-useful-exercises.html#cb207-36" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-37"><a href="potentially-useful-exercises.html#cb207-37" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-38"><a href="potentially-useful-exercises.html#cb207-38" tabindex="-1"></a><span class="co"># library(shiny)</span></span>
+<span id="cb207-39"><a href="potentially-useful-exercises.html#cb207-39" tabindex="-1"></a><span class="co"># library(ggplot2)</span></span>
+<span id="cb207-40"><a href="potentially-useful-exercises.html#cb207-40" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-41"><a href="potentially-useful-exercises.html#cb207-41" tabindex="-1"></a><span class="co"># ui &lt;- fluidPage(</span></span>
+<span id="cb207-42"><a href="potentially-useful-exercises.html#cb207-42" tabindex="-1"></a><span class="co">#   titlePanel(&quot;Interactive Line Plot&quot;),</span></span>
+<span id="cb207-43"><a href="potentially-useful-exercises.html#cb207-43" tabindex="-1"></a><span class="co">#   sidebarLayout(</span></span>
+<span id="cb207-44"><a href="potentially-useful-exercises.html#cb207-44" tabindex="-1"></a><span class="co">#     sidebarPanel(</span></span>
+<span id="cb207-45"><a href="potentially-useful-exercises.html#cb207-45" tabindex="-1"></a><span class="co">#       sliderInput(&quot;intercept&quot;, &quot;Intercept:&quot;, min = -10, max = 10, value = 0),</span></span>
+<span id="cb207-46"><a href="potentially-useful-exercises.html#cb207-46" tabindex="-1"></a><span class="co">#       sliderInput(&quot;slope&quot;, &quot;Slope:&quot;, min = -10, max = 10, value = 1)</span></span>
+<span id="cb207-47"><a href="potentially-useful-exercises.html#cb207-47" tabindex="-1"></a><span class="co">#     ),</span></span>
+<span id="cb207-48"><a href="potentially-useful-exercises.html#cb207-48" tabindex="-1"></a><span class="co">#     mainPanel(</span></span>
+<span id="cb207-49"><a href="potentially-useful-exercises.html#cb207-49" tabindex="-1"></a><span class="co">#       plotOutput(&quot;scatterPlot&quot;)</span></span>
+<span id="cb207-50"><a href="potentially-useful-exercises.html#cb207-50" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb207-51"><a href="potentially-useful-exercises.html#cb207-51" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb207-52"><a href="potentially-useful-exercises.html#cb207-52" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb207-53"><a href="potentially-useful-exercises.html#cb207-53" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-54"><a href="potentially-useful-exercises.html#cb207-54" tabindex="-1"></a><span class="co"># server &lt;- function(input, output) {</span></span>
+<span id="cb207-55"><a href="potentially-useful-exercises.html#cb207-55" tabindex="-1"></a><span class="co">#   output$scatterPlot &lt;- renderPlot({</span></span>
+<span id="cb207-56"><a href="potentially-useful-exercises.html#cb207-56" tabindex="-1"></a><span class="co">#     ggplot(data, aes(x = x, y = y)) +</span></span>
+<span id="cb207-57"><a href="potentially-useful-exercises.html#cb207-57" tabindex="-1"></a><span class="co">#       geom_point(size = 0) +</span></span>
+<span id="cb207-58"><a href="potentially-useful-exercises.html#cb207-58" tabindex="-1"></a><span class="co">#       geom_abline(intercept = input$intercept, slope = input$slope, color = &quot;red&quot;, size = 1)</span></span>
+<span id="cb207-59"><a href="potentially-useful-exercises.html#cb207-59" tabindex="-1"></a><span class="co">#   })</span></span>
+<span id="cb207-60"><a href="potentially-useful-exercises.html#cb207-60" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb207-61"><a href="potentially-useful-exercises.html#cb207-61" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-62"><a href="potentially-useful-exercises.html#cb207-62" tabindex="-1"></a><span class="co"># shinyApp(ui = ui, server = server)</span></span></code></pre></div>
+<div id="simulated-data-3" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Simulated data<a href="potentially-useful-exercises.html#simulated-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="potentially-useful-exercises.html#cb208-1" tabindex="-1"></a><span class="co"># 1. In order to see the logic behind the $R^2$, first estimate the linear regression of `LeftToRight` on `Age`. Generate the variable `predicted_LeftToRight` with the generated parameters using [`predict()`](https://www.statology.org/r-lm-predict/) from the point 3 of the previous section (i.e., the one using real data).Generate the graph `predicted_LeftToRight` vs `Age`.</span></span>
+<span id="cb208-2"><a href="potentially-useful-exercises.html#cb208-2" tabindex="-1"></a></span>
+<span id="cb208-3"><a href="potentially-useful-exercises.html#cb208-3" tabindex="-1"></a><span class="co"># Report the regression here.</span></span>
+<span id="cb208-4"><a href="potentially-useful-exercises.html#cb208-4" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-5"><a href="potentially-useful-exercises.html#cb208-5" tabindex="-1"></a><span class="co"># result &lt;- lm(LeftToRight ~ age, data = selects19)</span></span>
+<span id="cb208-6"><a href="potentially-useful-exercises.html#cb208-6" tabindex="-1"></a><span class="co"># selects19$predicted_LeftToRight &lt;- predict(result)</span></span>
+<span id="cb208-7"><a href="potentially-useful-exercises.html#cb208-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-8"><a href="potentially-useful-exercises.html#cb208-8" tabindex="-1"></a><span class="co"># coeffs1 &lt;- coef(result)</span></span>
+<span id="cb208-9"><a href="potentially-useful-exercises.html#cb208-9" tabindex="-1"></a><span class="co"># rsq_sd1 &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-10"><a href="potentially-useful-exercises.html#cb208-10" tabindex="-1"></a><span class="co"># cat(&#39;The R2 is: &#39;, rsq_sd1, &#39;\n\nIntercept:&#39;,unname(coeffs1[1]), &#39;\n\nSlope:&#39;, unname(coeffs1[2]))</span></span>
+<span id="cb208-11"><a href="potentially-useful-exercises.html#cb208-11" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-12"><a href="potentially-useful-exercises.html#cb208-12" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-13"><a href="potentially-useful-exercises.html#cb208-13" tabindex="-1"></a><span class="co"># Report the graph here.</span></span>
+<span id="cb208-14"><a href="potentially-useful-exercises.html#cb208-14" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-15"><a href="potentially-useful-exercises.html#cb208-15" tabindex="-1"></a><span class="co"># # Calculate means for Y and X</span></span>
+<span id="cb208-16"><a href="potentially-useful-exercises.html#cb208-16" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$LeftToRight, na.rm = TRUE)</span></span>
+<span id="cb208-17"><a href="potentially-useful-exercises.html#cb208-17" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-18"><a href="potentially-useful-exercises.html#cb208-18" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-19"><a href="potentially-useful-exercises.html#cb208-19" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-20"><a href="potentially-useful-exercises.html#cb208-20" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = predicted_LeftToRight)) +</span></span>
+<span id="cb208-21"><a href="potentially-useful-exercises.html#cb208-21" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-22"><a href="potentially-useful-exercises.html#cb208-22" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-23"><a href="potentially-useful-exercises.html#cb208-23" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-24"><a href="potentially-useful-exercises.html#cb208-24" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-25"><a href="potentially-useful-exercises.html#cb208-25" tabindex="-1"></a><span class="co">#     limits = c(0, 10),</span></span>
+<span id="cb208-26"><a href="potentially-useful-exercises.html#cb208-26" tabindex="-1"></a><span class="co">#     breaks = seq(0, 10, by = 1)</span></span>
+<span id="cb208-27"><a href="potentially-useful-exercises.html#cb208-27" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-28"><a href="potentially-useful-exercises.html#cb208-28" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-29"><a href="potentially-useful-exercises.html#cb208-29" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-30"><a href="potentially-useful-exercises.html#cb208-30" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-31"><a href="potentially-useful-exercises.html#cb208-31" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-32"><a href="potentially-useful-exercises.html#cb208-32" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-33"><a href="potentially-useful-exercises.html#cb208-33" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-34"><a href="potentially-useful-exercises.html#cb208-34" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-35"><a href="potentially-useful-exercises.html#cb208-35" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-36"><a href="potentially-useful-exercises.html#cb208-36" tabindex="-1"></a><span class="co">#     y = &quot;Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-37"><a href="potentially-useful-exercises.html#cb208-37" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences (determ. sim.)&quot;</span></span>
+<span id="cb208-38"><a href="potentially-useful-exercises.html#cb208-38" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-39"><a href="potentially-useful-exercises.html#cb208-39" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-40"><a href="potentially-useful-exercises.html#cb208-40" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-41"><a href="potentially-useful-exercises.html#cb208-41" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-42"><a href="potentially-useful-exercises.html#cb208-42" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-43"><a href="potentially-useful-exercises.html#cb208-43" tabindex="-1"></a><span class="co"># 2. Now generate the normally distributed residuals with mean zero and the same variance as the residuals of the model from the previous point.</span></span>
+<span id="cb208-44"><a href="potentially-useful-exercises.html#cb208-44" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-45"><a href="potentially-useful-exercises.html#cb208-45" tabindex="-1"></a><span class="co"># # Calculate the variance of the residuals</span></span>
+<span id="cb208-46"><a href="potentially-useful-exercises.html#cb208-46" tabindex="-1"></a><span class="co"># selects19$residual &lt;- resid(result)</span></span>
+<span id="cb208-47"><a href="potentially-useful-exercises.html#cb208-47" tabindex="-1"></a><span class="co"># residual_sd &lt;- sqrt(var(resid(result)))</span></span>
+<span id="cb208-48"><a href="potentially-useful-exercises.html#cb208-48" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-49"><a href="potentially-useful-exercises.html#cb208-49" tabindex="-1"></a><span class="co"># # Set the seed for reproducibility</span></span>
+<span id="cb208-50"><a href="potentially-useful-exercises.html#cb208-50" tabindex="-1"></a><span class="co"># set.seed(0)</span></span>
+<span id="cb208-51"><a href="potentially-useful-exercises.html#cb208-51" tabindex="-1"></a><span class="co"># selects19$NormResiduals1 &lt;- rnorm(nrow(selects19), mean = 0, sd = residual_sd)</span></span>
+<span id="cb208-52"><a href="potentially-useful-exercises.html#cb208-52" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-53"><a href="potentially-useful-exercises.html#cb208-53" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-54"><a href="potentially-useful-exercises.html#cb208-54" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-55"><a href="potentially-useful-exercises.html#cb208-55" tabindex="-1"></a><span class="co"># 3. Simulate new data using both the deterministic  (i.e., the the parameters estimated immediately above) and stochastic component (i.e., the residuals form the previous point). Graph the simulated data.</span></span>
+<span id="cb208-56"><a href="potentially-useful-exercises.html#cb208-56" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-57"><a href="potentially-useful-exercises.html#cb208-57" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-58"><a href="potentially-useful-exercises.html#cb208-58" tabindex="-1"></a><span class="co"># selects19$Sim_LeftToRight_Det_Stoch &lt;- selects19$predicted_LeftToRight + selects19$NormResiduals1</span></span>
+<span id="cb208-59"><a href="potentially-useful-exercises.html#cb208-59" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-60"><a href="potentially-useful-exercises.html#cb208-60" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-61"><a href="potentially-useful-exercises.html#cb208-61" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$Sim_LeftToRight_Det_Stoch, na.rm = TRUE)</span></span>
+<span id="cb208-62"><a href="potentially-useful-exercises.html#cb208-62" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-63"><a href="potentially-useful-exercises.html#cb208-63" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-64"><a href="potentially-useful-exercises.html#cb208-64" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-65"><a href="potentially-useful-exercises.html#cb208-65" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch)) +</span></span>
+<span id="cb208-66"><a href="potentially-useful-exercises.html#cb208-66" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-67"><a href="potentially-useful-exercises.html#cb208-67" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-68"><a href="potentially-useful-exercises.html#cb208-68" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-69"><a href="potentially-useful-exercises.html#cb208-69" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-70"><a href="potentially-useful-exercises.html#cb208-70" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-71"><a href="potentially-useful-exercises.html#cb208-71" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-72"><a href="potentially-useful-exercises.html#cb208-72" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-73"><a href="potentially-useful-exercises.html#cb208-73" tabindex="-1"></a><span class="co">#     limits = c(0, 10),</span></span>
+<span id="cb208-74"><a href="potentially-useful-exercises.html#cb208-74" tabindex="-1"></a><span class="co">#     breaks = seq(0, 10, by = 1)) +</span></span>
+<span id="cb208-75"><a href="potentially-useful-exercises.html#cb208-75" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-76"><a href="potentially-useful-exercises.html#cb208-76" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-77"><a href="potentially-useful-exercises.html#cb208-77" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-78"><a href="potentially-useful-exercises.html#cb208-78" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-79"><a href="potentially-useful-exercises.html#cb208-79" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-80"><a href="potentially-useful-exercises.html#cb208-80" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-81"><a href="potentially-useful-exercises.html#cb208-81" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-82"><a href="potentially-useful-exercises.html#cb208-82" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-83"><a href="potentially-useful-exercises.html#cb208-83" tabindex="-1"></a><span class="co">#     y = &quot;Simulation: Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-84"><a href="potentially-useful-exercises.html#cb208-84" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences \n(determ.&amp; stoch. sim.)&quot;</span></span>
+<span id="cb208-85"><a href="potentially-useful-exercises.html#cb208-85" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-86"><a href="potentially-useful-exercises.html#cb208-86" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-87"><a href="potentially-useful-exercises.html#cb208-87" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-88"><a href="potentially-useful-exercises.html#cb208-88" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-89"><a href="potentially-useful-exercises.html#cb208-89" tabindex="-1"></a><span class="co"># 4. Now, estimate the regression between the real `age` and simulated `Sim_LeftToRight_Det_Stoch`. Once you do that, generate the $R^2$ for the model.</span></span>
+<span id="cb208-90"><a href="potentially-useful-exercises.html#cb208-90" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-91"><a href="potentially-useful-exercises.html#cb208-91" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-92"><a href="potentially-useful-exercises.html#cb208-92" tabindex="-1"></a><span class="co"># result &lt;- lm(LeftToRight ~ age, data = selects19)</span></span>
+<span id="cb208-93"><a href="potentially-useful-exercises.html#cb208-93" tabindex="-1"></a><span class="co"># rsq_sd1 &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-94"><a href="potentially-useful-exercises.html#cb208-94" tabindex="-1"></a><span class="co"># cat(&#39;The R2 is: &#39;, rsq_sd1)</span></span>
+<span id="cb208-95"><a href="potentially-useful-exercises.html#cb208-95" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-96"><a href="potentially-useful-exercises.html#cb208-96" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-97"><a href="potentially-useful-exercises.html#cb208-97" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-98"><a href="potentially-useful-exercises.html#cb208-98" tabindex="-1"></a><span class="co"># 5. Repeat the previous three points but use half the standard deviation of the model of point 1. Is the $R^2$ lower now? Why? See [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry to understand the intuition: pay special attention to the graph with the red and blue squares.</span></span>
+<span id="cb208-99"><a href="potentially-useful-exercises.html#cb208-99" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-100"><a href="potentially-useful-exercises.html#cb208-100" tabindex="-1"></a><span class="co"># Generate the residuals here.</span></span>
+<span id="cb208-101"><a href="potentially-useful-exercises.html#cb208-101" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-102"><a href="potentially-useful-exercises.html#cb208-102" tabindex="-1"></a><span class="co"># # Set the seed for reproducibility</span></span>
+<span id="cb208-103"><a href="potentially-useful-exercises.html#cb208-103" tabindex="-1"></a><span class="co"># set.seed(0)</span></span>
+<span id="cb208-104"><a href="potentially-useful-exercises.html#cb208-104" tabindex="-1"></a><span class="co"># selects19$NormResiduals10 &lt;- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.1)</span></span>
+<span id="cb208-105"><a href="potentially-useful-exercises.html#cb208-105" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-106"><a href="potentially-useful-exercises.html#cb208-106" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-107"><a href="potentially-useful-exercises.html#cb208-107" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-108"><a href="potentially-useful-exercises.html#cb208-108" tabindex="-1"></a><span class="co"># Simulate new data and graph it here.</span></span>
+<span id="cb208-109"><a href="potentially-useful-exercises.html#cb208-109" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-110"><a href="potentially-useful-exercises.html#cb208-110" tabindex="-1"></a><span class="co"># selects19$Sim_LeftToRight_Det_Stoch_sd10 &lt;- selects19$predicted_LeftToRight + selects19$NormResiduals10</span></span>
+<span id="cb208-111"><a href="potentially-useful-exercises.html#cb208-111" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-112"><a href="potentially-useful-exercises.html#cb208-112" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-113"><a href="potentially-useful-exercises.html#cb208-113" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$Sim_LeftToRight_Det_Stoch_sd10, na.rm = TRUE)</span></span>
+<span id="cb208-114"><a href="potentially-useful-exercises.html#cb208-114" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-115"><a href="potentially-useful-exercises.html#cb208-115" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-116"><a href="potentially-useful-exercises.html#cb208-116" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-117"><a href="potentially-useful-exercises.html#cb208-117" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_sd10)) +</span></span>
+<span id="cb208-118"><a href="potentially-useful-exercises.html#cb208-118" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-119"><a href="potentially-useful-exercises.html#cb208-119" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-120"><a href="potentially-useful-exercises.html#cb208-120" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-121"><a href="potentially-useful-exercises.html#cb208-121" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-122"><a href="potentially-useful-exercises.html#cb208-122" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-123"><a href="potentially-useful-exercises.html#cb208-123" tabindex="-1"></a><span class="co">#     limits = c(0, 10),</span></span>
+<span id="cb208-124"><a href="potentially-useful-exercises.html#cb208-124" tabindex="-1"></a><span class="co">#     breaks = seq(0, 10, by = 1)) +</span></span>
+<span id="cb208-125"><a href="potentially-useful-exercises.html#cb208-125" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-126"><a href="potentially-useful-exercises.html#cb208-126" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-127"><a href="potentially-useful-exercises.html#cb208-127" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-128"><a href="potentially-useful-exercises.html#cb208-128" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-129"><a href="potentially-useful-exercises.html#cb208-129" tabindex="-1"></a><span class="co">#     y = &quot;Simulated data (half sd): Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-130"><a href="potentially-useful-exercises.html#cb208-130" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences&quot;</span></span>
+<span id="cb208-131"><a href="potentially-useful-exercises.html#cb208-131" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-132"><a href="potentially-useful-exercises.html#cb208-132" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-133"><a href="potentially-useful-exercises.html#cb208-133" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-134"><a href="potentially-useful-exercises.html#cb208-134" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-135"><a href="potentially-useful-exercises.html#cb208-135" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-136"><a href="potentially-useful-exercises.html#cb208-136" tabindex="-1"></a><span class="co"># Report the new $R^2$ here:</span></span>
+<span id="cb208-137"><a href="potentially-useful-exercises.html#cb208-137" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-138"><a href="potentially-useful-exercises.html#cb208-138" tabindex="-1"></a><span class="co"># result &lt;- lm(Sim_LeftToRight_Det_Stoch_sd10 ~ age, data = selects19)</span></span>
+<span id="cb208-139"><a href="potentially-useful-exercises.html#cb208-139" tabindex="-1"></a><span class="co"># rsq_sd10 &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-140"><a href="potentially-useful-exercises.html#cb208-140" tabindex="-1"></a><span class="co"># cat(&#39;The R2 is: &#39;, rsq_sd10)</span></span>
+<span id="cb208-141"><a href="potentially-useful-exercises.html#cb208-141" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-142"><a href="potentially-useful-exercises.html#cb208-142" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-143"><a href="potentially-useful-exercises.html#cb208-143" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-144"><a href="potentially-useful-exercises.html#cb208-144" tabindex="-1"></a><span class="co"># 6. Repeat the previous point but use a hundredth the standard deviation of the model of point 1. Is the $R^2$ lower now? Why?</span></span>
+<span id="cb208-145"><a href="potentially-useful-exercises.html#cb208-145" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-146"><a href="potentially-useful-exercises.html#cb208-146" tabindex="-1"></a><span class="co"># Generate the residuals here.</span></span>
+<span id="cb208-147"><a href="potentially-useful-exercises.html#cb208-147" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-148"><a href="potentially-useful-exercises.html#cb208-148" tabindex="-1"></a><span class="co"># # Set the seed for reproducibility</span></span>
+<span id="cb208-149"><a href="potentially-useful-exercises.html#cb208-149" tabindex="-1"></a><span class="co"># set.seed(0)</span></span>
+<span id="cb208-150"><a href="potentially-useful-exercises.html#cb208-150" tabindex="-1"></a><span class="co"># selects19$NormResiduals100 &lt;- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.01)</span></span>
+<span id="cb208-151"><a href="potentially-useful-exercises.html#cb208-151" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-152"><a href="potentially-useful-exercises.html#cb208-152" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-153"><a href="potentially-useful-exercises.html#cb208-153" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-154"><a href="potentially-useful-exercises.html#cb208-154" tabindex="-1"></a><span class="co"># Simulate new data and graph it here.</span></span>
+<span id="cb208-155"><a href="potentially-useful-exercises.html#cb208-155" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-156"><a href="potentially-useful-exercises.html#cb208-156" tabindex="-1"></a><span class="co"># selects19$Sim_LeftToRight_Det_Stoch_hsd &lt;- selects19$predicted_LeftToRight + selects19$NormResiduals100</span></span>
+<span id="cb208-157"><a href="potentially-useful-exercises.html#cb208-157" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-158"><a href="potentially-useful-exercises.html#cb208-158" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-159"><a href="potentially-useful-exercises.html#cb208-159" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$Sim_LeftToRight_Det_Stoch_hsd, na.rm = TRUE)</span></span>
+<span id="cb208-160"><a href="potentially-useful-exercises.html#cb208-160" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-161"><a href="potentially-useful-exercises.html#cb208-161" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-162"><a href="potentially-useful-exercises.html#cb208-162" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-163"><a href="potentially-useful-exercises.html#cb208-163" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_hsd)) +</span></span>
+<span id="cb208-164"><a href="potentially-useful-exercises.html#cb208-164" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-165"><a href="potentially-useful-exercises.html#cb208-165" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-166"><a href="potentially-useful-exercises.html#cb208-166" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-167"><a href="potentially-useful-exercises.html#cb208-167" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-168"><a href="potentially-useful-exercises.html#cb208-168" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-169"><a href="potentially-useful-exercises.html#cb208-169" tabindex="-1"></a><span class="co">#     limits = c(0, 10),</span></span>
+<span id="cb208-170"><a href="potentially-useful-exercises.html#cb208-170" tabindex="-1"></a><span class="co">#     breaks = seq(0, 10, by = 1)) +</span></span>
+<span id="cb208-171"><a href="potentially-useful-exercises.html#cb208-171" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-172"><a href="potentially-useful-exercises.html#cb208-172" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-173"><a href="potentially-useful-exercises.html#cb208-173" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-174"><a href="potentially-useful-exercises.html#cb208-174" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-175"><a href="potentially-useful-exercises.html#cb208-175" tabindex="-1"></a><span class="co">#     y = &quot;Simulated data (half sd): Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-176"><a href="potentially-useful-exercises.html#cb208-176" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences&quot;</span></span>
+<span id="cb208-177"><a href="potentially-useful-exercises.html#cb208-177" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-178"><a href="potentially-useful-exercises.html#cb208-178" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-179"><a href="potentially-useful-exercises.html#cb208-179" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-180"><a href="potentially-useful-exercises.html#cb208-180" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-181"><a href="potentially-useful-exercises.html#cb208-181" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-182"><a href="potentially-useful-exercises.html#cb208-182" tabindex="-1"></a><span class="co"># Report the new $R^2$ here:</span></span>
+<span id="cb208-183"><a href="potentially-useful-exercises.html#cb208-183" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-184"><a href="potentially-useful-exercises.html#cb208-184" tabindex="-1"></a><span class="co"># result &lt;- lm(Sim_LeftToRight_Det_Stoch_hsd ~ age, data = selects19)</span></span>
+<span id="cb208-185"><a href="potentially-useful-exercises.html#cb208-185" tabindex="-1"></a><span class="co"># rsq_sd100 &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-186"><a href="potentially-useful-exercises.html#cb208-186" tabindex="-1"></a><span class="co"># cat(&#39;The R2 is: &#39;, rsq_sd100)</span></span>
+<span id="cb208-187"><a href="potentially-useful-exercises.html#cb208-187" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-188"><a href="potentially-useful-exercises.html#cb208-188" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-189"><a href="potentially-useful-exercises.html#cb208-189" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-190"><a href="potentially-useful-exercises.html#cb208-190" tabindex="-1"></a><span class="co"># 7. Present in a table the $R^2$ for each value of the standard deviation.</span></span>
+<span id="cb208-191"><a href="potentially-useful-exercises.html#cb208-191" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-192"><a href="potentially-useful-exercises.html#cb208-192" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-193"><a href="potentially-useful-exercises.html#cb208-193" tabindex="-1"></a><span class="co"># table &lt;- data.frame(</span></span>
+<span id="cb208-194"><a href="potentially-useful-exercises.html#cb208-194" tabindex="-1"></a><span class="co">#   SD = c(1, 0.1, 0.01),</span></span>
+<span id="cb208-195"><a href="potentially-useful-exercises.html#cb208-195" tabindex="-1"></a><span class="co">#   R2 = c(rsq_sd1, rsq_sd10, rsq_sd100)    # Replace these with the actual R-squared values</span></span>
+<span id="cb208-196"><a href="potentially-useful-exercises.html#cb208-196" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb208-197"><a href="potentially-useful-exercises.html#cb208-197" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-198"><a href="potentially-useful-exercises.html#cb208-198" tabindex="-1"></a><span class="co"># print(table)</span></span>
+<span id="cb208-199"><a href="potentially-useful-exercises.html#cb208-199" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-200"><a href="potentially-useful-exercises.html#cb208-200" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-201"><a href="potentially-useful-exercises.html#cb208-201" tabindex="-1"></a><span class="co"># 8. Graph $R^2$ agains the standard deviation fraction. Fit a linear regression line.</span></span>
+<span id="cb208-202"><a href="potentially-useful-exercises.html#cb208-202" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-203"><a href="potentially-useful-exercises.html#cb208-203" tabindex="-1"></a><span class="co"># ggplot(table, aes(x = SD, y = R2)) +</span></span>
+<span id="cb208-204"><a href="potentially-useful-exercises.html#cb208-204" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-205"><a href="potentially-useful-exercises.html#cb208-205" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;green&quot;)+</span></span>
+<span id="cb208-206"><a href="potentially-useful-exercises.html#cb208-206" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-207"><a href="potentially-useful-exercises.html#cb208-207" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-208"><a href="potentially-useful-exercises.html#cb208-208" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-209"><a href="potentially-useful-exercises.html#cb208-209" tabindex="-1"></a><span class="co">#     x = &quot;Fraction of standard deviation&quot;,</span></span>
+<span id="cb208-210"><a href="potentially-useful-exercises.html#cb208-210" tabindex="-1"></a><span class="co">#     y = &quot;R2&quot;,</span></span>
+<span id="cb208-211"><a href="potentially-useful-exercises.html#cb208-211" tabindex="-1"></a><span class="co">#     title = &quot;Relation between R2 and standard deviation of residuals&quot;</span></span>
+<span id="cb208-212"><a href="potentially-useful-exercises.html#cb208-212" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-213"><a href="potentially-useful-exercises.html#cb208-213" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-214"><a href="potentially-useful-exercises.html#cb208-214" tabindex="-1"></a><span class="co"># 9. [Optional] Graph $R^2$ against the standard deviation fraction. Fit a regression line with a polynomial of degree 2. The regression line fits the data better. Is the polynomial regression more informative than the linear regression? Why? What lesson does this graph give you in terms of the importance of understanding the theoretical relations between variables beyond what an empirical approach could suggest? What does it teach you regarding the tension between under- and over-fitting data?</span></span>
+<span id="cb208-215"><a href="potentially-useful-exercises.html#cb208-215" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-216"><a href="potentially-useful-exercises.html#cb208-216" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-217"><a href="potentially-useful-exercises.html#cb208-217" tabindex="-1"></a><span class="co"># ggplot(table, aes(x = SD, y = R2)) +</span></span>
+<span id="cb208-218"><a href="potentially-useful-exercises.html#cb208-218" tabindex="-1"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb208-219"><a href="potentially-useful-exercises.html#cb208-219" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2), se = FALSE, color=&#39;green&#39;) +</span></span>
+<span id="cb208-220"><a href="potentially-useful-exercises.html#cb208-220" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-221"><a href="potentially-useful-exercises.html#cb208-221" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-222"><a href="potentially-useful-exercises.html#cb208-222" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-223"><a href="potentially-useful-exercises.html#cb208-223" tabindex="-1"></a><span class="co">#     x = &quot;Fraction of standard deviation&quot;,</span></span>
+<span id="cb208-224"><a href="potentially-useful-exercises.html#cb208-224" tabindex="-1"></a><span class="co">#     y = &quot;R2&quot;,</span></span>
+<span id="cb208-225"><a href="potentially-useful-exercises.html#cb208-225" tabindex="-1"></a><span class="co">#     title = &quot;Relation between R2 and standard deviation of residuals&quot;</span></span>
+<span id="cb208-226"><a href="potentially-useful-exercises.html#cb208-226" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-227"><a href="potentially-useful-exercises.html#cb208-227" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-228"><a href="potentially-useful-exercises.html#cb208-228" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-229"><a href="potentially-useful-exercises.html#cb208-229" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-230"><a href="potentially-useful-exercises.html#cb208-230" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-231"><a href="potentially-useful-exercises.html#cb208-231" tabindex="-1"></a><span class="co"># 10. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time multiply the slope&#39;s parameter by 5, while keeping the intercept unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.</span></span>
+<span id="cb208-232"><a href="potentially-useful-exercises.html#cb208-232" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-233"><a href="potentially-useful-exercises.html#cb208-233" tabindex="-1"></a><span class="co"># Print here</span></span>
+<span id="cb208-234"><a href="potentially-useful-exercises.html#cb208-234" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-235"><a href="potentially-useful-exercises.html#cb208-235" tabindex="-1"></a><span class="co"># result &lt;- lm(LeftToRight ~ age, data = selects19)</span></span>
+<span id="cb208-236"><a href="potentially-useful-exercises.html#cb208-236" tabindex="-1"></a><span class="co"># # summary(result)</span></span>
+<span id="cb208-237"><a href="potentially-useful-exercises.html#cb208-237" tabindex="-1"></a><span class="co"># coeffs &lt;- coef(result)</span></span>
+<span id="cb208-238"><a href="potentially-useful-exercises.html#cb208-238" tabindex="-1"></a><span class="co"># cat(&#39;Intercept:&#39;,unname(coeffs[1]), &#39;\n\nSlope:&#39;, unname(coeffs[2]))</span></span>
+<span id="cb208-239"><a href="potentially-useful-exercises.html#cb208-239" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-240"><a href="potentially-useful-exercises.html#cb208-240" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-241"><a href="potentially-useful-exercises.html#cb208-241" tabindex="-1"></a><span class="co"># Predict with the adjusted slope here.</span></span>
+<span id="cb208-242"><a href="potentially-useful-exercises.html#cb208-242" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-243"><a href="potentially-useful-exercises.html#cb208-243" tabindex="-1"></a><span class="co"># selects19$predicted_LeftToRight_AdjSlope &lt;- unname(coeffs[1])+(unname(coeffs[2])*5)*selects19$age</span></span>
+<span id="cb208-244"><a href="potentially-useful-exercises.html#cb208-244" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-245"><a href="potentially-useful-exercises.html#cb208-245" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-246"><a href="potentially-useful-exercises.html#cb208-246" tabindex="-1"></a><span class="co"># Generate the graph here.</span></span>
+<span id="cb208-247"><a href="potentially-useful-exercises.html#cb208-247" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-248"><a href="potentially-useful-exercises.html#cb208-248" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-249"><a href="potentially-useful-exercises.html#cb208-249" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$predicted_LeftToRight_AdjSlope, na.rm = TRUE)</span></span>
+<span id="cb208-250"><a href="potentially-useful-exercises.html#cb208-250" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-251"><a href="potentially-useful-exercises.html#cb208-251" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-252"><a href="potentially-useful-exercises.html#cb208-252" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-253"><a href="potentially-useful-exercises.html#cb208-253" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope)) +</span></span>
+<span id="cb208-254"><a href="potentially-useful-exercises.html#cb208-254" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-255"><a href="potentially-useful-exercises.html#cb208-255" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-256"><a href="potentially-useful-exercises.html#cb208-256" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-257"><a href="potentially-useful-exercises.html#cb208-257" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-258"><a href="potentially-useful-exercises.html#cb208-258" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-259"><a href="potentially-useful-exercises.html#cb208-259" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-260"><a href="potentially-useful-exercises.html#cb208-260" tabindex="-1"></a><span class="co">#     limits = c(0, 15),</span></span>
+<span id="cb208-261"><a href="potentially-useful-exercises.html#cb208-261" tabindex="-1"></a><span class="co">#     breaks = seq(0, 20, by = 1)) +</span></span>
+<span id="cb208-262"><a href="potentially-useful-exercises.html#cb208-262" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-263"><a href="potentially-useful-exercises.html#cb208-263" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-264"><a href="potentially-useful-exercises.html#cb208-264" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-265"><a href="potentially-useful-exercises.html#cb208-265" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-266"><a href="potentially-useful-exercises.html#cb208-266" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-267"><a href="potentially-useful-exercises.html#cb208-267" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-268"><a href="potentially-useful-exercises.html#cb208-268" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-269"><a href="potentially-useful-exercises.html#cb208-269" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-270"><a href="potentially-useful-exercises.html#cb208-270" tabindex="-1"></a><span class="co">#     y = &quot;Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-271"><a href="potentially-useful-exercises.html#cb208-271" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences (adj. slope)&quot;</span></span>
+<span id="cb208-272"><a href="potentially-useful-exercises.html#cb208-272" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-273"><a href="potentially-useful-exercises.html#cb208-273" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-274"><a href="potentially-useful-exercises.html#cb208-274" tabindex="-1"></a><span class="co"># 11. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjSlope_Stoch`. Generate the graph `predicted_LeftToRight_AdjSlope_Stoch` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?</span></span>
+<span id="cb208-275"><a href="potentially-useful-exercises.html#cb208-275" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-276"><a href="potentially-useful-exercises.html#cb208-276" tabindex="-1"></a><span class="co"># Report the simulation and the graph here.</span></span>
+<span id="cb208-277"><a href="potentially-useful-exercises.html#cb208-277" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-278"><a href="potentially-useful-exercises.html#cb208-278" tabindex="-1"></a><span class="co"># selects19$predicted_LeftToRight_AdjSlope_Stoch &lt;- selects19$predicted_LeftToRight_AdjSlope + selects19$NormResiduals1</span></span>
+<span id="cb208-279"><a href="potentially-useful-exercises.html#cb208-279" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-280"><a href="potentially-useful-exercises.html#cb208-280" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-281"><a href="potentially-useful-exercises.html#cb208-281" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$predicted_LeftToRight_AdjSlope_Stoch, na.rm = TRUE)</span></span>
+<span id="cb208-282"><a href="potentially-useful-exercises.html#cb208-282" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-283"><a href="potentially-useful-exercises.html#cb208-283" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-284"><a href="potentially-useful-exercises.html#cb208-284" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-285"><a href="potentially-useful-exercises.html#cb208-285" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope_Stoch)) +</span></span>
+<span id="cb208-286"><a href="potentially-useful-exercises.html#cb208-286" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-287"><a href="potentially-useful-exercises.html#cb208-287" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-288"><a href="potentially-useful-exercises.html#cb208-288" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-289"><a href="potentially-useful-exercises.html#cb208-289" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-290"><a href="potentially-useful-exercises.html#cb208-290" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-291"><a href="potentially-useful-exercises.html#cb208-291" tabindex="-1"></a><span class="co">#     limits = c(0, 20),</span></span>
+<span id="cb208-292"><a href="potentially-useful-exercises.html#cb208-292" tabindex="-1"></a><span class="co">#     breaks = seq(0, 20, by = 1)) +</span></span>
+<span id="cb208-293"><a href="potentially-useful-exercises.html#cb208-293" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-294"><a href="potentially-useful-exercises.html#cb208-294" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-295"><a href="potentially-useful-exercises.html#cb208-295" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-296"><a href="potentially-useful-exercises.html#cb208-296" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-297"><a href="potentially-useful-exercises.html#cb208-297" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-298"><a href="potentially-useful-exercises.html#cb208-298" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-299"><a href="potentially-useful-exercises.html#cb208-299" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-300"><a href="potentially-useful-exercises.html#cb208-300" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-301"><a href="potentially-useful-exercises.html#cb208-301" tabindex="-1"></a><span class="co">#     y = &quot;Simulation: Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-302"><a href="potentially-useful-exercises.html#cb208-302" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences \n(determ.&amp; stoch. sim. with adjusted slope)&quot;</span></span>
+<span id="cb208-303"><a href="potentially-useful-exercises.html#cb208-303" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-304"><a href="potentially-useful-exercises.html#cb208-304" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-305"><a href="potentially-useful-exercises.html#cb208-305" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-306"><a href="potentially-useful-exercises.html#cb208-306" tabindex="-1"></a><span class="co"># Report the new $R^2$ here:</span></span>
+<span id="cb208-307"><a href="potentially-useful-exercises.html#cb208-307" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-308"><a href="potentially-useful-exercises.html#cb208-308" tabindex="-1"></a><span class="co"># result &lt;- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)</span></span>
+<span id="cb208-309"><a href="potentially-useful-exercises.html#cb208-309" tabindex="-1"></a><span class="co"># rsq_sd1_AdjSlope &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-310"><a href="potentially-useful-exercises.html#cb208-310" tabindex="-1"></a><span class="co"># cat(&#39;The R2 is: &#39;, rsq_sd1_AdjSlope)</span></span>
+<span id="cb208-311"><a href="potentially-useful-exercises.html#cb208-311" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-312"><a href="potentially-useful-exercises.html#cb208-312" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-313"><a href="potentially-useful-exercises.html#cb208-313" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-314"><a href="potentially-useful-exercises.html#cb208-314" tabindex="-1"></a><span class="co"># Report why is the new $R^2$ higher than the one in point 4?</span></span>
+<span id="cb208-315"><a href="potentially-useful-exercises.html#cb208-315" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-316"><a href="potentially-useful-exercises.html#cb208-316" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-317"><a href="potentially-useful-exercises.html#cb208-317" tabindex="-1"></a><span class="co"># print(&#39;The reason the R2 increased is that, while the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged), by increasing the slope of the generating process, the average distance between each observation and the average observation increased (i.e., Y\&#39;s variance increased). See the graph with the red and blue squares mentioned in point 5.&#39;)</span></span>
+<span id="cb208-318"><a href="potentially-useful-exercises.html#cb208-318" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-319"><a href="potentially-useful-exercises.html#cb208-319" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-320"><a href="potentially-useful-exercises.html#cb208-320" tabindex="-1"></a><span class="co"># 333333333333</span></span>
+<span id="cb208-321"><a href="potentially-useful-exercises.html#cb208-321" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-322"><a href="potentially-useful-exercises.html#cb208-322" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-323"><a href="potentially-useful-exercises.html#cb208-323" tabindex="-1"></a><span class="co"># 12. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time increase in two units the *intercept&#39;s* parameter (not the *slope&#39;s* parameter as in the point 10), while keeping the slope unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.</span></span>
+<span id="cb208-324"><a href="potentially-useful-exercises.html#cb208-324" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-325"><a href="potentially-useful-exercises.html#cb208-325" tabindex="-1"></a><span class="co"># Print here</span></span>
+<span id="cb208-326"><a href="potentially-useful-exercises.html#cb208-326" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-327"><a href="potentially-useful-exercises.html#cb208-327" tabindex="-1"></a><span class="co"># result &lt;- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)</span></span>
+<span id="cb208-328"><a href="potentially-useful-exercises.html#cb208-328" tabindex="-1"></a><span class="co"># # summary(result)</span></span>
+<span id="cb208-329"><a href="potentially-useful-exercises.html#cb208-329" tabindex="-1"></a><span class="co"># coeffs12 &lt;- coef(result)</span></span>
+<span id="cb208-330"><a href="potentially-useful-exercises.html#cb208-330" tabindex="-1"></a><span class="co"># cat(&#39;Intercept:&#39;,unname(coeffs12[1]), &#39;\n\nSlope:&#39;, unname(coeffs12[2]))</span></span>
+<span id="cb208-331"><a href="potentially-useful-exercises.html#cb208-331" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-332"><a href="potentially-useful-exercises.html#cb208-332" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-333"><a href="potentially-useful-exercises.html#cb208-333" tabindex="-1"></a><span class="co"># Predict with the adjusted slope here.</span></span>
+<span id="cb208-334"><a href="potentially-useful-exercises.html#cb208-334" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-335"><a href="potentially-useful-exercises.html#cb208-335" tabindex="-1"></a><span class="co"># selects19$predicted_LeftToRight_AdjIntecept &lt;- unname(coeffs[1]+2)+(unname(coeffs[2]))*selects19$age</span></span>
+<span id="cb208-336"><a href="potentially-useful-exercises.html#cb208-336" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-337"><a href="potentially-useful-exercises.html#cb208-337" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-338"><a href="potentially-useful-exercises.html#cb208-338" tabindex="-1"></a><span class="co"># Generate the graph here.</span></span>
+<span id="cb208-339"><a href="potentially-useful-exercises.html#cb208-339" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-340"><a href="potentially-useful-exercises.html#cb208-340" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-341"><a href="potentially-useful-exercises.html#cb208-341" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$predicted_LeftToRight_AdjIntecept, na.rm = TRUE)</span></span>
+<span id="cb208-342"><a href="potentially-useful-exercises.html#cb208-342" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-343"><a href="potentially-useful-exercises.html#cb208-343" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-344"><a href="potentially-useful-exercises.html#cb208-344" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-345"><a href="potentially-useful-exercises.html#cb208-345" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntecept)) +</span></span>
+<span id="cb208-346"><a href="potentially-useful-exercises.html#cb208-346" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-347"><a href="potentially-useful-exercises.html#cb208-347" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-348"><a href="potentially-useful-exercises.html#cb208-348" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-349"><a href="potentially-useful-exercises.html#cb208-349" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-350"><a href="potentially-useful-exercises.html#cb208-350" tabindex="-1"></a><span class="co">#   theme(plot.title = element_text(hjust = 0.5)) +</span></span>
+<span id="cb208-351"><a href="potentially-useful-exercises.html#cb208-351" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-352"><a href="potentially-useful-exercises.html#cb208-352" tabindex="-1"></a><span class="co">#     limits = c(0, 15),</span></span>
+<span id="cb208-353"><a href="potentially-useful-exercises.html#cb208-353" tabindex="-1"></a><span class="co">#     breaks = seq(0, 20, by = 1)) +</span></span>
+<span id="cb208-354"><a href="potentially-useful-exercises.html#cb208-354" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-355"><a href="potentially-useful-exercises.html#cb208-355" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-356"><a href="potentially-useful-exercises.html#cb208-356" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-357"><a href="potentially-useful-exercises.html#cb208-357" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-358"><a href="potentially-useful-exercises.html#cb208-358" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-359"><a href="potentially-useful-exercises.html#cb208-359" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-360"><a href="potentially-useful-exercises.html#cb208-360" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-361"><a href="potentially-useful-exercises.html#cb208-361" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-362"><a href="potentially-useful-exercises.html#cb208-362" tabindex="-1"></a><span class="co">#     y = &quot;Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-363"><a href="potentially-useful-exercises.html#cb208-363" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences (adj. slope)&quot;</span></span>
+<span id="cb208-364"><a href="potentially-useful-exercises.html#cb208-364" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-365"><a href="potentially-useful-exercises.html#cb208-365" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-366"><a href="potentially-useful-exercises.html#cb208-366" tabindex="-1"></a><span class="co"># 13. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjIntercep_Stoch`. Generate the graph `predicted_LeftToRight_AdjIntecept` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?</span></span>
+<span id="cb208-367"><a href="potentially-useful-exercises.html#cb208-367" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-368"><a href="potentially-useful-exercises.html#cb208-368" tabindex="-1"></a><span class="co"># Report the simulation and the graph here.</span></span>
+<span id="cb208-369"><a href="potentially-useful-exercises.html#cb208-369" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-370"><a href="potentially-useful-exercises.html#cb208-370" tabindex="-1"></a><span class="co"># selects19$predicted_LeftToRight_AdjIntercept_Stoch &lt;- selects19$predicted_LeftToRight_AdjIntecept + selects19$residual</span></span>
+<span id="cb208-371"><a href="potentially-useful-exercises.html#cb208-371" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-372"><a href="potentially-useful-exercises.html#cb208-372" tabindex="-1"></a><span class="co"># #Means for Y and X</span></span>
+<span id="cb208-373"><a href="potentially-useful-exercises.html#cb208-373" tabindex="-1"></a><span class="co"># mean_LeftRight &lt;- mean(selects19$predicted_LeftToRight_AdjIntercept_Stoch, na.rm = TRUE)</span></span>
+<span id="cb208-374"><a href="potentially-useful-exercises.html#cb208-374" tabindex="-1"></a><span class="co"># mean_age &lt;- mean(selects19$age, na.rm = TRUE)</span></span>
+<span id="cb208-375"><a href="potentially-useful-exercises.html#cb208-375" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-376"><a href="potentially-useful-exercises.html#cb208-376" tabindex="-1"></a><span class="co"># # Create a scatter plot</span></span>
+<span id="cb208-377"><a href="potentially-useful-exercises.html#cb208-377" tabindex="-1"></a><span class="co"># ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntercept_Stoch)) +</span></span>
+<span id="cb208-378"><a href="potentially-useful-exercises.html#cb208-378" tabindex="-1"></a><span class="co">#   geom_point(size = 0) +</span></span>
+<span id="cb208-379"><a href="potentially-useful-exercises.html#cb208-379" tabindex="-1"></a><span class="co">#   geom_smooth(method = &quot;lm&quot;, formula = y ~ x, se = FALSE, color = &quot;red&quot;) +  # Adding the regression line</span></span>
+<span id="cb208-380"><a href="potentially-useful-exercises.html#cb208-380" tabindex="-1"></a><span class="co">#   geom_hline(yintercept = mean_LeftRight, linetype = &quot;dashed&quot;, color = &quot;green&quot;) +  # Horizontal line at the mean of y</span></span>
+<span id="cb208-381"><a href="potentially-useful-exercises.html#cb208-381" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean_age, linetype = &quot;dashed&quot;, color = &quot;orange&quot;) +  # Vertical line at the mean of x</span></span>
+<span id="cb208-382"><a href="potentially-useful-exercises.html#cb208-382" tabindex="-1"></a><span class="co">#   scale_y_continuous(</span></span>
+<span id="cb208-383"><a href="potentially-useful-exercises.html#cb208-383" tabindex="-1"></a><span class="co">#     limits = c(0, 20),</span></span>
+<span id="cb208-384"><a href="potentially-useful-exercises.html#cb208-384" tabindex="-1"></a><span class="co">#     breaks = seq(0, 20, by = 1)) +</span></span>
+<span id="cb208-385"><a href="potentially-useful-exercises.html#cb208-385" tabindex="-1"></a><span class="co">#   theme_minimal() +</span></span>
+<span id="cb208-386"><a href="potentially-useful-exercises.html#cb208-386" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb208-387"><a href="potentially-useful-exercises.html#cb208-387" tabindex="-1"></a><span class="co">#     plot.title = element_text(hjust = 0.5), # Center the plot title</span></span>
+<span id="cb208-388"><a href="potentially-useful-exercises.html#cb208-388" tabindex="-1"></a><span class="co">#     panel.grid.major.y = element_line(color = &quot;grey80&quot;, size = 0.5), # Style for major Y grid lines</span></span>
+<span id="cb208-389"><a href="potentially-useful-exercises.html#cb208-389" tabindex="-1"></a><span class="co">#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines</span></span>
+<span id="cb208-390"><a href="potentially-useful-exercises.html#cb208-390" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb208-391"><a href="potentially-useful-exercises.html#cb208-391" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb208-392"><a href="potentially-useful-exercises.html#cb208-392" tabindex="-1"></a><span class="co">#     x = &quot;Age (years)&quot;,</span></span>
+<span id="cb208-393"><a href="potentially-useful-exercises.html#cb208-393" tabindex="-1"></a><span class="co">#     y = &quot;Simulation: Political Preferences (left to right)&quot;,</span></span>
+<span id="cb208-394"><a href="potentially-useful-exercises.html#cb208-394" tabindex="-1"></a><span class="co">#     title = &quot;Scatter plot Age vs. Political Preferences \n(determ.&amp; stoch. sim. with adjusted intercept)&quot;</span></span>
+<span id="cb208-395"><a href="potentially-useful-exercises.html#cb208-395" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-396"><a href="potentially-useful-exercises.html#cb208-396" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-397"><a href="potentially-useful-exercises.html#cb208-397" tabindex="-1"></a><span class="co"># Regress the `predicted_LeftToRight_AdjIntercept_Stoch` on `age`</span></span>
+<span id="cb208-398"><a href="potentially-useful-exercises.html#cb208-398" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-399"><a href="potentially-useful-exercises.html#cb208-399" tabindex="-1"></a><span class="co"># result &lt;- lm(predicted_LeftToRight_AdjIntercept_Stoch ~ age, data = selects19)</span></span>
+<span id="cb208-400"><a href="potentially-useful-exercises.html#cb208-400" tabindex="-1"></a><span class="co"># rsq_sd1_AdjIntercept &lt;- summary(result)$r.squared</span></span>
+<span id="cb208-401"><a href="potentially-useful-exercises.html#cb208-401" tabindex="-1"></a><span class="co"># coeffs13 &lt;- coef(result)</span></span>
+<span id="cb208-402"><a href="potentially-useful-exercises.html#cb208-402" tabindex="-1"></a><span class="co"># cat(&#39;Intercept:&#39;,unname(coeffs13[1]), &#39;\n\nSlope:&#39;, unname(coeffs13[2]))</span></span>
+<span id="cb208-403"><a href="potentially-useful-exercises.html#cb208-403" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-404"><a href="potentially-useful-exercises.html#cb208-404" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-405"><a href="potentially-useful-exercises.html#cb208-405" tabindex="-1"></a><span class="co"># Report the $R^2$ generated in points 2, 11, and 13 here:</span></span>
+<span id="cb208-406"><a href="potentially-useful-exercises.html#cb208-406" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-407"><a href="potentially-useful-exercises.html#cb208-407" tabindex="-1"></a><span class="co"># tableSD1 &lt;- data.frame(</span></span>
+<span id="cb208-408"><a href="potentially-useful-exercises.html#cb208-408" tabindex="-1"></a><span class="co">#   LookR2 = c(&#39;Point 2&#39;, &#39;Point 12&#39;, &#39;Point 13&#39;),</span></span>
+<span id="cb208-409"><a href="potentially-useful-exercises.html#cb208-409" tabindex="-1"></a><span class="co">#   Model = c(&#39;Unchanged&#39;, &#39;P2 + (slope*5)&#39;, &#39;P2+(intercept+2)&#39;),</span></span>
+<span id="cb208-410"><a href="potentially-useful-exercises.html#cb208-410" tabindex="-1"></a><span class="co">#   R2 = c(rsq_sd1, rsq_sd1_AdjSlope, rsq_sd1_AdjIntercept),</span></span>
+<span id="cb208-411"><a href="potentially-useful-exercises.html#cb208-411" tabindex="-1"></a><span class="co">#   LookParams = c(&#39;Point 1&#39;, &#39;Point 12&#39;, &#39;Point 13&#39;),</span></span>
+<span id="cb208-412"><a href="potentially-useful-exercises.html#cb208-412" tabindex="-1"></a><span class="co">#   Intercept = c(unname(coeffs1[1]), unname(coeffs12[1]), unname(coeffs13[1])),</span></span>
+<span id="cb208-413"><a href="potentially-useful-exercises.html#cb208-413" tabindex="-1"></a><span class="co">#   Slope = c(unname(coeffs1[2]), unname(coeffs12[2]), unname(coeffs13[2]))</span></span>
+<span id="cb208-414"><a href="potentially-useful-exercises.html#cb208-414" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb208-415"><a href="potentially-useful-exercises.html#cb208-415" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-416"><a href="potentially-useful-exercises.html#cb208-416" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-417"><a href="potentially-useful-exercises.html#cb208-417" tabindex="-1"></a><span class="co"># print(tableSD1)</span></span>
+<span id="cb208-418"><a href="potentially-useful-exercises.html#cb208-418" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-419"><a href="potentially-useful-exercises.html#cb208-419" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-420"><a href="potentially-useful-exercises.html#cb208-420" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-421"><a href="potentially-useful-exercises.html#cb208-421" tabindex="-1"></a><span class="co"># 14. Comparing the $R^2$ and the parameters across the models of points 1, 2, and 3 answer the following questions:</span></span>
+<span id="cb208-422"><a href="potentially-useful-exercises.html#cb208-422" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-423"><a href="potentially-useful-exercises.html#cb208-423" tabindex="-1"></a><span class="co">#   i. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the $R^2$?</span></span>
+<span id="cb208-424"><a href="potentially-useful-exercises.html#cb208-424" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-425"><a href="potentially-useful-exercises.html#cb208-425" tabindex="-1"></a><span class="co"># print(&#39;The R2 increases as seen in point 11&#39;)</span></span>
+<span id="cb208-426"><a href="potentially-useful-exercises.html#cb208-426" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-427"><a href="potentially-useful-exercises.html#cb208-427" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-428"><a href="potentially-useful-exercises.html#cb208-428" tabindex="-1"></a><span class="co">#   ii. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the $R^2$?</span></span>
+<span id="cb208-429"><a href="potentially-useful-exercises.html#cb208-429" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-430"><a href="potentially-useful-exercises.html#cb208-430" tabindex="-1"></a><span class="co"># print(&#39;The R2 stays unchanged as the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged) as well as the average distance between each observation and the average observation remained unchainged (i.e., Y\&#39;s variance was kept unchanged)&#39;)</span></span>
+<span id="cb208-431"><a href="potentially-useful-exercises.html#cb208-431" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-432"><a href="potentially-useful-exercises.html#cb208-432" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-433"><a href="potentially-useful-exercises.html#cb208-433" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-434"><a href="potentially-useful-exercises.html#cb208-434" tabindex="-1"></a><span class="co">#  iii. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the intercept and slope?</span></span>
+<span id="cb208-435"><a href="potentially-useful-exercises.html#cb208-435" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-436"><a href="potentially-useful-exercises.html#cb208-436" tabindex="-1"></a><span class="co"># print(&#39;It increases the estimated slope and decreases the intercept.&#39;)</span></span>
+<span id="cb208-437"><a href="potentially-useful-exercises.html#cb208-437" tabindex="-1"></a><span class="co"># ```</span></span>
+<span id="cb208-438"><a href="potentially-useful-exercises.html#cb208-438" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb208-439"><a href="potentially-useful-exercises.html#cb208-439" tabindex="-1"></a><span class="co">#  iv. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the intercept and slope?</span></span>
+<span id="cb208-440"><a href="potentially-useful-exercises.html#cb208-440" tabindex="-1"></a><span class="co"># ```{r}</span></span>
+<span id="cb208-441"><a href="potentially-useful-exercises.html#cb208-441" tabindex="-1"></a><span class="co"># print(&#39;It keeps the estimated slope unchanged and the estimated intercept is the same as before the adjustment but increases by the same value that the whole data generating process was modified.&#39;)</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-14.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/PotentiallyUseful.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

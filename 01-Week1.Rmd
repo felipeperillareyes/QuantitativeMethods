@@ -8,7 +8,8 @@ library(tidyverse)
 library(ggplot2)
 library(BFS)
 library(pxR)
-
+library(dplyr)
+library(GGally)
 
 # Set global chunk options
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 6, fig.height = 4)
@@ -21,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width =
 
 ## First Part: REPETITION R/RStudio
 
-1. Download the files `f.txt` and `m.txt`. They contain information on the number of steps in a day and the body mass index (BMI) for female and male individuals respectively. Open them and explore the first 3 observations for each file.
+1. Download the files `f.txt` and `m.txt`. They contain information on screentime (i.e., number of seconds per day spent on mobile phone), and closeness to a populist party for female and male individuals respectively. Open them and explore the first 3 observations for each file.
 
 Note: remember that this book was developed as an R-project, which is a way to ensure reproducibility of projects. One of the advantages of R-projects is that files are stored in directories (i.e., folders) that are defined relative to the R-project. For example, if the folder `Data` is stored in the same folder as the project, files stored in `Data` can be accessed as follows: `female <- read.table("Data/f.txt", header = TRUE, sep = "\t")`.To learn more about R-projects, check [this](https://rfortherestofus.com/2022/10/rstudio-projects) entry.
 
@@ -34,13 +35,13 @@ Note: remember that this book was developed as an R-project, which is a way to e
 
 ```{r}
 # open data
-female <- read.table("Data/f.txt", header = TRUE, sep = "\t")
+female <- read.table("Data/f.txt", header = TRUE, sep = ";")
 
 # explore data
 head(female, 3)
 
 # open data
-male <- read.table("Data/m.txt", header = TRUE, sep = "\t")
+male <- read.table("Data/m.txt", header = TRUE, sep = ";")
 
 # explore data
 head(male, 3)
@@ -48,280 +49,333 @@ head(male, 3)
 
 Some key functions in dplyr can be categorized as dealing with columns (e.g., `select`, `mutate`), rows (e.g., `filter`, `distinct`, `arrange`), or groups  (e.g., `group_by`, `summarise`, and `count`). Let's use some of them!
 
-2. Select only the columns 'steps' and 'bmi'. Do it only for the first three observations of the data on females.
+2. Select only the columns 'ScreenTime' and 'ClosenessPopulistParty'. Do it only for the first three observations of the data on females.
 
 ```{r}
-# It's necessary to restate it in each r code section so the book can be rendered.
-library(dplyr)
 head(female, 3) %>%
-  select(steps, bmi)
+  select(ScreenTime, ClosenessPopulistParty)
 ```  
 
-3. Select all columns except 'ID'. Do not use `steps` nor `bmi`. Do it only for the first three observations of the data on females. Is the resulting table the same as the previous point? If not, check your answer.
+3. Select all columns except 'ID'. Do not use `ScreenTime` nor `ClosenessPopulistParty`. Do it only for the first three observations of the data on females. Is the resulting table the same as the previous point? If not, check your answer.
 
 ```{r}
-library(dplyr)
 head(female, 3) %>%
   select(-ID)
 ```  
 
 Note: to check the documentation of `select`, use `?select` on the console.
 
-4. Use `mutate` to create a new column in the dataframe `female` called `StepsTimesBmi` formed as the product of `steps` and  `bmi`. Show the first three observations for the new variable.
+4. Use `mutate` to create a new column in the DataFrame `female` called `ScreenTimeTimesClosenessPopulistParty` formed as the product of `ScreenTime` and  `ClosenessPopulistParty`. Show the first three observations for the new variable.
 
 ```{r}
-library(dplyr)
 female <-female %>%
-  mutate(StepsTimesBmi= steps * bmi)
+  mutate(ScreenTimeTimesClosenessPopulistParty= ScreenTime * ClosenessPopulistParty)
   
-head(female$StepsTimesBmi,3)
+head(female$ScreenTimeTimesClosenessPopulistParty,3)
 ```  
 
-5. Get rid of the column `StepsTimesBmi`. Use `subset`.
+5. Get rid of the column `ScreenTimeTimesClosenessPopulistParty`. Use `subset`.
+
+Note: remember to check that the outcome of your code is in accordance with what you expect. To do so, inspect the outcome using `head`.
  
 ```{r}
-female <- subset(female, select= - StepsTimesBmi)
+female <- subset(female, select= - ScreenTimeTimesClosenessPopulistParty)
+head(female, 3)
 ```     
 
-6. Use filter to find the share of female individuals with a `bmi` higher than 20 and lower than 21.
+6. Use filter to find the share of female individuals with a `ClosenessPopulistParty` higher than 20 and lower than 21.
     
 ```{r}
-library(dplyr)
+
 f20_21 <- female %>%
-  filter(bmi>20, bmi<21)
-
-cat("The share of female individuals with a `bmi` higher than 20 and lower than 21 is:", nrow(f20_21)*100/nrow(female), "%\n")
+  filter(ClosenessPopulistParty>20, ClosenessPopulistParty<21)
 ```   
+The share of female individuals with a `ClosenessPopulistParty` higher than 20 and lower than 21 is: `r round(nrow(f20_21)*100/nrow(female), digits = 2)`%.
 
-7. Use filter to find the share of female individuals with a `bmi` higher than 20 and lower than 21 while at the same time having less than 14000 `steps`.
+
+7. Use filter to find the share of female individuals with a `ClosenessPopulistParty` higher than 20 and lower than 21 while at the same time having less than 14000 `ScreenTime`.
     
 ```{r}
-library(dplyr)
-fBMI20_21_Step14000 <- female %>%
-  filter(bmi>20, bmi<21, steps<14000)
-
-cat("The share of female individuals with a `bmi` higher than 20 and lower than 21 while at the same time having less than 14000 is:", nrow(fBMI20_21_Step14000)*100/nrow(female), "%\n")
+fClosenessPopulistParty20_21_ScreenTime14000 <- female %>%
+  filter(ClosenessPopulistParty>20, ClosenessPopulistParty<21, ScreenTime<14000)
 ``` 
 
-8. Use filter to find the share of male individuals with `ID` number lower than 5 **and** higher than 860. Notice that you can use either `&` between conditions or simply a comma. Could any data set generate a different answer? Why?
+The share of female individuals with a `ClosenessPopulistParty` higher than 20 and lower than 21 while at the same time having less than 14000 is:", nrow(fClosenessPopulistParty20_21_ScreenTime14000)*100/nrow(female)
+
+8. Use filter to find the share of male individuals with `ID` number lower than 5 **and** higher than 860. Notice that you can use either `&` between conditions or simply a comma. Could any dataset generate a different answer? Why?
     
 ```{r}
-library(dplyr)
 m_5_860 <- male %>%
   filter(ID<5 & ID>860)
-
-cat("The share of male individuals with `ID` number lower than 5 AND higher than 860 is:", nrow(m_5_860)*100/nrow(male), "%\n")
 ```   
 
+The share of male individuals with `ID` number lower than 5 AND higher than 860 is: `r round(nrow(m_5_860)*100/nrow(male), digits = 2)`
 
-9. Use filter to find the share of male individuals with `ID` number lower than 5 **or** higher than 860. Use `|` between conditions. Could any data set generate a different answer? Why?
+9. Use filter to find the share of male individuals with `ID` number lower than 5 **or** higher than 860. Use `|` between conditions. Could any dataset generate a different answer? Why?
     
 ```{r}
-library(dplyr)
 m_5_or_860 <- male %>%
   filter(ID<5 | ID>860)
-
-cat("The share of male individuals with `ID` number lower than 5 OR higher than 860 is:", nrow(m_5_or_860)*100/nrow(male), "%\n")
 ```  
+The share of male individuals with `ID` number lower than 5 OR higher than 860 is: `r round(nrow(m_5_or_860)*100/nrow(male), digits=2) `.
 
 
-10. Use `distinct` to identify the share of male IDs that are unique.
+10. Sometimes, data is less than optimal and present repeated observations. Do you have repeated individual observations? Use `distinct` to identify the share of male IDs that are unique.
     
 ```{r}
 unique_m_IDs <- male %>%
   distinct(ID)
-  
-cat("The share of male IDs that are unique is:", nrow(unique_m_IDs)*100/nrow(male), "%\n")
 ```  
 
-11. Use `arrange` to find the three highest and lowest BMI values for males. Use `slice_head`.
+The share of male IDs that are unique is: `r round(nrow(unique_m_IDs)*100/nrow(male), digits=2)`
+
+As you will notice the more you code, there are many possible ways to perform the same task. For example, an alternative to the previous solution is as follows.
+
+```{r}
+
+# Check for repeated IDs in the female dataset. How many are there?
+repeated_ids_female <- female %>%
+  group_by(ID) %>% # groups by values of ID
+  filter(n() > 1) # Keeps only groups of values with more than 1 observation
+
+```
+
+The number of repeated IDs in the female dataset is: `r nrow(repeated_ids_female)`.
+
+
+Similarly, you could have used `count` to count the number of observations sharing all values across all columns. Use it to count how many observations are repeated. Do it for the `male` dataset.
+
+```{r}
+Unique_male <- male %>%
+  count() %>% 
+  filter(freq>1)
+
+nrow(Unique_male)
+```
+
+
+11. Use `arrange` to find the three highest and lowest `ClosenessPopulistParty` values for males. Use `slice_head`.
     
 ```{r}
 # Max
 top_3_m <- male %>%
-  arrange(desc(bmi)) %>%
-  slice_head(n = 3)
+  arrange(desc(ClosenessPopulistParty)) %>% #Orders in a descending order the variable CPP
+  slice_head(n = 3) # returns only the top 3 observations
 print(top_3_m)
 
 # Min  
 bottom_3_m <- male %>%
-  arrange(bmi) %>%
+  arrange(ClosenessPopulistParty) %>%#Orders in a ascending order the variable CPP. `Arrange` proceeds like that by default.
   slice_head(n = 3)
 print(bottom_3_m)
 ```  
 
-    9. group_by summarise count
-    
-```{r}
+12. Use `summarise` to describe the maximum, minimum, mean, median, standard deviation, and percentile 10 and 90. Do it for each, the `female` and `male` datasets.
 
+```{r}
+summary_stats_f <- female %>%
+  summarise(
+    max_value = max(ScreenTime),
+    min_value = min(ScreenTime),
+    mean_value = mean(ScreenTime),
+    median_value = median(ScreenTime),
+    sd_value = sd(ScreenTime),
+    percentile_10 = quantile(ScreenTime, 0.10),
+    percentile_90 = quantile(ScreenTime, 0.90)
+  )
+
+
+
+summary_stats_m <- male %>%
+  summarise(
+    max_value = max(ScreenTime),
+    min_value = min(ScreenTime),
+    mean_value = mean(ScreenTime),
+    median_value = median(ScreenTime),
+    sd_value = sd(ScreenTime),
+    percentile_10 = quantile(ScreenTime, 0.10),
+    percentile_90 = quantile(ScreenTime, 0.90)
+  )
+
+
+
+summary_f_m <- bind_rows(
+  "Male" = summary_stats_m, 
+  "Female" = summary_stats_f, 
+  .id = "Sex"
+)
+summary_f_m
 ```  
 
-2. Are there repeated ids within each data set?
+
+
+## Second Part: Some Simple Analysis
+
+Having refreshed some basics of R, you will now perform some simple analyses.
+
+### First, adjust the data
+
+1. For each dataset, create a new variable called `female`.
+
+Note: it is a good practice to name your variables so their interpretation is easy. For example, instead of using `sex` as a variable name, using `female` facilitates understanding that a zero represents `male` while a one represents `female`.
 
 ```{r}
-# get package
-# install.packages("dplyr")
-library(dplyr)
-
-
-# Check for repeated IDs in the female data set. How many are there?
-repeated_ids_female <- female %>%
-  group_by(ID) %>%
-  filter(n() > 1)
-
-cat("Number of repeated IDs in the female data set:", nrow(repeated_ids_female), "\n")
-
-
-# Check for repeated IDs in the male data set. How many are there?
-repeated_ids_male <- male %>%
-  group_by(ID) %>%
-  filter(n() > 1)
-
-cat("Number of repeated IDs in the male data set:", nrow(repeated_ids_male), "\n")
-
-```
-
-
-
-
-## Second Part: Exploratory VS. Hypothesis-Testing Analysis
-
-Please read the whole instruction before solving the exercise.
-
-Each student will be randomly allocated to either doing the task 1 or 2 (a list containing those numbers will published). Both tasks are based on the same data sets used in the first part.
-
-Notes: 
-
-- The details of the data origin will be published with the solution.
-- Students allocated to each group are encouraged to do the task for the other group **_only_** after finishing their own task.
-
-### Preliminary steps: do this before doing the task that you were assigned to
-
-1. For each data set, create a new variable called `sex`. Assign any value to each case, but make sure they are different.
-
-```{r}
-female$sex <- 'F'  
-male$sex <- 'M'  
+female$female <- 1
+male$female <- 0
 ```
   
-2. Create one data frame with all the IDs present in **both** data sets. How many cases are there? Use `dplyr`'s [join](https://www.geeksforgeeks.org/joining-data-in-r-with-dplyr-package/) methods.
+2. Create one DataFrame with all the IDs present in **both** datasets. How many cases are there? Use `dplyr`'s [join](https://www.geeksforgeeks.org/joining-data-in-r-with-dplyr-package/) methods.
 
 
 
 ```{r}
-library(dplyr)
-
 in_both <- inner_join(female, male, by="ID")
-
-cat("The number of cases where an ID is in both data sets is:", nrow(in_both), "\n")
-
 ```
 
+The number of cases where an ID is in both datasets is: `r nrow(in_both)`. Since `inner_join` keeps the observations whose ids are shared across the merged datasets, the lack of shared individuals across the datasets generates this result.
 
-3. Now that you know that there are no repeated individuals across the data sets, consider whether a join method is the appropriate way of unifying both data sets. Try first with `full_join` and then with `bind_rows`. Which one should you use? Why? Finally, how many individuals does the new dataframe have?
+3. Now that you know that there are no repeated individuals across the datasets, consider whether a join method is the appropriate way of unifying both datasets. Try first with `full_join` and then with `bind_rows`. Which one should you use? Why? Finally, how many individuals does the new DataFrame have?
+
+```{r}
+# # Without assuming that `female` was created for each DataFrame in advance, another alternative could have been.
+# female <- read.table("Data/f.txt", header = TRUE, sep = ";")
+# male <- read.table("Data/m.txt", header = TRUE, sep = ";")
+# 
+# all <- bind_rows(female, male, .id = 'sex')
+# 
+# # Which assigns a number 1 for the first binded DataFrame, and 2 for the second one. Hence, we can replace the values as follows.
+# all$sex <- ifelse(all$sex == 1, 'F', ifelse(all$sex == 2, 'M', all$sex))
+
+# As we have already created `female`
+all_fulljoin <- full_join(female, male, by="ID", copy=FALSE)
+head(all_fulljoin)
+
+# Assuming that `sex` was created for each DataFrame
+all_bindrows <- bind_rows(female, male, .id = NULL)
+head(all_bindrows)
+```
+
+The new DataFrame using `full_join` has `r nrow(all_fulljoin)`, individuals. The new DataFrame using `bind_rows` also has `r nrow(all_bindrows)`, individuals. However, as showed with the preliminary inspections made using `head()`, `bind_rows` is the adequate tool as the shared variables across sources are taken as belonging to the same variable and are hence stack one on top of the other. On the contrary, `full_join` assumes that they are different and so distinguishes them by adding the ending ".X" to the variable names of data present in the first dataset and ".Y" to the variable names of data present in the second dataset.
+
+4. What's the share per sex in the unified DataFrame from the previous point? Consider using `group_by` and `summarize`
 
 ```{r}
 
-library(dplyr)
+# Calculating shares
+shares <- all_bindrows %>%
+  group_by(female) %>%
+  dplyr::summarize(
+    count = n(),
+    share = n() / nrow(all_bindrows)
+  )
 
-all <- full_join(female, male, by="ID", copy=FALSE)
-cat("The new dataframe has ", nrow(all), "individuals\n")
-
-# Assuming that `sex` was created for each dataframe
-all <- bind_rows(female, male, .id = NULL)
-cat("The new dataframe has ", nrow(all), "individuals\n")
-
-# Without assuming that `sex` was created for each dataframe
-female <- read.table("Data/f.txt", header = TRUE, sep = "\t")
-male <- read.table("Data/m.txt", header = TRUE, sep = "\t")
-
-all <- bind_rows(female, male, .id = 'sex')
-cat("The new dataframe has ", nrow(all), "individuals\n")
-
-# Which assigns a number 1 for the first binded dataframe, and 2 for the second one. Hence, we can replace the values as follows.
-all$sex <- ifelse(all$sex == 1, 'F', ifelse(all$sex == 2, 'M', all$sex))
-
+# View the result
+print(shares)
 ```
 
 
-4. What's the share per sex in the unified dataframe from the previous point? Use ``
+### Second, answer the following questions
 
+Given that your original datasets are random samples, there is uncertainty about how the average of the different variables vary across sexes. Hence, to further qualify your understanding you need to answer the following quetions:
 
+1. Is the average number of ScreenTime for males and females statistically different? Use a t-test.
 
-
-
-Consider using the packages `dplyr`, ``
-
-
-
-### Task 1:
- - What do you conclude from the combined data set (i.e., the one formed using both the one for males and the one for females)?
-  - What questions did you ask yourself?
-    - Why did you ask those questions? Is there an intuition behind them?
-      - If so, what was your intuition?
-      - If not, how did you proceed?
-
-- Hint: consider visualizing how variables interact.
-
-
-### Task 2:
-
-- Is the average number of steps for males and females statistically different?
-- How do BMI and daily steps statistically relate to each other?
-  - Does that relationship depend on whether individuals are of one sex or another? If so, how?
-    - Is there an statistically significant negative correlation between the number of steps and the BMI for females?
-    - Is there an statistically significant positive correlation between the number of steps and the BMI for males?
-  
-- 1st weeks, dplier: to check> to statistical analysis
-	- Doing basic code to make analysis (which is fine enough), but in dplier you could do it like this.
-	- Make descriptive statistics using an interesting
-
-looking for something unknown in the dark, grope, feel blindly and make conjectures on what things are and how they are related.
-- Two groups: random selection: description similar? The smaller the group, the likelier that a random selection is not balanced? What about attrition?
-
-Looking!=seeing:
-  Different beliefs (non- and knowledge ones), different preferences, different attention focus -> different attention investment and emphasis
-    Value of diverse academic community while keeping a minimal set of shared assessment rules: [objectivity](https://plato.stanford.edu/entries/scientific-objectivity/) as continuum of increasing inter-subjective agreement
-    
-
-
-
-## Graph
 ```{r}
-#install.packages("ggplot2")
-library(ggplot2)
+# Conduct a t-test
+t_test_result <- t.test(ScreenTime ~ female, data = all_bindrows)
 
+# Print the result
+print(t_test_result)
+```
 
-ggplot(female, aes(x = steps, y = bmi)) +
-  geom_point() +
-  labs(x = "Steps", y = "BMI") +
-  ggtitle("Scatterplot of Steps vs BMI by Sex") 
+2. Are ClosenessPopulistParty and daily ScreenTime correlated? If so, how?
 
+```{r}
+# Perform Pearson's correlation test
+correlation_test <- cor.test(all_bindrows$ClosenessPopulistParty, all_bindrows$ScreenTime, method = "pearson")
 
-ggplot(male, aes(x = steps, y = bmi)) +
-  geom_point() +
-  labs(x = "Steps", y = "BMI") +
-  ggtitle("Scatterplot of Steps vs BMI by Sex") 
-
-
-  
-ggplot(all, aes(x = steps, y = bmi, color = sex)) +
-  geom_point() +
-  labs(x = "Steps", y = "BMI") +
-  ggtitle("Scatterplot of Steps vs BMI by Sex") +
-  scale_color_manual(values = c("F" = "blue", "M" = "red"))  # Optional: Define color mapping
+# Print the results
+print(correlation_test)
 
 ```
 
+3. Does that correlation depend on whether individuals are of one sex or another? If so, how?
+
+```{r}
+# Correlation test for females
+correlation_female <- all_bindrows %>%
+  filter(female == 1) %>%
+  with(cor.test(ClosenessPopulistParty, ScreenTime, method = "pearson"))
+
+# Correlation test for males
+correlation_male <- all_bindrows %>%
+  filter(female == 0) %>%
+  with(cor.test(ClosenessPopulistParty, ScreenTime, method = "pearson"))
+```
+
+Thus, the correlation for Females is `r print(correlation_female)`, while it is `r print(correlation_male)` for Males.
+
+4. Finally, graph `ScreenTime` vs `ClosenessPopulistParty` by each sex and the for both together. What does this graph teach you?
+
+Graph for females here.
+```{r}
+ggplot(female, aes(x = ScreenTime, y = ClosenessPopulistParty)) +
+  geom_point() +
+  labs(x = "Screen Time", y = "Closeness to Populist Party") +
+  ggtitle("Scatterplot of Screen Time vs Closeness to Populist Party (females)")
+```
+
+Graph for males here.
+```{r}
+ggplot(male, aes(x = ScreenTime, y = ClosenessPopulistParty)) +
+  geom_point() +
+  labs(x = "Screen Time", y = "Closeness to Populist Party") +
+  ggtitle("Scatterplot of Screen Time vs Closeness to Populist Party (males)")
+```
+
+
+Graph for females and males together here.
+```{r}
+ggplot(all_bindrows, aes(x = ScreenTime, y = ClosenessPopulistParty, color = as.factor(female))) +
+  geom_point() +
+  labs(x = "Screen Time", y = "Closeness to Populist Party", color = "Female") +
+  ggtitle("Scatterplot of Screen Time vs Closeness to Populist Party by Sex") +
+  scale_color_manual(values = c("1" = "blue", "0" = "red"))  # Define color mapping
+
+```
+ 
+This exercise was a **cautionary tale** that aims at highlighting the importance to perform preliminary exploratory analysis on your data. What are the gorillas of your data? For example, have you found people with heights of 10 meters? Have you found systematic but unexpected relationships in the data? What are they due to? Mistakes in data management or measurement? To the phenomenon itself? What relations between variables could guide your analysis?
+
+Preliminary analyses include but are not restricted to:
+
+i. Generate scatter plots across many variables
 
 
 
-## Solution
+```{r}
+ggpairs(all_bindrows)
+pairs(all_bindrows)
 
-Will be made available.
-
-<!-- Here is the solution -->
-
+```
+ii. Generate histograms
 
 
+```{r}
+ggplot(all_bindrows, aes_string(x = 'ScreenTime')) + 
+      geom_histogram(bins = 30, fill = "blue", color = "black") +
+      labs(title = paste("Histogram of", 'ScreenTime'), x = 'ScreenTime', y = "Frequency")
+```
 
+```{r}
+ggplot(all_bindrows, aes_string(x = "ClosenessPopulistParty")) + 
+      geom_histogram(bins = 30, fill = "blue", color = "black") +
+      labs(title = paste("Histogram of", 'ClosenessPopulistParty'), x = 'ClosenessPopulistParty', y = "Frequency")
+```
+ 
+
+```{r}
+ggplot(all_bindrows, aes_string(x = 'female')) + 
+      geom_histogram(bins = 30, fill = "blue", color = "black") +
+      labs(title = paste("Histogram of", 'female'), x = 'female', y = "Frequency")
+```
+ 

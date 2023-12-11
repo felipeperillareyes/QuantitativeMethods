@@ -1,0 +1,576 @@
+# Potentially useful exercises
+
+## Taken out from Week 3
+
+Parabolic simulated residuals:
+```{r}
+CO2_land$parab_norm_resid<- -0.01*(CO2_land$Sim_ShareAgric_norm-mean(CO2_land$Sim_ShareAgric_norm))^2+CO2_land$Sim_resid_norm
+CO2_land$parab_norm_resid<- CO2_land$parab_norm_resid-mean(CO2_land$parab_norm_resid)
+
+
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = parab_norm_resid)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Error",
+    title = "Simulation: of parabolic error"
+  )
+```
+What does the behavior of the error tell you about the potential reliability of a regression without quadratic terms?
+
+Data generating process with parabolic residuals:
+```{r}
+CO2_land$Pred_TurnOut_parab_norm_resid <- CO2_land$Pred_TurnOut_Determ + CO2_land$parab_norm_resid
+
+
+
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "purple") +
+  geom_hline(yintercept = mean(CO2_land$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") + 
+  scale_y_continuous(limits = c(25, max(CO2_land$Pred_TurnOut_Unif, na.rm = TRUE))) +  #
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Simulation: deterministic and stochastic model (uniform error)"
+  )
+
+```
+Would using a quadratic term in the regression produce a better fit? Graph the regression line with a quadratic term. 
+
+```{r}
+ggplot(CO2_land, aes(x = Sim_ShareAgric_norm, y = Pred_TurnOut_parab_norm_resid)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "purple") +
+  geom_hline(yintercept = mean(CO2_land$Pred_TurnOut_parab_norm_resid), linetype = "dashed", color = "green") + 
+  geom_vline(xintercept = mean_AgricAreaPercent, linetype = "dashed", color = "orange") +  
+  scale_y_continuous(limits = c(25, max(CO2_land$Pred_TurnOut_Unif, na.rm = TRUE))) +  
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    x = "Agricultural Area (%)",
+    y = "Turn-out (%)",
+    title = "Simulation: deterministic and stochastic model (uniform error)"
+  )
+
+```
+
+## Taken out from Week 4
+
+```{r}
+# ## Interactive Line Plot
+# 
+# *<span style="color: red;">Should we exploit this here or somewhere else? I can make it work in R, but not in the book yet. If needed, I can check it out.</span>.*
+
+# # Example data frame
+# data <- data.frame(
+#   x = rnorm(100),
+#   y = rnorm(100)
+# )
+# 
+# # Shiny server function
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +  
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# # Example data frame
+# data <- data.frame(
+#   x = rnorm(100),
+#   y = rnorm(100)
+# )
+# 
+# # Shiny server function
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +  
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# update.packages(ask = FALSE)
+# 
+# 
+# library(shiny)
+# library(ggplot2)
+# 
+# ui <- fluidPage(
+#   titlePanel("Interactive Line Plot"),
+#   sidebarLayout(
+#     sidebarPanel(
+#       sliderInput("intercept", "Intercept:", min = -10, max = 10, value = 0),
+#       sliderInput("slope", "Slope:", min = -10, max = 10, value = 1)
+#     ),
+#     mainPanel(
+#       plotOutput("scatterPlot")
+#     )
+#   )
+# )
+# 
+# server <- function(input, output) {
+#   output$scatterPlot <- renderPlot({
+#     ggplot(data, aes(x = x, y = y)) +
+#       geom_point(size = 0) +
+#       geom_abline(intercept = input$intercept, slope = input$slope, color = "red", size = 1)
+#   })
+# }
+# 
+# shinyApp(ui = ui, server = server)
+```
+
+### Simulated data
+```{r}
+# 1. In order to see the logic behind the $R^2$, first estimate the linear regression of `LeftToRight` on `Age`. Generate the variable `predicted_LeftToRight` with the generated parameters using [`predict()`](https://www.statology.org/r-lm-predict/) from the point 3 of the previous section (i.e., the one using real data).Generate the graph `predicted_LeftToRight` vs `Age`.
+
+# Report the regression here.
+# ```{r}
+# result <- lm(LeftToRight ~ age, data = selects19)
+# selects19$predicted_LeftToRight <- predict(result)
+#
+# coeffs1 <- coef(result)
+# rsq_sd1 <- summary(result)$r.squared
+# cat('The R2 is: ', rsq_sd1, '\n\nIntercept:',unname(coeffs1[1]), '\n\nSlope:', unname(coeffs1[2]))
+# ```
+#
+# Report the graph here.
+# ```{r}
+# # Calculate means for Y and X
+# mean_LeftRight <- mean(selects19$LeftToRight, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = predicted_LeftToRight)) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   scale_y_continuous(
+#     limits = c(0, 10),
+#     breaks = seq(0, 10, by = 1)
+#   ) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences (determ. sim.)"
+#   )
+#
+#
+# ```
+#
+# 2. Now generate the normally distributed residuals with mean zero and the same variance as the residuals of the model from the previous point.
+# ```{r}
+# # Calculate the variance of the residuals
+# selects19$residual <- resid(result)
+# residual_sd <- sqrt(var(resid(result)))
+#
+# # Set the seed for reproducibility
+# set.seed(0)
+# selects19$NormResiduals1 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd)
+#
+# ```
+#
+# 3. Simulate new data using both the deterministic  (i.e., the the parameters estimated immediately above) and stochastic component (i.e., the residuals form the previous point). Graph the simulated data.
+# ```{r}
+#
+# selects19$Sim_LeftToRight_Det_Stoch <- selects19$predicted_LeftToRight + selects19$NormResiduals1
+#
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   scale_y_continuous(
+#     limits = c(0, 10),
+#     breaks = seq(0, 10, by = 1)) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Simulation: Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim.)"
+#   )
+#
+# ```
+#
+# 4. Now, estimate the regression between the real `age` and simulated `Sim_LeftToRight_Det_Stoch`. Once you do that, generate the $R^2$ for the model.
+#
+# ```{r}
+# result <- lm(LeftToRight ~ age, data = selects19)
+# rsq_sd1 <- summary(result)$r.squared
+# cat('The R2 is: ', rsq_sd1)
+#
+# ```
+#
+# 5. Repeat the previous three points but use half the standard deviation of the model of point 1. Is the $R^2$ lower now? Why? See [this](https://en.wikipedia.org/wiki/Coefficient_of_determination) entry to understand the intuition: pay special attention to the graph with the red and blue squares.
+#
+# Generate the residuals here.
+# ```{r}
+# # Set the seed for reproducibility
+# set.seed(0)
+# selects19$NormResiduals10 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.1)
+#
+# ```
+#
+# Simulate new data and graph it here.
+# ```{r}
+# selects19$Sim_LeftToRight_Det_Stoch_sd10 <- selects19$predicted_LeftToRight + selects19$NormResiduals10
+#
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch_sd10, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_sd10)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   scale_y_continuous(
+#     limits = c(0, 10),
+#     breaks = seq(0, 10, by = 1)) +
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Simulated data (half sd): Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences"
+#   )
+#
+# ```
+#
+#
+# Report the new $R^2$ here:
+# ```{r}
+# result <- lm(Sim_LeftToRight_Det_Stoch_sd10 ~ age, data = selects19)
+# rsq_sd10 <- summary(result)$r.squared
+# cat('The R2 is: ', rsq_sd10)
+#
+# ```
+#
+# 6. Repeat the previous point but use a hundredth the standard deviation of the model of point 1. Is the $R^2$ lower now? Why?
+#
+# Generate the residuals here.
+# ```{r}
+# # Set the seed for reproducibility
+# set.seed(0)
+# selects19$NormResiduals100 <- rnorm(nrow(selects19), mean = 0, sd = residual_sd*0.01)
+#
+# ```
+#
+# Simulate new data and graph it here.
+# ```{r}
+# selects19$Sim_LeftToRight_Det_Stoch_hsd <- selects19$predicted_LeftToRight + selects19$NormResiduals100
+#
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$Sim_LeftToRight_Det_Stoch_hsd, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = Sim_LeftToRight_Det_Stoch_hsd)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   scale_y_continuous(
+#     limits = c(0, 10),
+#     breaks = seq(0, 10, by = 1)) +
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Simulated data (half sd): Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences"
+#   )
+#
+# ```
+#
+#
+# Report the new $R^2$ here:
+# ```{r}
+# result <- lm(Sim_LeftToRight_Det_Stoch_hsd ~ age, data = selects19)
+# rsq_sd100 <- summary(result)$r.squared
+# cat('The R2 is: ', rsq_sd100)
+#
+# ```
+#
+# 7. Present in a table the $R^2$ for each value of the standard deviation.
+# ```{r}
+#
+# table <- data.frame(
+#   SD = c(1, 0.1, 0.01),
+#   R2 = c(rsq_sd1, rsq_sd10, rsq_sd100)    # Replace these with the actual R-squared values
+# )
+#
+# print(table)
+#
+# ```
+# 8. Graph $R^2$ agains the standard deviation fraction. Fit a linear regression line.
+# ```{r}
+# ggplot(table, aes(x = SD, y = R2)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "green")+
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   labs(
+#     x = "Fraction of standard deviation",
+#     y = "R2",
+#     title = "Relation between R2 and standard deviation of residuals"
+#   )
+# ```
+# 9. [Optional] Graph $R^2$ against the standard deviation fraction. Fit a regression line with a polynomial of degree 2. The regression line fits the data better. Is the polynomial regression more informative than the linear regression? Why? What lesson does this graph give you in terms of the importance of understanding the theoretical relations between variables beyond what an empirical approach could suggest? What does it teach you regarding the tension between under- and over-fitting data?
+#
+# ```{r}
+# ggplot(table, aes(x = SD, y = R2)) +
+#   geom_point() +
+#   geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, color='green') +
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   labs(
+#     x = "Fraction of standard deviation",
+#     y = "R2",
+#     title = "Relation between R2 and standard deviation of residuals"
+#   )
+#
+#
+#
+# ```
+# 10. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time multiply the slope's parameter by 5, while keeping the intercept unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+#
+# Print here
+# ```{r}
+# result <- lm(LeftToRight ~ age, data = selects19)
+# # summary(result)
+# coeffs <- coef(result)
+# cat('Intercept:',unname(coeffs[1]), '\n\nSlope:', unname(coeffs[2]))
+# ```
+#
+# Predict with the adjusted slope here.
+# ```{r}
+# selects19$predicted_LeftToRight_AdjSlope <- unname(coeffs[1])+(unname(coeffs[2])*5)*selects19$age
+# ```
+#
+# Generate the graph here.
+# ```{r}
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjSlope, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope)) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   scale_y_continuous(
+#     limits = c(0, 15),
+#     breaks = seq(0, 20, by = 1)) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences (adj. slope)"
+#   )
+# ```
+# 11. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjSlope_Stoch`. Generate the graph `predicted_LeftToRight_AdjSlope_Stoch` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+#
+# Report the simulation and the graph here.
+# ```{r}
+# selects19$predicted_LeftToRight_AdjSlope_Stoch <- selects19$predicted_LeftToRight_AdjSlope + selects19$NormResiduals1
+#
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjSlope_Stoch, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjSlope_Stoch)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   scale_y_continuous(
+#     limits = c(0, 20),
+#     breaks = seq(0, 20, by = 1)) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Simulation: Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim. with adjusted slope)"
+#   )
+# ```
+#
+# Report the new $R^2$ here:
+# ```{r}
+# result <- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)
+# rsq_sd1_AdjSlope <- summary(result)$r.squared
+# cat('The R2 is: ', rsq_sd1_AdjSlope)
+#
+# ```
+#
+# Report why is the new $R^2$ higher than the one in point 4?
+#
+# ```{r}
+# print('The reason the R2 increased is that, while the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged), by increasing the slope of the generating process, the average distance between each observation and the average observation increased (i.e., Y\'s variance increased). See the graph with the red and blue squares mentioned in point 5.')
+# ```
+#
+# 333333333333
+#
+#
+# 12. Print the parameters generated in the point 1. Generate the same predictions as in point 1 and 2 but this time increase in two units the *intercept's* parameter (not the *slope's* parameter as in the point 10), while keeping the slope unchanged. Call the resulting predictions `predicted_LeftToRight_AdjSlope` Generate a graph with the regression line for `predicted_LeftToRight_AdjSlope` vs `Age` and compare it with the graph `predicted_LeftToRight` vs `Age` generated in point 1.
+#
+# Print here
+# ```{r}
+# result <- lm(predicted_LeftToRight_AdjSlope_Stoch ~ age, data = selects19)
+# # summary(result)
+# coeffs12 <- coef(result)
+# cat('Intercept:',unname(coeffs12[1]), '\n\nSlope:', unname(coeffs12[2]))
+# ```
+#
+# Predict with the adjusted slope here.
+# ```{r}
+# selects19$predicted_LeftToRight_AdjIntecept <- unname(coeffs[1]+2)+(unname(coeffs[2]))*selects19$age
+# ```
+#
+# Generate the graph here.
+# ```{r}
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjIntecept, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntecept)) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   theme_minimal() +
+#   theme(plot.title = element_text(hjust = 0.5)) +
+#   scale_y_continuous(
+#     limits = c(0, 15),
+#     breaks = seq(0, 20, by = 1)) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences (adj. slope)"
+#   )
+# ```
+# 13. Add to the deterministic simulation the same stochastic component generated in point 2. Call that variable `predicted_LeftToRight_AdjIntercep_Stoch`. Generate the graph `predicted_LeftToRight_AdjIntecept` vs `age` with a linear regression line. Generate the $R^2$ and compare it to the one generated in point 4. Why is the new $R^2$ higher than the one in point 4?
+#
+# Report the simulation and the graph here.
+# ```{r}
+# selects19$predicted_LeftToRight_AdjIntercept_Stoch <- selects19$predicted_LeftToRight_AdjIntecept + selects19$residual
+#
+# #Means for Y and X
+# mean_LeftRight <- mean(selects19$predicted_LeftToRight_AdjIntercept_Stoch, na.rm = TRUE)
+# mean_age <- mean(selects19$age, na.rm = TRUE)
+#
+# # Create a scatter plot
+# ggplot(selects19, aes(x = age, y = predicted_LeftToRight_AdjIntercept_Stoch)) +
+#   geom_point(size = 0) +
+#   geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +  # Adding the regression line
+#   geom_hline(yintercept = mean_LeftRight, linetype = "dashed", color = "green") +  # Horizontal line at the mean of y
+#   geom_vline(xintercept = mean_age, linetype = "dashed", color = "orange") +  # Vertical line at the mean of x
+#   scale_y_continuous(
+#     limits = c(0, 20),
+#     breaks = seq(0, 20, by = 1)) +
+#   theme_minimal() +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center the plot title
+#     panel.grid.major.y = element_line(color = "grey80", size = 0.5), # Style for major Y grid lines
+#     panel.grid.minor.y = element_blank() # Remove minor Y grid lines
+#   ) +
+#   labs(
+#     x = "Age (years)",
+#     y = "Simulation: Political Preferences (left to right)",
+#     title = "Scatter plot Age vs. Political Preferences \n(determ.& stoch. sim. with adjusted intercept)"
+#   )
+# ```
+# Regress the `predicted_LeftToRight_AdjIntercept_Stoch` on `age`
+# ```{r}
+# result <- lm(predicted_LeftToRight_AdjIntercept_Stoch ~ age, data = selects19)
+# rsq_sd1_AdjIntercept <- summary(result)$r.squared
+# coeffs13 <- coef(result)
+# cat('Intercept:',unname(coeffs13[1]), '\n\nSlope:', unname(coeffs13[2]))
+# ```
+#
+# Report the $R^2$ generated in points 2, 11, and 13 here:
+# ```{r}
+# tableSD1 <- data.frame(
+#   LookR2 = c('Point 2', 'Point 12', 'Point 13'),
+#   Model = c('Unchanged', 'P2 + (slope*5)', 'P2+(intercept+2)'),
+#   R2 = c(rsq_sd1, rsq_sd1_AdjSlope, rsq_sd1_AdjIntercept),
+#   LookParams = c('Point 1', 'Point 12', 'Point 13'),
+#   Intercept = c(unname(coeffs1[1]), unname(coeffs12[1]), unname(coeffs13[1])),
+#   Slope = c(unname(coeffs1[2]), unname(coeffs12[2]), unname(coeffs13[2]))
+# )
+#
+#
+# print(tableSD1)
+#
+# ```
+#
+# 14. Comparing the $R^2$ and the parameters across the models of points 1, 2, and 3 answer the following questions:
+#
+#   i. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the $R^2$?
+# ```{r}
+# print('The R2 increases as seen in point 11')
+# ```
+#
+#   ii. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the $R^2$?
+# ```{r}
+# print('The R2 stays unchanged as the distance from each observation to the regression line remained unchainged (i.e., the residual was kept unchanged) as well as the average distance between each observation and the average observation remained unchainged (i.e., Y\'s variance was kept unchanged)')
+#
+# ```
+#
+#  iii. What effect does increasing the slope of the data generating process (while keeping the residuals and intercept unchanged) have on the intercept and slope?
+# ```{r}
+# print('It increases the estimated slope and decreases the intercept.')
+# ```
+#
+#  iv. What effect does increasing the intercept of the data generating process (while keeping the residuals and slope unchanged) have on the intercept and slope?
+# ```{r}
+# print('It keeps the estimated slope unchanged and the estimated intercept is the same as before the adjustment but increases by the same value that the whole data generating process was modified.')
+
+```
+
